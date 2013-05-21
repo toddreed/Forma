@@ -56,7 +56,7 @@
 /* Begin PBXFileReference section */
 		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Object Editor-Prefix.pch"; path = "../../../Object Editor/Object Editor-Prefix.pch"; sourceTree = "<group>"; };
+		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
 		5FF92F89174AD56B003211A0 /* Object EditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Object EditorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -492,6 +492,7 @@
 				5FF92F9F174AD56B003211A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5FF92FA0174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object EditorTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +501,7 @@
 				5FF92FA2174AD56B003211A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
