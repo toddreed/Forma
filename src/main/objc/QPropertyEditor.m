@@ -1,10 +1,10 @@
-// -*- coding: utf-8; -*-
 //
-// © Reaction Software Inc., 2011
+// QPropertyEditor.m
+//
+// © Reaction Software Inc., 2013
 //
 
 
-#import "NSObject+QExtension.h"
 #import "QPropertyEditor.h"
 
 
@@ -14,8 +14,9 @@
 
 - (id)init
 {
-    [self Q_invalidInitInvoked];
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 #pragma mark NSKeyValueObserving
@@ -49,6 +50,7 @@
 {
     if (key && !observing)
     {
+        _target = editedObject;
         [editedObject addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:NULL];
         observing = YES;
     }
@@ -58,9 +60,9 @@
 {
     if (key && observing)
     {
+        _target = nil;
         [editedObject removeObserver:self forKeyPath:key];
         observing = NO;
-        
         tableViewCell = nil;
     }
 }
@@ -93,7 +95,7 @@
     
     label.text = title;
     label.adjustsFontSizeToFitWidth = YES;
-    label.minimumFontSize = 11.0;
+    label.minimumScaleFactor = 0.6;
     
     tableViewCell.detailTextLabel.text = nil; // This is needed to vertically align textLabel in the centre on a device (it's not needed on the simulator).
 }

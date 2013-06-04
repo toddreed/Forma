@@ -1,15 +1,13 @@
 //
-//  QObjectEditorViewController.m
-//  WordHunt
+// QObjectEditorViewController.m
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
 
+
 #import "QObjectEditorViewController.h"
-#import "NSObject+QExtension.h"
 #import "NSObject+QEditor.h"
-#import "QStringPropertyEditor.h"
+#import "QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 
 NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor.ErrorDomain";
@@ -98,15 +96,16 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    [self Q_invalidInitInvoked];
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 #pragma mark - QObjectEditorViewController
 
 @synthesize style;
 @synthesize delegate;
-@synthesize lastStringPropertyEditor;
+@synthesize lastTextInputPropertyEditor;
 @synthesize autoTextFieldNavigation;
 @synthesize lastTextFieldReturnKeyType;
 
@@ -189,7 +188,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
             }
         }
         
-        lastStringPropertyEditor = [self p_findLastStringPropertyEditor];
+        lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
         activeTextField = nil;
     }
 }
@@ -237,17 +236,17 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
     
     if (autoTextFieldNavigation)
     {
-        QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)lastStringPropertyEditor.tableViewCell;
+        QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
-            cell.textField.returnKeyType = lastStringPropertyEditor.returnKeyType;
+            cell.textField.returnKeyType = lastTextInputPropertyEditor.returnKeyType;
     }
     
-    lastStringPropertyEditor = [self p_findLastStringPropertyEditor];
+    lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
     
     if (autoTextFieldNavigation)
     {
-        QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)lastStringPropertyEditor.tableViewCell;
+        QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
             cell.textField.returnKeyType = lastTextFieldReturnKeyType;
@@ -270,7 +269,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
     return editor;
 }
 
-- (QStringPropertyEditor *)p_findLastStringPropertyEditor
+- (QTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
 {
     for (NSInteger section = [propertyGroups count]-1; section >= 0; --section)
     {
@@ -280,8 +279,8 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
         {
             QPropertyEditor *editor = [group.propertyEditors objectAtIndex:row];
             
-            if ([editor isKindOfClass:[QStringPropertyEditor class]])
-                return (QStringPropertyEditor *)editor;
+            if ([editor isKindOfClass:[QTextInputPropertyEditor class]])
+                return (QTextInputPropertyEditor *)editor;
         }
     }
     return nil;
@@ -303,7 +302,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
             
             if (editorFound)
             {
-                if ([editor isKindOfClass:[QStringPropertyEditor class]])
+                if ([editor isKindOfClass:[QTextInputPropertyEditor class]])
                     return [NSIndexPath indexPathForRow:row inSection:section];
             }
             else if (editor == aEditor)
@@ -366,7 +365,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
     
     if ([editor selectable])
     {
-        // Note that editor.key can be nil for psuedo property editors (like
+        // Note that editor.key can be nil for pseudo property editors (like
         // QDetailPropertyEditor and QButtonPropertyEditor).
         id value = editor.key == nil ? nil : [editedObject valueForKey:editor.key];
         [editor tableCellSelected:[tableView cellForRowAtIndexPath:indexPath] forValue:value controller:self];
@@ -386,7 +385,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
 {
     QPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
 
-    // Note that editor.key can be nil for psuedo property editors (like
+    // Note that editor.key can be nil for pseudo property editors (like
     // QDetailPropertyEditor and QButtonPropertyEditor).
     id value = editor.key == nil ? nil : [editedObject valueForKey:editor.key];
     UITableViewCell *cell = [editor tableCellForValue:value controller:self];

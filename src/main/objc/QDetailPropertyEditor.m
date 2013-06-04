@@ -1,22 +1,21 @@
 //
-//  QDetailPropertyEditor.m
-//  WordHunt
+// QDetailPropertyEditor.m
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QDetailPropertyEditor.h"
 #import "NSObject+QEditor.h"
-#import "NSObject+QExtension.h"
 
 
 @implementation QDetailPropertyEditor
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
-    [self Q_invalidInitInvoked];
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 - (id)initWithTitle:(NSString *)aTitle object:(NSObject *)aObject

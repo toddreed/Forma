@@ -1,10 +1,9 @@
 //
-//  TextFieldTableViewCell.m
-//  WordHunt
+// QTextFieldTableViewCell.m
 //
-//  Created by Todd Reed on 10-05-06.
-//  Copyright 2010 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QTextFieldTableViewCell.h"
 
@@ -83,6 +82,7 @@ static UIImage *IconImage;
         descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
         descriptionLabel.textColor = [UIColor grayColor];
         descriptionLabel.textAlignment = NSTextAlignmentLeft;
+        descriptionLabel.backgroundColor = [UIColor clearColor];
         descriptionLabel.hidden = YES;
         descriptionLabel.numberOfLines = 0;
         [self.contentView addSubview:descriptionLabel];

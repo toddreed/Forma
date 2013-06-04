@@ -1,14 +1,13 @@
 //
-//  QDetailPropertyEditor.h
-//  WordHunt
+// QDetailPropertyEditor.h
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QPropertyEditor.h"
 
-/// A QDetailPropertyEditor is a psuedo property editor that edits some ancillary object that is not
+/// A QDetailPropertyEditor is a pseudo property editor that edits some ancillary object that is not
 /// directly part of the object graph of the primary object being edited. This must only be used
 /// with a QObjectEditorViewController that is on the stack of a UINavigationController. The UI for
 /// a QDetailPropertyEditor displays the object's editor title and a summary of the object's value

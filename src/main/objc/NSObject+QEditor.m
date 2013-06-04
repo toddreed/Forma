@@ -1,10 +1,9 @@
 //
-//  NSObject+QEditor.m
-//  WordHunt
+// NSObject+QEditor.m
 //
-//  Created by Todd Reed on 10-05-08.
-//  Copyright 2010 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "NSObject+QEditor.h"
 #import "NSObject+QProperties.h"
@@ -12,7 +11,7 @@
 #import "QObjectPropertyEditor.h"
 #import "QBooleanPropertyEditor.h"
 #import "QFloatPropertyEditor.h"
-#import "QStringPropertyEditor.h"
+#import "QTextInputPropertyEditor.h"
 
 
 @implementation NSObject (QEditor)
@@ -85,7 +84,7 @@
 
 + (Class)propertyEditorClass
 {
-    return [QStringPropertyEditor class];
+    return [QTextInputPropertyEditor class];
 }
 
 @end

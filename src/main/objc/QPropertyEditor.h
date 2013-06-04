@@ -1,10 +1,9 @@
 //
-//  QPropertyEditor.h
-//  WordHunt
+// QPropertyEditor.h
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -13,12 +12,12 @@
 /// The QPropertyEditor class is part of a framework for building a user interface for editing
 /// model objects. QPropertyEditor is an abstract base class; there are concrete subclasses of
 /// QPropertyEditor that provide support for editing specific types of properties. For example,
-/// QStringPropertyEditor provides support for editing NSString properties. QProperityEditor
-/// instances are use by the QObjectEditorViewController class to build the user interface for
+/// QTextInputPropertyEditor provides support for editing NSString properties. QProperityEditor
+/// instances are used by the QObjectEditorViewController class to build the user interface for
 /// editing many properties of an object.
 /// 
-/// QPropertyEditor use key-value observing to keep the UI synchronized with changes to the model
-/// object. If the model's properties are modified via its accessors and the models class if KVO
+/// QPropertyEditor uses key-value observing to keep the UI synchronized with changes to the model
+/// object. If the model's properties are modified via its accessors and the model's class if KVO
 /// compliant, the UI will automatically update to reflect the changed property value.
 /// 
 /// Similarly, QPropertyEditor uses key-value coding to automatically update a model's property
@@ -29,6 +28,9 @@
 
 @interface QPropertyEditor : NSObject
 {
+    // The object this editor modifies
+    __weak id _target;
+
     // The key use to update the model object with KVC. This is always non-nil for "normal"
     // property editors, but some special "pseudo" property editors have a nil key;
     // QDetailPropertyEditor and QButtonPropertyEditor are examples.
@@ -53,6 +55,7 @@
     UITableViewCell *tableViewCell;
 }
 
+@property (nonatomic, readonly) id target;
 @property (nonatomic, readonly) NSString *key;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic) NSInteger tag;

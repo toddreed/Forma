@@ -1,10 +1,9 @@
-// 
-//  NSObject+QProperties.h
-//  WordHunt
-// 
-//  Created by Todd Reed on 10-05-05.
-//  Copyright 2010 Reaction Software Inc. All rights reserved.
-// 
+//
+// NSObject+QProperties.h
+//
+// © Reaction Software Inc., 2013
+//
+
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>

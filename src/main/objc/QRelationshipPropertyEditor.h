@@ -1,10 +1,9 @@
 //
-//  QRelationshipPropertyEditor.h
-//  Pack
+// QRelationshipPropertyEditor.h
 //
-//  Created by Todd Reed on 2012-11-11.
-//  Copyright (c) 2012 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QPropertyEditor.h"
 

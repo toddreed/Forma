@@ -1,19 +1,19 @@
 //
-//  QObjectEditorViewController.h
-//  WordHunt
+// QObjectEditorViewController.h
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 #import "QPropertyEditor.h"
 #import "QPropertyGroup.h"
+#import "NSObject+QEditor.h"
 
 @class QObjectEditorViewController;
-@class QStringPropertyEditor;
+@class QTextInputPropertyEditor;
 
 extern NSString *const kQObjectEditorErrorDomain;
 
@@ -69,10 +69,10 @@ typedef enum QObjectEditorViewStyle
     // The next available unique tag that can be assigned to a QPropertyEditor.
     NSInteger nextTag;
     
-    // The last QStringPropertyEditor found in propertyGroups. We keep this so we can
+    // The last QTextInputPropertyEditor found in propertyGroups. We keep this so we can
     // automatically set the return key type to UIReturnKeyDone if autoTextFieldNavigation is
     // YES.
-    QStringPropertyEditor *lastStringPropertyEditor;
+    QTextInputPropertyEditor *lastTextInputPropertyEditor;
     
     // This is either nil, or a text field that is currently the first responder (and hence the
     // keyboard is displayed). If a table cell is touched, we'll resign the first responder and
@@ -94,8 +94,8 @@ typedef enum QObjectEditorViewStyle
 
     // State variable for tracking whether this object has been shown before. On the first view,
     // and when the style is QObjectEditorViewStyleForm, and when the first editor is a
-    // QStringPropertyEditor, focus will automatically be given to the text field of the
-    // QStringPropertyEditor.
+    // QTextInputPropertyEditor, focus will automatically be given to the text field of the
+    // QTextInputPropertyEditor.
     BOOL previouslyViewed;
 }
 
@@ -106,13 +106,13 @@ typedef enum QObjectEditorViewStyle
 
 @property(nonatomic, strong) NSObject *editedObject;
 
-@property(nonatomic, readonly) QStringPropertyEditor *lastStringPropertyEditor;
+@property(nonatomic, readonly) QTextInputPropertyEditor *lastTextInputPropertyEditor;
 
 /// If autoTextFieldNavigation is YES, then the return key for all the text fields, except the last,
 /// is set to UIReturnKeyNext; the last text field's return key is set to the value of the
 /// lastTextFieldReturnKeyType property. When the user presses the "Next" button on the keyboard,
 /// the next text field becomes the first responder. If this property is NO, the return key style is
-/// determined by the QStringPropertyEditor returnKeyType property. The default value is YES;
+/// determined by the QTextInputPropertyEditor returnKeyType property. The default value is YES;
 @property(nonatomic, assign) BOOL autoTextFieldNavigation;
 
 /// The lastTextFieldReturnKeyType indicates the return key to use when the autoTextFieldNavigation
@@ -157,7 +157,7 @@ typedef enum QObjectEditorViewStyle
 @interface QObjectEditorViewController ()
 
 - (QPropertyEditor *)p_propertyEditorForIndexPath:(NSIndexPath *)indexPath;
-- (QStringPropertyEditor *)p_findLastStringPropertyEditor;
+- (QTextInputPropertyEditor *)p_findLastTextInputPropertyEditor;
 - (NSIndexPath *)p_findNextTextInputAfterEditor:(QPropertyEditor *)editor;
 
 @end

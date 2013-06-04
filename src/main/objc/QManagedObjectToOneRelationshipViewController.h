@@ -1,10 +1,9 @@
 //
-//  QManagedObjectToOneRelationshipViewController.h
-//  Pack
+// QManagedObjectToOneRelationshipViewController.h
 //
-//  Created by Todd Reed on 2012-11-24.
-//  Copyright (c) 2012 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QCoreDataTableViewController.h"
 #import "QObjectEditorViewController.h"
