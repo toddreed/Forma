@@ -1,10 +1,9 @@
 //
-//  NSManagedObject+QEditor.h
-//  Pack
+// NSManagedObject+QEditor.h
 //
-//  Created by Todd Reed on 2012-10-27.
-//  Copyright (c) 2012 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import <CoreData/CoreData.h>
 #import "QPropertyEditor.h"

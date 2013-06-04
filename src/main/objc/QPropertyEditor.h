@@ -1,10 +1,9 @@
 //
-//  QPropertyEditor.h
-//  WordHunt
+// QPropertyEditor.h
 //
-//  Created by Todd Reed on 11-01-20.
-//  Copyright 2011 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>

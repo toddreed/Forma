@@ -1,6 +1,7 @@
-// -*- coding: utf-8; -*-
 //
-// © Reaction Software Inc., 2011
+// QPropertyEditor.m
+//
+// © Reaction Software Inc., 2013
 //
 
 

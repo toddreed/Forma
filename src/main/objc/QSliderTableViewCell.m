@@ -1,10 +1,9 @@
 //
-//  SliderTableViewCell.m
-//  WordHunt
+// QSliderTableViewCell.m
 //
-//  Created by Todd Reed on 10-05-06.
-//  Copyright 2010 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QSliderTableViewCell.h"
 

@@ -1,6 +1,7 @@
-// -*- coding: utf-8; -*-
 //
-// © Reaction Software Inc., 2010
+// NSString+QCamelCase.m
+//
+// © Reaction Software Inc., 2013
 //
 
 

@@ -1,9 +1,9 @@
 //
-//  QNumberPropertyEditor.h
+// QNumberPropertyEditor.h
 //
-//  Created by Todd Reed on 2013-06-03.
-//  Copyright (c) 2013 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc., 2013
 //
+
 
 #import "QTextInputPropertyEditor.h"
 
