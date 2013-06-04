@@ -83,6 +83,7 @@ static UIImage *IconImage;
         descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
         descriptionLabel.textColor = [UIColor grayColor];
         descriptionLabel.textAlignment = NSTextAlignmentLeft;
+        descriptionLabel.backgroundColor = [UIColor clearColor];
         descriptionLabel.hidden = YES;
         descriptionLabel.numberOfLines = 0;
         [self.contentView addSubview:descriptionLabel];

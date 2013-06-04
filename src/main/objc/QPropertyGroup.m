@@ -54,7 +54,7 @@
     return [self initWithTitle:aTitle propertyEditorArray:editors];
 }
 
-- (id)initWithTitle:(NSString *)aTitle PropertyEditor:(QPropertyEditor *)propertyEditor
+- (id)initWithTitle:(NSString *)aTitle propertyEditor:(QPropertyEditor *)propertyEditor
 {
     NSArray *editors = @[propertyEditor];
     return [self initWithTitle:aTitle propertyEditorArray:editors];

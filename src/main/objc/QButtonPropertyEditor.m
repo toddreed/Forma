@@ -7,7 +7,6 @@
 //
 
 #import "QButtonPropertyEditor.h"
-#import "NSObject+QExtension.h"
 
 
 @implementation QButtonPropertyEditor
@@ -16,8 +15,9 @@
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
-    [self Q_invalidInitInvoked];
-    return nil;
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
+                                 userInfo:nil];
 }
 
 - (id)initWithTitle:(NSString *)aTitle action:(void (^)(QObjectEditorViewController *))aAction

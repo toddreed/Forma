@@ -24,7 +24,7 @@
 /// Designate initializer
 - (id)initWithTitle:(NSString *)aTitle propertyEditorArray:(NSArray *)somePropertyEditors;
 - (id)initWithTitle:(NSString *)aTitle propertyEditors:(QPropertyEditor *)firstPropertyEditor, ... NS_REQUIRES_NIL_TERMINATION;
-- (id)initWithTitle:(NSString *)aTitle PropertyEditor:(QPropertyEditor *)propertyEditor;
+- (id)initWithTitle:(NSString *)aTitle propertyEditor:(QPropertyEditor *)propertyEditor;
 - (id)initWithTitle:(NSString *)aTitle;
 
 @end

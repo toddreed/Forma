@@ -1,39 +1,50 @@
 //
-//  QStringPropertyEditor.m
+//  QTextInputPropertyEditor.m
 //  WordHunt
 //
 //  Created by Todd Reed on 11-01-20.
 //  Copyright 2011 Reaction Software Inc. All rights reserved.
 //
 
-#import "QStringPropertyEditor.h"
+#import "QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 #import "QObjectEditorViewController.h"
 
+NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyValidationErrorDomain";
 
-@interface QObjectEditorViewController (QStringPropertyEditor)
+@interface QObjectEditorViewController (QTextInputPropertyEditor)
 
 - (void)textChanged:(id)sender;
 
 @end
 
 
-@implementation QObjectEditorViewController (QStringPropertyEditor)
+@implementation QObjectEditorViewController (QTextInputPropertyEditor)
 
 - (void)textChanged:(id)sender
 {
     if (textEditingMode != QTextEditingModeCancelling)
     {
         UITextField *textField = (UITextField *)sender;
-        QStringPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
+        QTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
 
-        // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing.
-        // We invoke it again however because -validateValue:forKey:error: can also perform
-        // normalization. We don't expect the validation to failed here.
-        NSString *text = textField.text;
-        BOOL valid = [editedObject validateValue:&text forKey:editor.key error:NULL];
-        NSAssert(valid, @"Unexpected validation failure.");
-        [editedObject setValue:text forKey:editor.key];
+        NSError *error;
+        id value = [editor validateTextInput:textField.text error:&error];
+
+        if (value)
+        {
+            [editedObject setValue:value forKey:editor.key];
+        }
+        else
+        {
+            editor.message = [error localizedDescription];
+
+            // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+            // Note that calling -reloadRowsAtIndexPaths:withRowAnimation doesn't work:
+            // it requires the text field to resign first responder.
+            [self.tableView beginUpdates];
+            [self.tableView endUpdates];
+        }
     }
 }
 
@@ -59,7 +70,7 @@
     {
         if (textField.returnKeyType == UIReturnKeyNext)
         {
-            QStringPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
+            QTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
             NSIndexPath *nextTextInputIndexPath = [self p_findNextTextInputAfterEditor:editor];
 
             if (nextTextInputIndexPath != nil)
@@ -93,14 +104,14 @@
 
     if (textEditingMode != QTextEditingModeCancelling)
     {
-        QStringPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
-        NSString *text = textField.text;
+        QTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
         NSError *error;
+        
+        id value = [editor validateTextInput:textField.text error:&error];
 
-        BOOL valid = [editedObject validateValue:&text forKey:editor.key error:&error];
         QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)editor.tableViewCell;
 
-        if (!valid)
+        if (value == nil)
         {
             editor.message = [error localizedDescription];
 
@@ -115,6 +126,7 @@
             // QTextEditingModeEditing to indicate that -finishEditing should return NO.
             if (textEditingMode == QTextEditingModeFinishing)
                 textEditingMode = QTextEditingModeEditing;
+            return NO;
         }
         else if (!cell.descriptionLabel.hidden)
         {
@@ -123,21 +135,47 @@
             // Force table cell to resize.
             [self.tableView beginUpdates];
             [self.tableView endUpdates];
+
+            return YES;
         }
-        return valid;
     }
     return YES;
 }
 
 @end
 
-@implementation QStringPropertyEditor
+@implementation QTextInputPropertyEditor
+{
+    // The formatter used for converting between text strings and the target property. If this is nil,
+    // then it is assumed that that no conversion is needed (i.e. the target property is an NSString).
+    NSFormatter *_formatter;
+
+    QTextInputPropertyEditorStyle _style;
+
+    UITextAutocapitalizationType _autocapitalizationType;
+    UITextAutocorrectionType _autocorrectionType;
+    UITextSpellCheckingType _spellCheckingType;
+    BOOL _enablesReturnKeyAutomatically;
+    UIKeyboardAppearance _keyboardAppearance;
+    UIKeyboardType _keyboardType;
+    UIReturnKeyType _returnKeyType;
+    BOOL _secureTextEntry;
+
+    // Properties from UITextFieldView
+    UITextFieldViewMode _clearButtonMode;
+    NSTextAlignment _textAlignment;
+    BOOL _clearsOnBeginEditing;
+    NSString *_placeholder;
+
+    // An optional extra string used to display instructions or validation error messages.
+    NSString *_message;
+}
 
 #pragma mark QPropertyEditor
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
-    return [self initWithKey:aKey title:aTitle style:QStringPropertyEditorStyleSettings];
+    return [self initWithKey:aKey title:aTitle style:QTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
 - (void)propertyChangedToValue:(id)newValue
@@ -148,18 +186,24 @@
     // Only update the UI if the text field isn't being edited right now.
     if (!textField.editing)
     {
+        NSString *text;
+
         if (newValue == [NSNull null])
-            textField.text = @"";
+            text = @"";
+        else if (_formatter)
+            text = [_formatter stringForObjectValue:newValue];
         else
-            textField.text = (NSString *)newValue;
+            text = (NSString *)newValue;
+
+        textField.text = text;
     }
 }
 
 - (UITableViewCell *)newTableViewCell
 {
     QTextFieldTableViewCell *cell = [[QTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    if (message && [message length] > 0)
-        cell.descriptionLabel.text = message;
+    if (_message && [_message length] > 0)
+        cell.descriptionLabel.text = _message;
     return cell;
 }
 
@@ -167,47 +211,48 @@
 {
     [super configureTableCellForValue:value controller:controller];
 
-    if (style == QStringPropertyEditorStyleForm)
+    if (_style == QTextInputPropertyEditorStyleForm)
     {
-        // The super -configureTableCellForValue:controller: sets the label. If this
+        // The super -configureTableCellForValue:controller: sets the label.
         UILabel *label = tableViewCell.textLabel;
         label.text = @"";
     }
 
     UITextField *textField = ((QTextFieldTableViewCell *)tableViewCell).textField;
-    NSString *textValue = (NSString *)value;
+    NSString *textValue = _formatter ? [_formatter stringForObjectValue:value] : (NSString *)value;
 
     textField.delegate = controller;
     [textField addTarget:controller action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
 
     // FIXME: When right aligned, the placeholder gets truncated on the right by a pixel, so we
     // add a trailing space character as a workaround. Confirmed with iOS <= 4.3.
-    textField.placeholder = [placeholder stringByAppendingFormat:@" "];
+    textField.placeholder = [_placeholder stringByAppendingFormat:@" "];
     textField.text = textValue;
     textField.tag = tag;
 
-    textField.clearsOnBeginEditing = clearsOnBeginEditing;
-    textField.clearButtonMode = clearButtonMode;
-    textField.textAlignment = textAlignment;
+    textField.clearsOnBeginEditing = _clearsOnBeginEditing;
+    textField.clearButtonMode = _clearButtonMode;
+    textField.textAlignment = _textAlignment;
 
     // UITextInputTraits settings
-    textField.autocapitalizationType = autocapitalizationType;
-    textField.autocorrectionType = autocorrectionType;
-    textField.enablesReturnKeyAutomatically = enablesReturnKeyAutomatically;
-    textField.keyboardAppearance = keyboardAppearance;
-    textField.keyboardType = keyboardType;
+    textField.autocapitalizationType = _autocapitalizationType;
+    textField.autocorrectionType = _autocorrectionType;
+    textField.spellCheckingType = _spellCheckingType;
+    textField.enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
+    textField.keyboardAppearance = _keyboardAppearance;
+    textField.keyboardType = _keyboardType;
 
     if (controller.autoTextFieldNavigation)
     {
-        if (self == controller.lastStringPropertyEditor)
+        if (self == controller.lastTextInputPropertyEditor)
             textField.returnKeyType = controller.lastTextFieldReturnKeyType;
         else
             textField.returnKeyType = UIReturnKeyNext;
     }
     else
-        textField.returnKeyType = returnKeyType;
+        textField.returnKeyType = _returnKeyType;
 
-    textField.secureTextEntry = secureTextEntry;
+    textField.secureTextEntry = _secureTextEntry;
 }
 
 - (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
@@ -234,7 +279,7 @@
 
 - (CGFloat)tableCellHeightForController:(QObjectEditorViewController *)controller
 {
-    if (message == nil || [message length] == 0)
+    if (_message == nil || [_message length] == 0)
         return 44.0f;
     else
     {
@@ -245,90 +290,119 @@
 
         CGSize tableSize = controller.tableView.frame.size;
         CGSize constraint = CGSizeMake(tableSize.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin-kUITableViewCellStyleValue1HorizontalMargins, CGFLOAT_MAX);
-        CGSize requiredSize = [message sizeWithFont:[UIFont systemFontOfSize:kDescriptionLabelFontSize]
-                                  constrainedToSize:constraint
-                                      lineBreakMode:NSLineBreakByWordWrapping];
+        CGSize requiredSize = [_message sizeWithFont:[UIFont systemFontOfSize:kDescriptionLabelFontSize]
+                                   constrainedToSize:constraint
+                                       lineBreakMode:NSLineBreakByWordWrapping];
         return requiredSize.height+kDescriptionLabelTopMargin+kDescriptionLabelBottomMargin+kUITableViewCellStyleValue1TopMargin;
     }
 }
 
 
-#pragma mark QStringPropertyEditor
+#pragma mark QTextInputPropertyEditor
 
-// Synthesize properties declared in UITextInputTraits
-@synthesize autocapitalizationType;
-@synthesize autocorrectionType;
-@synthesize enablesReturnKeyAutomatically;
-@synthesize keyboardAppearance;
-@synthesize keyboardType;
-@synthesize returnKeyType;
-@synthesize secureTextEntry;
-@synthesize clearButtonMode;
-@synthesize textAlignment;
-@synthesize clearsOnBeginEditing;
-@synthesize style;
-@synthesize placeholder;
+@synthesize autocapitalizationType = _autocapitalizationType;
+@synthesize autocorrectionType = _autocorrectionType;
+@synthesize spellCheckingType = _spellCheckingType;
+@synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
+@synthesize keyboardAppearance = _keyboardAppearance;
+@synthesize keyboardType = _keyboardType;
+@synthesize returnKeyType = _returnKeyType;
+@synthesize secureTextEntry = _secureTextEntry;
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QStringPropertyEditorStyle)aStyle
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QTextInputPropertyEditorStyle)aStyle
+{
+    return [self initWithKey:aKey title:aTitle style:aStyle formatter:nil];
+}
+
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QTextInputPropertyEditorStyle)aStyle formatter:(NSFormatter *)formatter
 {
     if ((self = [super initWithKey:aKey title:aTitle]))
     {
-        style = aStyle;
-        autocapitalizationType = UITextAutocapitalizationTypeNone;
-        autocorrectionType = UITextAutocorrectionTypeNo;
-        enablesReturnKeyAutomatically = NO;
-        keyboardAppearance = UIKeyboardAppearanceDefault;
-        keyboardType = UIKeyboardTypeDefault;
-        returnKeyType = UIReturnKeyNext;
-        secureTextEntry = NO;
-        clearButtonMode = UITextFieldViewModeWhileEditing;
-        textAlignment = aStyle == QStringPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
-        clearsOnBeginEditing = NO;
-        placeholder = aStyle == QStringPropertyEditorStyleSettings ? nil : aTitle;
+        _formatter = formatter;
+        _style = aStyle;
+        _autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _autocorrectionType = UITextAutocorrectionTypeNo;
+        _spellCheckingType = UITextSpellCheckingTypeDefault;
+        _enablesReturnKeyAutomatically = NO;
+        _keyboardAppearance = UIKeyboardAppearanceDefault;
+        _keyboardType = UIKeyboardTypeDefault;
+        _returnKeyType = UIReturnKeyNext;
+        _secureTextEntry = NO;
+        _clearButtonMode = UITextFieldViewModeWhileEditing;
+        _textAlignment = aStyle == QTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
+        _clearsOnBeginEditing = NO;
+        _placeholder = aStyle == QTextInputPropertyEditorStyleSettings ? nil : aTitle;
     }
     return self;
 }
 
-- (void)setStyle:(QStringPropertyEditorStyle)aStyle
+- (void)setStyle:(QTextInputPropertyEditorStyle)aStyle
 {
     switch (aStyle)
     {
-        case QStringPropertyEditorStyleSettings:
-            style = aStyle;
-            textAlignment = NSTextAlignmentRight;
-            placeholder = nil;
+        case QTextInputPropertyEditorStyleSettings:
+            _style = aStyle;
+            _textAlignment = NSTextAlignmentRight;
+            _placeholder = nil;
             break;
             
-        case QStringPropertyEditorStyleForm:
+        case QTextInputPropertyEditorStyleForm:
         default:
-            style = aStyle;
-            textAlignment = NSTextAlignmentLeft;
-            placeholder = self.title;
+            _style = aStyle;
+            _textAlignment = NSTextAlignmentLeft;
+            _placeholder = self.title;
             break;
     }
 }
 
-- (void)setMessage:(NSString *)aMessage
+- (void)setMessage:(NSString *)message
 {
-    if (message != aMessage)
-    {
-        message = [aMessage copy];
-    }
+    if (_message != message)
+        _message = [message copy];
 
     QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)tableViewCell;
     if (cell)
     {
-        cell.descriptionLabel.text = message;
+        cell.descriptionLabel.text = _message;
 
-        BOOL hidden = (message == nil || [message length] == 0);
+        BOOL hidden = (_message == nil || [_message length] == 0);
         cell.descriptionLabel.hidden = hidden;
         cell.iconView.hidden = hidden;
     }
 }
 
-- (NSString *)message
+- (id)validateTextInput:(NSString *)textInput error:(NSError **)error
 {
-    return message;
+    // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing.
+    // We invoke it again however because -validateValue:forKey:error: can also perform
+    // normalization. We don't normally expect the validation to failed here, but it could
+    // because even if -textFieldShouldEndEditing returns NO, edit could still end (see
+    // the API documentation for -textFieldShouldEndEditing.)
+
+    id value;
+
+    if (_formatter)
+    {
+        NSString *errorDescription;
+
+        if (![_formatter getObjectValue:&value forString:textInput errorDescription:&errorDescription])
+        {
+            if (error != NULL)
+            {
+                *error = [NSError errorWithDomain:QTextInputPropertyValidationErrorDomain
+                                             code:0
+                                         userInfo:@{NSLocalizedDescriptionKey: errorDescription}];
+            }
+            return nil;
+        }
+    }
+    else
+        value = textInput;
+
+    if ([_target validateValue:&value forKey:self.key error:error])
+        return value;
+    else
+        return nil;
 }
 
 @end

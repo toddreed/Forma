@@ -8,7 +8,7 @@
 
 #import "NSManagedObject+QEditor.h"
 #import "QFloatPropertyEditor.h"
-#import "QStringPropertyEditor.h"
+#import "QTextInputPropertyEditor.h"
 #import "QBooleanPropertyEditor.h"
 #import "NSString+QCamelCase.h"
 #import "QPropertyGroup.h"
@@ -38,7 +38,7 @@
             break;
             
         case NSStringAttributeType:
-            propertyEditorClass = [QStringPropertyEditor class];
+            propertyEditorClass = [QTextInputPropertyEditor class];
             break;
             
         case NSBooleanAttributeType:

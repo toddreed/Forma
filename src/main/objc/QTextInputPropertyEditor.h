@@ -1,6 +1,5 @@
 //
-//  QStringPropertyEditor.h
-//  WordHunt
+//  QTextInputPropertyEditor.h
 //
 //  Created by Todd Reed on 11-01-20.
 //  Copyright 2011 Reaction Software Inc. All rights reserved.
@@ -8,47 +7,37 @@
 
 #import "QPropertyEditor.h"
 
-typedef enum QStringPropertyEditorStyle
+extern NSString *const QTextInputPropertyValidationErrorDomain;
+
+typedef enum QTextInputPropertyEditorStyle
 {
     /// This emulates the style typically found in the Settings app where there's a title on
     /// left and a text field on the right. This is the default style.
-    QStringPropertyEditorStyleSettings,
+    QTextInputPropertyEditorStyleSettings,
     
     /// This style has no label, and the text field occupies the entire table cell content. The
     /// text field's placeholder is set.
-    QStringPropertyEditorStyleForm
-} QStringPropertyEditorStyle;
+    QTextInputPropertyEditorStyleForm
+} QTextInputPropertyEditorStyle;
 
-@interface QStringPropertyEditor : QPropertyEditor <UITextInputTraits>
-{
-    QStringPropertyEditorStyle style;
-    
-    UITextAutocapitalizationType autocapitalizationType;
-    UITextAutocorrectionType autocorrectionType;
-    BOOL enablesReturnKeyAutomatically;
-    UIKeyboardAppearance keyboardAppearance;
-    UIKeyboardType keyboardType;
-    UIReturnKeyType returnKeyType;
-    BOOL secureTextEntry;
-    
-    // Properties from UITextFieldView
-    UITextFieldViewMode clearButtonMode;
-    NSTextAlignment textAlignment;
-    BOOL clearsOnBeginEditing;
-    NSString *placeholder;
-    
-    // An optional extra string used to display instructions or validation error messages.
-    NSString *message;
-}
+@interface QTextInputPropertyEditor : QPropertyEditor <UITextInputTraits>
 
 /// Designated initializer.
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QStringPropertyEditorStyle)aStyle;
+///
+/// @param formatter The formatter to convert between the text strings and property values. If this
+///   is nil, it is assumed that no conversion is needed (i.e. the property is a NSString).
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QTextInputPropertyEditorStyle)aStyle formatter:(NSFormatter *)formatter;
 
-@property (nonatomic) QStringPropertyEditorStyle style;
+- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(QTextInputPropertyEditorStyle)aStyle;
+
+@property (nonatomic, readonly) NSFormatter *formatter;
+@property (nonatomic) QTextInputPropertyEditorStyle style;
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) BOOL clearsOnBeginEditing;
 @property (nonatomic, copy) NSString *placeholder;
 @property (nonatomic, copy) NSString *message;
+
+- (id)validateTextInput:(NSString *)textInput error:(NSError **)error;
 
 @end

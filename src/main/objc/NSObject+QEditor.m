@@ -12,7 +12,7 @@
 #import "QObjectPropertyEditor.h"
 #import "QBooleanPropertyEditor.h"
 #import "QFloatPropertyEditor.h"
-#import "QStringPropertyEditor.h"
+#import "QTextInputPropertyEditor.h"
 
 
 @implementation NSObject (QEditor)
@@ -85,7 +85,7 @@
 
 + (Class)propertyEditorClass
 {
-    return [QStringPropertyEditor class];
+    return [QTextInputPropertyEditor class];
 }
 
 @end
