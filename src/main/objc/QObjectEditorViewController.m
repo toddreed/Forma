@@ -10,8 +10,6 @@
 #import "QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 
-NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor.ErrorDomain";
-
 @implementation QObjectEditorViewController
 
 #pragma mark - NSObject

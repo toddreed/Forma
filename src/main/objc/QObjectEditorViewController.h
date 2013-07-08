@@ -15,8 +15,6 @@
 @class QObjectEditorViewController;
 @class QTextInputPropertyEditor;
 
-extern NSString *const kQObjectEditorErrorDomain;
-
 @protocol QObjectEditorViewControllerDelegate
 
 - (void)objectEditorViewControllerDidEnd:(QObjectEditorViewController *)viewController cancelled:(BOOL)cancelled;
