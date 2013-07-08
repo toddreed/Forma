@@ -7,18 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2826BF406DFC434B9C4E1E6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6CCCB483484DCC9A26E808 /* libPods.a */; };
 		5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */; };
-		5F4E1076175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */; };
 		5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */; };
-		5F4E107A175D33820025BC1D /* QStringPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */; };
 		5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */; };
-		5F4E107E175D34680025BC1D /* QNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */; };
 		5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
-		5FF92F8B174AD56B003211A0 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */; };
-		5FF92F8D174AD56B003211A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F8C174AD56B003211A0 /* UIKit.framework */; };
-		5FF92F8E174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
-		5FF92F91174AD56B003211A0 /* libObject Editor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F78174AD56B003211A0 /* libObject Editor.a */; };
-		5FF92F9A174AD56B003211A0 /* Object_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92F99174AD56B003211A0 /* Object_EditorTests.m */; };
 		5FF92FCA174AD615003211A0 /* NSManagedObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */; };
 		5FF92FCB174AD615003211A0 /* NSObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */; };
 		5FF92FCD174AD615003211A0 /* NSObject+QProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */; };
@@ -35,16 +28,6 @@
 		5FF92FDB174AD615003211A0 /* QTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5FF92F8F174AD56B003211A0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FF92F70174AD56B003211A0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5FF92F77174AD56B003211A0;
-			remoteInfo = "Object Editor";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		5FF92F76174AD56B003211A0 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -58,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01D244498B8E4DC3B9260A8B /* Pods/Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTextInputPropertyEditor.h; sourceTree = "<group>"; };
 		5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTextInputPropertyEditor.m; sourceTree = "<group>"; };
 		5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QStringPropertyEditor.h; sourceTree = "<group>"; };
@@ -67,11 +51,8 @@
 		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
-		5FF92F89174AD56B003211A0 /* Object EditorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Object EditorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		5FF92F98174AD56B003211A0 /* Object_EditorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object_EditorTests.h; sourceTree = "<group>"; };
-		5FF92F99174AD56B003211A0 /* Object_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Object_EditorTests.m; sourceTree = "<group>"; };
 		5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+QEditor.h"; sourceTree = "<group>"; };
 		5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+QEditor.m"; sourceTree = "<group>"; };
 		5FF92FA8174AD615003211A0 /* NSObject+QEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QEditor.h"; sourceTree = "<group>"; };
@@ -100,7 +81,7 @@
 		5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSliderTableViewCell.m; sourceTree = "<group>"; };
 		5FF92FC8174AD615003211A0 /* QTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTextFieldTableViewCell.h; sourceTree = "<group>"; };
 		5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTextFieldTableViewCell.m; sourceTree = "<group>"; };
-		5FF92FE0174ADB26003211A0 /* Object EditorTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Object EditorTests-Info.plist"; sourceTree = "<group>"; };
+		7D6CCCB483484DCC9A26E808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,17 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5FF92F85174AD56B003211A0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5FF92F8B174AD56B003211A0 /* SenTestingKit.framework in Frameworks */,
-				5FF92F8D174AD56B003211A0 /* UIKit.framework in Frameworks */,
-				5FF92F8E174AD56B003211A0 /* Foundation.framework in Frameworks */,
-				5FF92F91174AD56B003211A0 /* libObject Editor.a in Frameworks */,
+				2826BF406DFC434B9C4E1E6C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +103,7 @@
 				5FF92FA3174AD5B6003211A0 /* src */,
 				5FF92F7A174AD56B003211A0 /* Frameworks */,
 				5FF92F79174AD56B003211A0 /* Products */,
+				01D244498B8E4DC3B9260A8B /* Pods/Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				5FF92F78174AD56B003211A0 /* libObject Editor.a */,
-				5FF92F89174AD56B003211A0 /* Object EditorTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +121,7 @@
 				5FF92F7B174AD56B003211A0 /* Foundation.framework */,
 				5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */,
 				5FF92F8C174AD56B003211A0 /* UIKit.framework */,
+				7D6CCCB483484DCC9A26E808 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,7 +129,6 @@
 		5FF92FA3174AD5B6003211A0 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FDC174AD888003211A0 /* test */,
 				5FF92FA4174AD5B6003211A0 /* main */,
 			);
 			path = src;
@@ -213,32 +184,6 @@
 			path = objc;
 			sourceTree = "<group>";
 		};
-		5FF92FDC174AD888003211A0 /* test */ = {
-			isa = PBXGroup;
-			children = (
-				5FF92FDE174AD90F003211A0 /* config */,
-				5FF92FDD174AD888003211A0 /* objc */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
-		5FF92FDD174AD888003211A0 /* objc */ = {
-			isa = PBXGroup;
-			children = (
-				5FF92F98174AD56B003211A0 /* Object_EditorTests.h */,
-				5FF92F99174AD56B003211A0 /* Object_EditorTests.m */,
-			);
-			path = objc;
-			sourceTree = "<group>";
-		};
-		5FF92FDE174AD90F003211A0 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				5FF92FE0174ADB26003211A0 /* Object EditorTests-Info.plist */,
-			);
-			path = config;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,9 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FF92F9D174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object Editor" */;
 			buildPhases = (
+				116AD64A57F949DD8266D6ED /* Check Pods Manifest.lock */,
 				5FF92F74174AD56B003211A0 /* Sources */,
 				5FF92F75174AD56B003211A0 /* Frameworks */,
 				5FF92F76174AD56B003211A0 /* CopyFiles */,
+				3538228C7891485A80B35932 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,25 +205,6 @@
 			productName = "Object Editor";
 			productReference = 5FF92F78174AD56B003211A0 /* libObject Editor.a */;
 			productType = "com.apple.product-type.library.static";
-		};
-		5FF92F88174AD56B003211A0 /* Object EditorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5FF92FA0174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object EditorTests" */;
-			buildPhases = (
-				5FF92F84174AD56B003211A0 /* Sources */,
-				5FF92F85174AD56B003211A0 /* Frameworks */,
-				5FF92F86174AD56B003211A0 /* Resources */,
-				5FF92F87174AD56B003211A0 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5FF92F90174AD56B003211A0 /* PBXTargetDependency */,
-			);
-			name = "Object EditorTests";
-			productName = "Object EditorTests";
-			productReference = 5FF92F89174AD56B003211A0 /* Object EditorTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -300,34 +228,40 @@
 			projectRoot = "";
 			targets = (
 				5FF92F77174AD56B003211A0 /* Object Editor */,
-				5FF92F88174AD56B003211A0 /* Object EditorTests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		5FF92F86174AD56B003211A0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXShellScriptBuildPhase section */
-		5FF92F87174AD56B003211A0 /* ShellScript */ = {
+		116AD64A57F949DD8266D6ED /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3538228C7891485A80B35932 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -356,26 +290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FF92F84174AD56B003211A0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5FF92F9A174AD56B003211A0 /* Object_EditorTests.m in Sources */,
-				5F4E1076175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */,
-				5F4E107A175D33820025BC1D /* QStringPropertyEditor.m in Sources */,
-				5F4E107E175D34680025BC1D /* QNumberPropertyEditor.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5FF92F90174AD56B003211A0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5FF92F77174AD56B003211A0 /* Object Editor */;
-			targetProxy = 5FF92F8F174AD56B003211A0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5FF92F9B174AD56B003211A0 /* Debug */ = {
@@ -433,6 +348,7 @@
 		};
 		5FF92F9E174AD56B003211A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01D244498B8E4DC3B9260A8B /* Pods/Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Object_Editor.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -445,6 +361,7 @@
 		};
 		5FF92F9F174AD56B003211A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01D244498B8E4DC3B9260A8B /* Pods/Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Object_Editor.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -452,36 +369,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		5FF92FA1174AD56B003211A0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "src/main/objc/Object Editor-Prefix.pch";
-				INFOPLIST_FILE = "src/test/config/Object EditorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		5FF92FA2174AD56B003211A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "src/main/objc/Object Editor-Prefix.pch";
-				INFOPLIST_FILE = "src/test/config/Object EditorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -502,15 +389,6 @@
 			buildConfigurations = (
 				5FF92F9E174AD56B003211A0 /* Debug */,
 				5FF92F9F174AD56B003211A0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5FF92FA0174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object EditorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5FF92FA1174AD56B003211A0 /* Debug */,
-				5FF92FA2174AD56B003211A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

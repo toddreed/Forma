@@ -1,0 +1,13 @@
+PODS:
+  - Symbolset (0.1.0):
+    - TRUITheme
+  - TRUITheme (0.1.0)
+
+DEPENDENCIES:
+  - Symbolset (~> 0.1)
+
+SPEC CHECKSUMS:
+  Symbolset: 5e289a6884ee43d30a8b41b4e960539b6de48d6e
+  TRUITheme: 69b3feab6a81716fe083d1f358369efd57d166d5
+
+COCOAPODS: 0.22.1
