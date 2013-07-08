@@ -22,15 +22,15 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     CGRect textLabelFrame = self.textLabel.frame;
     textLabelFrame.origin = (CGPoint){ 10, 11 };
     self.textLabel.frame = textLabelFrame;
-    
+
     CGSize labelSize = [self.textLabel sizeThatFits:CGSizeZero];
     CGRect contentBounds = self.contentView.bounds;
     CGRect textFieldFrame = textField.frame;
-    
+
     if (labelSize.height == 0.0f)
     {
         textFieldFrame.origin= (CGPoint){ 10, 11 };
@@ -45,20 +45,15 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
         textFieldFrame.size.width = contentBounds.size.width - textFieldFrame.origin.x - textLabelFrame.origin.x;
     }
     textField.frame = textFieldFrame;
-    
+
     CGPoint descriptionLabelOrigin = (CGPoint){ kDescriptionLabelLeftMargin, kDescriptionLabelTopMargin };
-    if (!descriptionLabel.hidden)
-    {
-        CGRect bounds = self.contentView.bounds;
-        CGSize size = (CGSize) { bounds.size.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin, bounds.size.height-kDescriptionLabelTopMargin-kDescriptionLabelBottomMargin };
-        descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
-    }
-    if (!iconView.hidden)
-    {
-        CGRect iconFrame = iconView.frame;
-        iconFrame.origin = (CGPoint) { kIconLeftMargin, descriptionLabelOrigin.y+3.0f };
-        iconView.frame = iconFrame;
-    }
+    CGRect bounds = self.contentView.bounds;
+    CGSize size = (CGSize) { bounds.size.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin, bounds.size.height-kDescriptionLabelTopMargin-kDescriptionLabelBottomMargin };
+    descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
+
+    CGRect iconFrame = iconView.frame;
+    iconFrame.origin = (CGPoint) { kIconLeftMargin, descriptionLabelOrigin.y };
+    iconView.frame = iconFrame;
 }
 
 #pragma mark - UITableViewCell

@@ -4,7 +4,7 @@
 // © Reaction Software Inc., 2013
 //
 
-
+#import <QuartzCore/QuartzCore.h>
 #import "QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 #import "QObjectEditorViewController.h"
@@ -39,15 +39,45 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
             if (textEditingMode != QTextEditingModeFinishingForced)
             {
                 editor.message = [error localizedDescription];
-
-                // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
-                // Note that calling -reloadRowsAtIndexPaths:withRowAnimation doesn't work:
-                // it requires the text field to resign first responder.
-                [self.tableView beginUpdates];
-                [self.tableView endUpdates];
+                [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
             }
         }
     }
+}
+
+- (void)adjustTableViewCellSize:(UITableViewCell *)cell showMessage:(BOOL)showMessage
+{
+    // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+    //
+    // Note that the following doesn't work:
+    //
+    //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //
+    // This requires the text field to resign first responder because the table view will delete
+    // and insert the cell.
+
+    QTextFieldTableViewCell *textFieldCell = (QTextFieldTableViewCell *)cell;
+
+    [CATransaction begin];
+    if (showMessage)
+    {
+        // We don't to display the message until the table cell animation is complete,
+        // otherwise the message overlaps the cell below.
+        [CATransaction setCompletionBlock: ^{
+            textFieldCell.descriptionLabel.hidden = NO;
+            textFieldCell.iconView.hidden = NO;
+        }];
+    }
+    else
+    {
+        textFieldCell.descriptionLabel.hidden = YES;
+        textFieldCell.iconView.hidden = YES;
+    }
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [CATransaction commit];
+
 }
 
 #pragma mark UITextFieldDelegate
@@ -116,12 +146,7 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
         if (value == nil)
         {
             editor.message = [error localizedDescription];
-
-            // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
-            // Note that calling -reloadRowsAtIndexPaths:withRowAnimation doesn't work:
-            // it requires the text field to resign first responder.
-            [self.tableView beginUpdates];
-            [self.tableView endUpdates];
+            [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
 
             // If -finishEditingForce: was called, textEditMode will be
             // QTextEditingModeFinishing. We set textEditingMode back to
@@ -135,9 +160,7 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
         {
             // If validation succeeds but we previously had shown the validation error message, hide it now.
             editor.message = nil;
-            // Force table cell to resize.
-            [self.tableView beginUpdates];
-            [self.tableView endUpdates];
+            [self adjustTableViewCellSize:editor.tableViewCell showMessage:NO];
 
             return YES;
         }
@@ -363,13 +386,7 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
 
     QTextFieldTableViewCell *cell = (QTextFieldTableViewCell *)tableViewCell;
     if (cell)
-    {
         cell.descriptionLabel.text = _message;
-
-        BOOL hidden = (_message == nil || [_message length] == 0);
-        cell.descriptionLabel.hidden = hidden;
-        cell.iconView.hidden = hidden;
-    }
 }
 
 - (id)validateTextInput:(NSString *)textInput error:(NSError **)error
