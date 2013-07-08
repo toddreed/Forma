@@ -17,11 +17,11 @@ const CGFloat kDescriptionLabelFontSize;
 {
     UITextField *textField;
     UILabel *descriptionLabel;
-    UIImageView *iconView;
+    UIView *iconView;
 }
 
 @property (nonatomic, readonly) UITextField *textField;
 @property (nonatomic, readonly) UILabel *descriptionLabel;
-@property (nonatomic, readonly) UIImageView *iconView;
+@property (nonatomic, readonly) UIView *iconView;
 
 @end

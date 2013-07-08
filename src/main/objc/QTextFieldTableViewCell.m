@@ -6,15 +6,14 @@
 
 
 #import "QTextFieldTableViewCell.h"
+#import "TRSymbolsetView.h"
 
 const CGFloat kDescriptionLabelTopMargin = 38.0f;
 const CGFloat kIconLeftMargin = 11.0f;
-const CGFloat kDescriptionLabelLeftMargin = 36.0f;
+const CGFloat kDescriptionLabelLeftMargin = 40.0f;
 const CGFloat kDescriptionLabelRightMargin = 10.0f;
 const CGFloat kDescriptionLabelBottomMargin = 8.0f;
 const CGFloat kDescriptionLabelFontSize = 13.0f;
-
-static UIImage *IconImage;
 
 @implementation QTextFieldTableViewCell
 
@@ -86,11 +85,12 @@ static UIImage *IconImage;
         descriptionLabel.hidden = YES;
         descriptionLabel.numberOfLines = 0;
         [self.contentView addSubview:descriptionLabel];
-        
-        iconView = [[UIImageView alloc] initWithImage:IconImage];
+
+        TRSymbolsetView *cautionView = [[TRSymbolsetView alloc] initWithSymbol:TRSymbolAlert size:24];
+        cautionView.strokeColor = [UIColor grayColor];
+        iconView = cautionView;
         iconView.hidden = YES;
         [self.contentView addSubview:iconView];
-        
     }
     return self;
 }
@@ -101,13 +101,4 @@ static UIImage *IconImage;
 @synthesize descriptionLabel;
 @synthesize iconView;
 
-+ (void)initialize
-{
-    if (self == [QTextFieldTableViewCell class])
-    {
-        IconImage = [UIImage imageNamed:@"ValidationError.png"];
-    }
-}
-                     
-                     
 @end
