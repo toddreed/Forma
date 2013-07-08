@@ -227,9 +227,7 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
     textField.delegate = controller;
     [textField addTarget:controller action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
 
-    // FIXME: When right aligned, the placeholder gets truncated on the right by a pixel, so we
-    // add a trailing space character as a workaround. Confirmed with iOS <= 4.3.
-    textField.placeholder = [_placeholder stringByAppendingFormat:@" "];
+    textField.placeholder = _placeholder;
     textField.text = textValue;
     textField.tag = tag;
 
