@@ -36,13 +36,16 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
         }
         else
         {
-            editor.message = [error localizedDescription];
+            if (textEditingMode != QTextEditingModeFinishingForced)
+            {
+                editor.message = [error localizedDescription];
 
-            // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
-            // Note that calling -reloadRowsAtIndexPaths:withRowAnimation doesn't work:
-            // it requires the text field to resign first responder.
-            [self.tableView beginUpdates];
-            [self.tableView endUpdates];
+                // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+                // Note that calling -reloadRowsAtIndexPaths:withRowAnimation doesn't work:
+                // it requires the text field to resign first responder.
+                [self.tableView beginUpdates];
+                [self.tableView endUpdates];
+            }
         }
     }
 }
@@ -101,7 +104,7 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
 {
     NSAssert(textEditingMode != QTextEditingModeNotEditing, @"Unexpected textEditingMode.");
 
-    if (textEditingMode != QTextEditingModeCancelling)
+    if (textEditingMode != QTextEditingModeCancelling && textEditingMode != QTextEditingModeFinishingForced)
     {
         QTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
         NSError *error;
@@ -120,9 +123,10 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
             [self.tableView beginUpdates];
             [self.tableView endUpdates];
 
-            // If -finishEditing was called, textEditMode will be
+            // If -finishEditingForce: was called, textEditMode will be
             // QTextEditingModeFinishing. We set textEditingMode back to
-            // QTextEditingModeEditing to indicate that -finishEditing should return NO.
+            // QTextEditingModeEditing to indicate that -finishEditingForce: should
+            // return NO.
             if (textEditingMode == QTextEditingModeFinishing)
                 textEditingMode = QTextEditingModeEditing;
             return NO;

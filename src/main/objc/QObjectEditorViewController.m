@@ -48,9 +48,9 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
 {
     [super viewWillDisappear:animated];
     
-    // If the view is disappearing and a text field is being edited, cancel the editing.
-    if (activeTextField != nil)
-        [self cancelEditing];
+    // Try to complete any in-progress editing. (Note that
+    // if validation fails, the object's property won't be updated.)
+    [self finishEditingForce:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -312,31 +312,33 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
     return nil;
 }
 
-- (BOOL)finishEditing
+- (BOOL)finishEditingForce:(BOOL)force
 {
     if (activeTextField != nil)
     {
         if (textEditingMode == QTextEditingModeEditing)
-            textEditingMode = QTextEditingModeFinishing;
+            textEditingMode = force ? QTextEditingModeFinishingForced : QTextEditingModeFinishing;
         
         // This will cause –textFieldShouldEndEditing: to be invoked, which will set
         // textEditingMode to QTextEditingModeEditing if validation failed and retained
-        // first responder status.
+        // first responder status (this only happens when textEdtingMode is
+        // QTextEditingModeFinishing, not QTextEditingModeFinishingForced).
         [activeTextField resignFirstResponder];
     }
-    return textEditingMode == QTextEditingModeFinishing || textEditingMode == QTextEditingModeNotEditing;
+    return textEditingMode == QTextEditingModeNotEditing;
 }
 
 - (void)cancelEditing
 {
     if (textEditingMode == QTextEditingModeEditing)
         textEditingMode = QTextEditingModeCancelling;
-    [self finishEditing];
+    [self finishEditingForce:NO];
 }
 
 - (void)donePressed
 {
-    if ([self finishEditing])
+    if ([self finishEditingForce:NO])
+    {
         [delegate objectEditorViewControllerDidEnd:self cancelled:NO];
 }
 
@@ -355,7 +357,7 @@ NSString *const kQObjectEditorErrorDomain = @"com.reactionsoftware.QObjectEditor
     if ([editor selectable])
         return indexPath;
     else
-        [self finishEditing];
+        [self finishEditingForce:NO];
     return nil;
 }
 

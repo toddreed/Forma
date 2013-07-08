@@ -36,8 +36,12 @@ typedef enum QTextEditingMode
     /// Currently editing text and -cancelEditing was invoked.
     QTextEditingModeCancelling,
     
-    /// Currently editing text and -finishEdting was invoked.
-    QTextEditingModeFinishing
+    /// Currently editing text and -finishEditingForce: was invoked with NO.
+    QTextEditingModeFinishing,
+
+    /// Currently editing text and -finishEditingForce: was invoked with YES. Indicates that edit
+    /// MUST finish.
+    QTextEditingModeFinishingForced
 } QTextEditingMode;
 
 typedef enum QObjectEditorViewStyle
@@ -133,8 +137,8 @@ typedef enum QObjectEditorViewStyle
 /// it will resign first responder status, causing the text field's value to be committed to the
 /// edited object. If the model object implements validation and validation fails, then the
 /// UITextField will remain the first responder, the model object will not be updated, and
-/// -finishEditing will return NO.
-- (BOOL)finishEditing;
+/// -finishEditingForce: will return NO.
+- (BOOL)finishEditingForce:(BOOL)force;
 
 /// Cancels the current editing session, discarding any in-progress editing of a UITextField.
 - (void)cancelEditing;
