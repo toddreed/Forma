@@ -338,12 +338,17 @@
     if ([self finishEditingForce:NO])
     {
         [delegate objectEditorViewControllerDidEnd:self cancelled:NO];
+        if (_completionBlock)
+            _completionBlock(NO);
+    }
 }
 
 - (void)cancelPressed
 {
     [self cancelEditing];
     [delegate objectEditorViewControllerDidEnd:self cancelled:YES];
+    if (_completionBlock)
+        _completionBlock(YES);
 }
 
 #pragma mark UITableViewDelegate

@@ -104,6 +104,10 @@ typedef enum QObjectEditorViewStyle
 
 @property(nonatomic, weak) id<QObjectEditorViewControllerDelegate> delegate;
 
+/// A block that is invoked when the editor should be closed because the user pressed the Done or
+/// Cancel button. This provides the same functionality as the `delegate` property.
+@property (nonatomic, copy) void (^completionBlock)(BOOL cancelled);
+
 @property(nonatomic) QObjectEditorViewStyle style;
 
 @property(nonatomic, strong) NSObject *editedObject;
