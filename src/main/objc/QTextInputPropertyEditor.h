@@ -6,6 +6,7 @@
 
 
 #import "QPropertyEditor.h"
+#import "TRAutocompleteSource.h"
 
 extern NSString *const QTextInputPropertyValidationErrorDomain;
 
@@ -37,6 +38,8 @@ typedef enum QTextInputPropertyEditorStyle
 @property (nonatomic) BOOL clearsOnBeginEditing;
 @property (nonatomic, copy) NSString *placeholder;
 @property (nonatomic, copy) NSString *message;
+
+@property (nonatomic, strong) id<TRAutocompleteSource> autocompleteSource;
 
 - (id)validateTextInput:(NSString *)textInput error:(NSError **)error;
 

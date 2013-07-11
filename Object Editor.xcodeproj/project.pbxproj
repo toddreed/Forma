@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2826BF406DFC434B9C4E1E6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6CCCB483484DCC9A26E808 /* libPods.a */; };
+		5F352F64178E0EBA006D263B /* TRAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */; };
+		5F352F67178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */; };
+		5F352F6A178E15FA006D263B /* TRArrayAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */; };
 		5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */; };
 		5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */; };
 		5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */; };
@@ -42,6 +45,13 @@
 
 /* Begin PBXFileReference section */
 		01D244498B8E4DC3B9260A8B /* Pods/Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		5F352F61178E0DAD006D263B /* TRAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteSource.h; sourceTree = "<group>"; };
+		5F352F62178E0EBA006D263B /* TRAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteCell.h; sourceTree = "<group>"; };
+		5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRAutocompleteCell.m; sourceTree = "<group>"; };
+		5F352F65178E0FD5006D263B /* TRAutocompleteInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteInputAccessoryView.h; sourceTree = "<group>"; };
+		5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRAutocompleteInputAccessoryView.m; sourceTree = "<group>"; };
+		5F352F68178E15F9006D263B /* TRArrayAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRArrayAutocompleteSource.h; sourceTree = "<group>"; };
+		5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRArrayAutocompleteSource.m; sourceTree = "<group>"; };
 		5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTextInputPropertyEditor.h; sourceTree = "<group>"; };
 		5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTextInputPropertyEditor.m; sourceTree = "<group>"; };
 		5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QStringPropertyEditor.h; sourceTree = "<group>"; };
@@ -97,6 +107,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F352F5E178E0D46006D263B /* library */ = {
+			isa = PBXGroup;
+			children = (
+				5F352F5F178E0D46006D263B /* objc */,
+			);
+			path = library;
+			sourceTree = "<group>";
+		};
+		5F352F5F178E0D46006D263B /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				5F352F60178E0D46006D263B /* autocomplete */,
+			);
+			path = objc;
+			sourceTree = "<group>";
+		};
+		5F352F60178E0D46006D263B /* autocomplete */ = {
+			isa = PBXGroup;
+			children = (
+				5F352F68178E15F9006D263B /* TRArrayAutocompleteSource.h */,
+				5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */,
+				5F352F62178E0EBA006D263B /* TRAutocompleteCell.h */,
+				5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */,
+				5F352F65178E0FD5006D263B /* TRAutocompleteInputAccessoryView.h */,
+				5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */,
+				5F352F61178E0DAD006D263B /* TRAutocompleteSource.h */,
+			);
+			path = autocomplete;
+			sourceTree = "<group>";
+		};
 		5FF92F6F174AD56B003211A0 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +169,7 @@
 		5FF92FA3174AD5B6003211A0 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5F352F5E178E0D46006D263B /* library */,
 				5FF92FA4174AD5B6003211A0 /* main */,
 			);
 			path = src;
@@ -287,6 +328,9 @@
 				5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */,
 				5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */,
 				5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */,
+				5F352F64178E0EBA006D263B /* TRAutocompleteCell.m in Sources */,
+				5F352F67178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m in Sources */,
+				5F352F6A178E15FA006D263B /* TRArrayAutocompleteSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

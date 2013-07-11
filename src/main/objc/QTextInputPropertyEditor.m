@@ -8,6 +8,7 @@
 #import "QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 #import "QObjectEditorViewController.h"
+#import "TRAutocompleteInputAccessoryView.h"
 
 NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyValidationErrorDomain";
 
@@ -161,8 +162,6 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
             // If validation succeeds but we previously had shown the validation error message, hide it now.
             editor.message = nil;
             [self adjustTableViewCellSize:editor.tableViewCell showMessage:NO];
-
-            return YES;
         }
     }
     return YES;
@@ -230,6 +229,23 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
     QTextFieldTableViewCell *cell = [[QTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     if (_message && [_message length] > 0)
         cell.descriptionLabel.text = _message;
+
+    if (_autocompleteSource)
+    {
+        TRAutocompleteInputAccessoryView *inputAccessoryView = [[TRAutocompleteInputAccessoryView alloc] init];
+        inputAccessoryView.autocompleteSource = _autocompleteSource;
+        inputAccessoryView.textField = cell.textField; // Note that cell.textField.inputAccessoryView is set here
+    }
+    else
+    {
+        // When navigating from a UITextField with a non-nil inputAccessoryView to a
+        // UITextField with a nil inputAccessoryView, the previous view's input accessory
+        // view remains rather than hiding. This is a workaround.
+        // 
+        // See http://stackoverflow.com/a/16905990/2116111
+        cell.textField.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+
     return cell;
 }
 
