@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project parent="https://bitbucket.org/toddreed/curo-config/raw/master/ios.library.xml" name="Object Editor">
+
+  <coordinate group="com.reactionsoftware" artifact="ObjectEditor" version="0.4.0"/>
+
+  <plugins>
+    <plugin name="curo.plugins.apple.xcode">
+      <properties>
+        <!-- We don't currently have tests. -->
+        <skip-tests type="boolean">true</skip-tests>
+      </properties>
+    </plugin>
+  </plugins>
+
+</project>
