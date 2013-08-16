@@ -330,10 +330,10 @@ NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyVa
 
         CGSize tableSize = controller.tableView.frame.size;
         CGSize constraint = CGSizeMake(tableSize.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin-kUITableViewCellStyleValue1HorizontalMargins, CGFLOAT_MAX);
-        CGSize requiredSize = [_message sizeWithFont:[UIFont systemFontOfSize:kDescriptionLabelFontSize]
-                                   constrainedToSize:constraint
-                                       lineBreakMode:NSLineBreakByWordWrapping];
-        return requiredSize.height+kDescriptionLabelTopMargin+kDescriptionLabelBottomMargin+kUITableViewCellStyleValue1TopMargin;
+        NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:kDescriptionLabelFontSize]};
+        CGRect bounds = [_message boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+
+        return bounds.size.height+kDescriptionLabelTopMargin+kDescriptionLabelBottomMargin+kUITableViewCellStyleValue1TopMargin;
     }
 }
 

@@ -51,9 +51,9 @@
     [self finishEditingForce:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (NSUInteger)supportedInterfaceOrientations
 {
-    return YES;
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void)viewDidLoad
@@ -63,15 +63,6 @@
     // Not sure when/where this is disabled, but without this, scrolling is disabled when used
     // in a popover.
     self.tableView.scrollEnabled = YES;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-
-    NSEnumerator *enumerator = [propertyEditorDictionary objectEnumerator];
-    for (QPropertyEditor *propertyEditor in enumerator)
-        [propertyEditor stopObserving:editedObject];
 }
 
 #pragma mark NSCoding

@@ -46,7 +46,8 @@
 + (CGSize)preferredSizeForString:(NSString *)string
 {
     UIFont *font = [[self class] font];
-    CGSize size = [string sizeWithFont:font];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    CGSize size = [string sizeWithAttributes:attributes];
     size.width += 16.0f;
     size.height += 4.0f;
     return size;
