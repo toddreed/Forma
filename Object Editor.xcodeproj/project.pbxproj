@@ -63,7 +63,6 @@
 		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
-		5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+QEditor.h"; sourceTree = "<group>"; };
 		5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+QEditor.m"; sourceTree = "<group>"; };
@@ -208,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				5FF92F7B174AD56B003211A0 /* Foundation.framework */,
-				5FF92F8A174AD56B003211A0 /* SenTestingKit.framework */,
 				5FF92F8C174AD56B003211A0 /* UIKit.framework */,
 				7D6CCCB483484DCC9A26E808 /* libPods.a */,
 			);
