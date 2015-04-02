@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9924F571-0199-4129-86ED-4350ABEF56A9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Object Editor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3AD7DE04-AA9C-48A1-9055-A9462488BCE1</key>
+		<string>ssh://bitbucket.org/toddreed/object-editor.git</string>
+		<key>8E091ED3D12BE7E8412EB06C898EC4B4723C29A6</key>
+		<string>bitbucket.org:reactionsoftware/object-editor.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Object Editor.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3AD7DE04-AA9C-48A1-9055-A9462488BCE1</key>
+		<string>../../Object Editor</string>
+		<key>8E091ED3D12BE7E8412EB06C898EC4B4723C29A6</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>bitbucket.org:reactionsoftware/object-editor.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8E091ED3D12BE7E8412EB06C898EC4B4723C29A6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3AD7DE04-AA9C-48A1-9055-A9462488BCE1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Object Editor</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8E091ED3D12BE7E8412EB06C898EC4B4723C29A6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Object%20Editor</string>
+		</dict>
+	</array>
+</dict>
+</plist>
