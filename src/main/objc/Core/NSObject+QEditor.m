@@ -8,10 +8,10 @@
 #import "NSObject+QEditor.h"
 #import "NSObject+QProperties.h"
 #import "NSString+QCamelCase.h"
-#import "QObjectPropertyEditor.h"
-#import "QBooleanPropertyEditor.h"
-#import "QFloatPropertyEditor.h"
-#import "QTextInputPropertyEditor.h"
+#import "../PropertyEditors/QObjectPropertyEditor.h"
+#import "../PropertyEditors/QBooleanPropertyEditor.h"
+#import "../PropertyEditors/QFloatPropertyEditor.h"
+#import "../PropertyEditors/QTextInputPropertyEditor.h"
 
 
 @implementation NSObject (QEditor)

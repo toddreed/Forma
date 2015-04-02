@@ -6,7 +6,7 @@
 
 
 #import <CoreData/CoreData.h>
-#import "QPropertyEditor.h"
+#import "../PropertyEditors/QPropertyEditor.h"
 
 @interface NSManagedObject (QEditor)
 

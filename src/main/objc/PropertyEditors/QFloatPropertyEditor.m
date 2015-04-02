@@ -6,8 +6,8 @@
 
 
 #import "QFloatPropertyEditor.h"
-#import "QObjectEditorViewController.h"
-#import "QSliderTableViewCell.h"
+#import "../Core/QObjectEditorViewController.h"
+#import "../Core/QSliderTableViewCell.h"
 
 
 @interface QObjectEditorViewController (QFloatPropertyEditor)

@@ -4,9 +4,9 @@
 // © Reaction Software Inc., 2013
 //
 
-#import <QuartzCore/QuartzCore.h>
+#import "UITheme/TRUITheme.h"
+
 #import "TRAutocompleteCell.h"
-#import "TRUITheme.h"
 
 @implementation TRAutocompleteCell
 

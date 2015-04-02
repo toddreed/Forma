@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "QPropertyEditor.h"
+#import "../PropertyEditors/QPropertyEditor.h"
 #import "QPropertyGroup.h"
 #import "NSObject+QEditor.h"
 

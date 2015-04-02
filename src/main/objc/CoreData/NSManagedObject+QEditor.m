@@ -6,11 +6,11 @@
 
 
 #import "NSManagedObject+QEditor.h"
-#import "QFloatPropertyEditor.h"
-#import "QTextInputPropertyEditor.h"
-#import "QBooleanPropertyEditor.h"
-#import "NSString+QCamelCase.h"
-#import "QPropertyGroup.h"
+#import "../PropertyEditors/QFloatPropertyEditor.h"
+#import "../PropertyEditors/QTextInputPropertyEditor.h"
+#import "../PropertyEditors/QBooleanPropertyEditor.h"
+#import "../Core/NSString+QCamelCase.h"
+#import "../Core/QPropertyGroup.h"
 
 @implementation NSManagedObject (QEditor)
 

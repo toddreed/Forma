@@ -17,7 +17,7 @@
 /// editing many properties of an object.
 /// 
 /// QPropertyEditor uses key-value observing to keep the UI synchronized with changes to the model
-/// object. If the model's properties are modified via its accessors and the model's class if KVO
+/// object. If the model's properties are modified via its accessors and the model's class is KVO
 /// compliant, the UI will automatically update to reflect the changed property value.
 /// 
 /// Similarly, QPropertyEditor uses key-value coding to automatically update a model's property
@@ -29,7 +29,7 @@
 @interface QPropertyEditor : NSObject
 {
     // The object this editor modifies
-    __weak id _target;
+    id __weak _target;
 
     // The key use to update the model object with KVC. This is always non-nil for "normal"
     // property editors, but some special "pseudo" property editors have a nil key;

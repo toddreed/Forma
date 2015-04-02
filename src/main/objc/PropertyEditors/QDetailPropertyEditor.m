@@ -6,7 +6,7 @@
 
 
 #import "QDetailPropertyEditor.h"
-#import "NSObject+QEditor.h"
+#import "../Core/NSObject+QEditor.h"
 
 
 @implementation QDetailPropertyEditor

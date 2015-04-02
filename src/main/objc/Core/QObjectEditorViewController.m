@@ -7,7 +7,7 @@
 
 #import "QObjectEditorViewController.h"
 #import "NSObject+QEditor.h"
-#import "QTextInputPropertyEditor.h"
+#import "../PropertyEditors/QTextInputPropertyEditor.h"
 #import "QTextFieldTableViewCell.h"
 
 @implementation QObjectEditorViewController

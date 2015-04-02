@@ -4,9 +4,9 @@
 // © Reaction Software Inc., 2013
 //
 
+#import "Symbolset/TRSymbolsetView.h"
 
 #import "QTextFieldTableViewCell.h"
-#import "TRSymbolsetView.h"
 
 const CGFloat kDescriptionLabelTopMargin = 38.0f;
 const CGFloat kIconLeftMargin = 11.0f;

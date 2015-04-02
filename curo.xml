@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <project parent="curo:ios.library.xml" name="Object Editor">
 
-  <coordinate group="com.reactionsoftware" artifact="ObjectEditor" version="0.5.2"/>
+  <coordinate group="com.reactionsoftware" artifact="ObjectEditor" version="1.0.0-alpha"/>
 
   <plugins>
     <plugin name="curo.plugins.apple.xcode">

@@ -6,7 +6,7 @@
 
 
 #import "QBooleanPropertyEditor.h"
-#import "QObjectEditorViewController.h"
+#import "../Core/QObjectEditorViewController.h"
 
 
 @interface QObjectEditorViewController (QBooleanPropertyEditor)

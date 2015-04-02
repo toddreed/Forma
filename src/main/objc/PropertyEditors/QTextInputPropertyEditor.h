@@ -6,7 +6,7 @@
 
 
 #import "QPropertyEditor.h"
-#import "TRAutocompleteSource.h"
+#import "../Core/TRAutocompleteSource.h"
 
 extern NSString *const QTextInputPropertyValidationErrorDomain;
 

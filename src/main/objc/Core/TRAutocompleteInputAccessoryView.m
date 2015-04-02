@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Reaction Software Inc. All rights reserved.
 //
 
+#import "UITheme/TRUITheme.h"
+
 #import "TRAutocompleteInputAccessoryView.h"
 #import "TRAutocompleteCell.h"
-#import "TRUITheme.h"
+
 
 NSString *const TRAutocompleteCellReuseIdentifier = @"TRAutocompleteCellReuseIdentifier";
 

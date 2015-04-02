@@ -14,6 +14,7 @@
 		5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */; };
 		5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */; };
 		5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */; };
+		5F6087F01ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */; };
 		5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
 		5FF92FCA174AD615003211A0 /* NSManagedObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */; };
 		5FF92FCB174AD615003211A0 /* NSObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */; };
@@ -57,6 +58,8 @@
 		5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QStringPropertyEditor.m; sourceTree = "<group>"; };
 		5F4E107B175D34660025BC1D /* QNumberPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNumberPropertyEditor.h; sourceTree = "<group>"; };
 		5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNumberPropertyEditor.m; sourceTree = "<group>"; };
+		5F6087EE1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
+		5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
 		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
@@ -108,25 +111,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F352F5E178E0D46006D263B /* library */ = {
+		5F6087EB1ACDE26900E0ED97 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5F352F5F178E0D46006D263B /* objc */,
-			);
-			path = library;
-			sourceTree = "<group>";
-		};
-		5F352F5F178E0D46006D263B /* objc */ = {
-			isa = PBXGroup;
-			children = (
-				5F352F60178E0D46006D263B /* autocomplete */,
-			);
-			path = objc;
-			sourceTree = "<group>";
-		};
-		5F352F60178E0D46006D263B /* autocomplete */ = {
-			isa = PBXGroup;
-			children = (
+				5FF92FA8174AD615003211A0 /* NSObject+QEditor.h */,
+				5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */,
+				5FF92FAC174AD615003211A0 /* NSObject+QProperties.h */,
+				5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */,
+				5FF92FAE174AD615003211A0 /* NSString+QCamelCase.h */,
+				5FF92FAF174AD615003211A0 /* NSString+QCamelCase.m */,
+				5FF92FBA174AD615003211A0 /* QObjectEditorViewController.h */,
+				5FF92FBB174AD615003211A0 /* QObjectEditorViewController.m */,
+				5FF92FC0174AD615003211A0 /* QPropertyGroup.h */,
+				5FF92FC1174AD615003211A0 /* QPropertyGroup.m */,
+				5FF92FC4174AD615003211A0 /* QSliderTableViewCell.h */,
+				5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */,
+				5FF92FC8174AD615003211A0 /* QTextFieldTableViewCell.h */,
+				5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */,
 				5F352F68178E15F9006D263B /* TRArrayAutocompleteSource.h */,
 				5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */,
 				5F352F62178E0EBA006D263B /* TRAutocompleteCell.h */,
@@ -135,7 +136,45 @@
 				5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */,
 				5F352F61178E0DAD006D263B /* TRAutocompleteSource.h */,
 			);
-			path = autocomplete;
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5F6087EC1ACDE28000E0ED97 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */,
+				5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */,
+				5F6087EE1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.h */,
+				5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */,
+			);
+			name = "Core Data";
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		5F6087ED1ACDE40700E0ED97 /* Property Editors */ = {
+			isa = PBXGroup;
+			children = (
+				5FF92FB0174AD615003211A0 /* QBooleanPropertyEditor.h */,
+				5FF92FB1174AD615003211A0 /* QBooleanPropertyEditor.m */,
+				5FF92FB2174AD615003211A0 /* QButtonPropertyEditor.h */,
+				5FF92FB3174AD615003211A0 /* QButtonPropertyEditor.m */,
+				5FF92FB4174AD615003211A0 /* QDetailPropertyEditor.h */,
+				5FF92FB5174AD615003211A0 /* QDetailPropertyEditor.m */,
+				5FF92FB6174AD615003211A0 /* QFloatPropertyEditor.h */,
+				5FF92FB7174AD615003211A0 /* QFloatPropertyEditor.m */,
+				5F4E107B175D34660025BC1D /* QNumberPropertyEditor.h */,
+				5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */,
+				5FF92FBC174AD615003211A0 /* QObjectPropertyEditor.h */,
+				5FF92FBD174AD615003211A0 /* QObjectPropertyEditor.m */,
+				5FF92FBE174AD615003211A0 /* QPropertyEditor.h */,
+				5FF92FBF174AD615003211A0 /* QPropertyEditor.m */,
+				5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */,
+				5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */,
+				5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */,
+				5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */,
+			);
+			name = "Property Editors";
+			path = PropertyEditors;
 			sourceTree = "<group>";
 		};
 		5FDB1F716FE38B96CBAD50CC /* Pods */ = {
@@ -179,7 +218,6 @@
 		5FF92FA3174AD5B6003211A0 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				5F352F5E178E0D46006D263B /* library */,
 				5FF92FA4174AD5B6003211A0 /* main */,
 			);
 			path = src;
@@ -196,41 +234,10 @@
 		5FF92FA5174AD5B6003211A0 /* objc */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */,
-				5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */,
-				5FF92FA8174AD615003211A0 /* NSObject+QEditor.h */,
-				5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */,
-				5FF92FAC174AD615003211A0 /* NSObject+QProperties.h */,
-				5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */,
-				5FF92FAE174AD615003211A0 /* NSString+QCamelCase.h */,
-				5FF92FAF174AD615003211A0 /* NSString+QCamelCase.m */,
+				5F6087EB1ACDE26900E0ED97 /* Core */,
+				5F6087EC1ACDE28000E0ED97 /* Core Data */,
 				5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */,
-				5FF92FB0174AD615003211A0 /* QBooleanPropertyEditor.h */,
-				5FF92FB1174AD615003211A0 /* QBooleanPropertyEditor.m */,
-				5FF92FB2174AD615003211A0 /* QButtonPropertyEditor.h */,
-				5FF92FB3174AD615003211A0 /* QButtonPropertyEditor.m */,
-				5FF92FB4174AD615003211A0 /* QDetailPropertyEditor.h */,
-				5FF92FB5174AD615003211A0 /* QDetailPropertyEditor.m */,
-				5FF92FB6174AD615003211A0 /* QFloatPropertyEditor.h */,
-				5FF92FB7174AD615003211A0 /* QFloatPropertyEditor.m */,
-				5F4E107B175D34660025BC1D /* QNumberPropertyEditor.h */,
-				5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */,
-				5FF92FBA174AD615003211A0 /* QObjectEditorViewController.h */,
-				5FF92FBB174AD615003211A0 /* QObjectEditorViewController.m */,
-				5FF92FBC174AD615003211A0 /* QObjectPropertyEditor.h */,
-				5FF92FBD174AD615003211A0 /* QObjectPropertyEditor.m */,
-				5FF92FBE174AD615003211A0 /* QPropertyEditor.h */,
-				5FF92FBF174AD615003211A0 /* QPropertyEditor.m */,
-				5FF92FC0174AD615003211A0 /* QPropertyGroup.h */,
-				5FF92FC1174AD615003211A0 /* QPropertyGroup.m */,
-				5FF92FC4174AD615003211A0 /* QSliderTableViewCell.h */,
-				5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */,
-				5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */,
-				5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */,
-				5FF92FC8174AD615003211A0 /* QTextFieldTableViewCell.h */,
-				5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */,
-				5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */,
-				5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */,
+				5F6087ED1ACDE40700E0ED97 /* Property Editors */,
 			);
 			path = objc;
 			sourceTree = "<group>";
@@ -323,6 +330,7 @@
 			files = (
 				5FF92FCA174AD615003211A0 /* NSManagedObject+QEditor.m in Sources */,
 				5FF92FCB174AD615003211A0 /* NSObject+QEditor.m in Sources */,
+				5F6087F01ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m in Sources */,
 				5FF92FCD174AD615003211A0 /* NSObject+QProperties.m in Sources */,
 				5FF92FCE174AD615003211A0 /* NSString+QCamelCase.m in Sources */,
 				5FF92FCF174AD615003211A0 /* QBooleanPropertyEditor.m in Sources */,

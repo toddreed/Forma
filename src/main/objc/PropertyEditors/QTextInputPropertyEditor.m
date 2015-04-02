@@ -4,11 +4,13 @@
 // © Reaction Software Inc., 2013
 //
 
-#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
+
 #import "QTextInputPropertyEditor.h"
-#import "QTextFieldTableViewCell.h"
-#import "QObjectEditorViewController.h"
-#import "TRAutocompleteInputAccessoryView.h"
+
+#import "../Core/QTextFieldTableViewCell.h"
+#import "../Core/QObjectEditorViewController.h"
+#import "../Core/TRAutocompleteInputAccessoryView.h"
 
 NSString *const QTextInputPropertyValidationErrorDomain = @"QTextInputPropertyValidationErrorDomain";
 
