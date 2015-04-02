@@ -8,28 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		2826BF406DFC434B9C4E1E6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6CCCB483484DCC9A26E808 /* libPods.a */; };
-		5F352F64178E0EBA006D263B /* TRAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */; };
-		5F352F67178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */; };
-		5F352F6A178E15FA006D263B /* TRArrayAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */; };
-		5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */; };
-		5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */; };
-		5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */; };
-		5F6087F01ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */; };
+		5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */; };
+		5F352F67178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */; };
+		5F352F6A178E15FA006D263B /* RSArrayAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */; };
+		5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */; };
+		5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* RSNumberPropertyEditor.m */; };
+		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
-		5FF92FCA174AD615003211A0 /* NSManagedObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */; };
-		5FF92FCB174AD615003211A0 /* NSObject+QEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */; };
-		5FF92FCD174AD615003211A0 /* NSObject+QProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */; };
-		5FF92FCE174AD615003211A0 /* NSString+QCamelCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAF174AD615003211A0 /* NSString+QCamelCase.m */; };
-		5FF92FCF174AD615003211A0 /* QBooleanPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB1174AD615003211A0 /* QBooleanPropertyEditor.m */; };
-		5FF92FD0174AD615003211A0 /* QButtonPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB3174AD615003211A0 /* QButtonPropertyEditor.m */; };
-		5FF92FD1174AD615003211A0 /* QDetailPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB5174AD615003211A0 /* QDetailPropertyEditor.m */; };
-		5FF92FD2174AD615003211A0 /* QFloatPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB7174AD615003211A0 /* QFloatPropertyEditor.m */; };
-		5FF92FD4174AD615003211A0 /* QObjectEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBB174AD615003211A0 /* QObjectEditorViewController.m */; };
-		5FF92FD5174AD615003211A0 /* QObjectPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBD174AD615003211A0 /* QObjectPropertyEditor.m */; };
-		5FF92FD6174AD615003211A0 /* QPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBF174AD615003211A0 /* QPropertyEditor.m */; };
-		5FF92FD7174AD615003211A0 /* QPropertyGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC1174AD615003211A0 /* QPropertyGroup.m */; };
-		5FF92FD9174AD615003211A0 /* QSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */; };
-		5FF92FDB174AD615003211A0 /* QTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */; };
+		5FF92FCA174AD615003211A0 /* NSManagedObject+RSEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */; };
+		5FF92FCB174AD615003211A0 /* NSObject+RSEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */; };
+		5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */; };
+		5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAF174AD615003211A0 /* NSString+RSCamelCase.m */; };
+		5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */; };
+		5FF92FD0174AD615003211A0 /* RSButtonPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB3174AD615003211A0 /* RSButtonPropertyEditor.m */; };
+		5FF92FD1174AD615003211A0 /* RSDetailPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB5174AD615003211A0 /* RSDetailPropertyEditor.m */; };
+		5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB7174AD615003211A0 /* RSFloatPropertyEditor.m */; };
+		5FF92FD4174AD615003211A0 /* RSObjectEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */; };
+		5FF92FD5174AD615003211A0 /* RSObjectPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */; };
+		5FF92FD6174AD615003211A0 /* RSPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBF174AD615003211A0 /* RSPropertyEditor.m */; };
+		5FF92FD7174AD615003211A0 /* RSPropertyGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC1174AD615003211A0 /* RSPropertyGroup.m */; };
+		5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */; };
+		5FF92FDB174AD615003211A0 /* RSTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,53 +44,52 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5F352F61178E0DAD006D263B /* TRAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteSource.h; sourceTree = "<group>"; };
-		5F352F62178E0EBA006D263B /* TRAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteCell.h; sourceTree = "<group>"; };
-		5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRAutocompleteCell.m; sourceTree = "<group>"; };
-		5F352F65178E0FD5006D263B /* TRAutocompleteInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRAutocompleteInputAccessoryView.h; sourceTree = "<group>"; };
-		5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRAutocompleteInputAccessoryView.m; sourceTree = "<group>"; };
-		5F352F68178E15F9006D263B /* TRArrayAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRArrayAutocompleteSource.h; sourceTree = "<group>"; };
-		5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRArrayAutocompleteSource.m; sourceTree = "<group>"; };
-		5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTextInputPropertyEditor.h; sourceTree = "<group>"; };
-		5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTextInputPropertyEditor.m; sourceTree = "<group>"; };
-		5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QStringPropertyEditor.h; sourceTree = "<group>"; };
-		5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QStringPropertyEditor.m; sourceTree = "<group>"; };
-		5F4E107B175D34660025BC1D /* QNumberPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNumberPropertyEditor.h; sourceTree = "<group>"; };
-		5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QNumberPropertyEditor.m; sourceTree = "<group>"; };
-		5F6087EE1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
-		5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
+		5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteSource.h; sourceTree = "<group>"; };
+		5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteCell.h; sourceTree = "<group>"; };
+		5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAutocompleteCell.m; sourceTree = "<group>"; };
+		5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteInputAccessoryView.h; sourceTree = "<group>"; };
+		5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAutocompleteInputAccessoryView.m; sourceTree = "<group>"; };
+		5F352F68178E15F9006D263B /* RSArrayAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSArrayAutocompleteSource.h; sourceTree = "<group>"; };
+		5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSArrayAutocompleteSource.m; sourceTree = "<group>"; };
+		5F4E1073175D0D8C0025BC1D /* RSTextInputPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextInputPropertyEditor.h; sourceTree = "<group>"; };
+		5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextInputPropertyEditor.m; sourceTree = "<group>"; };
+		5F4E1077175D33810025BC1D /* RSStringPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSStringPropertyEditor.h; sourceTree = "<group>"; };
+		5F4E107B175D34660025BC1D /* RSNumberPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSNumberPropertyEditor.h; sourceTree = "<group>"; };
+		5F4E107C175D34670025BC1D /* RSNumberPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNumberPropertyEditor.m; sourceTree = "<group>"; };
+		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
+		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
 		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+QEditor.h"; sourceTree = "<group>"; };
-		5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+QEditor.m"; sourceTree = "<group>"; };
-		5FF92FA8174AD615003211A0 /* NSObject+QEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QEditor.h"; sourceTree = "<group>"; };
-		5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QEditor.m"; sourceTree = "<group>"; };
-		5FF92FAC174AD615003211A0 /* NSObject+QProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+QProperties.h"; sourceTree = "<group>"; };
-		5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+QProperties.m"; sourceTree = "<group>"; };
-		5FF92FAE174AD615003211A0 /* NSString+QCamelCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+QCamelCase.h"; sourceTree = "<group>"; };
-		5FF92FAF174AD615003211A0 /* NSString+QCamelCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+QCamelCase.m"; sourceTree = "<group>"; };
-		5FF92FB0174AD615003211A0 /* QBooleanPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBooleanPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FB1174AD615003211A0 /* QBooleanPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBooleanPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FB2174AD615003211A0 /* QButtonPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QButtonPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FB3174AD615003211A0 /* QButtonPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QButtonPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FB4174AD615003211A0 /* QDetailPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDetailPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FB5174AD615003211A0 /* QDetailPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDetailPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FB6174AD615003211A0 /* QFloatPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFloatPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FB7174AD615003211A0 /* QFloatPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFloatPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FBA174AD615003211A0 /* QObjectEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QObjectEditorViewController.h; sourceTree = "<group>"; };
-		5FF92FBB174AD615003211A0 /* QObjectEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QObjectEditorViewController.m; sourceTree = "<group>"; };
-		5FF92FBC174AD615003211A0 /* QObjectPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QObjectPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FBD174AD615003211A0 /* QObjectPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QObjectPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FBE174AD615003211A0 /* QPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPropertyEditor.h; sourceTree = "<group>"; };
-		5FF92FBF174AD615003211A0 /* QPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FC0174AD615003211A0 /* QPropertyGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QPropertyGroup.h; sourceTree = "<group>"; };
-		5FF92FC1174AD615003211A0 /* QPropertyGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QPropertyGroup.m; sourceTree = "<group>"; };
-		5FF92FC4174AD615003211A0 /* QSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSliderTableViewCell.h; sourceTree = "<group>"; };
-		5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSliderTableViewCell.m; sourceTree = "<group>"; };
-		5FF92FC8174AD615003211A0 /* QTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTextFieldTableViewCell.h; sourceTree = "<group>"; };
-		5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		5FF92FA6174AD615003211A0 /* NSManagedObject+RSEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+RSEditor.h"; sourceTree = "<group>"; };
+		5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+RSEditor.m"; sourceTree = "<group>"; };
+		5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RSEditor.h"; sourceTree = "<group>"; };
+		5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RSEditor.m"; sourceTree = "<group>"; };
+		5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RSProperties.h"; sourceTree = "<group>"; };
+		5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RSProperties.m"; sourceTree = "<group>"; };
+		5FF92FAE174AD615003211A0 /* NSString+RSCamelCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RSCamelCase.h"; sourceTree = "<group>"; };
+		5FF92FAF174AD615003211A0 /* NSString+RSCamelCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RSCamelCase.m"; sourceTree = "<group>"; };
+		5FF92FB0174AD615003211A0 /* RSBooleanPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBooleanPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBooleanPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FB2174AD615003211A0 /* RSButtonPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSButtonPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FB3174AD615003211A0 /* RSButtonPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSButtonPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FB4174AD615003211A0 /* RSDetailPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDetailPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FB5174AD615003211A0 /* RSDetailPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDetailPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FB6174AD615003211A0 /* RSFloatPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFloatPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FB7174AD615003211A0 /* RSFloatPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFloatPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectEditorViewController.h; sourceTree = "<group>"; };
+		5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObjectEditorViewController.m; sourceTree = "<group>"; };
+		5FF92FBC174AD615003211A0 /* RSObjectPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObjectPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FBE174AD615003211A0 /* RSPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPropertyEditor.h; sourceTree = "<group>"; };
+		5FF92FBF174AD615003211A0 /* RSPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPropertyEditor.m; sourceTree = "<group>"; };
+		5FF92FC0174AD615003211A0 /* RSPropertyGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPropertyGroup.h; sourceTree = "<group>"; };
+		5FF92FC1174AD615003211A0 /* RSPropertyGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPropertyGroup.m; sourceTree = "<group>"; };
+		5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSliderTableViewCell.h; sourceTree = "<group>"; };
+		5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSliderTableViewCell.m; sourceTree = "<group>"; };
+		5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSTextFieldTableViewCell.m; sourceTree = "<group>"; };
 		7B6DCE9646821E2B5FD05CE7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7D6CCCB483484DCC9A26E808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B47B30457449B0BCFCA86D56 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,27 +111,27 @@
 		5F6087EB1ACDE26900E0ED97 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FA8174AD615003211A0 /* NSObject+QEditor.h */,
-				5FF92FA9174AD615003211A0 /* NSObject+QEditor.m */,
-				5FF92FAC174AD615003211A0 /* NSObject+QProperties.h */,
-				5FF92FAD174AD615003211A0 /* NSObject+QProperties.m */,
-				5FF92FAE174AD615003211A0 /* NSString+QCamelCase.h */,
-				5FF92FAF174AD615003211A0 /* NSString+QCamelCase.m */,
-				5FF92FBA174AD615003211A0 /* QObjectEditorViewController.h */,
-				5FF92FBB174AD615003211A0 /* QObjectEditorViewController.m */,
-				5FF92FC0174AD615003211A0 /* QPropertyGroup.h */,
-				5FF92FC1174AD615003211A0 /* QPropertyGroup.m */,
-				5FF92FC4174AD615003211A0 /* QSliderTableViewCell.h */,
-				5FF92FC5174AD615003211A0 /* QSliderTableViewCell.m */,
-				5FF92FC8174AD615003211A0 /* QTextFieldTableViewCell.h */,
-				5FF92FC9174AD615003211A0 /* QTextFieldTableViewCell.m */,
-				5F352F68178E15F9006D263B /* TRArrayAutocompleteSource.h */,
-				5F352F69178E15F9006D263B /* TRArrayAutocompleteSource.m */,
-				5F352F62178E0EBA006D263B /* TRAutocompleteCell.h */,
-				5F352F63178E0EBA006D263B /* TRAutocompleteCell.m */,
-				5F352F65178E0FD5006D263B /* TRAutocompleteInputAccessoryView.h */,
-				5F352F66178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m */,
-				5F352F61178E0DAD006D263B /* TRAutocompleteSource.h */,
+				5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */,
+				5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */,
+				5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */,
+				5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */,
+				5FF92FAE174AD615003211A0 /* NSString+RSCamelCase.h */,
+				5FF92FAF174AD615003211A0 /* NSString+RSCamelCase.m */,
+				5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */,
+				5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */,
+				5FF92FC0174AD615003211A0 /* RSPropertyGroup.h */,
+				5FF92FC1174AD615003211A0 /* RSPropertyGroup.m */,
+				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
+				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
+				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
+				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
+				5F352F68178E15F9006D263B /* RSArrayAutocompleteSource.h */,
+				5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */,
+				5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */,
+				5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */,
+				5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */,
+				5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */,
+				5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -141,10 +139,10 @@
 		5F6087EC1ACDE28000E0ED97 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FA6174AD615003211A0 /* NSManagedObject+QEditor.h */,
-				5FF92FA7174AD615003211A0 /* NSManagedObject+QEditor.m */,
-				5F6087EE1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.h */,
-				5F6087EF1ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m */,
+				5FF92FA6174AD615003211A0 /* NSManagedObject+RSEditor.h */,
+				5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */,
+				5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */,
+				5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */,
 			);
 			name = "Core Data";
 			path = CoreData;
@@ -153,24 +151,23 @@
 		5F6087ED1ACDE40700E0ED97 /* Property Editors */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FB0174AD615003211A0 /* QBooleanPropertyEditor.h */,
-				5FF92FB1174AD615003211A0 /* QBooleanPropertyEditor.m */,
-				5FF92FB2174AD615003211A0 /* QButtonPropertyEditor.h */,
-				5FF92FB3174AD615003211A0 /* QButtonPropertyEditor.m */,
-				5FF92FB4174AD615003211A0 /* QDetailPropertyEditor.h */,
-				5FF92FB5174AD615003211A0 /* QDetailPropertyEditor.m */,
-				5FF92FB6174AD615003211A0 /* QFloatPropertyEditor.h */,
-				5FF92FB7174AD615003211A0 /* QFloatPropertyEditor.m */,
-				5F4E107B175D34660025BC1D /* QNumberPropertyEditor.h */,
-				5F4E107C175D34670025BC1D /* QNumberPropertyEditor.m */,
-				5FF92FBC174AD615003211A0 /* QObjectPropertyEditor.h */,
-				5FF92FBD174AD615003211A0 /* QObjectPropertyEditor.m */,
-				5FF92FBE174AD615003211A0 /* QPropertyEditor.h */,
-				5FF92FBF174AD615003211A0 /* QPropertyEditor.m */,
-				5F4E1077175D33810025BC1D /* QStringPropertyEditor.h */,
-				5F4E1078175D33820025BC1D /* QStringPropertyEditor.m */,
-				5F4E1073175D0D8C0025BC1D /* QTextInputPropertyEditor.h */,
-				5F4E1074175D0D8C0025BC1D /* QTextInputPropertyEditor.m */,
+				5FF92FB0174AD615003211A0 /* RSBooleanPropertyEditor.h */,
+				5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */,
+				5FF92FB2174AD615003211A0 /* RSButtonPropertyEditor.h */,
+				5FF92FB3174AD615003211A0 /* RSButtonPropertyEditor.m */,
+				5FF92FB4174AD615003211A0 /* RSDetailPropertyEditor.h */,
+				5FF92FB5174AD615003211A0 /* RSDetailPropertyEditor.m */,
+				5FF92FB6174AD615003211A0 /* RSFloatPropertyEditor.h */,
+				5FF92FB7174AD615003211A0 /* RSFloatPropertyEditor.m */,
+				5F4E107B175D34660025BC1D /* RSNumberPropertyEditor.h */,
+				5F4E107C175D34670025BC1D /* RSNumberPropertyEditor.m */,
+				5FF92FBC174AD615003211A0 /* RSObjectPropertyEditor.h */,
+				5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */,
+				5FF92FBE174AD615003211A0 /* RSPropertyEditor.h */,
+				5FF92FBF174AD615003211A0 /* RSPropertyEditor.m */,
+				5F4E1077175D33810025BC1D /* RSStringPropertyEditor.h */,
+				5F4E1073175D0D8C0025BC1D /* RSTextInputPropertyEditor.h */,
+				5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */,
 			);
 			name = "Property Editors";
 			path = PropertyEditors;
@@ -326,27 +323,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FF92FCA174AD615003211A0 /* NSManagedObject+QEditor.m in Sources */,
-				5FF92FCB174AD615003211A0 /* NSObject+QEditor.m in Sources */,
-				5F6087F01ACDEB5D00E0ED97 /* TRFetchRequestAutocompleteSource.m in Sources */,
-				5FF92FCD174AD615003211A0 /* NSObject+QProperties.m in Sources */,
-				5FF92FCE174AD615003211A0 /* NSString+QCamelCase.m in Sources */,
-				5FF92FCF174AD615003211A0 /* QBooleanPropertyEditor.m in Sources */,
-				5FF92FD0174AD615003211A0 /* QButtonPropertyEditor.m in Sources */,
-				5FF92FD1174AD615003211A0 /* QDetailPropertyEditor.m in Sources */,
-				5FF92FD2174AD615003211A0 /* QFloatPropertyEditor.m in Sources */,
-				5FF92FD4174AD615003211A0 /* QObjectEditorViewController.m in Sources */,
-				5FF92FD5174AD615003211A0 /* QObjectPropertyEditor.m in Sources */,
-				5FF92FD6174AD615003211A0 /* QPropertyEditor.m in Sources */,
-				5FF92FD7174AD615003211A0 /* QPropertyGroup.m in Sources */,
-				5FF92FD9174AD615003211A0 /* QSliderTableViewCell.m in Sources */,
-				5FF92FDB174AD615003211A0 /* QTextFieldTableViewCell.m in Sources */,
-				5F4E1075175D0D8D0025BC1D /* QTextInputPropertyEditor.m in Sources */,
-				5F4E1079175D33820025BC1D /* QStringPropertyEditor.m in Sources */,
-				5F4E107D175D34680025BC1D /* QNumberPropertyEditor.m in Sources */,
-				5F352F64178E0EBA006D263B /* TRAutocompleteCell.m in Sources */,
-				5F352F67178E0FD6006D263B /* TRAutocompleteInputAccessoryView.m in Sources */,
-				5F352F6A178E15FA006D263B /* TRArrayAutocompleteSource.m in Sources */,
+				5FF92FCA174AD615003211A0 /* NSManagedObject+RSEditor.m in Sources */,
+				5FF92FCB174AD615003211A0 /* NSObject+RSEditor.m in Sources */,
+				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,
+				5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */,
+				5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */,
+				5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */,
+				5FF92FD0174AD615003211A0 /* RSButtonPropertyEditor.m in Sources */,
+				5FF92FD1174AD615003211A0 /* RSDetailPropertyEditor.m in Sources */,
+				5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */,
+				5FF92FD4174AD615003211A0 /* RSObjectEditorViewController.m in Sources */,
+				5FF92FD5174AD615003211A0 /* RSObjectPropertyEditor.m in Sources */,
+				5FF92FD6174AD615003211A0 /* RSPropertyEditor.m in Sources */,
+				5FF92FD7174AD615003211A0 /* RSPropertyGroup.m in Sources */,
+				5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */,
+				5FF92FDB174AD615003211A0 /* RSTextFieldTableViewCell.m in Sources */,
+				5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */,
+				5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */,
+				5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */,
+				5F352F67178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m in Sources */,
+				5F352F6A178E15FA006D263B /* RSArrayAutocompleteSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
