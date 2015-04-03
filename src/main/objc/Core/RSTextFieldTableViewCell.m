@@ -9,9 +9,9 @@
 #import "RSTextFieldTableViewCell.h"
 
 const CGFloat kDescriptionLabelTopMargin = 38.0f;
-const CGFloat kIconLeftMargin = 11.0f;
+const CGFloat kIconLeftMargin = 20.0f;
 const CGFloat kDescriptionLabelLeftMargin = 40.0f;
-const CGFloat kDescriptionLabelRightMargin = 10.0f;
+const CGFloat kDescriptionLabelRightMargin = 20.0f;
 const CGFloat kDescriptionLabelBottomMargin = 8.0f;
 const CGFloat kDescriptionLabelFontSize = 13.0f;
 
@@ -24,7 +24,7 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
     [super layoutSubviews];
 
     CGRect textLabelFrame = self.textLabel.frame;
-    textLabelFrame.origin = (CGPoint){ 10, 11 };
+    textLabelFrame.origin = (CGPoint){ self.indentationWidth, 11 };
     self.textLabel.frame = textLabelFrame;
 
     CGSize labelSize = [self.textLabel sizeThatFits:CGSizeZero];
@@ -33,7 +33,7 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 
     if (labelSize.height == 0.0f)
     {
-        textFieldFrame.origin= (CGPoint){ 10, 11 };
+        textFieldFrame.origin= (CGPoint){ self.indentationWidth, 11 };
         textFieldFrame.size.height = contentBounds.size.height - 20;
         textFieldFrame.size.width = contentBounds.size.width - 20;
     }
@@ -62,6 +62,8 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
     {
+        self.indentationWidth = 20.0f;
+
         _textField = [[UITextField alloc] initWithFrame:CGRectZero];
         _textField.adjustsFontSizeToFitWidth = YES;
         _textField.clearsOnBeginEditing = NO;
