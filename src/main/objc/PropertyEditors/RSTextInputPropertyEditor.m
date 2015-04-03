@@ -11,6 +11,7 @@
 #import "../Core/RSTextFieldTableViewCell.h"
 #import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
+#import "../Core/RSObjectEditorViewController_PropertyEditor.h"
 
 NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 
@@ -25,21 +26,21 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 - (void)textChanged:(id)sender
 {
-    if (textEditingMode != RSTextEditingModeCancelling)
+    if (self.textEditingMode != RSTextEditingModeCancelling)
     {
         UITextField *textField = (UITextField *)sender;
-        RSTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
+        RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
 
         NSError *error;
         id value = [editor validateTextInput:textField.text error:&error];
 
         if (value)
         {
-            [editedObject setValue:value forKey:editor.key];
+            [self.editedObject setValue:value forKey:editor.key];
         }
         else
         {
-            if (textEditingMode != RSTextEditingModeFinishingForced)
+            if (self.textEditingMode != RSTextEditingModeFinishingForced)
             {
                 editor.message = [error localizedDescription];
                 [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
@@ -87,14 +88,14 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    textEditingMode = RSTextEditingModeEditing;
-    activeTextField = textField;
+    self.textEditingMode = RSTextEditingModeEditing;
+    self.activeTextField = textField;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    textEditingMode = RSTextEditingModeNotEditing;
-    activeTextField = nil;
+    self.textEditingMode = RSTextEditingModeNotEditing;
+    self.activeTextField = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -105,7 +106,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     {
         if (textField.returnKeyType == UIReturnKeyNext)
         {
-            RSTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
+            RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
             NSIndexPath *nextTextInputIndexPath = [self p_findNextTextInputAfterEditor:editor];
 
             if (nextTextInputIndexPath != nil)
@@ -124,7 +125,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
                  textField.returnKeyType == UIReturnKeySearch)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [delegate objectEditorViewControllerDidEnd:self cancelled:NO];
+                [self.delegate objectEditorViewControllerDidEnd:self cancelled:NO];
             });
         }
 
@@ -135,11 +136,11 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    NSAssert(textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
+    NSAssert(self.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
 
-    if (textEditingMode != RSTextEditingModeCancelling && textEditingMode != RSTextEditingModeFinishingForced)
+    if (self.textEditingMode != RSTextEditingModeCancelling && self.textEditingMode != RSTextEditingModeFinishingForced)
     {
-        RSTextInputPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(textField.tag)];
+        RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
         NSError *error;
         
         id value = [editor validateTextInput:textField.text error:&error];
@@ -155,8 +156,8 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
             // RSTextEditingModeFinishing. We set textEditingMode back to
             // RSTextEditingModeEditing to indicate that -finishEditingForce: should
             // return NO.
-            if (textEditingMode == RSTextEditingModeFinishing)
-                textEditingMode = RSTextEditingModeEditing;
+            if (self.textEditingMode == RSTextEditingModeFinishing)
+                self.textEditingMode = RSTextEditingModeEditing;
             return NO;
         }
         else if (!cell.descriptionLabel.hidden)
@@ -207,7 +208,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 - (void)propertyChangedToValue:(id)newValue
 {
-    RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)tableViewCell;
+    RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)self.tableViewCell;
     UITextField *textField = textFieldTableViewCell.textField;
 
     // Only update the UI if the text field isn't being edited right now.
@@ -258,11 +259,11 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     if (_style == RSTextInputPropertyEditorStyleForm)
     {
         // The super -configureTableCellForValue:controller: sets the label.
-        UILabel *label = tableViewCell.textLabel;
+        UILabel *label = self.tableViewCell.textLabel;
         label.text = @"";
     }
 
-    UITextField *textField = ((RSTextFieldTableViewCell *)tableViewCell).textField;
+    UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
     NSString *textValue = _formatter ? [_formatter stringForObjectValue:value] : (NSString *)value;
 
     textField.delegate = controller;
@@ -270,7 +271,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
     textField.placeholder = _placeholder;
     textField.text = textValue;
-    textField.tag = tag;
+    textField.tag = self.tag;
 
     textField.clearsOnBeginEditing = _clearsOnBeginEditing;
     textField.clearButtonMode = _clearButtonMode;
@@ -315,7 +316,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 - (void)becomeFirstResponder
 {
-    UITextField *textField = ((RSTextFieldTableViewCell *)tableViewCell).textField;
+    UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
     [textField becomeFirstResponder];
 }
 
@@ -402,7 +403,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     if (_message != message)
         _message = [message copy];
 
-    RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)tableViewCell;
+    RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
     if (cell)
         cell.descriptionLabel.text = _message;
 }
@@ -435,7 +436,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     else
         value = textInput;
 
-    if ([_target validateValue:&value forKey:self.key error:error])
+    if ([self.target validateValue:&value forKey:self.key error:error])
         return value;
     else
         return nil;

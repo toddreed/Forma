@@ -7,6 +7,7 @@
 
 #import "RSFloatPropertyEditor.h"
 #import "../Core/RSObjectEditorViewController.h"
+#import "../Core/RSObjectEditorViewController_PropertyEditor.h"
 #import "../Core/RSSliderTableViewCell.h"
 
 
@@ -22,8 +23,8 @@
 - (void)sliderChangedValue:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
-    RSPropertyEditor *editor = [propertyEditorDictionary objectForKey:@(slider.tag)];
-    [editedObject setValue:@(slider.value) forKey:editor.key];
+    RSPropertyEditor *editor = [self p_propertyEditorForTag:slider.tag];
+    [self.editedObject setValue:@(slider.value) forKey:editor.key];
 }
 
 @end
@@ -33,24 +34,19 @@
 
 #pragma mark - RSFloatPropertyEditor
 
-@synthesize minimumValue;
-@synthesize maximumValue;
-@synthesize minimumValueImage;
-@synthesize maximumValueImage;
-
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
     if ((self = [super initWithKey:aKey title:aTitle]))
     {
-        minimumValue = 0.0f;
-        maximumValue = 1.0f;
+        _minimumValue = 0.0f;
+        _maximumValue = 1.0f;
     }
     return self;
 }
 
 - (void)propertyChangedToValue:(id)newValue
 {
-    UISlider *slider = ((RSSliderTableViewCell *)tableViewCell).slider;
+    UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
     slider.value = [newValue floatValue];
 }
 
@@ -63,13 +59,13 @@
 {
     [super configureTableCellForValue:value controller:controller];
 
-    UISlider *slider = ((RSSliderTableViewCell *)tableViewCell).slider;
+    UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
 
     [slider addTarget:controller action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
-    slider.minimumValueImage = minimumValueImage;
-    slider.maximumValueImage = maximumValueImage;  
+    slider.minimumValueImage = _minimumValueImage;
+    slider.maximumValueImage = _maximumValueImage;
     slider.value = [value floatValue];
-    slider.tag = tag;
+    slider.tag = self.tag;
 }
 
 @end

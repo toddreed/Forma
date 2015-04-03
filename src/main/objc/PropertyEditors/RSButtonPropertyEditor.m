@@ -9,8 +9,9 @@
 
 
 @implementation RSButtonPropertyEditor
-
-@synthesize action;
+{
+    void (^_action)(RSObjectEditorViewController *);
+}
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
@@ -23,7 +24,7 @@
 {
     if ((self = [super initWithKey:nil title:aTitle]))
     {
-        action = aAction;
+        _action = aAction;
     }
     return self;
 }
@@ -31,18 +32,18 @@
 - (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
-    tableViewCell.textLabel.textAlignment =  NSTextAlignmentCenter;
+    self.tableViewCell.textLabel.textAlignment =  NSTextAlignmentCenter;
 }
 
 - (BOOL)selectable
 {
-    return action != nil;
+    return _action != nil;
 }
 
 - (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
 {
-    if (action)
-        action((RSObjectEditorViewController *)controller);
+    if (_action)
+        _action((RSObjectEditorViewController *)controller);
 }
 
 @end

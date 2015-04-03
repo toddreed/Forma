@@ -14,11 +14,6 @@ const CGFloat kDescriptionLabelBottomMargin;
 const CGFloat kDescriptionLabelFontSize;
 
 @interface RSTextFieldTableViewCell : UITableViewCell
-{
-    UITextField *textField;
-    UILabel *descriptionLabel;
-    UIView *iconView;
-}
 
 @property (nonatomic, readonly) UITextField *textField;
 @property (nonatomic, readonly) UILabel *descriptionLabel;

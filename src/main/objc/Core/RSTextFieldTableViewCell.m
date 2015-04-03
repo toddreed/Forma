@@ -29,7 +29,7 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 
     CGSize labelSize = [self.textLabel sizeThatFits:CGSizeZero];
     CGRect contentBounds = self.contentView.bounds;
-    CGRect textFieldFrame = textField.frame;
+    CGRect textFieldFrame = _textField.frame;
 
     if (labelSize.height == 0.0f)
     {
@@ -44,16 +44,16 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
         textFieldFrame.origin.y = textLabelFrame.origin.y;
         textFieldFrame.size.width = contentBounds.size.width - textFieldFrame.origin.x - textLabelFrame.origin.x;
     }
-    textField.frame = textFieldFrame;
+    _textField.frame = textFieldFrame;
 
     CGPoint descriptionLabelOrigin = (CGPoint){ kDescriptionLabelLeftMargin, kDescriptionLabelTopMargin };
     CGRect bounds = self.contentView.bounds;
     CGSize size = (CGSize) { bounds.size.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin, bounds.size.height-kDescriptionLabelTopMargin-kDescriptionLabelBottomMargin };
-    descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
+    _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
 
-    CGRect iconFrame = iconView.frame;
+    CGRect iconFrame = _iconView.frame;
     iconFrame.origin = (CGPoint) { kIconLeftMargin, descriptionLabelOrigin.y };
-    iconView.frame = iconFrame;
+    _iconView.frame = iconFrame;
 }
 
 #pragma mark - UITableViewCell
@@ -62,38 +62,34 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
     {
-        textField = [[UITextField alloc] initWithFrame:CGRectZero];
-        textField.adjustsFontSizeToFitWidth = YES;
-        textField.clearsOnBeginEditing = NO;
-        textField.font = [UIFont systemFontOfSize:17.0];
-        textField.minimumFontSize = 10.0;
-        textField.textAlignment = NSTextAlignmentRight;
-        textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
+        _textField = [[UITextField alloc] initWithFrame:CGRectZero];
+        _textField.adjustsFontSizeToFitWidth = YES;
+        _textField.clearsOnBeginEditing = NO;
+        _textField.font = [UIFont systemFontOfSize:17.0];
+        _textField.minimumFontSize = 10.0;
+        _textField.textAlignment = NSTextAlignmentRight;
+        _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
 
-        [self.contentView addSubview:textField];
+        [self.contentView addSubview:_textField];
         
-        descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
-        descriptionLabel.textColor = [UIColor grayColor];
-        descriptionLabel.textAlignment = NSTextAlignmentLeft;
-        descriptionLabel.backgroundColor = [UIColor clearColor];
-        descriptionLabel.hidden = YES;
-        descriptionLabel.numberOfLines = 0;
-        [self.contentView addSubview:descriptionLabel];
+        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
+        _descriptionLabel.textColor = [UIColor grayColor];
+        _descriptionLabel.textAlignment = NSTextAlignmentLeft;
+        _descriptionLabel.backgroundColor = [UIColor clearColor];
+        _descriptionLabel.hidden = YES;
+        _descriptionLabel.numberOfLines = 0;
+        [self.contentView addSubview:_descriptionLabel];
 
         TRSymbolsetView *cautionView = [[TRSymbolsetView alloc] initWithSymbol:TRSymbolAlert size:24];
         cautionView.strokeColor = [UIColor grayColor];
-        iconView = cautionView;
-        iconView.hidden = YES;
-        [self.contentView addSubview:iconView];
+        _iconView = cautionView;
+        _iconView.hidden = YES;
+        [self.contentView addSubview:_iconView];
     }
     return self;
 }
 
 #pragma mark - RSTextFieldTableViewCell
-
-@synthesize textField;
-@synthesize descriptionLabel;
-@synthesize iconView;
 
 @end

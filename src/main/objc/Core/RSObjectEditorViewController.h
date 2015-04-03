@@ -21,26 +21,6 @@
 
 @end
 
-/// RSTextEditingMode is used to describe that status of any text editing from a UITextField by
-/// RSObjectEditorViewController.
-typedef enum RSTextEditingMode
-{
-    /// Not currently editing any text.
-    RSTextEditingModeNotEditing,
-    
-    /// Currently editing text.
-    RSTextEditingModeEditing,
-    
-    /// Currently editing text and -cancelEditing was invoked.
-    RSTextEditingModeCancelling,
-    
-    /// Currently editing text and -finishEditingForce: was invoked with NO.
-    RSTextEditingModeFinishing,
-
-    /// Currently editing text and -finishEditingForce: was invoked with YES. Indicates that edit
-    /// MUST finish.
-    RSTextEditingModeFinishingForced
-} RSTextEditingMode;
 
 typedef enum RSObjectEditorViewStyle
 {
@@ -49,58 +29,6 @@ typedef enum RSObjectEditorViewStyle
 } RSObjectEditorViewStyle;
 
 @interface RSObjectEditorViewController : UITableViewController <UITextFieldDelegate>
-{
-    id<RSObjectEditorViewControllerDelegate> __weak delegate;
-    
-    // The object instance being edited.
-    NSObject *editedObject;
-    
-    // An array of RSPropertyGroup objects that determine what PropertyEditors are shown.
-    NSMutableArray *propertyGroups;
-    
-    // propertyEditorDictionary stores references to all the property editors, keyed by a unique
-    // tag value assigned to each editor. The tag value is an NSInteger (stored as an NSNumber
-    // in the dictionary) that may be assigned to the tag property of a UIControl. This is used
-    // so the "owning" RSPropertyEditor can be determined from a UIControl instance, which is
-    // typically needed when a UIControl delegate method needs access to the RSPropertyEditor
-    // key.
-    NSMutableDictionary *propertyEditorDictionary;
-    
-    RSObjectEditorViewStyle style;
-    
-    // The next available unique tag that can be assigned to a RSPropertyEditor.
-    NSInteger nextTag;
-    
-    // The last RSTextInputPropertyEditor found in propertyGroups. We keep this so we can
-    // automatically set the return key type to UIReturnKeyDone if autoTextFieldNavigation is
-    // YES.
-    RSTextInputPropertyEditor *lastTextInputPropertyEditor;
-    
-    // This is either nil, or a text field that is currently the first responder (and hence the
-    // keyboard is displayed). If a table cell is touched, we'll resign the first responder and
-    // hide the keyboard.
-    UITextField *__weak activeTextField;
-    
-    // If this is YES, all the string editors except the last will have their keyboard return
-    // key set to UIReturnKeyNext, overriding the return key type specified by the editor.
-    BOOL autoTextFieldNavigation;
-    
-    // The return key type to use for the last string editor. This is only used when
-    // autoTextFieldNavigation is YES.
-    UIReturnKeyType lastTextFieldReturnKeyType;
-
-    RSTextEditingMode textEditingMode;
-    
-    BOOL showCancelButton;
-    BOOL showDoneButton;
-
-    // State variable for tracking whether this object has been shown before. On the first view,
-    // and when the style is RSObjectEditorViewStyleForm, and when the first editor is a
-    // RSTextInputPropertyEditor, focus will automatically be given to the text field of the
-    // RSTextInputPropertyEditor.
-    BOOL previouslyViewed;
-}
-
 
 @property(nonatomic, weak) id<RSObjectEditorViewControllerDelegate> delegate;
 
@@ -110,9 +38,8 @@ typedef enum RSObjectEditorViewStyle
 
 @property(nonatomic) RSObjectEditorViewStyle style;
 
+/// The object instance being edited.
 @property(nonatomic, strong) NSObject *editedObject;
-
-@property(nonatomic, readonly) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
 
 /// If autoTextFieldNavigation is YES, then the return key for all the text fields, except the last,
 /// is set to UIReturnKeyNext; the last text field's return key is set to the value of the
@@ -157,15 +84,3 @@ typedef enum RSObjectEditorViewStyle
 - (void)replacePropertyGroupAtIndex:(NSUInteger)index withPropertyGroup:(RSPropertyGroup *)propertyGroup;
 
 @end
-
-
-// Private interface for RSObjectEditorViewController and RSPropertyEditor classes.
-@interface RSObjectEditorViewController ()
-
-- (RSPropertyEditor *)p_propertyEditorForIndexPath:(NSIndexPath *)indexPath;
-- (RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor;
-- (NSIndexPath *)p_findNextTextInputAfterEditor:(RSPropertyEditor *)editor;
-
-@end
-
-

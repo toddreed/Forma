@@ -14,9 +14,6 @@
 /// 
 /// Enhancement #120: Add target property to RSButtonPropertyEditor
 @interface RSButtonPropertyEditor : RSPropertyEditor
-{
-    void (^action)(RSObjectEditorViewController *);
-}
 
 @property (nonatomic, strong) void (^action)(RSObjectEditorViewController *);
 

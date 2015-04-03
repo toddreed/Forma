@@ -14,15 +14,15 @@
 
 - (void)propertyChangedToValue:(id)newValue
 {
-    tableViewCell.detailTextLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
-                                          [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
+    self.tableViewCell.detailTextLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
+                                               [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
 }
 
 - (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
-    tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    tableViewCell.detailTextLabel.text = ([value respondsToSelector:@selector(descriptionWithLocale:)] ?
+    self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.tableViewCell.detailTextLabel.text = ([value respondsToSelector:@selector(descriptionWithLocale:)] ?
                                           [value descriptionWithLocale:[NSLocale currentLocale]] : [value description]);
 }
 

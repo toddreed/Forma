@@ -9,13 +9,6 @@
 
 
 @interface RSFloatPropertyEditor : RSPropertyEditor
-{
-    float minimumValue;
-    float maximumValue;
-    
-    UIImage *minimumValueImage;
-    UIImage *maximumValueImage;
-}
 
 @property (nonatomic) float minimumValue;
 @property (nonatomic) float maximumValue;

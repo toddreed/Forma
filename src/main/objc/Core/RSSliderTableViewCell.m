@@ -12,15 +12,13 @@
 
 #pragma mark RSSliderTableViewCell
 
-@synthesize slider;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
     {
-        slider = [[UISlider alloc] initWithFrame:CGRectZero];
-        slider.continuous = NO;
-        [self.contentView addSubview:slider];
+        _slider = [[UISlider alloc] initWithFrame:CGRectZero];
+        _slider.continuous = NO;
+        [self.contentView addSubview:_slider];
     }
     return self;
 }
@@ -31,13 +29,13 @@
 
     CGSize labelSize = [self.textLabel sizeThatFits:CGSizeZero];
     CGRect contentBounds = self.contentView.bounds;
-    CGRect sliderFrame = slider.frame;
+    CGRect sliderFrame = _slider.frame;
     
-    sliderFrame.size = [slider sizeThatFits:CGSizeZero];
+    sliderFrame.size = [_slider sizeThatFits:CGSizeZero];
     sliderFrame.origin.x = self.textLabel.frame.origin.x + labelSize.width + 10;
     sliderFrame.origin.y = contentBounds.origin.y+(contentBounds.size.height-sliderFrame.size.height)/2;
     sliderFrame.size.width = contentBounds.size.width - sliderFrame.origin.x - self.textLabel.frame.origin.x;
-    slider.frame = sliderFrame;
+    _slider.frame = sliderFrame;
 }
 
 @end

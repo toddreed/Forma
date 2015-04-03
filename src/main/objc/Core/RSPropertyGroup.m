@@ -19,23 +19,19 @@
 
 #pragma mark RSPropertyGroup
 
-@synthesize title;
-@synthesize footer;
-@synthesize propertyEditors;
-
-- (id)initWithTitle:(NSString *)aTitle propertyEditorArray:(NSArray *)somePropertyEditors
+- (id)initWithTitle:(NSString *)title propertyEditorArray:(NSArray *)somePropertyEditors
 {
     NSParameterAssert(somePropertyEditors != nil);
     
     if ((self = [super init]))
     {
-        title = [aTitle copy];
-        propertyEditors = [[NSMutableArray alloc] initWithArray:somePropertyEditors];
+        _title = [title copy];
+        _propertyEditors = [[NSMutableArray alloc] initWithArray:somePropertyEditors];
     }
     return self;
 }
 
-- (id)initWithTitle:(NSString *)aTitle propertyEditors:(RSPropertyEditor *)firstPropertyEditor, ...
+- (id)initWithTitle:(NSString *)title propertyEditors:(RSPropertyEditor *)firstPropertyEditor, ...
 {
     NSMutableArray *editors = [[NSMutableArray alloc] init];
     
@@ -50,18 +46,18 @@
             [editors addObject:editor];
         va_end(editorVarArgs);
     }
-    return [self initWithTitle:aTitle propertyEditorArray:editors];
+    return [self initWithTitle:title propertyEditorArray:editors];
 }
 
-- (id)initWithTitle:(NSString *)aTitle propertyEditor:(RSPropertyEditor *)propertyEditor
+- (id)initWithTitle:(NSString *)title propertyEditor:(RSPropertyEditor *)propertyEditor
 {
     NSArray *editors = @[propertyEditor];
-    return [self initWithTitle:aTitle propertyEditorArray:editors];
+    return [self initWithTitle:title propertyEditorArray:editors];
 }
 
-- (id)initWithTitle:(NSString *)aTitle
+- (id)initWithTitle:(NSString *)title
 {
-    return [self initWithTitle:aTitle propertyEditorArray:@[]];
+    return [self initWithTitle:title propertyEditorArray:@[]];
 }
 
 @end

@@ -10,6 +10,9 @@
 
 
 @implementation RSDetailPropertyEditor
+{
+    NSObject *_editedObject;
+}
 
 - (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
 {
@@ -22,15 +25,15 @@
 {
     if ((self = [super initWithKey:nil title:aTitle]))
     {
-        editedObject = aObject;
+        _editedObject = aObject;
     }
     return self;
 }
 
 - (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:editedObject controller:controller];
-    tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [super configureTableCellForValue:_editedObject controller:controller];
+    self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)selectable
@@ -41,7 +44,7 @@
 - (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
-    RSObjectEditorViewController *objectEditorViewController = [editedObject objectEditorViewController];
+    RSObjectEditorViewController *objectEditorViewController = [_editedObject objectEditorViewController];
     [navigationController pushViewController:objectEditorViewController animated:YES];
 }
 

@@ -6,11 +6,34 @@
 
 
 #import "RSObjectEditorViewController.h"
+#import "RSObjectEditorViewController_PropertyEditor.h"
+
 #import "NSObject+RSEditor.h"
 #import "../PropertyEditors/RSTextInputPropertyEditor.h"
 #import "RSTextFieldTableViewCell.h"
 
 @implementation RSObjectEditorViewController
+{
+    // An array of RSPropertyGroup objects that determine what PropertyEditors are shown.
+    NSMutableArray *_propertyGroups;
+
+    // propertyEditorDictionary stores references to all the property editors, keyed by a unique
+    // tag value assigned to each editor. The tag value is an NSInteger (stored as an NSNumber
+    // in the dictionary) that may be assigned to the tag property of a UIControl. This is used
+    // so the "owning" RSPropertyEditor can be determined from a UIControl instance, which is
+    // typically needed when a UIControl delegate method needs access to the RSPropertyEditor
+    // key.
+    NSMutableDictionary *_propertyEditorDictionary;
+
+    // The next available unique tag that can be assigned to a RSPropertyEditor.
+    NSInteger nextTag;
+
+    // State variable for tracking whether this object has been shown before. On the first view,
+    // and when the style is RSObjectEditorViewStyleForm, and when the first editor is a
+    // RSTextInputPropertyEditor, focus will automatically be given to the text field of the
+    // RSTextInputPropertyEditor.
+    BOOL _previouslyViewed;
+}
 
 #pragma mark - NSObject
 
@@ -21,10 +44,10 @@
 
 - (void)dealloc
 {
-    NSEnumerator *enumerator = [propertyEditorDictionary objectEnumerator];
+    NSEnumerator *enumerator = [_propertyEditorDictionary objectEnumerator];
     
     for (RSPropertyEditor *propertyEditor in enumerator)
-        [propertyEditor stopObserving:editedObject];
+        [propertyEditor stopObserving:_editedObject];
 }
 
 #pragma mark - UIViewController
@@ -33,13 +56,13 @@
 {
     [super viewDidAppear:animated];
     
-    if (!previouslyViewed && style == RSObjectEditorViewStyleForm && [propertyEditorDictionary count] > 0)
+    if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm && [_propertyEditorDictionary count] > 0)
     {
         RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if ([editor canBecomeFirstResponder])
             [editor becomeFirstResponder];
     }
-    previouslyViewed = YES;
+    _previouslyViewed = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -71,10 +94,10 @@
 {
     if ((self = [super initWithCoder:aDecoder]))
     {
-        propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
+        _propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
         nextTag = 1;
-        autoTextFieldNavigation = YES;
-        lastTextFieldReturnKeyType = UIReturnKeyDone;
+        _autoTextFieldNavigation = YES;
+        _lastTextFieldReturnKeyType = UIReturnKeyDone;
         
         [self setEditedObject:nil title:@"" propertyGroups:@[]];
     }
@@ -92,21 +115,15 @@
 
 #pragma mark - RSObjectEditorViewController
 
-@synthesize style;
-@synthesize delegate;
-@synthesize lastTextInputPropertyEditor;
-@synthesize autoTextFieldNavigation;
-@synthesize lastTextFieldReturnKeyType;
-
 - (id)initWithObject:(NSObject *)aObject title:(NSString *)aTitle propertyGroups:(NSArray *)aPropertyGroups
 {
     if ((self = [super initWithStyle:UITableViewStyleGrouped]))
     {
-        propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
+        _propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
         nextTag = 1;
-        autoTextFieldNavigation = YES;
-        lastTextFieldReturnKeyType = UIReturnKeyDone;
-        textEditingMode = RSTextEditingModeNotEditing;
+        _autoTextFieldNavigation = YES;
+        _lastTextFieldReturnKeyType = UIReturnKeyDone;
+        _textEditingMode = RSTextEditingModeNotEditing;
 
         [self setEditedObject:aObject title:aTitle propertyGroups:aPropertyGroups];
     }
@@ -120,65 +137,55 @@
 
 - (void)setShowCancelButton:(BOOL)f
 {
-    if (!showCancelButton && f)
+    if (!_showCancelButton && f)
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
-    else if (showCancelButton && !f)
+    else if (_showCancelButton && !f)
         self.navigationItem.leftBarButtonItem = nil;
-    showCancelButton = f;
-}
-
-- (BOOL)showCancelButton
-{
-    return showCancelButton;
+    _showCancelButton = f;
 }
 
 - (void)setShowDoneButton:(BOOL)f
 {
-    if (!showDoneButton && f)
+    if (!_showDoneButton && f)
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
-    else if (showDoneButton && !f)
+    else if (_showDoneButton && !f)
         self.navigationItem.rightBarButtonItem = nil;
 
-    showDoneButton = f;
-}
-
-- (BOOL)showDoneButton
-{
-    return showDoneButton;
+    _showDoneButton = f;
 }
 
 - (void)p_setPropertyGroups:(NSArray *)aPropertyGroups
 {
-    if (propertyGroups != aPropertyGroups)
+    if (_propertyGroups != aPropertyGroups)
     {
         // Stop observing any currently configured property editors
-        NSEnumerator *enumerator = [propertyEditorDictionary objectEnumerator];
+        NSEnumerator *enumerator = [_propertyEditorDictionary objectEnumerator];
         
         for (RSPropertyEditor *propertyEditor in enumerator)
-            [propertyEditor stopObserving:editedObject];
+            [propertyEditor stopObserving:_editedObject];
         
-        propertyGroups = [[NSMutableArray alloc] initWithArray:aPropertyGroups];
+        _propertyGroups = [[NSMutableArray alloc] initWithArray:aPropertyGroups];
         
         // Setup up the propertyEditorDictionary and assign tag values to editors.
-        [propertyEditorDictionary removeAllObjects];
+        [_propertyEditorDictionary removeAllObjects];
         
-        const NSUInteger sections = [propertyGroups count];
+        const NSUInteger sections = [_propertyGroups count];
         
         for (NSUInteger section = 0; section < sections; ++section)
         {
-            RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+            RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
             NSUInteger rows = [group.propertyEditors count];
             
             for (NSUInteger row = 0; row < rows; ++row)
             {
                 RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:row];
                 editor.tag = nextTag++;
-                [propertyEditorDictionary setObject:editor forKey:@(editor.tag)];
+                [_propertyEditorDictionary setObject:editor forKey:@(editor.tag)];
             }
         }
         
-        lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
-        activeTextField = nil;
+        _lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
+        _activeTextField = nil;
     }
 }
 
@@ -186,7 +193,7 @@
 {
     [self p_setPropertyGroups:aPropertyGroups];
 
-    editedObject = object;
+    _editedObject = object;
     
     self.title = title;
     
@@ -202,49 +209,44 @@
         [self setEditedObject:object title:[object editorTitle] propertyGroups:[object propertyGroups]];
 }
 
-- (NSObject *)editedObject
-{
-    return editedObject;
-}
-
 - (void)replacePropertyGroupAtIndex:(NSUInteger)index withPropertyGroup:(RSPropertyGroup *)propertyGroup
 {
     // Stop observing properties by the currently configured property editors and remove them
     // from propertyEditorDictionary
-    RSPropertyGroup *group = [propertyGroups objectAtIndex:index];
+    RSPropertyGroup *group = [_propertyGroups objectAtIndex:index];
     for (RSPropertyEditor *propertyEditor in group.propertyEditors)
     {
-        [propertyEditor stopObserving:editedObject];
-        [propertyEditorDictionary removeObjectForKey:@(propertyEditor.tag)];
+        [propertyEditor stopObserving:_editedObject];
+        [_propertyEditorDictionary removeObjectForKey:@(propertyEditor.tag)];
     }
     
-    [propertyGroups replaceObjectAtIndex:index withObject:propertyGroup];
+    [_propertyGroups replaceObjectAtIndex:index withObject:propertyGroup];
 
     // We might need to fix-up the return key type of the last text field if
     // autoTextFieldNavigation is YES
     
-    if (autoTextFieldNavigation)
+    if (_autoTextFieldNavigation)
     {
-        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)lastTextInputPropertyEditor.tableViewCell;
+        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)_lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
-            cell.textField.returnKeyType = lastTextInputPropertyEditor.returnKeyType;
+            cell.textField.returnKeyType = _lastTextInputPropertyEditor.returnKeyType;
     }
     
-    lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
+    _lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
     
-    if (autoTextFieldNavigation)
+    if (_autoTextFieldNavigation)
     {
-        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)lastTextInputPropertyEditor.tableViewCell;
+        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)_lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
-            cell.textField.returnKeyType = lastTextFieldReturnKeyType;
+            cell.textField.returnKeyType = _lastTextFieldReturnKeyType;
     }
 
     for (RSPropertyEditor *propertyEditor in propertyGroup.propertyEditors)
     {
         propertyEditor.tag = nextTag++;
-        [propertyEditorDictionary setObject:propertyEditor forKey:@(propertyEditor.tag)];
+        [_propertyEditorDictionary setObject:propertyEditor forKey:@(propertyEditor.tag)];
     }
 
     if ([self isViewLoaded])
@@ -253,16 +255,21 @@
 
 - (RSPropertyEditor *)p_propertyEditorForIndexPath:(NSIndexPath *)indexPath
 {
-    RSPropertyGroup *group = [propertyGroups objectAtIndex:indexPath.section];
+    RSPropertyGroup *group = [_propertyGroups objectAtIndex:indexPath.section];
     RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:indexPath.row];
     return editor;
 }
 
+- (RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag
+{
+    return [_propertyEditorDictionary objectForKey:@(tag)];
+}
+
 - (RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
 {
-    for (NSInteger section = [propertyGroups count]-1; section >= 0; --section)
+    for (NSInteger section = [_propertyGroups count]-1; section >= 0; --section)
     {
-        RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+        RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
         
         for (NSInteger row = [group.propertyEditors count]-1; row >= 0; --row)
         {
@@ -277,12 +284,12 @@
 
 - (NSIndexPath *)p_findNextTextInputAfterEditor:(RSPropertyEditor *)aEditor
 {
-    NSUInteger sections = [propertyGroups count];
+    NSUInteger sections = [_propertyGroups count];
     BOOL editorFound = NO;
     
     for (NSUInteger section = 0; section < sections; ++section)
     {
-        RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+        RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
         NSUInteger rows = [group.propertyEditors count];
         
         for (NSUInteger row = 0; row < rows; ++row)
@@ -303,24 +310,24 @@
 
 - (BOOL)finishEditingForce:(BOOL)force
 {
-    if (activeTextField != nil)
+    if (_activeTextField != nil)
     {
-        if (textEditingMode == RSTextEditingModeEditing)
-            textEditingMode = force ? RSTextEditingModeFinishingForced : RSTextEditingModeFinishing;
+        if (_textEditingMode == RSTextEditingModeEditing)
+            _textEditingMode = force ? RSTextEditingModeFinishingForced : RSTextEditingModeFinishing;
         
         // This will cause –textFieldShouldEndEditing: to be invoked, which will set
         // textEditingMode to RSTextEditingModeEditing if validation failed and retained
         // first responder status (this only happens when textEdtingMode is
         // RSTextEditingModeFinishing, not RSTextEditingModeFinishingForced).
-        [activeTextField resignFirstResponder];
+        [_activeTextField resignFirstResponder];
     }
-    return textEditingMode == RSTextEditingModeNotEditing;
+    return _textEditingMode == RSTextEditingModeNotEditing;
 }
 
 - (void)cancelEditing
 {
-    if (textEditingMode == RSTextEditingModeEditing)
-        textEditingMode = RSTextEditingModeCancelling;
+    if (_textEditingMode == RSTextEditingModeEditing)
+        _textEditingMode = RSTextEditingModeCancelling;
     [self finishEditingForce:NO];
 }
 
@@ -328,7 +335,7 @@
 {
     if ([self finishEditingForce:NO])
     {
-        [delegate objectEditorViewControllerDidEnd:self cancelled:NO];
+        [_delegate objectEditorViewControllerDidEnd:self cancelled:NO];
         if (_completionBlock)
             _completionBlock(NO);
     }
@@ -337,7 +344,7 @@
 - (void)cancelPressed
 {
     [self cancelEditing];
-    [delegate objectEditorViewControllerDidEnd:self cancelled:YES];
+    [_delegate objectEditorViewControllerDidEnd:self cancelled:YES];
     if (_completionBlock)
         _completionBlock(YES);
 }
@@ -363,7 +370,7 @@
     {
         // Note that editor.key can be nil for pseudo property editors (like
         // RSDetailPropertyEditor and RSButtonPropertyEditor).
-        id value = editor.key == nil ? nil : [editedObject valueForKey:editor.key];
+        id value = editor.key == nil ? nil : [_editedObject valueForKey:editor.key];
         [editor tableCellSelected:[tableView cellForRowAtIndexPath:indexPath] forValue:value controller:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -383,32 +390,32 @@
 
     // Note that editor.key can be nil for pseudo property editors (like
     // RSDetailPropertyEditor and RSButtonPropertyEditor).
-    id value = editor.key == nil ? nil : [editedObject valueForKey:editor.key];
+    id value = editor.key == nil ? nil : [_editedObject valueForKey:editor.key];
     UITableViewCell *cell = [editor tableCellForValue:value controller:self];
-    [editor startObserving:editedObject];
+    [editor startObserving:_editedObject];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return [group.propertyEditors count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [propertyGroups count];
+    return [_propertyGroups count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return group.title;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [propertyGroups objectAtIndex:section];
+    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return group.footer;
 }
 

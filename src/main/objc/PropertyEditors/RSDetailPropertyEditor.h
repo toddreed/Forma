@@ -13,9 +13,6 @@
 /// a RSDetailPropertyEditor displays the object's editor title and a summary of the object's value
 /// obtained with -descriptionWithLocale:, or if this method is not defined, -description.
 @interface RSDetailPropertyEditor : RSPropertyEditor
-{
-    NSObject *editedObject;
-}
 
 /// Designated initializer.
 - (id)initWithTitle:(NSString *)aTitle object:(NSObject *)aObject;

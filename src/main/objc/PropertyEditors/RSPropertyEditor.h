@@ -27,39 +27,31 @@
 
 
 @interface RSPropertyEditor : NSObject
-{
-    // The object this editor modifies
-    id __weak _target;
 
-    // The key use to update the model object with KVC. This is always non-nil for "normal"
-    // property editors, but some special "pseudo" property editors have a nil key;
-    // RSDetailPropertyEditor and RSButtonPropertyEditor are examples.
-    NSString *key;
-    
-    // The UI title displayed in the editor
-    NSString *title;
+/// The object this editor modifies.
+@property (nonatomic, weak, readonly) id target;
 
-    // This is used by RSObjectEditorViewController to associate view controls with this
-    // instance. It is managed by RSObjectEditorViewController.
-    NSInteger tag;
-
-    // Tracks whether this property editor is currently observing the edited object's key
-    // property.
-    BOOL observing;
-    
-    // The table view cell containing the UI for editing the property value. RSPropertyEditors
-    // don't reuse UITableViewCells as is otherwise common with UITableView programming. There
-    // are practical and technical reasons for this: because KVO is used, it's easier to keep a
-    // unique table cell for for each property so a KVO change notification can update the
-    // UI. The table cell is lazily created, and released when no longer observing a property.
-    UITableViewCell *tableViewCell;
-}
-
-@property (nonatomic, readonly) id target;
+/// The key use to update the model object with KVC. This is always non-nil for "normal"
+/// property editors, but some special "pseudo" property editors have a nil key;
+/// RSDetailPropertyEditor and RSButtonPropertyEditor are examples.
 @property (nonatomic, readonly) NSString *key;
+
+/// The UI title displayed in the editor.
 @property (nonatomic, copy) NSString *title;
+
+/// This is used by RSObjectEditorViewController to associate view controls with this
+/// instance. It is managed by RSObjectEditorViewController.
 @property (nonatomic) NSInteger tag;
+
+/// Tracks whether this property editor is currently observing the edited object's key
+/// property.
 @property (nonatomic, readonly) BOOL observing;
+
+/// The table view cell containing the UI for editing the property value. RSPropertyEditors
+/// don't reuse UITableViewCells as is otherwise common with UITableView programming. There
+/// are practical and technical reasons for this: because KVO is used, it's easier to keep a
+/// unique table cell for for each property so a KVO change notification can update the
+/// UI. The table cell is lazily created, and released when no longer observing a property.
 @property (nonatomic, readonly) UITableViewCell *tableViewCell;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
@@ -67,7 +59,7 @@
 @property (nonatomic, readonly) BOOL selectable;
 
 /// Designated initializer.
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle;
+- (id)initWithKey:(NSString *)key title:(NSString *)title;
 
 /// Do not call this directly. This is called by RSObjectEditorViewController when it creates a UI
 /// for this property editor. This enables key-value observing on the property, allowing the

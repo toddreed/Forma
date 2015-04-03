@@ -23,47 +23,41 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSParameterAssert([keyPath isEqualToString:key]);
+    NSParameterAssert([keyPath isEqualToString:_key]);
     [self propertyChangedToValue:[change objectForKey:NSKeyValueChangeNewKey]];
 }
 
 #pragma mark RSPropertyEditor
 
-@synthesize key;
-@synthesize title;
-@synthesize tag;
-@synthesize observing;
-@synthesize tableViewCell;
-
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
+- (id)initWithKey:(NSString *)key title:(NSString *)title
 {
     if ((self = [super init]))
     {
-        key = aKey;
-        title = aTitle;
-        tag = -1;
+        _key = key;
+        _title = title;
+        _tag = -1;
     }
     return self;
 }
 
 - (void)startObserving:(NSObject *)editedObject
 {
-    if (key && !observing)
+    if (_key && !_observing)
     {
         _target = editedObject;
-        [editedObject addObserver:self forKeyPath:key options:NSKeyValueObservingOptionNew context:NULL];
-        observing = YES;
+        [editedObject addObserver:self forKeyPath:_key options:NSKeyValueObservingOptionNew context:NULL];
+        _observing = YES;
     }
 }
 
 - (void)stopObserving:(NSObject *)editedObject
 {
-    if (key && observing)
+    if (_key && _observing)
     {
         _target = nil;
-        [editedObject removeObserver:self forKeyPath:key];
-        observing = NO;
-        tableViewCell = nil;
+        [editedObject removeObserver:self forKeyPath:_key];
+        _observing = NO;
+        _tableViewCell = nil;
     }
 }
 
@@ -74,12 +68,12 @@
 
 - (UITableViewCell *)tableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
 {
-    if (tableViewCell == nil)
+    if (_tableViewCell == nil)
     {
-        tableViewCell = [self newTableViewCell];
+        _tableViewCell = [self newTableViewCell];
         [self configureTableCellForValue:value controller:controller];
     }
-    return tableViewCell;
+    return _tableViewCell;
 }
 
 - (UITableViewCell *)newTableViewCell
@@ -89,15 +83,15 @@
 
 - (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
 {
-    tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;   
+    _tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    UILabel *label = tableViewCell.textLabel;
+    UILabel *label = _tableViewCell.textLabel;
     
-    label.text = title;
+    label.text = _title;
     label.adjustsFontSizeToFitWidth = YES;
     label.minimumScaleFactor = 0.6;
     
-    tableViewCell.detailTextLabel.text = nil; // This is needed to vertically align textLabel in the centre on a device (it's not needed on the simulator).
+    _tableViewCell.detailTextLabel.text = nil; // This is needed to vertically align textLabel in the centre on a device (it's not needed on the simulator).
 }
 
 - (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller

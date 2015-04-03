@@ -44,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F14FF7C1ACE18EE003D0861 /* RSObjectEditorViewController_PropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectEditorViewController_PropertyEditor.h; sourceTree = "<group>"; };
 		5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteSource.h; sourceTree = "<group>"; };
 		5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteCell.h; sourceTree = "<group>"; };
 		5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAutocompleteCell.m; sourceTree = "<group>"; };
@@ -117,6 +118,14 @@
 				5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */,
 				5FF92FAE174AD615003211A0 /* NSString+RSCamelCase.h */,
 				5FF92FAF174AD615003211A0 /* NSString+RSCamelCase.m */,
+				5F352F68178E15F9006D263B /* RSArrayAutocompleteSource.h */,
+				5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */,
+				5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */,
+				5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */,
+				5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */,
+				5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */,
+				5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */,
+				5F14FF7C1ACE18EE003D0861 /* RSObjectEditorViewController_PropertyEditor.h */,
 				5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */,
 				5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */,
 				5FF92FC0174AD615003211A0 /* RSPropertyGroup.h */,
@@ -125,13 +134,6 @@
 				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
 				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
 				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
-				5F352F68178E15F9006D263B /* RSArrayAutocompleteSource.h */,
-				5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */,
-				5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */,
-				5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */,
-				5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */,
-				5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */,
-				5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
