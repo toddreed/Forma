@@ -180,15 +180,6 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
     RSTextInputPropertyEditorStyle _style;
 
-    UITextAutocapitalizationType _autocapitalizationType;
-    UITextAutocorrectionType _autocorrectionType;
-    UITextSpellCheckingType _spellCheckingType;
-    BOOL _enablesReturnKeyAutomatically;
-    UIKeyboardAppearance _keyboardAppearance;
-    UIKeyboardType _keyboardType;
-    UIReturnKeyType _returnKeyType;
-    BOOL _secureTextEntry;
-
     // Properties from UITextFieldView
     UITextFieldViewMode _clearButtonMode;
     NSTextAlignment _textAlignment;
