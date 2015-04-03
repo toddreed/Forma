@@ -44,6 +44,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(7, 7, 7, 7);
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     return layout;
 }
 
