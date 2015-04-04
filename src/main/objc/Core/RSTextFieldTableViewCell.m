@@ -4,7 +4,7 @@
 // © Reaction Software Inc., 2013
 //
 
-#import "Symbolset/TRSymbolsetView.h"
+#import "Symbolset/RSSymbolsetView.h"
 
 #import "RSTextFieldTableViewCell.h"
 
@@ -83,7 +83,7 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
         _descriptionLabel.numberOfLines = 0;
         [self.contentView addSubview:_descriptionLabel];
 
-        TRSymbolsetView *cautionView = [[TRSymbolsetView alloc] initWithSymbol:TRSymbolAlert size:24];
+        RSSymbolsetView *cautionView = [[RSSymbolsetView alloc] initWithSymbol:RSSymbolAlert size:24];
         cautionView.strokeColor = [UIColor grayColor];
         _iconView = cautionView;
         _iconView.hidden = YES;

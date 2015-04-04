@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Reaction Software Inc. All rights reserved.
 //
 
-#import "UITheme/TRUITheme.h"
+#import "UITheme/RSUITheme.h"
 
 #import "RSAutocompleteInputAccessoryView.h"
 #import "RSAutocompleteCell.h"
@@ -53,9 +53,9 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self)
     {
-        id<TRUITheme> theme = [TRUITheme currentTheme];
+        id<RSUITheme> theme = [RSUITheme currentTheme];
 
-        self.backgroundColor = [theme backgroundColorWithAlpha:1.0f];
+        self.backgroundColor = theme.backgroundColor;
 
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self registerClass:[RSAutocompleteCell class] forCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier];

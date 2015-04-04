@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
   s.header_dir   = 'ObjectEditor'
   s.header_mappings_dir = 'src/main/objc'
   
-  s.dependency 'Symbolset', '~> 0.1'
-  s.dependency 'UITheme', '~> 0.2'
+  s.dependency 'Symbolset', '~> 1.0'
+  s.dependency 'UITheme', '~> 1.0'
 
   s.subspec 'Core' do |core|
     core.frameworks = 'Foundation', 'UIKit'

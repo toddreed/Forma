@@ -4,7 +4,7 @@
 // © Reaction Software Inc., 2013
 //
 
-#import "UITheme/TRUITheme.h"
+#import "UITheme/RSUITheme.h"
 
 #import "RSAutocompleteCell.h"
 
@@ -22,13 +22,13 @@
         _textLabel.font = [[self class] font];
         _textLabel.textAlignment = NSTextAlignmentCenter;
 
-        id<TRUITheme> theme = [TRUITheme currentTheme];
-        _textLabel.backgroundColor = [theme backgroundColorWithAlpha:1.0f];
-        _textLabel.textColor = [theme selectedForegroundColorWithAlpha:1.0f];
+        id<RSUITheme> theme = [RSUITheme currentTheme];
+        _textLabel.backgroundColor = theme.backgroundColor;
+        _textLabel.textColor = theme.selectedForegroundColor;
 
-        _textLabel.layer.borderColor = [theme borderColorWithAlpha:1.0f].CGColor;
+        _textLabel.layer.borderColor = theme.borderColor.CGColor;
         _textLabel.layer.borderWidth = 1.0f;
-        _textLabel.layer.cornerRadius = 4.0f;
+        _textLabel.layer.cornerRadius = 3.0f;
 
         [self.contentView addSubview:self.textLabel];
     }
@@ -39,7 +39,7 @@
 
 + (UIFont *)font
 {
-    id<TRUITheme> theme = [TRUITheme currentTheme];
+    id<RSUITheme> theme = [RSUITheme currentTheme];
     return [theme defaultFontOfSize:16.0];
 }
 

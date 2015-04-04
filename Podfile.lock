@@ -1,14 +1,14 @@
 PODS:
-  - Symbolset (0.4.1):
-    - UITheme (~> 0.2)
-  - UITheme (0.2.1)
+  - Symbolset (1.0.0):
+    - UITheme (~> 1.0)
+  - UITheme (1.0.0)
 
 DEPENDENCIES:
-  - Symbolset (~> 0.1)
-  - UITheme (~> 0.2)
+  - Symbolset (~> 1.0)
+  - UITheme (~> 1.0)
 
 SPEC CHECKSUMS:
-  Symbolset: bae006d0012492827184339f2e6adba0de474ea0
-  UITheme: c65ede3bec40ccd85247a0cd158591b28ce21a69
+  Symbolset: c26f8508675ed10e1429fae23af035b72abd5c5d
+  UITheme: 8e13ac6e4a8533694f6dff71e52a8fe3cf36937f
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.3
