@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "ObjectEditor"
-  s.version      = "1.0.0-alpha"
+  s.version      = "1.0.1"
   s.summary      = "Provides a UI framework for an object editor (a.k.a. inspector)."
   s.homepage     = 'https://bitbucket.org/reactionsoftware/object-editor'
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
   s.license      = { :type => 'Proprietary' }
   s.source       = { :git => "git@bitbucket.org:reactionsoftware/object-editor.git", :tag => s.version.to_s}
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.header_dir   = 'ObjectEditor'
   s.header_mappings_dir = 'src/main/objc'
   
