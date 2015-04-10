@@ -40,7 +40,7 @@
 + (UIFont *)font
 {
     id<RSUITheme> theme = [RSUITheme currentTheme];
-    return [theme defaultFontOfSize:16.0];
+    return [theme fontOfSize:16.0f];
 }
 
 + (CGSize)preferredSizeForString:(NSString *)string

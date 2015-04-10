@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.header_mappings_dir = 'src/main/objc'
   
   s.dependency 'Symbolset', '~> 1.0'
-  s.dependency 'UITheme', '~> 1.0'
+  s.dependency 'UITheme', '~> 1.2'
 
   s.subspec 'Core' do |core|
     core.frameworks = 'Foundation', 'UIKit'
