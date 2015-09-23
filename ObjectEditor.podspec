@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ObjectEditor"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Provides a UI framework for an object editor (a.k.a. inspector)."
   s.homepage     = 'https://bitbucket.org/reactionsoftware/object-editor'
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
