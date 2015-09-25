@@ -7,10 +7,11 @@
 
 #import <CoreData/CoreData.h>
 #import "../PropertyEditors/RSPropertyEditor.h"
+#import "../Core/RSPropertyGroup.h"
 
 @interface NSManagedObject (RSEditor)
 
-- (RSPropertyEditor *)propertyEditorForKey:(NSString *)key;
-- (NSArray *)propertyGroups;
+- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key;
+- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
 
 @end

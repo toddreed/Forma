@@ -16,12 +16,12 @@
 
 @implementation NSObject (RSEditor)
 
-+ (Class)propertyEditorClass
++ (nullable Class)propertyEditorClass
 {
     return [RSObjectPropertyEditor class];
 }
 
-+ (Class)propertyEditorClassForObjcType:(const char *)typeEncoding
++ (nullable Class)propertyEditorClassForObjcType:(const char *)typeEncoding
 {
     Class cls = nil;
     
@@ -33,7 +33,7 @@
     return cls;
 }
 
-- (RSPropertyEditor *)propertyEditorForKey:(NSString *)aKey
+- (nullable RSPropertyEditor *)propertyEditorForKey:(NSString *)aKey
 {
     const char *typeEncoding = [[self class] rs_objCTypeOfProperty:aKey];
 
@@ -53,13 +53,12 @@
         return nil;
 }
 
-- (NSString *)editorTitle
+- (nonnull NSString *)editorTitle
 {
     return [NSStringFromClass([self class]) rs_stringByConvertingCamelCaseToTitleCase];
 }
 
-/// Feature #118: Add object editor configuration via XML
-- (NSArray *)propertyGroups
+- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
     NSMutableArray *editors = [NSMutableArray array];
     for (NSString *propertyKey in [[self class] rs_declaredPropertyNamesMatchingFilter:RSMutablePropertyFilter])
@@ -73,7 +72,7 @@
     return @[group];
 }
 
-- (RSObjectEditorViewController *)objectEditorViewController
+- (nonnull RSObjectEditorViewController *)objectEditorViewController
 {
     return [[RSObjectEditorViewController alloc] initWithObject:self];
 }
@@ -82,7 +81,7 @@
 
 @implementation NSString (RSEditor)
 
-+ (Class)propertyEditorClass
++ (nullable Class)propertyEditorClass
 {
     return [RSTextInputPropertyEditor class];
 }

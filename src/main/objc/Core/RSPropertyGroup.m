@@ -12,28 +12,29 @@
 
 #pragma mark NSObject
 
-- (id)init
+- (nonnull instancetype)init
 {
     return [self initWithTitle:nil];
 }
 
 #pragma mark RSPropertyGroup
 
-- (id)initWithTitle:(NSString *)title propertyEditorArray:(NSArray *)somePropertyEditors
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title propertyEditorArray:(nonnull NSArray<RSPropertyEditor *> *)somePropertyEditors
 {
     NSParameterAssert(somePropertyEditors != nil);
     
-    if ((self = [super init]))
-    {
-        _title = [title copy];
-        _propertyEditors = [[NSMutableArray alloc] initWithArray:somePropertyEditors];
-    }
+    self = [super init];
+    NSParameterAssert(self != nil);
+
+    _title = [title copy];
+    _propertyEditors = [[NSMutableArray alloc] initWithArray:somePropertyEditors];
+
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title propertyEditors:(RSPropertyEditor *)firstPropertyEditor, ...
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title propertyEditors:(nonnull RSPropertyEditor *)firstPropertyEditor, ...
 {
-    NSMutableArray *editors = [[NSMutableArray alloc] init];
+    NSMutableArray<RSPropertyEditor *> *editors = [[NSMutableArray alloc] init];
     
     if (firstPropertyEditor != nil)
     {
@@ -49,13 +50,13 @@
     return [self initWithTitle:title propertyEditorArray:editors];
 }
 
-- (id)initWithTitle:(NSString *)title propertyEditor:(RSPropertyEditor *)propertyEditor
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title propertyEditor:(nonnull RSPropertyEditor *)propertyEditor
 {
     NSArray *editors = @[propertyEditor];
     return [self initWithTitle:title propertyEditorArray:editors];
 }
 
-- (id)initWithTitle:(NSString *)title
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title
 {
     return [self initWithTitle:title propertyEditorArray:@[]];
 }

@@ -10,6 +10,6 @@
 /// suggestions for a prefix string.
 @protocol RSAutocompleteSource <NSObject>
 
-- (NSArray *)autocompleteSuggestionsForPrefix:(NSString *)prefix;
+- (nonnull NSArray<NSString *> *)autocompleteSuggestionsForPrefix:(nonnull NSString *)prefix;
 
 @end

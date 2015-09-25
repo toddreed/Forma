@@ -16,21 +16,25 @@
 
 #pragma mark - RSFetchRequestAutocompleteSource
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context entityName:(NSString *)entityName attributeKey:(NSString *)attributeKey
+- (nonnull instancetype)initWithManagedObjectContext:(nonnull NSManagedObjectContext *)context entityName:(nonnull NSString *)entityName attributeKey:(nonnull NSString *)attributeKey
 {
+    NSParameterAssert(context != nil);
+    NSParameterAssert(entityName != nil);
+    NSParameterAssert(attributeKey != nil);
+
     self = [super init];
-    if (self)
-    {
-        _managedObjectContext = context;
-        _entityName = entityName;
-        _attributeKey = attributeKey;
-    }
+    NSParameterAssert(self != nil);
+
+    _managedObjectContext = context;
+    _entityName = entityName;
+    _attributeKey = attributeKey;
+
     return self;
 }
 
 #pragma mark RSAutocompleteSource
 
-- (NSArray *)autocompleteSuggestionsForPrefix:(NSString *)prefix
+- (nonnull NSArray<NSString *> *)autocompleteSuggestionsForPrefix:(nonnull NSString *)prefix
 {
     if ([prefix length] > 0)
     {

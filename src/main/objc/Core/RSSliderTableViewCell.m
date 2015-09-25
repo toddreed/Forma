@@ -12,14 +12,14 @@
 
 #pragma mark RSSliderTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier
 {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
-    {
-        _slider = [[UISlider alloc] initWithFrame:CGRectZero];
-        _slider.continuous = NO;
-        [self.contentView addSubview:_slider];
-    }
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+
+    _slider = [[UISlider alloc] initWithFrame:CGRectZero];
+    _slider.continuous = NO;
+    [self.contentView addSubview:_slider];
+
     return self;
 }
 

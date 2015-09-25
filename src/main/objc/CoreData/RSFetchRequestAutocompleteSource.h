@@ -12,6 +12,6 @@
 
 @interface RSFetchRequestAutocompleteSource : NSObject <RSAutocompleteSource>
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)context entityName:(NSString *)entityName attributeKey:(NSString *)attributeKey;
+- (nonnull instancetype)initWithManagedObjectContext:(nonnull NSManagedObjectContext *)context entityName:(nonnull NSString *)entityName attributeKey:(nonnull NSString *)attributeKey;
 
 @end

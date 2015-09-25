@@ -9,6 +9,6 @@
 
 @interface RSSliderTableViewCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) UISlider *slider;
+@property (nonatomic, strong, readonly, nonnull) UISlider *slider;
 
 @end

@@ -8,11 +8,11 @@
 #import "RSPropertyEditor.h"
 #import "../Core/RSAutocompleteSource.h"
 
-extern NSString *const RSTextInputPropertyValidationErrorDomain;
+extern NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain;
 
 typedef enum RSTextInputPropertyEditorStyle
 {
-    /// This emulates the style typically found in the Settings app where there's a title on
+    /// This emulates the style typically found in the Settings app where there’s a title on
     /// left and a text field on the right. This is the default style.
     RSTextInputPropertyEditorStyleSettings,
     
@@ -27,20 +27,20 @@ typedef enum RSTextInputPropertyEditorStyle
 ///
 /// @param formatter The formatter to convert between the text strings and property values. If this
 ///   is nil, it is assumed that no conversion is needed (i.e. the property is a NSString).
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(NSFormatter *)formatter;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(nullable NSFormatter *)formatter NS_DESIGNATED_INITIALIZER;
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle;
 
-@property (nonatomic, readonly) NSFormatter *formatter;
+@property (nonatomic, readonly, nullable) NSFormatter *formatter;
 @property (nonatomic) RSTextInputPropertyEditorStyle style;
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) BOOL clearsOnBeginEditing;
-@property (nonatomic, copy) NSString *placeholder;
-@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy, nullable) NSString *placeholder;
+@property (nonatomic, copy, nullable) NSString *message;
 
-@property (nonatomic, strong) id<RSAutocompleteSource> autocompleteSource;
+@property (nonatomic, strong, nullable) id<RSAutocompleteSource> autocompleteSource;
 
-- (id)validateTextInput:(NSString *)textInput error:(NSError **)error;
+- (nullable NSString *)validateTextInput:(nonnull NSString *)textInput error:(NSError *_Nonnull *_Nonnull)error;
 
 @end

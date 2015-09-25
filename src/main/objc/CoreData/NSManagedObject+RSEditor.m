@@ -10,11 +10,11 @@
 #import "../PropertyEditors/RSTextInputPropertyEditor.h"
 #import "../PropertyEditors/RSBooleanPropertyEditor.h"
 #import "../Core/NSString+RSCamelCase.h"
-#import "../Core/RSPropertyGroup.h"
+
 
 @implementation NSManagedObject (RSEditor)
 
-- (RSPropertyEditor *)propertyEditorForKey:(NSString *)key
+- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key
 {
     NSEntityDescription *entityDescription = [self entity];
     NSDictionary *attributesByName = [entityDescription attributesByName];
@@ -62,10 +62,9 @@
     }
     else
         return nil;
-
 }
 
-- (NSArray *)propertyGroups
+- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
     NSEntityDescription *entityDescription = [self entity];
     NSDictionary *attributesByName = [entityDescription attributesByName];

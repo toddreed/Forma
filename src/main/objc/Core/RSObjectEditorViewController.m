@@ -15,7 +15,7 @@
 @implementation RSObjectEditorViewController
 {
     // An array of RSPropertyGroup objects that determine what PropertyEditors are shown.
-    NSMutableArray *_propertyGroups;
+    NSMutableArray<RSPropertyGroup *> *_propertyGroups;
 
     // propertyEditorDictionary stores references to all the property editors, keyed by a unique
     // tag value assigned to each editor. The tag value is an NSInteger (stored as an NSNumber
@@ -23,7 +23,7 @@
     // so the "owning" RSPropertyEditor can be determined from a UIControl instance, which is
     // typically needed when a UIControl delegate method needs access to the RSPropertyEditor
     // key.
-    NSMutableDictionary *_propertyEditorDictionary;
+    NSMutableDictionary<NSNumber *, RSPropertyEditor *> *_propertyEditorDictionary;
 
     // The next available unique tag that can be assigned to a RSPropertyEditor.
     NSInteger nextTag;
@@ -36,11 +36,6 @@
 }
 
 #pragma mark - NSObject
-
-- (id)init
-{
-    return [self initWithObject:nil title:@"" propertyGroups:@[]];
-}
 
 - (void)dealloc
 {
@@ -88,22 +83,6 @@
     self.tableView.scrollEnabled = YES;
 }
 
-#pragma mark NSCoding
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    if ((self = [super initWithCoder:aDecoder]))
-    {
-        _propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
-        nextTag = 1;
-        _autoTextFieldNavigation = YES;
-        _lastTextFieldReturnKeyType = UIReturnKeyDone;
-        
-        [self setEditedObject:nil title:@"" propertyGroups:@[]];
-    }
-    return self;
-}
-
 #pragma mark - UITableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -115,7 +94,7 @@
 
 #pragma mark - RSObjectEditorViewController
 
-- (id)initWithObject:(NSObject *)aObject title:(NSString *)aTitle propertyGroups:(NSArray *)aPropertyGroups
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject title:(nonnull NSString *)aTitle propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)aPropertyGroups
 {
     if ((self = [super initWithStyle:UITableViewStyleGrouped]))
     {
@@ -130,7 +109,7 @@
     return self;
 }
 
-- (id)initWithObject:(NSObject *)aObject
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject
 {
     return [self initWithObject:aObject title:[aObject editorTitle] propertyGroups:[aObject propertyGroups]];
 }
@@ -189,7 +168,7 @@
     }
 }
 
-- (void)setEditedObject:(NSObject *)object title:(NSString *)title propertyGroups:(NSArray *)aPropertyGroups
+- (void)setEditedObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)aPropertyGroups
 {
     [self p_setPropertyGroups:aPropertyGroups];
 
@@ -201,15 +180,12 @@
         [self.tableView reloadData];
 }
 
-- (void)setEditedObject:(NSObject *)object
+- (void)setEditedObject:(nonnull NSObject *)object
 {
-    if (object == nil)
-        [self setEditedObject:nil title:@"" propertyGroups:@[]];
-    else
-        [self setEditedObject:object title:[object editorTitle] propertyGroups:[object propertyGroups]];
+    [self setEditedObject:object title:[object editorTitle] propertyGroups:[object propertyGroups]];
 }
 
-- (void)replacePropertyGroupAtIndex:(NSUInteger)index withPropertyGroup:(RSPropertyGroup *)propertyGroup
+- (void)replacePropertyGroupAtIndex:(NSUInteger)index withPropertyGroup:(nonnull RSPropertyGroup *)propertyGroup
 {
     // Stop observing properties by the currently configured property editors and remove them
     // from propertyEditorDictionary
@@ -253,19 +229,19 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (RSPropertyEditor *)p_propertyEditorForIndexPath:(NSIndexPath *)indexPath
+- (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyGroup *group = [_propertyGroups objectAtIndex:indexPath.section];
     RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:indexPath.row];
     return editor;
 }
 
-- (RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag
+- (nonnull RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag
 {
     return [_propertyEditorDictionary objectForKey:@(tag)];
 }
 
-- (RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
+- (nullable RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
 {
     for (NSInteger section = [_propertyGroups count]-1; section >= 0; --section)
     {
@@ -282,7 +258,7 @@
     return nil;
 }
 
-- (NSIndexPath *)p_findNextTextInputAfterEditor:(RSPropertyEditor *)aEditor
+- (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)aEditor
 {
     NSUInteger sections = [_propertyGroups count];
     BOOL editorFound = NO;
@@ -351,7 +327,7 @@
 
 #pragma mark UITableViewDelegate
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (nullable NSIndexPath *)tableView:(nonnull UITableView *)tableView willSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
     
@@ -362,7 +338,7 @@
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
     
@@ -376,7 +352,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
     return [editor tableCellHeightForController:self];
@@ -384,7 +360,7 @@
 
 #pragma mark UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
 
@@ -396,24 +372,24 @@
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return [group.propertyEditors count];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(nonnull UITableView *)tableView
 {
     return [_propertyGroups count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return group.title;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+- (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
     return group.footer;

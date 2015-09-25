@@ -9,27 +9,18 @@
 
 
 @implementation RSButtonPropertyEditor
-{
-    void (^_action)(RSObjectEditorViewController *);
-}
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle action:(void (^_Nullable)(RSObjectEditorViewController *))aAction
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
+    self = [super initWithKey:nil title:aTitle];
+    NSParameterAssert(self != nil);
 
-- (id)initWithTitle:(NSString *)aTitle action:(void (^)(RSObjectEditorViewController *))aAction
-{
-    if ((self = [super initWithKey:nil title:aTitle]))
-    {
-        _action = aAction;
-    }
+    _action = aAction;
+
     return self;
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
     self.tableViewCell.textLabel.textAlignment =  NSTextAlignmentCenter;
@@ -40,7 +31,7 @@
     return _action != nil;
 }
 
-- (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
 {
     if (_action)
         _action((RSObjectEditorViewController *)controller);

@@ -36,17 +36,17 @@ typedef enum RSTextEditingMode
 /// This is either nil, or a text field that is currently the first responder (and hence the
 /// keyboard is displayed). If a table cell is touched, we'll resign the first responder and
 /// hide the keyboard.
-@property (nonatomic, weak) UITextField *activeTextField;
+@property (nonatomic, weak, nullable) UITextField *activeTextField;
 
 /// The last RSTextInputPropertyEditor found in propertyGroups. We keep this so we can automatically
 /// set the return key type to UIReturnKeyDone if autoTextFieldNavigation is YES.
-@property(nonatomic, readonly) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
+@property(nonatomic, readonly, nullable) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
 
 @property (nonatomic) RSTextEditingMode textEditingMode;
 
-- (RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag;
-- (RSPropertyEditor *)p_propertyEditorForIndexPath:(NSIndexPath *)indexPath;
-- (RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor;
-- (NSIndexPath *)p_findNextTextInputAfterEditor:(RSPropertyEditor *)editor;
+- (nonnull RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag;
+- (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nullable RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor;
+- (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)editor;
 
 @end

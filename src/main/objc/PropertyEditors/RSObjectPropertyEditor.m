@@ -12,13 +12,13 @@
 
 #pragma mark RSPropertyEditor
 
-- (void)propertyChangedToValue:(id)newValue
+- (void)propertyChangedToValue:(nullable id)newValue
 {
     self.tableViewCell.detailTextLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
                                                [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -31,7 +31,7 @@
     return YES;
 }
 
-- (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
     RSObjectEditorViewController *objectEditorViewController = [value objectEditorViewController];

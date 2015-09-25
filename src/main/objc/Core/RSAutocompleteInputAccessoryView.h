@@ -11,7 +11,7 @@
 
 @interface RSAutocompleteInputAccessoryView : UICollectionView <UIInputViewAudioFeedback>
 
-@property (nonatomic, strong) id<RSAutocompleteSource> autocompleteSource;
+@property (nonatomic, strong, nullable) id<RSAutocompleteSource> autocompleteSource;
 @property (nonatomic, weak) UITextField *textField;
 
 @end

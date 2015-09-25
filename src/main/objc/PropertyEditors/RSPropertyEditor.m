@@ -10,37 +10,33 @@
 
 @implementation RSPropertyEditor
 
-#pragma mark NSObject
-
-- (id)init
-{
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
-
 #pragma mark NSKeyValueObserving
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(void *_Nullable)context
 {
     NSParameterAssert([keyPath isEqualToString:_key]);
-    [self propertyChangedToValue:[change objectForKey:NSKeyValueChangeNewKey]];
+    id value = [change objectForKey:NSKeyValueChangeNewKey];
+    if (value == [NSNull null])
+        value = nil;
+
+    [self propertyChangedToValue:value];
 }
 
 #pragma mark RSPropertyEditor
 
-- (id)initWithKey:(NSString *)key title:(NSString *)title
+- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title
 {
-    if ((self = [super init]))
-    {
-        _key = key;
-        _title = title;
-        _tag = -1;
-    }
+    self = [super init];
+    NSParameterAssert(self != nil);
+
+    _key = [key copy];
+    _title = [title copy];
+    _tag = -1;
+
     return self;
 }
 
-- (void)startObserving:(NSObject *)editedObject
+- (void)startObserving:(nonnull NSObject *)editedObject
 {
     if (_key && !_observing)
     {
@@ -50,7 +46,7 @@
     }
 }
 
-- (void)stopObserving:(NSObject *)editedObject
+- (void)stopObserving:(nonnull NSObject *)editedObject
 {
     if (_key && _observing)
     {
@@ -61,12 +57,12 @@
     }
 }
 
-- (void)propertyChangedToValue:(id)newValue
+- (void)propertyChangedToValue:(nullable id)newValue
 {
     // Subclasses will override this method to update the UI to reflect the new value
 }
 
-- (UITableViewCell *)tableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (nonnull UITableViewCell *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     if (_tableViewCell == nil)
     {
@@ -76,12 +72,12 @@
     return _tableViewCell;
 }
 
-- (UITableViewCell *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
     return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     _tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -94,7 +90,7 @@
     _tableViewCell.detailTextLabel.text = nil; // This is needed to vertically align textLabel in the centre on a device (it's not needed on the simulator).
 }
 
-- (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
 {
     // Do nothing here; subclass will override with appropriate action.
 }

@@ -12,7 +12,7 @@
 
 @property (nonatomic) float minimumValue;
 @property (nonatomic) float maximumValue;
-@property (nonatomic, strong) UIImage *minimumValueImage;
-@property (nonatomic, strong) UIImage *maximumValueImage;
+@property (nonatomic, strong, nullable) UIImage *minimumValueImage;
+@property (nonatomic, strong, nullable) UIImage *maximumValueImage;
 
 @end

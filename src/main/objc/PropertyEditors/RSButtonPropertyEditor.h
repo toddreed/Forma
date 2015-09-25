@@ -8,15 +8,13 @@
 #import "RSPropertyEditor.h"
 
 
-/// RSButtonPropertyEditor is pseudo property editor that behaves like a button. When selected, an
-/// action is sent to the controller class. This imposes the requirement that
-/// RSObjectEditorViewController must be subclassed so the appropriate method can be implemented.
-/// 
-/// Enhancement #120: Add target property to RSButtonPropertyEditor
+/// RSButtonPropertyEditor is pseudo property editor that behaves like a button. When selected, a block
+/// is executed.
 @interface RSButtonPropertyEditor : RSPropertyEditor
 
-@property (nonatomic, strong) void (^action)(RSObjectEditorViewController *);
+@property (nonatomic, strong, nullable) void (^action)(RSObjectEditorViewController *_Nonnull);
 
-- (id)initWithTitle:(NSString *)aTitle action:(void (^)(RSObjectEditorViewController *))aAction;
+- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(nonnull NSString *)aTitle UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle action:(void (^_Nullable)(RSObjectEditorViewController *_Nonnull))aAction NS_DESIGNATED_INITIALIZER;
 
 @end

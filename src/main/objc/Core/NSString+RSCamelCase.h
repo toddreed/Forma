@@ -10,6 +10,6 @@
 
 @interface NSString (RSCamelCase)
 
-- (NSString *)rs_stringByConvertingCamelCaseToTitleCase;
+- (nonnull NSString *)rs_stringByConvertingCamelCaseToTitleCase;
 
 @end

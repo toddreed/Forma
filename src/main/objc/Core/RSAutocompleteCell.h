@@ -8,9 +8,9 @@
 
 @interface RSAutocompleteCell : UICollectionViewCell
 
-+ (CGSize)preferredSizeForString:(NSString *)string;
-+ (UIFont *)font;
++ (CGSize)preferredSizeForString:(nonnull NSString *)string;
++ (nonnull UIFont *)font;
 
-@property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong, nonnull) UILabel *textLabel;
 
 @end

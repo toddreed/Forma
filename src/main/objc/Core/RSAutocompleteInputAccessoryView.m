@@ -20,12 +20,12 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 
 @implementation RSAutocompleteInputAccessoryView
 {
-    NSArray *_suggestions;
+    NSArray<NSString *> *_suggestions;
 }
 
 #pragma mark - NSObject
 
-- (id)init
+- (nonnull instancetype)init
 {
     CGRect frame = CGRectMake(0, 0, 320, 38);
     return [self initWithFrame:frame collectionViewLayout:[[self class] defaultLayout]];
@@ -33,14 +33,14 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 
 #pragma mark - UIView
 
-- (id)initWithFrame:(CGRect)frame
+- (nonnull instancetype)initWithFrame:(CGRect)frame
 {
     return [self initWithFrame:frame collectionViewLayout:[[self class] defaultLayout]];
 }
 
 #pragma mark - UICollectionView
 
-+ (UICollectionViewLayout *)defaultLayout
++ (nonnull UICollectionViewLayout *)defaultLayout
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(7, 7, 7, 7);
@@ -48,20 +48,20 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
     return layout;
 }
 
-- (id)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
+- (nonnull instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout
 {
     self = [super initWithFrame:frame collectionViewLayout:layout];
-    if (self)
-    {
-        id<RSUITheme> theme = [RSUITheme currentTheme];
 
-        self.backgroundColor = theme.backgroundColor;
+    id<RSUITheme> theme = [RSUITheme currentTheme];
 
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self registerClass:[RSAutocompleteCell class] forCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier];
-        self.dataSource = self;
-        self.delegate = self;
-    }
+    _suggestions = @[];
+    self.backgroundColor = theme.backgroundColor;
+
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self registerClass:[RSAutocompleteCell class] forCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier];
+    self.dataSource = self;
+    self.delegate = self;
+
     return self;
 }
 
@@ -83,29 +83,30 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
     }
 }
 
-- (void)autocompleteTextFieldChanged:(UITextField *)textField
+- (void)autocompleteTextFieldChanged:(nonnull UITextField *)textField
 {
-    _suggestions = [_autocompleteSource autocompleteSuggestionsForPrefix:textField.text];
-    [self reloadData];
+    NSArray<NSString *> *suggestions = _autocompleteSource == nil ? @[] : [_autocompleteSource autocompleteSuggestionsForPrefix:textField.text];
+    if (![suggestions isEqualToArray:_suggestions])
+        [self reloadData];
 }
 
 #pragma mark - RSAutocompleteInputAccessoryView
 
 #pragma mark UIInputViewAudioFeedback
 
-- (BOOL) enableInputClicksWhenVisible
+- (BOOL)enableInputClicksWhenVisible
 {
     return YES;
 }
 
 #pragma mark UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [_suggestions count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (nonnull UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSAutocompleteCell *cell = [self dequeueReusableCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier forIndexPath:indexPath];
     cell.textLabel.text = _suggestions[indexPath.row];
@@ -115,12 +116,12 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 
 #pragma mark UICollectionViewDelegate
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)collectionView:(nonnull UICollectionView *)collectionView shouldSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     return NO;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(nonnull UICollectionView *)collectionView didHighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     [[UIDevice currentDevice] playInputClick];
     NSString *suggestion = _suggestions[indexPath.row];
@@ -129,7 +130,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 
 #pragma mark UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+- (CGSize)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     NSString *suggestion = _suggestions[indexPath.row];
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collectionViewLayout;

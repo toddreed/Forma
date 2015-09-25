@@ -13,14 +13,14 @@
 
 @interface RSObjectEditorViewController (RSFloatPropertyEditor)
 
-- (void)sliderChangedValue:(id)sender;
+- (void)sliderChangedValue:(nonnull id)sender;
 
 @end
 
 
 @implementation RSObjectEditorViewController (RSFloatPropertyEditor)
 
-- (void)sliderChangedValue:(id)sender
+- (void)sliderChangedValue:(nonnull id)sender
 {
     UISlider *slider = (UISlider *)sender;
     RSPropertyEditor *editor = [self p_propertyEditorForTag:slider.tag];
@@ -34,28 +34,31 @@
 
 #pragma mark - RSFloatPropertyEditor
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
+- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(NSString *)aTitle
 {
-    if ((self = [super initWithKey:aKey title:aTitle]))
-    {
-        _minimumValue = 0.0f;
-        _maximumValue = 1.0f;
-    }
+    NSParameterAssert(aKey != nil);
+
+    self = [super initWithKey:aKey title:aTitle];
+    NSParameterAssert(self != nil);
+
+    _minimumValue = 0.0f;
+    _maximumValue = 1.0f;
+
     return self;
 }
 
-- (void)propertyChangedToValue:(id)newValue
+- (void)propertyChangedToValue:(nullable id)newValue
 {
     UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
     slider.value = [newValue floatValue];
 }
 
-- (UITableViewCell *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
     return [[RSSliderTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([self class])];
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
 

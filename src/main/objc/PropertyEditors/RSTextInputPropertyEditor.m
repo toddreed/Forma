@@ -13,18 +13,18 @@
 #import "../Core/RSAutocompleteInputAccessoryView.h"
 #import "../Core/RSObjectEditorViewController_PropertyEditor.h"
 
-NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
+NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 
 @interface RSObjectEditorViewController (RSTextInputPropertyEditor)
 
-- (void)textChanged:(id)sender;
+- (void)textChanged:(nonnull id)sender;
 
 @end
 
 
 @implementation RSObjectEditorViewController (RSTextInputPropertyEditor)
 
-- (void)textChanged:(id)sender
+- (void)textChanged:(nonnull id)sender
 {
     if (self.textEditingMode != RSTextEditingModeCancelling)
     {
@@ -49,7 +49,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     }
 }
 
-- (void)adjustTableViewCellSize:(UITableViewCell *)cell showMessage:(BOOL)showMessage
+- (void)adjustTableViewCellSize:(nonnull UITableViewCell *)cell showMessage:(BOOL)showMessage
 {
     // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
     //
@@ -86,19 +86,19 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 #pragma mark UITextFieldDelegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)textFieldDidBeginEditing:(nonnull UITextField *)textField
 {
     self.textEditingMode = RSTextEditingModeEditing;
     self.activeTextField = textField;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void)textFieldDidEndEditing:(nonnull UITextField *)textField
 {
     self.textEditingMode = RSTextEditingModeNotEditing;
     self.activeTextField = nil;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField
 {
     // Note that resigning first responder will cause -textShouldEndEditing: to be invoked, which
     // validates the text input. If validation fails, -resignFirstResponder will return NO.
@@ -134,7 +134,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     return NO;
 }
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+- (BOOL)textFieldShouldEndEditing:(nonnull UITextField *)textField
 {
     NSAssert(self.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
 
@@ -192,12 +192,12 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 
 #pragma mark RSPropertyEditor
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
+- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(nonnull NSString *)aTitle
 {
     return [self initWithKey:aKey title:aTitle style:RSTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
-- (void)propertyChangedToValue:(id)newValue
+- (void)propertyChangedToValue:(nullable id)newValue
 {
     RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)self.tableViewCell;
     UITextField *textField = textFieldTableViewCell.textField;
@@ -218,7 +218,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     }
 }
 
-- (UITableViewCell *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
     RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     if (_message && [_message length] > 0)
@@ -243,7 +243,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     return cell;
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
 
@@ -289,7 +289,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     textField.secureTextEntry = _secureTextEntry;
 }
 
-- (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
 {
     UITextField *textField = ((RSTextFieldTableViewCell *)cell).textField;
     [textField becomeFirstResponder];
@@ -311,7 +311,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     [textField becomeFirstResponder];
 }
 
-- (CGFloat)tableCellHeightForController:(RSObjectEditorViewController *)controller
+- (CGFloat)tableCellHeightForController:(nonnull RSObjectEditorViewController *)controller
 {
     if (_message == nil || [_message length] == 0)
         return 44.0f;
@@ -343,30 +343,30 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
 @synthesize returnKeyType = _returnKeyType;
 @synthesize secureTextEntry = _secureTextEntry;
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle
+- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle
 {
     return [self initWithKey:aKey title:aTitle style:aStyle formatter:nil];
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(NSFormatter *)formatter
+- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(nullable NSFormatter *)formatter
 {
-    if ((self = [super initWithKey:aKey title:aTitle]))
-    {
-        _formatter = formatter;
-        _style = aStyle;
-        _autocapitalizationType = UITextAutocapitalizationTypeNone;
-        _autocorrectionType = UITextAutocorrectionTypeNo;
-        _spellCheckingType = UITextSpellCheckingTypeDefault;
-        _enablesReturnKeyAutomatically = NO;
-        _keyboardAppearance = UIKeyboardAppearanceDefault;
-        _keyboardType = UIKeyboardTypeDefault;
-        _returnKeyType = UIReturnKeyNext;
-        _secureTextEntry = NO;
-        _clearButtonMode = UITextFieldViewModeWhileEditing;
-        _textAlignment = aStyle == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
-        _clearsOnBeginEditing = NO;
-        _placeholder = aStyle == RSTextInputPropertyEditorStyleSettings ? nil : aTitle;
-    }
+    self = [super initWithKey:aKey title:aTitle];
+
+    _formatter = formatter;
+    _style = aStyle;
+    _autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _autocorrectionType = UITextAutocorrectionTypeNo;
+    _spellCheckingType = UITextSpellCheckingTypeDefault;
+    _enablesReturnKeyAutomatically = NO;
+    _keyboardAppearance = UIKeyboardAppearanceDefault;
+    _keyboardType = UIKeyboardTypeDefault;
+    _returnKeyType = UIReturnKeyNext;
+    _secureTextEntry = NO;
+    _clearButtonMode = UITextFieldViewModeWhileEditing;
+    _textAlignment = aStyle == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
+    _clearsOnBeginEditing = NO;
+    _placeholder = aStyle == RSTextInputPropertyEditorStyleSettings ? nil : aTitle;
+
     return self;
 }
 
@@ -389,7 +389,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
     }
 }
 
-- (void)setMessage:(NSString *)message
+- (void)setMessage:(nullable NSString *)message
 {
     if (_message != message)
         _message = [message copy];
@@ -399,7 +399,7 @@ NSString *const RSTextInputPropertyValidationErrorDomain = @"RSTextInputProperty
         cell.descriptionLabel.text = _message;
 }
 
-- (id)validateTextInput:(NSString *)textInput error:(NSError **)error
+- (nullable id)validateTextInput:(nonnull NSString *)textInput error:(NSError **)error
 {
     // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing.
     // We invoke it again however because -validateValue:forKey:error: can also perform

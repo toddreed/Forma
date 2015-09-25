@@ -12,14 +12,14 @@
 
 @interface RSObjectEditorViewController (RSBooleanPropertyEditor)
 
-- (void)switchChangedValue:(id)sender;
+- (void)switchChangedValue:(nonnull id)sender;
 
 @end
 
 
 @implementation RSObjectEditorViewController (RSBooleanPropertyEditor)
 
-- (void)switchChangedValue:(id)sender
+- (void)switchChangedValue:(nonnull id)sender
 {
     UISwitch *toggle = (UISwitch *)sender;
     RSPropertyEditor *editor = [self p_propertyEditorForTag:toggle.tag];
@@ -33,13 +33,13 @@
 
 #pragma mark RSPropertyEditor
 
-- (void)propertyChangedToValue:(id)newValue
+- (void)propertyChangedToValue:(nullable id)newValue
 {
     UISwitch *toggle = (UISwitch *)self.tableViewCell.accessoryView;
     [toggle setOn:[newValue boolValue] animated:YES];
 }
 
-- (UITableViewCell *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
     UITableViewCell *cell = [super newTableViewCell];
     UISwitch *toggle = [[UISwitch alloc] init];
@@ -47,7 +47,7 @@
     return cell;
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
     

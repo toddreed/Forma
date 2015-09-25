@@ -58,40 +58,38 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
 
 #pragma mark - UITableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier
 {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]))
-    {
-        self.indentationWidth = 20.0f;
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
-        _textField = [[UITextField alloc] initWithFrame:CGRectZero];
-        _textField.adjustsFontSizeToFitWidth = YES;
-        _textField.clearsOnBeginEditing = NO;
-        _textField.font = [UIFont systemFontOfSize:17.0];
-        _textField.minimumFontSize = 10.0;
-        _textField.textAlignment = NSTextAlignmentRight;
-        _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
+    self.indentationWidth = 20.0f;
 
-        [self.contentView addSubview:_textField];
-        
-        _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
-        _descriptionLabel.textColor = [UIColor grayColor];
-        _descriptionLabel.textAlignment = NSTextAlignmentLeft;
-        _descriptionLabel.backgroundColor = [UIColor clearColor];
-        _descriptionLabel.hidden = YES;
-        _descriptionLabel.numberOfLines = 0;
-        [self.contentView addSubview:_descriptionLabel];
+    _textField = [[UITextField alloc] initWithFrame:CGRectZero];
+    _textField.adjustsFontSizeToFitWidth = YES;
+    _textField.clearsOnBeginEditing = NO;
+    _textField.font = [UIFont systemFontOfSize:17.0];
+    _textField.minimumFontSize = 10.0;
+    _textField.textAlignment = NSTextAlignmentRight;
+    _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
 
-        RSSymbolsetView *cautionView = [[RSSymbolsetView alloc] initWithSymbol:RSSymbolAlert size:24];
-        cautionView.strokeColor = [UIColor grayColor];
-        _iconView = cautionView;
-        _iconView.hidden = YES;
-        [self.contentView addSubview:_iconView];
-    }
+    [self.contentView addSubview:_textField];
+
+    _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
+    _descriptionLabel.textColor = [UIColor grayColor];
+    _descriptionLabel.textAlignment = NSTextAlignmentLeft;
+    _descriptionLabel.backgroundColor = [UIColor clearColor];
+    _descriptionLabel.hidden = YES;
+    _descriptionLabel.numberOfLines = 0;
+    [self.contentView addSubview:_descriptionLabel];
+
+    RSSymbolsetView *cautionView = [[RSSymbolsetView alloc] initWithSymbol:RSSymbolAlert size:24];
+    cautionView.strokeColor = [UIColor grayColor];
+    _iconView = cautionView;
+    _iconView.hidden = YES;
+    [self.contentView addSubview:_iconView];
+
     return self;
 }
-
-#pragma mark - RSTextFieldTableViewCell
 
 @end

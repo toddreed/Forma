@@ -15,8 +15,8 @@ const CGFloat kDescriptionLabelFontSize;
 
 @interface RSTextFieldTableViewCell : UITableViewCell
 
-@property (nonatomic, readonly) UITextField *textField;
-@property (nonatomic, readonly) UILabel *descriptionLabel;
-@property (nonatomic, readonly) UIView *iconView;
+@property (nonatomic, readonly, nonnull) UITextField *textField;
+@property (nonatomic, readonly, nonnull) UILabel *descriptionLabel;
+@property (nonatomic, readonly, nonnull) UIView *iconView;
 
 @end

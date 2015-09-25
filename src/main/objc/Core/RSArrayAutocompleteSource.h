@@ -11,6 +11,7 @@
 
 @interface RSArrayAutocompleteSource : NSObject <RSAutocompleteSource>
 
-- (id)initWithArray:(NSArray *)array;
+- (nonnull instancetype)init;
+- (nonnull instancetype)initWithArray:(nonnull NSArray<NSString *> *)array NS_DESIGNATED_INITIALIZER;
 
 @end

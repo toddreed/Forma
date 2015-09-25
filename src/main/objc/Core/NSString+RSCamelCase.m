@@ -10,7 +10,7 @@
 
 @implementation NSString (RSCamelCase)
 
-- (NSString *)rs_stringByConvertingCamelCaseToTitleCase
+- (nonnull NSString *)rs_stringByConvertingCamelCaseToTitleCase
 {
     NSMutableString *string = [NSMutableString string];
     NSUInteger length = [self length];

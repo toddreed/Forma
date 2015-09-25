@@ -14,23 +14,17 @@
     NSObject *_editedObject;
 }
 
-- (id)initWithKey:(NSString *)aKey title:(NSString *)aTitle
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle object:(nonnull NSObject *)aObject
 {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:[NSString stringWithFormat:@"-[%@ %@] not supported", NSStringFromClass([self class]), NSStringFromSelector(_cmd)]
-                                 userInfo:nil];
-}
+    self = [super initWithKey:nil title:aTitle];
+    NSParameterAssert(self != nil);
 
-- (id)initWithTitle:(NSString *)aTitle object:(NSObject *)aObject
-{
-    if ((self = [super initWithKey:nil title:aTitle]))
-    {
-        _editedObject = aObject;
-    }
+    _editedObject = aObject;
+
     return self;
 }
 
-- (void)configureTableCellForValue:(id)value controller:(RSObjectEditorViewController *)controller
+- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:_editedObject controller:controller];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -41,10 +35,10 @@
     return YES;
 }
 
-- (void)tableCellSelected:(UITableViewCell *)cell forValue:(id)value controller:(UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
-    RSObjectEditorViewController *objectEditorViewController = [_editedObject objectEditorViewController];
+    RSObjectEditorViewController *objectEditorViewController = [_editedObject objectEditorViewController]; // XXX should this be `value`?
     [navigationController pushViewController:objectEditorViewController animated:YES];
 }
 

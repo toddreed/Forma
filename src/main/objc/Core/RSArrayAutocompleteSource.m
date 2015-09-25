@@ -15,27 +15,27 @@
 
 #pragma mark - NSObject
 
-- (id)init
+- (nonnull instancetype)init
 {
     return [self initWithArray:@[]];
 }
 
 #pragma mark - RSArrayAutocompleteSource
 
-- (id)initWithArray:(NSArray *)array
+- (nonnull instancetype)initWithArray:(nonnull NSArray<NSString *> *)array
 {
     NSParameterAssert(array != nil);
     self = [super init];
-    if (self)
-    {
-        _array = array;
-    }
+    NSParameterAssert(self != nil);
+
+    _array = [array copy];
+
     return self;
 }
 
 #pragma mark RSAutocompleteSource
 
-- (NSArray *)autocompleteSuggestionsForPrefix:(NSString *)prefix
+- (nonnull NSArray<NSString *> *)autocompleteSuggestionsForPrefix:(nonnull NSString *)prefix
 {
     return [_array filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject hasPrefix:prefix];

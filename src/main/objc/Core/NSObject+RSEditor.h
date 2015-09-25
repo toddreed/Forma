@@ -14,12 +14,12 @@
 /// object.
 @interface NSObject (RSEditor)
 
-+ (Class)propertyEditorClass;
-+ (Class)propertyEditorClassForObjcType:(const char *)typeEncoding;
++ (nullable Class)propertyEditorClass;
++ (nullable Class)propertyEditorClassForObjcType:(nonnull const char *)typeEncoding;
 
-- (RSPropertyEditor *)propertyEditorForKey:(NSString *)aKey;
-- (NSString *)editorTitle;
-- (NSArray *)propertyGroups;
-- (RSObjectEditorViewController *)objectEditorViewController;
+- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)aKey;
+- (nonnull NSString *)editorTitle;
+- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
+- (nonnull RSObjectEditorViewController *)objectEditorViewController;
 
 @end

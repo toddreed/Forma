@@ -14,7 +14,7 @@
 /// obtained with -descriptionWithLocale:, or if this method is not defined, -description.
 @interface RSDetailPropertyEditor : RSPropertyEditor
 
-/// Designated initializer.
-- (id)initWithTitle:(NSString *)aTitle object:(NSObject *)aObject;
+- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(nonnull NSString *)aTitle UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle object:(nonnull NSObject *)aObject NS_DESIGNATED_INITIALIZER;
 
 @end

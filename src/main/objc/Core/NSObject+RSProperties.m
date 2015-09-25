@@ -7,6 +7,11 @@
 
 #import "NSObject+RSProperties.h"
 
+BOOL RSTrueFilter(objc_property_t property)
+{
+    return YES;
+}
+
 BOOL RSMutablePropertyFilter(objc_property_t property)
 {
     const char *attrs = property_getAttributes(property);
@@ -18,7 +23,7 @@ BOOL RSReadOnlyPropertyFilter(objc_property_t property)
     return !RSMutablePropertyFilter(property);
 }
 
-static void AddPropertyNames(NSMutableArray *propertyNames, const objc_property_t *properties, unsigned int count, RSPropertyFilter filter)
+static void AddPropertyNames(NSMutableArray<NSString *> *_Nonnull propertyNames, const objc_property_t *_Nonnull properties, unsigned int count, RSPropertyFilter filter)
 {
     for (unsigned int i = 0; i < count; ++i)
     {
@@ -96,7 +101,7 @@ static Class GetClass(objc_property_t property)
 
 @implementation NSObject (RSProperties)
 
-+ (NSArray *)rs_declaredPropertyNamesMatchingFilter:(RSPropertyFilter)filter
++ (nonnull NSArray<NSString *> *)rs_declaredPropertyNamesMatchingFilter:(RSPropertyFilter)filter
 {
     unsigned int propertyCount;
     objc_property_t *properties = class_copyPropertyList(self, &propertyCount);
@@ -107,12 +112,12 @@ static Class GetClass(objc_property_t property)
     return propertyNames;
 }
 
-+ (NSArray *)rs_declaredPropertyNames
++ (nonnull NSArray<NSString *> *)rs_declaredPropertyNames
 {
-    return [self rs_declaredPropertyNamesMatchingFilter:NULL];
+    return [self rs_declaredPropertyNamesMatchingFilter:RSTrueFilter];
 }
 
-+ (NSArray *)rs_allDeclaredPropertyNames
++ (nonnull NSArray<NSString *> *)rs_allDeclaredPropertyNames
 {
     NSMutableArray *propertyNames = [[NSMutableArray alloc] init];
     
@@ -121,7 +126,7 @@ static Class GetClass(objc_property_t property)
     {
         unsigned int propertyCount;
         objc_property_t *properties = class_copyPropertyList(cls, &propertyCount);
-        AddPropertyNames(propertyNames, properties, propertyCount, NULL);
+        AddPropertyNames(propertyNames, properties, propertyCount, RSTrueFilter);
         free(properties);
         
         cls = [cls superclass];
@@ -130,13 +135,13 @@ static Class GetClass(objc_property_t property)
     return propertyNames;
 }
 
-+ (const char *)rs_objCTypeOfProperty:(NSString *)propertyName
++ (nullable const char *)rs_objCTypeOfProperty:(nonnull NSString *)propertyName
 {
     objc_property_t property = class_getProperty(self, [propertyName UTF8String]);
     return property == NULL ? NULL : GetPropertyTypeString(property);
 }
 
-+ (Class)rs_classOfProperty:(NSString *)propertyName
++ (nullable Class)rs_classOfProperty:(nonnull NSString *)propertyName
 {
     objc_property_t property = class_getProperty(self, [propertyName UTF8String]);
     return property == nil ? nil : GetClass(property);
