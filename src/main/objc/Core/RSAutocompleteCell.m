@@ -4,7 +4,7 @@
 // © Reaction Software Inc., 2013
 //
 
-#import "UITheme/RSUITheme.h"
+#import <UITheme/RSUITheme.h>
 
 #import "RSAutocompleteCell.h"
 
@@ -49,7 +49,7 @@
     CGSize size = [string sizeWithAttributes:attributes];
     size.width += 16.0f;
     size.height += 4.0f;
-    return size;
+    return CGSizeMake(ceilf(size.width), ceilf(size.height));
 }
 
 @end
