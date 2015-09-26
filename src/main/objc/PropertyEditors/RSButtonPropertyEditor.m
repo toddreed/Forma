@@ -23,7 +23,6 @@
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
-    self.tableViewCell.textLabel.textAlignment =  NSTextAlignmentCenter;
 }
 
 - (BOOL)selectable
