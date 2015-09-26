@@ -1,13 +1,31 @@
 PODS:
+  - ObjectEditor (1.0.2):
+    - ObjectEditor/Core (= 1.0.2)
+    - ObjectEditor/CoreData (= 1.0.2)
+    - Symbolset (~> 1.0)
+    - UITheme (~> 1.2)
+  - ObjectEditor/Core (1.0.2):
+    - Symbolset (~> 1.0)
+    - UITheme (~> 1.2)
+  - ObjectEditor/CoreData (1.0.2):
+    - ObjectEditor/Core
+    - Symbolset (~> 1.0)
+    - UITheme (~> 1.2)
   - Symbolset (1.1.0):
     - UITheme (~> 1.0)
   - UITheme (1.3.0)
 
 DEPENDENCIES:
+  - ObjectEditor (from `./`)
   - Symbolset (~> 1.0)
   - UITheme (~> 1.2)
 
+EXTERNAL SOURCES:
+  ObjectEditor:
+    :path: "./"
+
 SPEC CHECKSUMS:
+  ObjectEditor: 18f74cde3fb99b987be95ab0f3eecb564e28e137
   Symbolset: 23c5b7b201efb2bc22dd613be9224a5cf501da45
   UITheme: f0022637f3f197c5ff3f4bb217d23398b207ccb2
 
