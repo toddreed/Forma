@@ -91,7 +91,7 @@
 /// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is
 /// selected. This is used when implementing a hierarchical editor when the user can drill-down into
 /// a sub-editor.
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller;
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
 
 /// Returns the height of the table cell for this editor. This is called by
 /// RSObjectEditorViewController’s -tableView:heightForRowAtIndexPath:. Returns 44.0f, which is the

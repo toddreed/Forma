@@ -289,7 +289,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.secureTextEntry = _secureTextEntry;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     UITextField *textField = ((RSTextFieldTableViewCell *)cell).textField;
     [textField becomeFirstResponder];

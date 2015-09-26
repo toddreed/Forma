@@ -31,10 +31,10 @@
     return _action != nil;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     if (_action)
-        _action((RSObjectEditorViewController *)controller);
+        _action(controller);
 }
 
 @end

@@ -35,7 +35,7 @@
     return YES;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull UITableViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
     RSObjectEditorViewController *objectEditorViewController = [_editedObject objectEditorViewController]; // XXX should this be `value`?
