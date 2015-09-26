@@ -87,7 +87,10 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 {
     NSArray<NSString *> *suggestions = _autocompleteSource == nil ? @[] : [_autocompleteSource autocompleteSuggestionsForPrefix:textField.text];
     if (![suggestions isEqualToArray:_suggestions])
+    {
+        _suggestions = suggestions;
         [self reloadData];
+    }
 }
 
 #pragma mark - RSAutocompleteInputAccessoryView
