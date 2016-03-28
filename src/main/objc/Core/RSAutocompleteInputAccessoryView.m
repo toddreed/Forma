@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Reaction Software Inc. All rights reserved.
 //
 
-#import "UITheme/RSUITheme.h"
-
 #import "RSAutocompleteInputAccessoryView.h"
 #import "RSAutocompleteCell.h"
 
@@ -51,8 +49,6 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 - (nonnull instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout
 {
     self = [super initWithFrame:frame collectionViewLayout:layout];
-
-    id<RSUITheme> theme = [RSUITheme currentTheme];
 
     _suggestions = @[];
     self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
