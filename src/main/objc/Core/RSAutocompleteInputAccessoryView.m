@@ -55,7 +55,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
     id<RSUITheme> theme = [RSUITheme currentTheme];
 
     _suggestions = @[];
-    self.backgroundColor = theme.backgroundColor;
+    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
 
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self registerClass:[RSAutocompleteCell class] forCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier];
