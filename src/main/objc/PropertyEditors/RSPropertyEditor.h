@@ -29,7 +29,7 @@
 @interface RSPropertyEditor : NSObject
 
 /// The object this editor modifies.
-@property (nonatomic, weak, readonly) id target;
+@property (nonatomic, weak, readonly, nullable) id target;
 
 /// The key use to update the model object with KVC. This is always non-nil for “normal” property
 /// editors, but some special “pseudo” property editors have a nil key; RSDetailPropertyEditor and
