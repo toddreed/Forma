@@ -7,11 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
-const CGFloat kDescriptionLabelTopMargin;
-const CGFloat kDescriptionLabelLeftMargin;
-const CGFloat kDescriptionLabelRightMargin;
-const CGFloat kDescriptionLabelBottomMargin;
-const CGFloat kDescriptionLabelFontSize;
+extern const CGFloat kDescriptionLabelTopMargin;
+extern const CGFloat kDescriptionLabelLeftMargin;
+extern const CGFloat kDescriptionLabelRightMargin;
+extern const CGFloat kDescriptionLabelBottomMargin;
+extern const CGFloat kDescriptionLabelFontSize;
 
 @interface RSTextFieldTableViewCell : UITableViewCell
 
