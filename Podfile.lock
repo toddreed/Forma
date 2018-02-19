@@ -11,12 +11,14 @@ PODS:
     - ObjectEditor/Core
     - Symbolset (~> 1.0)
     - UITheme (~> 1.2)
+  - Reveal-SDK (13)
   - Symbolset (1.1.0):
     - UITheme (~> 1.0)
   - UITheme (1.3.0)
 
 DEPENDENCIES:
   - ObjectEditor (from `./`)
+  - Reveal-SDK
   - Symbolset (~> 1.0)
   - UITheme (~> 1.2)
 
@@ -26,9 +28,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ObjectEditor: 5fae14871e4e8e7dac9edeed3027c91e843350d8
+  Reveal-SDK: ccc2b0f8014965ea448b7534a7c2c8da232b75e8
   Symbolset: 23c5b7b201efb2bc22dd613be9224a5cf501da45
   UITheme: f0022637f3f197c5ff3f4bb217d23398b207ccb2
 
-PODFILE CHECKSUM: 32a809fd849703dd4f2a42c5793e49984a2fbc21
+PODFILE CHECKSUM: 2ffc623826685b1e057e8eeaad9b8259548cabb6
 
 COCOAPODS: 1.4.0

@@ -5,6 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Demo' do
   pod 'ObjectEditor', :path => './'
+  pod 'Reveal-SDK', :configurations => ['Debug']
 end
 
 target 'Object Editor' do
