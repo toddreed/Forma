@@ -23,7 +23,6 @@
     _textLabel.font = [[self class] font];
     _textLabel.textAlignment = NSTextAlignmentCenter;
 
-    id<RSUITheme> theme = [RSUITheme currentTheme];
     _textLabel.textColor = [UIColor whiteColor];
 
     self.contentView.layer.cornerRadius = 3.0f;
