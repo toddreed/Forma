@@ -100,7 +100,7 @@
 
 /// Returns YES if thie property editor can become the first responder. The default is NO. If this
 /// property returns YES, then RSObjectEditorViewController may call -becomeFirstResponder.
-- (BOOL)canBecomeFirstResponder;
+@property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
 /// Makes the receiver the first responder. (The actual first responder will likely be a view
 /// managed by the editor.)

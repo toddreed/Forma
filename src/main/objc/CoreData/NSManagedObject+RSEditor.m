@@ -16,10 +16,10 @@
 
 - (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key
 {
-    NSEntityDescription *entityDescription = [self entity];
-    NSDictionary *attributesByName = [entityDescription attributesByName];
-    NSAttributeDescription *attributeDescription = [attributesByName objectForKey:key];
-    NSAttributeType type = [attributeDescription attributeType];
+    NSEntityDescription *entityDescription = self.entity;
+    NSDictionary *attributesByName = entityDescription.attributesByName;
+    NSAttributeDescription *attributeDescription = attributesByName[key];
+    NSAttributeType type = attributeDescription.attributeType;
 
     Class propertyEditorClass = nil;
 
@@ -66,8 +66,8 @@
 
 - (nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
-    NSEntityDescription *entityDescription = [self entity];
-    NSDictionary *attributesByName = [entityDescription attributesByName];
+    NSEntityDescription *entityDescription = self.entity;
+    NSDictionary *attributesByName = entityDescription.attributesByName;
 
     NSMutableArray *editors = [NSMutableArray array];
     

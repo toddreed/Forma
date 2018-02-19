@@ -15,7 +15,7 @@
 - (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString *, id> *)change context:(void *_Nullable)context
 {
     NSParameterAssert([keyPath isEqualToString:_key]);
-    id value = [change objectForKey:NSKeyValueChangeNewKey];
+    id value = change[NSKeyValueChangeNewKey];
     if (value == [NSNull null])
         value = nil;
 

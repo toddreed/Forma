@@ -42,7 +42,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         {
             if (self.textEditingMode != RSTextEditingModeFinishingForced)
             {
-                editor.message = [error localizedDescription];
+                editor.message = error.localizedDescription;
                 [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
             }
         }
@@ -149,7 +149,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
         if (value == nil)
         {
-            editor.message = [error localizedDescription];
+            editor.message = error.localizedDescription;
             [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
 
             // If -finishEditingForce: was called, textEditMode will be
@@ -221,7 +221,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 - (nonnull UITableViewCell *)newTableViewCell
 {
     RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    if (_message && [_message length] > 0)
+    if (_message && _message.length > 0)
         cell.descriptionLabel.text = _message;
 
     if (_autocompleteSource)
@@ -313,7 +313,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (CGFloat)tableCellHeightForController:(nonnull RSObjectEditorViewController *)controller
 {
-    if (_message == nil || [_message length] == 0)
+    if (_message == nil || _message.length == 0)
         return 44.0f;
     else
     {

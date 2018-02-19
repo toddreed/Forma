@@ -36,15 +36,15 @@
 
 - (nonnull NSArray<NSString *> *)autocompleteSuggestionsForPrefix:(nonnull NSString *)prefix
 {
-    if ([prefix length] > 0)
+    if (prefix.length > 0)
     {
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:_entityName inManagedObjectContext:_managedObjectContext];
-        [request setFetchLimit:10];
-        [request setEntity:entity];
-        [request setPropertiesToFetch:@[[[entity propertiesByName] objectForKey:_attributeKey]]];
+        request.fetchLimit = 10;
+        request.entity = entity;
+        request.propertiesToFetch = @[entity.propertiesByName[_attributeKey]];
         [request setReturnsDistinctResults:YES];
-        [request setResultType:NSDictionaryResultType];
+        request.resultType = NSDictionaryResultType;
 
         NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:_attributeKey];
         NSExpression *valueExpression = [NSExpression expressionForConstantValue:prefix];
@@ -57,16 +57,16 @@
         request.predicate = predicate;
 
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:_attributeKey ascending:YES];
-        [request setSortDescriptors:@[sortDescriptor]];
+        request.sortDescriptors = @[sortDescriptor];
 
         NSError *error;
         NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];
 
         if (results)
         {
-            if ([results count] > 0)
+            if (results.count > 0)
             {
-                NSMutableArray *suggestions = [[NSMutableArray alloc] initWithCapacity:[results count]];
+                NSMutableArray *suggestions = [[NSMutableArray alloc] initWithCapacity:results.count];
                 for (NSDictionary *result in results)
                 {
                     [suggestions addObject:result[_attributeKey]];

@@ -137,13 +137,13 @@ static Class GetClass(objc_property_t property)
 
 + (nullable const char *)rs_objCTypeOfProperty:(nonnull NSString *)propertyName
 {
-    objc_property_t property = class_getProperty(self, [propertyName UTF8String]);
+    objc_property_t property = class_getProperty(self, propertyName.UTF8String);
     return property == NULL ? NULL : GetPropertyTypeString(property);
 }
 
 + (nullable Class)rs_classOfProperty:(nonnull NSString *)propertyName
 {
-    objc_property_t property = class_getProperty(self, [propertyName UTF8String]);
+    objc_property_t property = class_getProperty(self, propertyName.UTF8String);
     return property == nil ? nil : GetClass(property);
 }
 

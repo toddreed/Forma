@@ -51,7 +51,7 @@
 {
     [super viewDidAppear:animated];
     
-    if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm && [_propertyEditorDictionary count] > 0)
+    if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm && _propertyEditorDictionary.count > 0)
     {
         RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if ([editor canBecomeFirstResponder])
@@ -148,18 +148,18 @@
         // Setup up the propertyEditorDictionary and assign tag values to editors.
         [_propertyEditorDictionary removeAllObjects];
         
-        const NSUInteger sections = [_propertyGroups count];
+        const NSUInteger sections = _propertyGroups.count;
         
         for (NSUInteger section = 0; section < sections; ++section)
         {
-            RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
-            NSUInteger rows = [group.propertyEditors count];
+            RSPropertyGroup *group = _propertyGroups[section];
+            NSUInteger rows = group.propertyEditors.count;
             
             for (NSUInteger row = 0; row < rows; ++row)
             {
-                RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:row];
+                RSPropertyEditor *editor = group.propertyEditors[row];
                 editor.tag = nextTag++;
-                [_propertyEditorDictionary setObject:editor forKey:@(editor.tag)];
+                _propertyEditorDictionary[@(editor.tag)] = editor;
             }
         }
         
@@ -176,7 +176,7 @@
     
     self.title = title;
     
-    if ([self isViewLoaded])
+    if (self.viewLoaded)
         [self.tableView reloadData];
 }
 
@@ -189,14 +189,14 @@
 {
     // Stop observing properties by the currently configured property editors and remove them
     // from propertyEditorDictionary
-    RSPropertyGroup *group = [_propertyGroups objectAtIndex:index];
+    RSPropertyGroup *group = _propertyGroups[index];
     for (RSPropertyEditor *propertyEditor in group.propertyEditors)
     {
         [propertyEditor stopObserving:_editedObject];
         [_propertyEditorDictionary removeObjectForKey:@(propertyEditor.tag)];
     }
     
-    [_propertyGroups replaceObjectAtIndex:index withObject:propertyGroup];
+    _propertyGroups[index] = propertyGroup;
 
     // We might need to fix-up the return key type of the last text field if
     // autoTextFieldNavigation is YES
@@ -222,34 +222,34 @@
     for (RSPropertyEditor *propertyEditor in propertyGroup.propertyEditors)
     {
         propertyEditor.tag = nextTag++;
-        [_propertyEditorDictionary setObject:propertyEditor forKey:@(propertyEditor.tag)];
+        _propertyEditorDictionary[@(propertyEditor.tag)] = propertyEditor;
     }
 
-    if ([self isViewLoaded])
+    if (self.viewLoaded)
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSPropertyGroup *group = [_propertyGroups objectAtIndex:indexPath.section];
-    RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:indexPath.row];
+    RSPropertyGroup *group = _propertyGroups[indexPath.section];
+    RSPropertyEditor *editor = (group.propertyEditors)[indexPath.row];
     return editor;
 }
 
 - (nonnull RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag
 {
-    return [_propertyEditorDictionary objectForKey:@(tag)];
+    return _propertyEditorDictionary[@(tag)];
 }
 
 - (nullable RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
 {
-    for (NSInteger section = [_propertyGroups count]-1; section >= 0; --section)
+    for (NSInteger section = _propertyGroups.count-1; section >= 0; --section)
     {
-        RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
+        RSPropertyGroup *group = _propertyGroups[section];
         
-        for (NSInteger row = [group.propertyEditors count]-1; row >= 0; --row)
+        for (NSInteger row = group.propertyEditors.count-1; row >= 0; --row)
         {
-            RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:row];
+            RSPropertyEditor *editor = group.propertyEditors[row];
             
             if ([editor isKindOfClass:[RSTextInputPropertyEditor class]])
                 return (RSTextInputPropertyEditor *)editor;
@@ -260,17 +260,17 @@
 
 - (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)aEditor
 {
-    NSUInteger sections = [_propertyGroups count];
+    NSUInteger sections = _propertyGroups.count;
     BOOL editorFound = NO;
     
     for (NSUInteger section = 0; section < sections; ++section)
     {
-        RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
-        NSUInteger rows = [group.propertyEditors count];
+        RSPropertyGroup *group = _propertyGroups[section];
+        NSUInteger rows = group.propertyEditors.count;
         
         for (NSUInteger row = 0; row < rows; ++row)
         {
-            RSPropertyEditor *editor = [group.propertyEditors objectAtIndex:row];
+            RSPropertyEditor *editor = group.propertyEditors[row];
             
             if (editorFound)
             {
@@ -331,7 +331,7 @@
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
     
-    if ([editor selectable])
+    if (editor.selectable)
         return indexPath;
     else
         [self finishEditingForce:NO];
@@ -342,7 +342,7 @@
 {
     RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
     
-    if ([editor selectable])
+    if (editor.selectable)
     {
         // Note that editor.key can be nil for pseudo property editors (like
         // RSDetailPropertyEditor and RSButtonPropertyEditor).
@@ -374,24 +374,24 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
-    return [group.propertyEditors count];
+    RSPropertyGroup *group = _propertyGroups[section];
+    return group.propertyEditors.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(nonnull UITableView *)tableView
 {
-    return [_propertyGroups count];
+    return _propertyGroups.count;
 }
 
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
+    RSPropertyGroup *group = _propertyGroups[section];
     return group.title;
 }
 
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    RSPropertyGroup *group = [_propertyGroups objectAtIndex:section];
+    RSPropertyGroup *group = _propertyGroups[section];
     return group.footer;
 }
 

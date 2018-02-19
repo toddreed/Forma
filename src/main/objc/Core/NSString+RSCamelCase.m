@@ -13,14 +13,14 @@
 - (nonnull NSString *)rs_stringByConvertingCamelCaseToTitleCase
 {
     NSMutableString *string = [NSMutableString string];
-    NSUInteger length = [self length];
+    NSUInteger length = self.length;
     
     NSRange range = [self rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet] options:NSLiteralSearch range:NSMakeRange(0, length)];
     if (range.location != NSNotFound)
     {
         if (range.location > 0)
         {
-            [string appendString:[[self substringWithRange:NSMakeRange(0, range.location)] capitalizedString]];
+            [string appendString:[self substringWithRange:NSMakeRange(0, range.location)].capitalizedString];
             [string appendString:@" "];
         }
 
@@ -44,7 +44,7 @@
     }
     else
     {
-        return [self capitalizedString];
+        return self.capitalizedString;
     }
    return string;
 }

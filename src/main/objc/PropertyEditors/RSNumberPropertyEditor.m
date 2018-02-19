@@ -25,7 +25,7 @@
     self = [super initWithKey:aKey title:aTitle style:aStyle formatter:formatter];
 
     NSNumberFormatter *numberFormatter = (NSNumberFormatter *)formatter;
-    self.keyboardType = [numberFormatter allowsFloats] ? UIKeyboardTypeDecimalPad : UIKeyboardTypeNumberPad;
+    self.keyboardType = numberFormatter.allowsFloats ? UIKeyboardTypeDecimalPad : UIKeyboardTypeNumberPad;
 
     return self;
 }

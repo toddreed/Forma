@@ -18,8 +18,8 @@
 + (nullable Class)propertyEditorClassForObjcType:(nonnull const char *)typeEncoding;
 
 - (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)aKey;
-- (nonnull NSString *)editorTitle;
-- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
-- (nonnull RSObjectEditorViewController *)objectEditorViewController;
+@property (nonatomic, readonly, copy, nonnull) NSString *editorTitle;
+@property (nonatomic, readonly, copy, nonnull) NSArray<RSPropertyGroup *> *propertyGroups;
+@property (nonatomic, readonly, strong, nonnull) RSObjectEditorViewController *objectEditorViewController;
 
 @end
