@@ -360,7 +360,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
             break;
 
         case RSTextInputPropertyEditorStyleForm:
-        default:
             _style = aStyle;
             _textAlignment = NSTextAlignmentLeft;
             _placeholder = self.title;
