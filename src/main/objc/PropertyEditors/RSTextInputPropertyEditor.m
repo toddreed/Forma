@@ -212,7 +212,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         else if (_formatter)
             text = [_formatter stringForObjectValue:newValue];
         else
-            text = (NSString *)newValue;
+        {
+            NSAssert([newValue isKindOfClass:[NSString class]], ([NSString stringWithFormat:@"A string value is expected for the property “%@”.", self.key]));
+            text = newValue;
+        }
 
         textField.text = text;
     }
