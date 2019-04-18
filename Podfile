@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 source 'git@bitbucket.org:reactionsoftware/cocoapods-podspecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
