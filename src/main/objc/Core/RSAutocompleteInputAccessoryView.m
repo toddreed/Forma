@@ -25,7 +25,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 
 - (nonnull instancetype)init
 {
-    CGRect frame = CGRectMake(0, 0, 320, 38);
+    CGRect frame = CGRectMake(0, 0, 320, 44);
     return [self initWithFrame:frame collectionViewLayout:[[self class] defaultLayout]];
 }
 
@@ -42,6 +42,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(7, 7, 7, 7);
+    layout.minimumInteritemSpacing = 20;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     return layout;
 }
@@ -51,7 +52,7 @@ NSString *const RSAutocompleteCellReuseIdentifier = @"RSAutocompleteCellReuseIde
     self = [super initWithFrame:frame collectionViewLayout:layout];
 
     _suggestions = @[];
-    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+    self.backgroundColor = [UIColor colorWithRed:.815686275f green:.82745098f blue:.854901961f alpha:1.0f];
 
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self registerClass:[RSAutocompleteCell class] forCellWithReuseIdentifier:RSAutocompleteCellReuseIdentifier];

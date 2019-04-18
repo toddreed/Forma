@@ -16,16 +16,16 @@
 {
     self = [super initWithFrame:frame];
 
-    self.contentView.backgroundColor = [UIColor lightGrayColor];
+    self.contentView.backgroundColor = [UIColor colorWithRed:.929411765f green:.933333333f blue:.949019608f alpha:1.0f];
 
     _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
     _textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    _textLabel.font = [[self class] font];
+    _textLabel.font = [UIFont systemFontOfSize:17];
     _textLabel.textAlignment = NSTextAlignmentCenter;
 
-    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.textColor = [UIColor blackColor];
 
-    self.contentView.layer.cornerRadius = 3.0f;
+    self.contentView.layer.cornerRadius = 5.0f;
 
     [self.contentView addSubview:self.textLabel];
 
@@ -45,8 +45,8 @@
     UIFont *font = [[self class] font];
     NSDictionary *attributes = @{NSFontAttributeName: font};
     CGSize size = [string sizeWithAttributes:attributes];
-    size.width += 16.0f;
-    size.height += 4.0f;
+    size.width += 30.0f;
+    size.height += 16.0f;
     return CGSizeMake(ceilf(size.width), ceilf(size.height));
 }
 
