@@ -9,7 +9,6 @@
 @interface RSAutocompleteCell : UICollectionViewCell
 
 + (CGSize)preferredSizeForString:(nonnull NSString *)string;
-+ (nonnull UIFont *)font;
 
 @property (nonatomic, strong, nonnull) UILabel *textLabel;
 
