@@ -107,7 +107,6 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
 
 - (void)commonTextFieldTableViewCellInitialization
 {
-
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleLabel.adjustsFontForContentSizeCategory = YES;
     _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];

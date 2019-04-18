@@ -142,7 +142,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     {
         RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
         NSError *error;
-        
+
         id value = [editor validateTextInput:textField.text error:&error];
 
         RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)editor.tableViewCell;
@@ -235,7 +235,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         // When navigating from a UITextField with a non-nil inputAccessoryView to a
         // UITextField with a nil inputAccessoryView, the previous view's input accessory
         // view remains rather than hiding. This is a workaround.
-        // 
+        //
         // See http://stackoverflow.com/a/16905990/2116111
         cell.textField.inputAccessoryView = [[UIView alloc] initWithFrame:CGRectZero];
     }
@@ -358,7 +358,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
             _textAlignment = NSTextAlignmentRight;
             _placeholder = nil;
             break;
-            
+
         case RSTextInputPropertyEditorStyleForm:
         default:
             _style = aStyle;
