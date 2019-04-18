@@ -25,12 +25,12 @@
 /// RSPropertyEditor that provide support for editing specific types of properties. For example,
 /// RSTextInputPropertyEditor provides support for editing NSString properties. RSProperityEditor
 /// instances are used by the RSObjectEditorViewController class to build the user interface for
-/// editing many properties of an object.
-/// 
+/// editing the properties of an object.
+///
 /// RSPropertyEditor uses key-value observing to keep the UI synchronized with changes to the model
 /// object. If the model’s properties are modified via its accessors and the model’s class is KVO
 /// compliant, the UI will automatically update to reflect the changed property value.
-/// 
+///
 /// Similarly, RSPropertyEditor uses key-value coding to automatically update a model’s property
 /// value that is changed from a UI control. (This is actually implemented by a category extension
 /// to RSEditorObjectViewController.)
@@ -80,7 +80,7 @@
 - (void)stopObserving:(nonnull NSObject *)editedObject;
 
 /// This method must be overridden by subclasses to update their UI to reflect a change in the
-/// observed property's value.
+/// observed property’s value.
 - (void)propertyChangedToValue:(nullable id)newValue;
 
 /// Do not call this directly. This is invoked by RSObjectEditorViewController to obtain a
@@ -107,7 +107,7 @@
 /// a sub-editor.
 - (void)tableCellSelected:(nonnull UITableViewCell<RSPropertyEditorView> *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
 
-/// Returns YES if thie property editor can become the first responder. The default is NO. If this
+/// Returns YES if this property editor can become the first responder. The default is NO. If this
 /// property returns YES, then RSObjectEditorViewController may call -becomeFirstResponder.
 @property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
