@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="219" id="lmX-Zj-1Vo" customClass="RSSliderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="456" height="219"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lmX-Zj-1Vo" id="Sik-1X-YmC">
+                <rect key="frame" x="0.0" y="0.0" width="456" height="218.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-9Q-Ian">
+                        <rect key="frame" x="20" y="55" width="416" height="20.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D6M-Lz-ZGS">
+                        <rect key="frame" x="18" y="85.5" width="420" height="31"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbq-Xh-WWu">
+                        <rect key="frame" x="20" y="125.5" width="416" height="48.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="D6M-Lz-ZGS" firstAttribute="centerX" secondItem="Sik-1X-YmC" secondAttribute="centerX" id="4hj-rQ-MKM"/>
+                    <constraint firstItem="D6M-Lz-ZGS" firstAttribute="top" secondItem="LCD-9Q-Ian" secondAttribute="bottom" constant="10" id="56j-dS-8SP"/>
+                    <constraint firstItem="Mbq-Xh-WWu" firstAttribute="top" secondItem="D6M-Lz-ZGS" secondAttribute="bottom" constant="10" id="IaL-fp-K26"/>
+                    <constraint firstItem="D6M-Lz-ZGS" firstAttribute="leading" secondItem="Sik-1X-YmC" secondAttribute="leadingMargin" id="PQ7-xx-0aA"/>
+                    <constraint firstItem="LCD-9Q-Ian" firstAttribute="top" secondItem="Sik-1X-YmC" secondAttribute="topMargin" id="RWd-1c-LXH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Mbq-Xh-WWu" secondAttribute="bottom" id="c8Q-sw-361"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="D6M-Lz-ZGS" secondAttribute="trailing" id="cYd-RQ-c0z"/>
+                    <constraint firstItem="LCD-9Q-Ian" firstAttribute="leading" secondItem="Sik-1X-YmC" secondAttribute="leadingMargin" id="dPg-YL-du7"/>
+                    <constraint firstItem="Mbq-Xh-WWu" firstAttribute="leading" secondItem="Sik-1X-YmC" secondAttribute="leadingMargin" id="iQw-PI-9RN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LCD-9Q-Ian" secondAttribute="trailing" id="nBO-P6-cJ3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Mbq-Xh-WWu" secondAttribute="trailing" id="qBE-RB-oCH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="rad-03-0Ja"/>
+            <connections>
+                <outlet property="helpLabel" destination="Mbq-Xh-WWu" id="WbV-Xf-dY3"/>
+                <outlet property="slider" destination="D6M-Lz-ZGS" id="kBJ-Bn-Fvd"/>
+                <outlet property="titleLabel" destination="LCD-9Q-Ian" id="vvt-sd-z9K"/>
+            </connections>
+            <point key="canvasLocation" x="14.492753623188406" y="41.183035714285715"/>
+        </tableViewCell>
+    </objects>
+</document>

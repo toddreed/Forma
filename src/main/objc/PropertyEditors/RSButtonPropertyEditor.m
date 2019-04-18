@@ -6,6 +6,7 @@
 
 
 #import "RSButtonPropertyEditor.h"
+#import "../Core/RSButtonTableViewCell.h"
 
 
 @implementation RSButtonPropertyEditor
@@ -14,7 +15,7 @@
 
 - (nonnull UITableViewCell *)newTableViewCell
 {
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    return [[self class] instantiateTableViewCellFromNibOfClass:[RSButtonTableViewCell class]];
 }
 
 #pragma mark - RSButtonPropertyEditor
@@ -55,7 +56,7 @@
 - (void)styleButtonLabel
 {
     UIColor *buttonColor = self.selectable ? self.tableViewCell.tintColor : [UIColor grayColor];
-    self.tableViewCell.textLabel.textColor = buttonColor;
+    self.tableViewCell.titleLabel.textColor = buttonColor;
 }
 
 @end

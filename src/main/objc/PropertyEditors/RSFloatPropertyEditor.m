@@ -55,7 +55,7 @@
 
 - (nonnull UITableViewCell *)newTableViewCell
 {
-    return [[RSSliderTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([self class])];
+    return [[self class] instantiateTableViewCellFromNibOfClass:[RSSliderTableViewCell class]];
 }
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller

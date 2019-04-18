@@ -220,7 +220,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (nonnull UITableViewCell *)newTableViewCell
 {
-    RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithReuseIdentifier:nil];
     if (_message && _message.length > 0)
         cell.descriptionLabel.text = _message;
 
@@ -310,27 +310,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
     [textField becomeFirstResponder];
 }
-
-- (CGFloat)tableCellHeightForController:(nonnull RSObjectEditorViewController *)controller
-{
-    if (_message == nil || _message.length == 0)
-        return 44.0f;
-    else
-    {
-        // This is the margin of the contentView for UITableViewCell's of style UITableViewCellStyleValue1.
-        const CGFloat kUITableViewCellStyleValue1HorizontalMargins = 20.0f;
-        // This is the top margin of the textLabel for UITableViewCell's of style UITableViewCellStyleValue1.
-        const CGFloat kUITableViewCellStyleValue1TopMargin = 11.0f;
-
-        CGSize tableSize = controller.tableView.frame.size;
-        CGSize constraint = CGSizeMake(tableSize.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin-kUITableViewCellStyleValue1HorizontalMargins, CGFLOAT_MAX);
-        NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:kDescriptionLabelFontSize]};
-        CGRect bounds = [_message boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
-
-        return bounds.size.height+kDescriptionLabelTopMargin+kDescriptionLabelBottomMargin+kUITableViewCellStyleValue1TopMargin;
-    }
-}
-
 
 #pragma mark RSTextInputPropertyEditor
 

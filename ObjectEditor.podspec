@@ -6,10 +6,10 @@ Pod::Spec.new do |s|
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
   s.license      = { :type => 'Proprietary' }
   s.source       = { :git => "git@bitbucket.org:reactionsoftware/object-editor.git", :tag => s.version.to_s}
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '11.0'
   s.header_dir   = 'ObjectEditor'
   s.header_mappings_dir = 'src/main/objc'
-  
+  s.resource_bundle = { 'ObjectEditor' => ['src/main/objc/**/*.png', 'src/main/objc/**/*.xib'] }
   s.dependency 'Symbolset', '~> 1.0'
   s.dependency 'UITheme', '~> 1.2'
 
@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
     core.source_files = 'src/main/objc/Core/*.{h,m}', 'src/main/objc/PropertyEditors/*.{h,m}'
     core.public_header_files = 'src/main/objc/Core/*.h', 'src/main/objc/PropertyEditors/*.h'
   end
-  
+
   s.subspec 'CoreData' do |coredata|
     coredata.frameworks = 'CoreData'
     coredata.source_files = 'src/main/objc/CoreData/*.{h,m}'
     coredata.public_header_files = 'src/main/objc/CoreData/*.h'
-    
+
     coredata.dependency 'ObjectEditor/Core'
   end
 

@@ -9,6 +9,17 @@
 #import <UIKit/UIKit.h>
 
 
+
+@class RSObjectEditorViewController;
+
+
+@protocol RSPropertyEditorView <NSObject>
+
+@property (nonatomic, strong, readonly, nullable) UILabel *titleLabel;
+
+@end
+
+
 /// The RSPropertyEditor class is part of a framework for building a user interface for editing
 /// model objects. RSPropertyEditor is an abstract base class; there are concrete subclasses of
 /// RSPropertyEditor that provide support for editing specific types of properties. For example,
@@ -23,9 +34,6 @@
 /// Similarly, RSPropertyEditor uses key-value coding to automatically update a model’s property
 /// value that is changed from a UI control. (This is actually implemented by a category extension
 /// to RSEditorObjectViewController.)
-@class RSObjectEditorViewController;
-
-
 @interface RSPropertyEditor : NSObject
 
 /// The object this editor modifies.
@@ -51,7 +59,7 @@
 /// and technical reasons for this: because KVO is used, it’s easier to keep a unique table cell for
 /// for each property so a KVO change notification can update the UI. The table cell is lazily
 /// created.
-@property (nonatomic, readonly, nonnull) UITableViewCell *tableViewCell;
+@property (nonatomic, readonly, nonnull) UITableViewCell<RSPropertyEditorView > *tableViewCell;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
 /// -tableCellSelected:forValue:controller: will not be invoked. The default value is NO.
@@ -78,11 +86,17 @@
 /// Do not call this directly. This is invoked by RSObjectEditorViewController to obtain a
 /// UITableCellView for this editor. This method is not normally overridden; override
 /// -newTableCellView and/or -configureTableCellForValue:controller: instead.
-- (nonnull UITableViewCell *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
+- (nonnull UITableViewCell<RSPropertyEditorView> *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
+
+/// A helper function for instantiating a table view cell from a nib file.
+///
+/// This method only works for table view cells that are part of the Object Editor library as
+/// the nib file is loaded from the Object Editor’s resource bundle.
++ (nonnull UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
 /// This is a helper factory function used by -tableCellForValue:controller: to create a new
 /// UITableViewCell when needed.
-- (nonnull UITableViewCell *)newTableViewCell;
+- (nonnull UITableViewCell<RSPropertyEditorView> *)newTableViewCell;
 
 /// This is a helper function used by -tableCellForValue:controller: to configure a new
 /// UITableCellView. Subclasses that override -tableCellForValue:controller: may want to call super.
@@ -91,12 +105,7 @@
 /// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is
 /// selected. This is used when implementing a hierarchical editor when the user can drill-down into
 /// a sub-editor.
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
-
-/// Returns the height of the table cell for this editor. This is called by
-/// RSObjectEditorViewController’s -tableView:heightForRowAtIndexPath:. Returns 44.0f, which is the
-/// normal default table cell height.
-- (CGFloat)tableCellHeightForController:(nonnull RSObjectEditorViewController *)controller;
+- (void)tableCellSelected:(nonnull UITableViewCell<RSPropertyEditorView> *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
 
 /// Returns YES if thie property editor can become the first responder. The default is NO. If this
 /// property returns YES, then RSObjectEditorViewController may call -becomeFirstResponder.

@@ -78,6 +78,9 @@
 {
     [super viewDidLoad];
 
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     // Not sure when/where this is disabled, but without this, scrolling is disabled when used
     // in a popover.
     self.tableView.scrollEnabled = YES;
@@ -350,12 +353,6 @@
         [editor tableCellSelected:[tableView cellForRowAtIndexPath:indexPath] forValue:value controller:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
-    return [editor tableCellHeightForController:self];
 }
 
 #pragma mark UITableViewDataSource

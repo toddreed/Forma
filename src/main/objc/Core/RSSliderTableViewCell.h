@@ -7,7 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RSSliderTableViewCell : UITableViewCell
+#import "../PropertyEditors/RSPropertyEditor.h"
+
+
+@interface RSSliderTableViewCell : UITableViewCell <RSPropertyEditorView>
 
 @property (nonatomic, strong, readonly, nonnull) UISlider *slider;
 

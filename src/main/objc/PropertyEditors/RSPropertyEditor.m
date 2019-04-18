@@ -62,7 +62,7 @@
     // Subclasses will override this method to update the UI to reflect the new value
 }
 
-- (nonnull UITableViewCell *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (nonnull UITableViewCell<RSPropertyEditorView> *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     if (_tableViewCell == nil)
     {
@@ -72,32 +72,33 @@
     return _tableViewCell;
 }
 
-- (nonnull UITableViewCell *)newTableViewCell
++ (nonnull UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
 {
-    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    NSBundle *podBundle = [NSBundle bundleForClass:[self class]];
+    NSURL *bundleURL = [podBundle URLForResource:@"ObjectEditor" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:bundle];
+    return [nib instantiateWithOwner:self options:nil][0];
+}
+
+- (nonnull UITableViewCell<RSPropertyEditorView> *)newTableViewCell
+{
+    NSString *reason = [NSString stringWithFormat:@"%s must be implemented in %@ or a superclass", __func__, NSStringFromClass([self class])];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     _tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    UILabel *label = _tableViewCell.textLabel;
-    
-    label.text = _title;
-    label.adjustsFontSizeToFitWidth = YES;
-    label.minimumScaleFactor = 0.6;
-    
-    _tableViewCell.detailTextLabel.text = nil; // This is needed to vertically align textLabel in the centre on a device (it's not needed on the simulator).
+
+    UILabel *titleLabel = _tableViewCell.titleLabel;
+    if (titleLabel != nil)
+        titleLabel.text = _title;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)tableCellSelected:(nonnull UITableViewCell<RSPropertyEditorView> *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     // Do nothing here; subclass will override with appropriate action.
-}
-
-- (CGFloat)tableCellHeightForController:(RSObjectEditorViewController *)controller
-{
-    return 44.0f;
 }
 
 - (BOOL)selectable

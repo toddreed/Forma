@@ -7,16 +7,17 @@
 
 #import <UIKit/UIKit.h>
 
-extern const CGFloat kDescriptionLabelTopMargin;
-extern const CGFloat kDescriptionLabelLeftMargin;
-extern const CGFloat kDescriptionLabelRightMargin;
-extern const CGFloat kDescriptionLabelBottomMargin;
-extern const CGFloat kDescriptionLabelFontSize;
+#import "../PropertyEditors/RSPropertyEditor.h"
 
-@interface RSTextFieldTableViewCell : UITableViewCell
+
+@interface RSTextFieldTableViewCell : UITableViewCell <RSPropertyEditorView>
 
 @property (nonatomic, readonly, nonnull) UITextField *textField;
 @property (nonatomic, readonly, nonnull) UILabel *descriptionLabel;
 @property (nonatomic, readonly, nonnull) UIView *iconView;
+
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 
 @end

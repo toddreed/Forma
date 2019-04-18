@@ -7,6 +7,7 @@
 
 #import "RSDetailPropertyEditor.h"
 #import "../Core/NSObject+RSEditor.h"
+#import "../Core/RSDetailTableViewCell.h"
 
 
 @implementation RSDetailPropertyEditor
@@ -22,6 +23,11 @@
     _editedObject = aObject;
 
     return self;
+}
+
+- (UITableViewCell<RSPropertyEditorView> *)newTableViewCell
+{
+    return [[self class] instantiateTableViewCellFromNibOfClass:[RSDetailTableViewCell class]];
 }
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller

@@ -4,83 +4,141 @@
 // © Reaction Software Inc., 2013
 //
 
+#import <tgmath.h>
+
 #import "Symbolset/RSSymbolsetView.h"
 
 #import "RSTextFieldTableViewCell.h"
 
-const CGFloat kDescriptionLabelTopMargin = 38.0f;
-const CGFloat kIconLeftMargin = 20.0f;
-const CGFloat kDescriptionLabelLeftMargin = 40.0f;
-const CGFloat kDescriptionLabelRightMargin = 20.0f;
-const CGFloat kDescriptionLabelBottomMargin = 8.0f;
-const CGFloat kDescriptionLabelFontSize = 13.0f;
+static const CGFloat kHorizontalSpacing = 10;
+static const CGFloat kDescriptionLabelTopPadding = 8.0f;
 
 @implementation RSTextFieldTableViewCell
 
 #pragma mark - UIView
 
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    if (self)
+    {
+        [self commonTextFieldTableViewCellInitialization];
+    }
+    return self;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    const UIEdgeInsets insets = self.layoutMargins;
+    const CGSize titleLabelSizeConstraint = CGSizeMake(size.width-insets.left-insets.right, CGFLOAT_MAX);
+    const CGSize titleLabelSize = [_titleLabel sizeThatFits:titleLabelSizeConstraint];
+
+    if (_descriptionLabel.text == nil)
+    {
+        return CGSizeMake(size.width, titleLabelSize.height+insets.top+insets.bottom);
+    }
+    else
+    {
+        const CGSize descriptionLableSizeConstraint = CGSizeMake(size.width - insets.left - insets.right - _iconView.frame.size.width - kHorizontalSpacing, CGFLOAT_MAX);
+        CGSize descriptionLabelSize = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
+        return CGSizeMake(size.width, ceil(titleLabelSize.height + insets.top+insets.bottom + descriptionLabelSize.height + kDescriptionLabelTopPadding));
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
 
-    CGRect textLabelFrame = self.textLabel.frame;
-    textLabelFrame.origin = (CGPoint){ self.indentationWidth, 11 };
-    self.textLabel.frame = textLabelFrame;
+    const CGRect bounds = self.contentView.bounds;
+    const UIEdgeInsets insets = self.layoutMargins;
 
-    CGSize labelSize = [self.textLabel sizeThatFits:CGSizeZero];
-    CGRect contentBounds = self.contentView.bounds;
+    const CGRect titleLabelFrame = self.titleLabel.frame;
+    const CGSize titleLabelSize = [self.titleLabel sizeThatFits:bounds.size];
+
     CGRect textFieldFrame = _textField.frame;
 
-    if (labelSize.height == 0.0f)
+    if (titleLabelSize.width > bounds.size.width/2)
     {
-        textFieldFrame.origin= (CGPoint){ self.indentationWidth, 11 };
-        textFieldFrame.size.height = contentBounds.size.height - 20;
-        textFieldFrame.size.width = contentBounds.size.width - 20;
+        // The text field will be place below the title label
+        // TODO:
     }
     else
     {
-        textFieldFrame.size.height = labelSize.height;
-        textFieldFrame.origin.x = textLabelFrame.origin.x + labelSize.width + 10;
-        textFieldFrame.origin.y = textLabelFrame.origin.y;
-        textFieldFrame.size.width = contentBounds.size.width - textFieldFrame.origin.x - textLabelFrame.origin.x;
+        // the text field will be place next to the title label
+
+        self.titleLabel.frame = (CGRect) { CGPointMake(insets.left, insets.top), titleLabelSize };
+        if (titleLabelSize.height == 0)
+        {
+            textFieldFrame.origin = (CGPoint){ insets.left, insets.top };
+            textFieldFrame.size.height = _textField.intrinsicContentSize.height;
+            textFieldFrame.size.width = bounds.size.width - insets.left - insets.right;
+        }
+        else
+        {
+            textFieldFrame.origin.x = insets.left + titleLabelSize.width + kHorizontalSpacing;
+            textFieldFrame.origin.y = insets.top;
+            textFieldFrame.size.width = bounds.size.width - insets.left - insets.right - titleLabelSize.width - kHorizontalSpacing;
+            textFieldFrame.size.height = titleLabelSize.height;
+        }
+        _textField.frame = textFieldFrame;
+
     }
-    _textField.frame = textFieldFrame;
-
-    CGPoint descriptionLabelOrigin = (CGPoint){ kDescriptionLabelLeftMargin, kDescriptionLabelTopMargin };
-    CGRect bounds = self.contentView.bounds;
-    CGSize size = (CGSize) { bounds.size.width-kDescriptionLabelLeftMargin-kDescriptionLabelRightMargin, bounds.size.height-kDescriptionLabelTopMargin-kDescriptionLabelBottomMargin };
-    _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
-
     CGRect iconFrame = _iconView.frame;
-    iconFrame.origin = (CGPoint) { kIconLeftMargin, descriptionLabelOrigin.y };
+
+    iconFrame.origin = CGPointMake(insets.left, textFieldFrame.origin.y + textFieldFrame.size.height + kDescriptionLabelTopPadding);
     _iconView.frame = iconFrame;
+
+    CGPoint descriptionLabelOrigin = CGPointMake(insets.left + iconFrame.size.width + kHorizontalSpacing, iconFrame.origin.y);
+    CGSize size = CGSizeMake(bounds.size.width - insets.left -  insets.right - iconFrame.size.width - kHorizontalSpacing,
+                             bounds.size.height - insets.top - insets.bottom - titleLabelFrame.size.height - kDescriptionLabelTopPadding);
+    _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
 }
 
 #pragma mark - UITableViewCell
 
-- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+#pragma mark - RSTextFieldTableViewCell
 
-    self.indentationWidth = 20.0f;
+- (nonnull instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    [self commonTextFieldTableViewCellInitialization];
+    return self;
+}
+
+- (void)commonTextFieldTableViewCellInitialization
+{
+
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _titleLabel.adjustsFontForContentSizeCategory = YES;
+    _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _titleLabel.textColor = [UIColor grayColor];
+    _titleLabel.textAlignment = NSTextAlignmentLeft;
+    _titleLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.numberOfLines = 0;
+    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+
+    [self.contentView addSubview:_titleLabel];
 
     _textField = [[UITextField alloc] initWithFrame:CGRectZero];
+    _textField.adjustsFontForContentSizeCategory = YES;
     _textField.adjustsFontSizeToFitWidth = YES;
     _textField.clearsOnBeginEditing = NO;
-    _textField.font = [UIFont systemFontOfSize:17.0];
+    _textField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _textField.minimumFontSize = 10.0;
     _textField.textAlignment = NSTextAlignmentRight;
     _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
-
     [self.contentView addSubview:_textField];
 
     _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _descriptionLabel.font = [UIFont systemFontOfSize:kDescriptionLabelFontSize];
+    _descriptionLabel.adjustsFontForContentSizeCategory = YES;
+    _descriptionLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     _descriptionLabel.textColor = [UIColor grayColor];
     _descriptionLabel.textAlignment = NSTextAlignmentLeft;
     _descriptionLabel.backgroundColor = [UIColor clearColor];
     _descriptionLabel.hidden = YES;
     _descriptionLabel.numberOfLines = 0;
+    _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+
     [self.contentView addSubview:_descriptionLabel];
 
     RSSymbolsetView *cautionView = [[RSSymbolsetView alloc] initWithSymbol:RSSymbolAlert size:24];
@@ -88,8 +146,10 @@ const CGFloat kDescriptionLabelFontSize = 13.0f;
     _iconView = cautionView;
     _iconView.hidden = YES;
     [self.contentView addSubview:_iconView];
-
-    return self;
 }
+
+#pragma mark RSPropertyEditorView
+
+@synthesize titleLabel = _titleLabel;
 
 @end

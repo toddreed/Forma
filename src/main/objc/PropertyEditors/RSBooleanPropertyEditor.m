@@ -8,6 +8,7 @@
 #import "RSBooleanPropertyEditor.h"
 #import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSObjectEditorViewController_PropertyEditor.h"
+#import "../Core/RSSwitchTableViewCell.h"
 
 
 @interface RSObjectEditorViewController (RSBooleanPropertyEditor)
@@ -41,17 +42,15 @@
 
 - (nonnull UITableViewCell *)newTableViewCell
 {
-    UITableViewCell *cell = [super newTableViewCell];
-    UISwitch *toggle = [[UISwitch alloc] init];
-    cell.accessoryView = toggle;
-    return cell;
+    return [[self class] instantiateTableViewCellFromNibOfClass:[RSSwitchTableViewCell class]];
 }
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
-    
-    UISwitch *toggle = (UISwitch *)self.tableViewCell.accessoryView;
+
+    RSSwitchTableViewCell *cell = (RSSwitchTableViewCell *)self.tableViewCell;
+    UISwitch *toggle = cell.toggle;
     
     [toggle addTarget:controller action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
     toggle.tag = self.tag;
