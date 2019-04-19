@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "../PropertyEditors/RSPropertyEditor.h"
+#import "RSBaseTableViewCell.h"
 
 
-@interface RSSwitchTableViewCell : UITableViewCell <RSPropertyEditorView>
+@interface RSSwitchTableViewCell : RSBaseTableViewCell <RSPropertyEditorView>
 
-@property (nonatomic, strong, readonly, nonnull) UILabel *helpLabel;
 @property (nonatomic, strong, readonly, nonnull) UISwitch *toggle;
 
 @end

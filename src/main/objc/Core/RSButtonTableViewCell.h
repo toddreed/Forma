@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "../PropertyEditors/RSPropertyEditor.h"
+#import "RSBaseTableViewCell.h"
 
 
-@interface RSButtonTableViewCell : UITableViewCell <RSPropertyEditorView>
+@interface RSButtonTableViewCell : RSBaseTableViewCell <RSPropertyEditorView>
 
 @end
 

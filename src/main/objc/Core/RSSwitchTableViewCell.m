@@ -12,7 +12,6 @@
 @interface RSSwitchTableViewCell ()
 
 @property (nonatomic, strong, nonnull) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong, nonnull) IBOutlet UILabel *helpLabel;
 @property (nonatomic, strong, nonnull) IBOutlet UISwitch *toggle;
 
 @end
