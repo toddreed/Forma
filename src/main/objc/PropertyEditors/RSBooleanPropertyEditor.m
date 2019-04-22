@@ -49,7 +49,7 @@
 {
     [super configureTableCellForValue:value controller:controller];
 
-    RSSwitchTableViewCell *cell = (RSSwitchTableViewCell *)self.tableViewCell;
+    RSSwitchTableViewCell *cell = self.tableViewCell;
     UISwitch *toggle = cell.toggle;
     
     [toggle addTarget:controller action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];

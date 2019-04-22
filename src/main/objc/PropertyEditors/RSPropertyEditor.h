@@ -59,7 +59,7 @@
 /// and technical reasons for this: because KVO is used, it’s easier to keep a unique table cell for
 /// for each property so a KVO change notification can update the UI. The table cell is lazily
 /// created.
-@property (nonatomic, readonly, nonnull) UITableViewCell<RSPropertyEditorView > *tableViewCell;
+@property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSPropertyEditorView > *tableViewCell;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
 /// -tableCellSelected:forValue:controller: will not be invoked. The default value is NO.

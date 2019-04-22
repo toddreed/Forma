@@ -206,7 +206,7 @@
     
     if (_autoTextFieldNavigation)
     {
-        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)_lastTextInputPropertyEditor.tableViewCell;
+        RSTextFieldTableViewCell *cell = _lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
             cell.textField.returnKeyType = _lastTextInputPropertyEditor.returnKeyType;
@@ -216,7 +216,7 @@
     
     if (_autoTextFieldNavigation)
     {
-        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)_lastTextInputPropertyEditor.tableViewCell;
+        RSTextFieldTableViewCell *cell = _lastTextInputPropertyEditor.tableViewCell;
         
         if (cell)
             cell.textField.returnKeyType = _lastTextFieldReturnKeyType;
