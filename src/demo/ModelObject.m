@@ -90,6 +90,8 @@
 - (nonnull RSFloatPropertyEditor *)volumePropertyEditor
 {
     RSFloatPropertyEditor *editor = [[RSFloatPropertyEditor alloc] initWithKey:@"volume" title:NSLocalizedString(@"Volume", @"label")];
+    editor.minimumValueImage = [UIImage imageNamed:@"MinimumVolume"];
+    editor.maximumValueImage = [UIImage imageNamed:@"MaximumVolume"];
     return editor;
 }
 
