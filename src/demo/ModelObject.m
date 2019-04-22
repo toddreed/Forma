@@ -17,6 +17,7 @@
 #import "RSDetailPropertyEditor.h"
 #import "RSBooleanPropertyEditor.h"
 #import "RSButtonPropertyEditor.h"
+#import "RSGenericPropertyViewer.h"
 
 
 @implementation Account
@@ -90,10 +91,19 @@
 - (nonnull instancetype)init
 {
     self = [super init];
+    _bytesAvailable = 111234567890;
     _account = [[Account alloc] init];
     _volume = 0.6;
     _equalizer = YES;
     return self;
+}
+
+
+- (nonnull RSGenericPropertyViewer *)bytesAvailablePropertyEditor
+{
+    NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
+    RSGenericPropertyViewer *editor = [[RSGenericPropertyViewer alloc] initWithKey:@"bytesAvailable" title:@"Bytes Available" formatter:formatter];
+    return editor;
 }
 
 - (nonnull RSDetailPropertyEditor *)accountPropertyEditor
@@ -118,7 +128,8 @@
 
 - (nonnull NSArray *)propertyGroups
 {
-    NSArray *editors = @[[self accountPropertyEditor],
+    NSArray *editors = @[[self bytesAvailablePropertyEditor],
+                         [self accountPropertyEditor],
                          [self volumePropertyEditor],
                          [self equalizerPropertyEditor]];
     RSPropertyGroup *group = [[RSPropertyGroup alloc] initWithTitle:@"Settings" propertyEditorArray:editors];

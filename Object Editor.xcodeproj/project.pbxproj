@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0CE80F226E5F04000465AB /* RSGenericPropertyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0CE80E226E5F04000465AB /* RSGenericPropertyViewer.m */; };
 		5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */; };
 		5F352F67178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */; };
 		5F352F6A178E15FA006D263B /* RSArrayAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F69178E15F9006D263B /* RSArrayAutocompleteSource.m */; };
@@ -16,6 +17,7 @@
 		5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57463C226A739A00E14770 /* RSObjectEditor.m */; };
 		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */; };
+		5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */; };
 		5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */; };
 		5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */; };
 		5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
@@ -63,6 +65,8 @@
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.release.xcconfig"; sourceTree = "<group>"; };
 		5F0CE80C226A7CE3000465AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F0CE80D226E5F04000465AB /* RSGenericPropertyViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSGenericPropertyViewer.h; sourceTree = "<group>"; };
+		5F0CE80E226E5F04000465AB /* RSGenericPropertyViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSGenericPropertyViewer.m; sourceTree = "<group>"; };
 		5F14FF7C1ACE18EE003D0861 /* RSObjectEditorViewController_PropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectEditorViewController_PropertyEditor.h; sourceTree = "<group>"; };
 		5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteSource.h; sourceTree = "<group>"; };
 		5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteCell.h; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 		5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSButtonTableViewCell.h; sourceTree = "<group>"; };
 		5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSButtonTableViewCell.m; sourceTree = "<group>"; };
 		5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSButtonTableViewCell.xib; sourceTree = "<group>"; };
+		5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLabelTableViewCell.h; sourceTree = "<group>"; };
+		5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLabelTableViewCell.m; sourceTree = "<group>"; };
 		5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSDetailTableViewCell.h; sourceTree = "<group>"; };
 		5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSDetailTableViewCell.m; sourceTree = "<group>"; };
 		5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -186,8 +192,6 @@
 		5F6087EB1ACDE26900E0ED97 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
-				5F57463C226A739A00E14770 /* RSObjectEditor.m */,
 				5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */,
 				5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */,
 				5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */,
@@ -209,6 +213,12 @@
 				5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */,
 				5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */,
 				5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */,
+				5F0CE80D226E5F04000465AB /* RSGenericPropertyViewer.h */,
+				5F0CE80E226E5F04000465AB /* RSGenericPropertyViewer.m */,
+				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
+				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
+				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
+				5F57463C226A739A00E14770 /* RSObjectEditor.m */,
 				5F14FF7C1ACE18EE003D0861 /* RSObjectEditorViewController_PropertyEditor.h */,
 				5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */,
 				5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */,
@@ -521,6 +531,7 @@
 				5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */,
 				5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */,
 				5FF92FD0174AD615003211A0 /* RSButtonPropertyEditor.m in Sources */,
+				5F0CE80F226E5F04000465AB /* RSGenericPropertyViewer.m in Sources */,
 				5FF92FD1174AD615003211A0 /* RSDetailPropertyEditor.m in Sources */,
 				5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */,
 				5FF92FD4174AD615003211A0 /* RSObjectEditorViewController.m in Sources */,
@@ -532,6 +543,7 @@
 				5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */,
 				5FF92FDB174AD615003211A0 /* RSTextFieldTableViewCell.m in Sources */,
 				5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */,
+				5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */,
 				5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */,
 				5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */,
 				5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */,
