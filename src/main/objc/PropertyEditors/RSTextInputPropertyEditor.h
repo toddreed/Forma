@@ -32,7 +32,7 @@ typedef enum RSTextInputPropertyEditorStyle
 - (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle;
 
 @property (nonatomic, readonly, nullable) NSFormatter *formatter;
-@property (nonatomic) RSTextInputPropertyEditorStyle style;
+@property (nonatomic, readonly) RSTextInputPropertyEditorStyle style;
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) BOOL clearsOnBeginEditing;
