@@ -11,7 +11,6 @@
 @interface RSSliderTableViewCell ()
 
 @property (nonatomic, strong, nonnull) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong, nonnull) IBOutlet UILabel *helpLabel;
 @property (nonatomic, strong, nonnull) IBOutlet UISlider *slider;
 
 @end
