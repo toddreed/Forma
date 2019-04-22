@@ -13,14 +13,13 @@
 @interface RSTextFieldTableViewCell : UITableViewCell <RSPropertyEditorView>
 
 @property (nonatomic, readonly, nonnull) UITextField *textField;
-@property (nonatomic, readonly, nonnull) UILabel *descriptionLabel;
-@property (nonatomic, readonly, nonnull) UIImageView *iconImageView;
+@property (nonatomic, readonly, nonnull) UILabel *errorMessageLabel;
 
-/// Indicates whether the description label and icon image view are visible.
-@property (nonatomic) BOOL showDescription;
+/// Indicates whether the error message is visible.
+@property (nonatomic) BOOL showError;
 
 /// Whether the desciption label and icon image view should be included in the layout.
-@property (nonatomic) BOOL includeDescriptionInLayout;
+@property (nonatomic) BOOL includeErrorInLayout;
 
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier NS_DESIGNATED_INITIALIZER;

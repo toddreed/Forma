@@ -20,8 +20,8 @@ static const CGFloat kDefaultIconWidth = 21;
 
 @property (nonatomic, strong, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, nonnull) UITextField *textField;
-@property (nonatomic, strong, nonnull) UILabel *descriptionLabel;
-@property (nonatomic, strong, nonnull) UIImageView *iconImageView;
+@property (nonatomic, strong, nonnull) UILabel *errorMessageLabel;
+@property (nonatomic, strong, nonnull) UIImageView *errorImageView;
 
 @end
 
@@ -48,7 +48,7 @@ static const CGFloat kDefaultIconWidth = 21;
 
     UIFontMetrics *defaultFontMetrics = UIFontMetrics.defaultMetrics;
 
-    const CGFloat descriptionLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
+    const CGFloat errorLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
     const CGFloat horizontalSpacing = ceil([defaultFontMetrics scaledValueForValue:kDefaultHorizontalSpacing]);
     const CGFloat iconWidth = ceil([defaultFontMetrics scaledValueForValue:kDefaultIconWidth]);
 
@@ -59,11 +59,11 @@ static const CGFloat kDefaultIconWidth = 21;
     const CGSize titleLabelSizeConstraint = CGSizeMake(layoutWidth, CGFLOAT_MAX);
     const CGSize titleLabelSize = [_titleLabel sizeThatFits:titleLabelSizeConstraint];
 
-    if (_includeDescriptionInLayout)
+    if (_includeErrorInLayout)
     {
-        const CGSize descriptionLableSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
-        CGSize descriptionLabelSize = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
-        return CGSizeMake(size.width, ceil(topLayoutY + titleLabelSize.height + margins.bottom + descriptionLabelSize.height + descriptionLabelTopPadding));
+        const CGSize errorMessageLabelSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
+        CGSize errorMessageLabelSize = [_errorMessageLabel sizeThatFits:errorMessageLabelSizeConstraint];
+        return CGSizeMake(size.width, ceil(topLayoutY + titleLabelSize.height + margins.bottom + errorMessageLabelSize.height + errorLabelTopPadding));
     }
     else
     {
@@ -77,7 +77,7 @@ static const CGFloat kDefaultIconWidth = 21;
 
     UIFontMetrics *defaultFontMetrics = UIFontMetrics.defaultMetrics;
 
-    const CGFloat descriptionLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
+    const CGFloat errorMessageLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
     const CGFloat horizontalSpacing = ceil([defaultFontMetrics scaledValueForValue:kDefaultHorizontalSpacing]);
 
     const CGRect bounds = self.contentView.bounds;
@@ -102,22 +102,22 @@ static const CGFloat kDefaultIconWidth = 21;
     textFieldFrame.size.height = textFieldSize.height;
     _textField.frame = textFieldFrame;
 
-    if (_includeDescriptionInLayout)
+    if (_includeErrorInLayout)
     {
         const CGFloat iconWidth = ceil([defaultFontMetrics scaledValueForValue:kDefaultIconWidth]);
 
         CGRect iconImageViewFrame;
 
-        iconImageViewFrame.origin = CGPointMake(margins.left, titleLabelFrame.origin.y + titleLabelFrame.size.height + descriptionLabelTopPadding);
+        iconImageViewFrame.origin = CGPointMake(margins.left, titleLabelFrame.origin.y + titleLabelFrame.size.height + errorMessageLabelTopPadding);
         iconImageViewFrame.size = CGSizeMake(iconWidth, iconWidth);
-        _iconImageView.frame = iconImageViewFrame;
+        _errorImageView.frame = iconImageViewFrame;
 
-        const CGSize descriptionLableSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
-        const CGSize descriptionLabelSizeThatFits = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
+        const CGSize errorMessageLableSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
+        const CGSize errorMessageLabelSizeThatFits = [_errorMessageLabel sizeThatFits:errorMessageLableSizeConstraint];
 
-        CGPoint descriptionLabelOrigin = CGPointMake(margins.left + iconWidth + horizontalSpacing, iconImageViewFrame.origin.y);
-        CGSize size = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, ceil(descriptionLabelSizeThatFits.height));
-        _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
+        CGPoint errorMessageLabelOrigin = CGPointMake(margins.left + iconWidth + horizontalSpacing, iconImageViewFrame.origin.y);
+        CGSize size = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, ceil(errorMessageLabelSizeThatFits.height));
+        _errorMessageLabel.frame = (CGRect){ errorMessageLabelOrigin, size };
     }
 }
 
@@ -154,44 +154,44 @@ static const CGFloat kDefaultIconWidth = 21;
     _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
     [self.contentView addSubview:_textField];
 
-    _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _descriptionLabel.adjustsFontForContentSizeCategory = YES;
-    _descriptionLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    _descriptionLabel.textColor = [UIColor darkTextColor];
-    _descriptionLabel.textAlignment = NSTextAlignmentLeft;
-    _descriptionLabel.backgroundColor = [UIColor clearColor];
-    _descriptionLabel.hidden = YES;
-    _descriptionLabel.numberOfLines = 0;
-    _descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _errorMessageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _errorMessageLabel.adjustsFontForContentSizeCategory = YES;
+    _errorMessageLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    _errorMessageLabel.textColor = [UIColor darkTextColor];
+    _errorMessageLabel.textAlignment = NSTextAlignmentLeft;
+    _errorMessageLabel.backgroundColor = [UIColor clearColor];
+    _errorMessageLabel.hidden = YES;
+    _errorMessageLabel.numberOfLines = 0;
+    _errorMessageLabel.lineBreakMode = NSLineBreakByWordWrapping;
 
-    [self.contentView addSubview:_descriptionLabel];
+    [self.contentView addSubview:_errorMessageLabel];
 
     UIImage *image = [UIImage imageNamed:@"Error" inBundle:RSObjectEditor.bundle compatibleWithTraitCollection:nil];
-    _iconImageView = [[UIImageView alloc] initWithImage:image];
-    _iconImageView.image = image;
-    _iconImageView.hidden = YES;
-    [self.contentView addSubview:_iconImageView];
+    _errorImageView = [[UIImageView alloc] initWithImage:image];
+    _errorImageView.image = image;
+    _errorImageView.hidden = YES;
+    [self.contentView addSubview:_errorImageView];
 }
 
-- (void)setIncludeDescriptionInLayout:(BOOL)includeDescriptionInLayout
+- (void)setIncludeErrorInLayout:(BOOL)includeDescriptionInLayout
 {
-    if (includeDescriptionInLayout && !_includeDescriptionInLayout)
+    if (includeDescriptionInLayout && !_includeErrorInLayout)
     {
-        _includeDescriptionInLayout = includeDescriptionInLayout;
+        _includeErrorInLayout = includeDescriptionInLayout;
         [self setNeedsLayout];
     }
-    else if (!includeDescriptionInLayout && _includeDescriptionInLayout)
+    else if (!includeDescriptionInLayout && _includeErrorInLayout)
     {
-        _includeDescriptionInLayout = includeDescriptionInLayout;
+        _includeErrorInLayout = includeDescriptionInLayout;
         [self setNeedsLayout];
     }
 }
 
-- (void)setShowDescription:(BOOL)showDescription
+- (void)setShowError:(BOOL)showDescription
 {
-    _showDescription = showDescription;
-    _iconImageView.hidden = !showDescription;
-    _descriptionLabel.hidden = !showDescription;
+    _showError = showDescription;
+    _errorImageView.hidden = !showDescription;
+    _errorMessageLabel.hidden = !showDescription;
 }
 
 #pragma mark RSPropertyEditorView

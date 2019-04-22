@@ -63,7 +63,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
 
-    textFieldCell.includeDescriptionInLayout = showMessage;
+    textFieldCell.includeErrorInLayout = showMessage;
 
     [CATransaction begin];
 
@@ -72,12 +72,12 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         // We don't to display the message until the table cell animation is complete,
         // otherwise the message overlaps the cell below.
         [CATransaction setCompletionBlock: ^{
-            textFieldCell.showDescription = showMessage;
+            textFieldCell.showError = showMessage;
         }];
     }
     else
     {
-        textFieldCell.showDescription = showMessage;
+        textFieldCell.showError = showMessage;
     }
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -161,7 +161,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
                 self.textEditingMode = RSTextEditingModeEditing;
             return NO;
         }
-        else if (!cell.descriptionLabel.hidden)
+        else if (!cell.errorMessageLabel.hidden)
         {
             // If validation succeeds but we previously had shown the validation error message, hide it now.
             editor.message = nil;
@@ -226,7 +226,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithReuseIdentifier:nil];
     if (_message && _message.length > 0)
-        cell.descriptionLabel.text = _message;
+        cell.errorMessageLabel.text = _message;
 
     if (_autocompleteSource)
     {
@@ -378,7 +378,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
     if (cell)
-        cell.descriptionLabel.text = _message;
+        cell.errorMessageLabel.text = _message;
 }
 
 - (nullable id)validateTextInput:(nonnull NSString *)textInput error:(NSError **)error
