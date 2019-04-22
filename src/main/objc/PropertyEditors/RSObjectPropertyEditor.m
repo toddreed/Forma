@@ -7,6 +7,8 @@
 
 #import "RSObjectPropertyEditor.h"
 #import "../Core/NSObject+RSEditor.h"
+#import "../Core/RSLabelTableViewCell.h"
+
 
 @implementation RSObjectPropertyEditor
 
@@ -14,16 +16,22 @@
 
 - (void)propertyChangedToValue:(nullable id)newValue
 {
-    self.tableViewCell.detailTextLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
-                                               [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
+    RSLabelTableViewCell *cell = self.tableViewCell;
+    cell.valueLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
+                            [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
 }
+
+- (UITableViewCell<RSPropertyEditorView> *)newTableViewCell
+{
+    return [[RSLabelTableViewCell alloc] init];
+}
+
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
     [super configureTableCellForValue:value controller:controller];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.tableViewCell.detailTextLabel.text = ([value respondsToSelector:@selector(descriptionWithLocale:)] ?
-                                          [value descriptionWithLocale:[NSLocale currentLocale]] : [value description]);
+    [self propertyChangedToValue:value];
 }
 
 - (BOOL)selectable
