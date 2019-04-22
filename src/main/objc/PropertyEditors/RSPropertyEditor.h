@@ -92,7 +92,7 @@
 ///
 /// This method only works for table view cells that are part of the Object Editor library as
 /// the nib file is loaded from the Object Editor’s resource bundle.
-+ (nonnull UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
++ (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
 /// This is a helper factory function used by -tableCellForValue:controller: to create a new
 /// UITableViewCell when needed.

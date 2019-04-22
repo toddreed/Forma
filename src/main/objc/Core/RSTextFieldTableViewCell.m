@@ -6,12 +6,25 @@
 
 #import <tgmath.h>
 
-#import "Symbolset/RSSymbolsetView.h"
-
 #import "RSTextFieldTableViewCell.h"
+#import "RSObjectEditor.h"
+#import "RSBaseTableViewCell.h"
 
-static const CGFloat kHorizontalSpacing = 10;
-static const CGFloat kDescriptionLabelTopPadding = 8.0f;
+
+static const CGFloat kDefaultHorizontalSpacing = 10;
+static const CGFloat kDefaultDescriptionLabelTopPadding = 8;
+static const CGFloat kDefaultIconWidth = 21;
+
+
+@interface RSTextFieldTableViewCell ()
+
+@property (nonatomic, strong, nonnull) UILabel *titleLabel;
+@property (nonatomic, strong, nonnull) UITextField *textField;
+@property (nonatomic, strong, nonnull) UILabel *descriptionLabel;
+@property (nonatomic, strong, nonnull) UIImageView *iconImageView;
+
+@end
+
 
 @implementation RSTextFieldTableViewCell
 
@@ -29,19 +42,32 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    const UIEdgeInsets insets = self.layoutMargins;
-    const CGSize titleLabelSizeConstraint = CGSizeMake(size.width-insets.left-insets.right, CGFLOAT_MAX);
+    const CGFloat minimumHeight = RSBaseTableViewCell.minimumHeight;
+    const UIEdgeInsets margins = self.layoutMargins;
+    const CGFloat layoutWidth = size.width - margins.left - margins.right;
+
+    UIFontMetrics *defaultFontMetrics = UIFontMetrics.defaultMetrics;
+
+    const CGFloat descriptionLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
+    const CGFloat horizontalSpacing = ceil([defaultFontMetrics scaledValueForValue:kDefaultHorizontalSpacing]);
+    const CGFloat iconWidth = ceil([defaultFontMetrics scaledValueForValue:kDefaultIconWidth]);
+
+    // Layout the text field as if it were centered vertically in a minimum height cell…
+
+    const CGSize textFieldSize = [_textField sizeThatFits:CGSizeMake(layoutWidth, CGFLOAT_MAX)];
+    const CGFloat topLayoutY = ceil((minimumHeight-textFieldSize.height)/2);
+    const CGSize titleLabelSizeConstraint = CGSizeMake(layoutWidth, CGFLOAT_MAX);
     const CGSize titleLabelSize = [_titleLabel sizeThatFits:titleLabelSizeConstraint];
 
-    if (_descriptionLabel.text == nil)
+    if (_includeDescriptionInLayout)
     {
-        return CGSizeMake(size.width, titleLabelSize.height+insets.top+insets.bottom);
+        const CGSize descriptionLableSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
+        CGSize descriptionLabelSize = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
+        return CGSizeMake(size.width, ceil(topLayoutY + titleLabelSize.height + margins.bottom + descriptionLabelSize.height + descriptionLabelTopPadding));
     }
     else
     {
-        const CGSize descriptionLableSizeConstraint = CGSizeMake(size.width - insets.left - insets.right - _iconView.frame.size.width - kHorizontalSpacing, CGFLOAT_MAX);
-        CGSize descriptionLabelSize = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
-        return CGSizeMake(size.width, ceil(titleLabelSize.height + insets.top+insets.bottom + descriptionLabelSize.height + kDescriptionLabelTopPadding));
+        return CGSizeMake(size.width, ceil(MAX(minimumHeight, topLayoutY+titleLabelSize.height+margins.bottom)));
     }
 }
 
@@ -49,49 +75,50 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
 {
     [super layoutSubviews];
 
-    const CGRect bounds = self.contentView.bounds;
-    const UIEdgeInsets insets = self.layoutMargins;
+    UIFontMetrics *defaultFontMetrics = UIFontMetrics.defaultMetrics;
 
-    const CGRect titleLabelFrame = self.titleLabel.frame;
+    const CGFloat descriptionLabelTopPadding = ceil([defaultFontMetrics scaledValueForValue:kDefaultDescriptionLabelTopPadding]);
+    const CGFloat horizontalSpacing = ceil([defaultFontMetrics scaledValueForValue:kDefaultHorizontalSpacing]);
+
+    const CGRect bounds = self.contentView.bounds;
+    const CGFloat minimumHeight = RSBaseTableViewCell.minimumHeight;
+    const UIEdgeInsets margins = self.layoutMargins;
+    const CGFloat layoutWidth = bounds.size.width - margins.left - margins.right;
+
+    // Layout the text field as if it were centered vertically in a minimum height cell…
+
+    const CGSize textFieldSize = [_textField sizeThatFits:CGSizeMake(layoutWidth, CGFLOAT_MAX)];
+    const CGFloat topLayoutY = ceil((minimumHeight-textFieldSize.height)/2);
+
     const CGSize titleLabelSize = [self.titleLabel sizeThatFits:bounds.size];
+    const CGRect titleLabelFrame = (CGRect) { CGPointMake(margins.left, topLayoutY), titleLabelSize };
+    _titleLabel.frame = titleLabelFrame;
 
     CGRect textFieldFrame = _textField.frame;
 
-    if (titleLabelSize.width > bounds.size.width/2)
+    textFieldFrame.origin.x = margins.left + titleLabelSize.width + horizontalSpacing;
+    textFieldFrame.origin.y = topLayoutY;
+    textFieldFrame.size.width = bounds.size.width - margins.left - margins.right - titleLabelSize.width - horizontalSpacing;
+    textFieldFrame.size.height = textFieldSize.height;
+    _textField.frame = textFieldFrame;
+
+    if (_includeDescriptionInLayout)
     {
-        // The text field will be place below the title label
-        // TODO:
+        const CGFloat iconWidth = ceil([defaultFontMetrics scaledValueForValue:kDefaultIconWidth]);
+
+        CGRect iconImageViewFrame;
+
+        iconImageViewFrame.origin = CGPointMake(margins.left, titleLabelFrame.origin.y + titleLabelFrame.size.height + descriptionLabelTopPadding);
+        iconImageViewFrame.size = CGSizeMake(iconWidth, iconWidth);
+        _iconImageView.frame = iconImageViewFrame;
+
+        const CGSize descriptionLableSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
+        const CGSize descriptionLabelSizeThatFits = [_descriptionLabel sizeThatFits:descriptionLableSizeConstraint];
+
+        CGPoint descriptionLabelOrigin = CGPointMake(margins.left + iconWidth + horizontalSpacing, iconImageViewFrame.origin.y);
+        CGSize size = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, ceil(descriptionLabelSizeThatFits.height));
+        _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
     }
-    else
-    {
-        // the text field will be place next to the title label
-
-        self.titleLabel.frame = (CGRect) { CGPointMake(insets.left, insets.top), titleLabelSize };
-        if (titleLabelSize.height == 0)
-        {
-            textFieldFrame.origin = (CGPoint){ insets.left, insets.top };
-            textFieldFrame.size.height = _textField.intrinsicContentSize.height;
-            textFieldFrame.size.width = bounds.size.width - insets.left - insets.right;
-        }
-        else
-        {
-            textFieldFrame.origin.x = insets.left + titleLabelSize.width + kHorizontalSpacing;
-            textFieldFrame.origin.y = insets.top;
-            textFieldFrame.size.width = bounds.size.width - insets.left - insets.right - titleLabelSize.width - kHorizontalSpacing;
-            textFieldFrame.size.height = titleLabelSize.height;
-        }
-        _textField.frame = textFieldFrame;
-
-    }
-    CGRect iconFrame = _iconView.frame;
-
-    iconFrame.origin = CGPointMake(insets.left, textFieldFrame.origin.y + textFieldFrame.size.height + kDescriptionLabelTopPadding);
-    _iconView.frame = iconFrame;
-
-    CGPoint descriptionLabelOrigin = CGPointMake(insets.left + iconFrame.size.width + kHorizontalSpacing, iconFrame.origin.y);
-    CGSize size = CGSizeMake(bounds.size.width - insets.left -  insets.right - iconFrame.size.width - kHorizontalSpacing,
-                             bounds.size.height - insets.top - insets.bottom - titleLabelFrame.size.height - kDescriptionLabelTopPadding);
-    _descriptionLabel.frame = (CGRect){ descriptionLabelOrigin, size };
 }
 
 #pragma mark - UITableViewCell
@@ -110,7 +137,6 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleLabel.adjustsFontForContentSizeCategory = YES;
     _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    _titleLabel.textColor = [UIColor grayColor];
     _titleLabel.textAlignment = NSTextAlignmentLeft;
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.numberOfLines = 0;
@@ -131,7 +157,7 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
     _descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _descriptionLabel.adjustsFontForContentSizeCategory = YES;
     _descriptionLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    _descriptionLabel.textColor = [UIColor grayColor];
+    _descriptionLabel.textColor = [UIColor darkTextColor];
     _descriptionLabel.textAlignment = NSTextAlignmentLeft;
     _descriptionLabel.backgroundColor = [UIColor clearColor];
     _descriptionLabel.hidden = YES;
@@ -140,11 +166,32 @@ static const CGFloat kDescriptionLabelTopPadding = 8.0f;
 
     [self.contentView addSubview:_descriptionLabel];
 
-    RSSymbolsetView *cautionView = [[RSSymbolsetView alloc] initWithSymbol:RSSymbolAlert size:24];
-    cautionView.strokeColor = [UIColor grayColor];
-    _iconView = cautionView;
-    _iconView.hidden = YES;
-    [self.contentView addSubview:_iconView];
+    UIImage *image = [UIImage imageNamed:@"Error" inBundle:RSObjectEditor.bundle compatibleWithTraitCollection:nil];
+    _iconImageView = [[UIImageView alloc] initWithImage:image];
+    _iconImageView.image = image;
+    _iconImageView.hidden = YES;
+    [self.contentView addSubview:_iconImageView];
+}
+
+- (void)setIncludeDescriptionInLayout:(BOOL)includeDescriptionInLayout
+{
+    if (includeDescriptionInLayout && !_includeDescriptionInLayout)
+    {
+        _includeDescriptionInLayout = includeDescriptionInLayout;
+        [self setNeedsLayout];
+    }
+    else if (!includeDescriptionInLayout && _includeDescriptionInLayout)
+    {
+        _includeDescriptionInLayout = includeDescriptionInLayout;
+        [self setNeedsLayout];
+    }
+}
+
+- (void)setShowDescription:(BOOL)showDescription
+{
+    _showDescription = showDescription;
+    _iconImageView.hidden = !showDescription;
+    _descriptionLabel.hidden = !showDescription;
 }
 
 #pragma mark RSPropertyEditorView

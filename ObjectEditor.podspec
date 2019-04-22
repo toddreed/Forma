@@ -9,8 +9,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '11.0'
   s.header_dir   = 'ObjectEditor'
   s.header_mappings_dir = 'src/main/objc'
-  s.resource_bundle = { 'ObjectEditor' => ['src/main/objc/**/*.png', 'src/main/objc/**/*.xib'] }
-  s.dependency 'Symbolset', '~> 1.0'
+  s.resource_bundle = { 'ObjectEditor' => ['src/main/resources/**/*.xcassets', 'src/main/objc/**/*.xib'] }
   s.dependency 'UITheme', '~> 1.2'
 
   s.subspec 'Core' do |core|

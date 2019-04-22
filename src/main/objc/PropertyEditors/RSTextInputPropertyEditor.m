@@ -63,20 +63,21 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
 
+    textFieldCell.includeDescriptionInLayout = showMessage;
+
     [CATransaction begin];
+
     if (showMessage)
     {
         // We don't to display the message until the table cell animation is complete,
         // otherwise the message overlaps the cell below.
         [CATransaction setCompletionBlock: ^{
-            textFieldCell.descriptionLabel.hidden = NO;
-            textFieldCell.iconView.hidden = NO;
+            textFieldCell.showDescription = showMessage;
         }];
     }
     else
     {
-        textFieldCell.descriptionLabel.hidden = YES;
-        textFieldCell.iconView.hidden = YES;
+        textFieldCell.showDescription = showMessage;
     }
     [self.tableView beginUpdates];
     [self.tableView endUpdates];

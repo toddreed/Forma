@@ -6,6 +6,7 @@
 
 
 #import "RSPropertyEditor.h"
+#import "../Core/RSObjectEditor.h"
 
 
 @implementation RSPropertyEditor
@@ -72,12 +73,9 @@
     return _tableViewCell;
 }
 
-+ (nonnull UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
++ (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
 {
-    NSBundle *podBundle = [NSBundle bundleForClass:[self class]];
-    NSURL *bundleURL = [podBundle URLForResource:@"ObjectEditor" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
-    UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:bundle];
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:RSObjectEditor.bundle];
     return [nib instantiateWithOwner:self options:nil][0];
 }
 

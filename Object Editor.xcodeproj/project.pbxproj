@@ -13,6 +13,7 @@
 		5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */; };
 		5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E107C175D34670025BC1D /* RSNumberPropertyEditor.m */; };
 		5F574636226A45E300E14770 /* RSBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574635226A45E300E14770 /* RSBaseTableViewCell.m */; };
+		5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57463C226A739A00E14770 /* RSObjectEditor.m */; };
 		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */; };
 		5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */; };
@@ -61,6 +62,7 @@
 		14E09896A55D8B8FC9F53215 /* Pods-Object Editor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.debug.xcconfig"; sourceTree = "<group>"; };
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.release.xcconfig"; sourceTree = "<group>"; };
+		5F0CE80C226A7CE3000465AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F14FF7C1ACE18EE003D0861 /* RSObjectEditorViewController_PropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectEditorViewController_PropertyEditor.h; sourceTree = "<group>"; };
 		5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteSource.h; sourceTree = "<group>"; };
 		5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteCell.h; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 		5F4E107C175D34670025BC1D /* RSNumberPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSNumberPropertyEditor.m; sourceTree = "<group>"; };
 		5F574634226A45E300E14770 /* RSBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSBaseTableViewCell.h; sourceTree = "<group>"; };
 		5F574635226A45E300E14770 /* RSBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSBaseTableViewCell.m; sourceTree = "<group>"; };
+		5F57463B226A739A00E14770 /* RSObjectEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSObjectEditor.h; sourceTree = "<group>"; };
+		5F57463C226A739A00E14770 /* RSObjectEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSObjectEditor.m; sourceTree = "<group>"; };
 		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
 		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
 		5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -171,9 +175,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5F574638226A72BF00E14770 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				5F0CE80C226A7CE3000465AB /* Assets.xcassets */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		5F6087EB1ACDE26900E0ED97 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
+				5F57463C226A739A00E14770 /* RSObjectEditor.m */,
 				5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */,
 				5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */,
 				5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */,
@@ -294,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				5FF92FA5174AD5B6003211A0 /* objc */,
+				5F574638226A72BF00E14770 /* resources */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -338,7 +353,6 @@
 				5FF92F74174AD56B003211A0 /* Sources */,
 				5FF92F75174AD56B003211A0 /* Frameworks */,
 				5FF92F76174AD56B003211A0 /* CopyFiles */,
-				A66B697DF031A5E94412DBDE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -482,34 +496,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ObjectEditor/ObjectEditor.bundle",
-				"${PODS_ROOT}/Symbolset/src/main/resources/fonts/ss-standard.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ObjectEditor.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ss-standard.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A66B697DF031A5E94412DBDE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor-resources.sh",
-				"${PODS_ROOT}/Symbolset/src/main/resources/fonts/ss-standard.ttf",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ss-standard.ttf",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -519,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */,
 				5FF92FCA174AD615003211A0 /* NSManagedObject+RSEditor.m in Sources */,
 				5FF92FCB174AD615003211A0 /* NSObject+RSEditor.m in Sources */,
 				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,
