@@ -34,6 +34,7 @@
 
     RSObjectEditorViewController *viewController = [[RSObjectEditorViewController alloc] initWithObject:_modelObject];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationController.navigationBar.prefersLargeTitles = YES;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
