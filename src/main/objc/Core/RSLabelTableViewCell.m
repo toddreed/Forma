@@ -38,6 +38,11 @@ static const CGFloat kDefaultHorizontalSpacing = 10;
 
 #pragma mark - NSObject
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 - (nonnull instancetype)init
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -112,6 +117,7 @@ static const CGFloat kDefaultHorizontalSpacing = 10;
 
 - (void)commonLabelTableViewCellInitialization
 {
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _titleLabel.adjustsFontForContentSizeCategory = YES;
     _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -130,7 +136,12 @@ static const CGFloat kDefaultHorizontalSpacing = 10;
     [self.contentView addSubview:_valueLabel];
 }
 
-#pragma mark RSPropertyEditorView
+- (void)contentSizeCategoryDidChangeNotification:(NSNotification *)notfication
+{
+    _cachedLayout.valid = false;
+}
+
+#pragma RSPropertyEditorView
 
 @synthesize titleLabel = _titleLabel;
 
