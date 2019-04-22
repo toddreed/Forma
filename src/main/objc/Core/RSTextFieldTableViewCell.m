@@ -195,7 +195,7 @@ static const CGFloat kDefaultIconWidth = 21;
     _errorMessageLabel.hidden = !showDescription;
 }
 
-#pragma mark RSPropertyEditorView
+#pragma RSPropertyEditorView
 
 @synthesize titleLabel = _titleLabel;
 
