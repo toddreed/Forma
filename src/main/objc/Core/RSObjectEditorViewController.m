@@ -84,6 +84,8 @@
     // Not sure when/where this is disabled, but without this, scrolling is disabled when used
     // in a popover.
     self.tableView.scrollEnabled = YES;
+
+    self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
 }
 
 #pragma mark - UITableViewController
