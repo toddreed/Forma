@@ -55,7 +55,8 @@ static const CGFloat kDefaultIconWidth = 21;
     // Layout the text field as if it were centered vertically in a minimum height cell…
 
     const CGSize textFieldSize = [_textField sizeThatFits:CGSizeMake(layoutWidth, CGFLOAT_MAX)];
-    const CGFloat topLayoutY = ceil((minimumHeight-textFieldSize.height)/2);
+    const CGFloat topSpacing = ceil((minimumHeight-textFieldSize.height)/2);
+    const CGFloat bottomSpacing = minimumHeight-textFieldSize.height-topSpacing;
     const CGSize titleLabelSizeConstraint = CGSizeMake(layoutWidth, CGFLOAT_MAX);
     const CGSize titleLabelSize = [_titleLabel sizeThatFits:titleLabelSizeConstraint];
 
@@ -63,11 +64,11 @@ static const CGFloat kDefaultIconWidth = 21;
     {
         const CGSize errorMessageLabelSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
         CGSize errorMessageLabelSize = [_errorMessageLabel sizeThatFits:errorMessageLabelSizeConstraint];
-        return CGSizeMake(size.width, ceil(topLayoutY + titleLabelSize.height + margins.bottom + errorMessageLabelSize.height + errorLabelTopPadding));
+        return CGSizeMake(size.width, ceil(topSpacing + titleLabelSize.height + margins.bottom + errorMessageLabelSize.height + errorLabelTopPadding));
     }
     else
     {
-        return CGSizeMake(size.width, ceil(MAX(minimumHeight, topLayoutY+titleLabelSize.height+margins.bottom)));
+        return CGSizeMake(size.width, ceil(MAX(minimumHeight, topSpacing+titleLabelSize.height+bottomSpacing)));
     }
 }
 
