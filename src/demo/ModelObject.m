@@ -21,6 +21,21 @@
 
 @implementation Account
 
+- (BOOL)validatePassword:(inout id  _Nullable __autoreleasing *)ioPassword error:(out NSError * _Nullable __autoreleasing *)error
+{
+    NSString *password = *ioPassword;
+    if (password.length <= 6)
+    {
+        if (error != NULL)
+        {
+            NSString *description = NSLocalizedString(@"The password must be at least 7 characters long, and have high entropy.", @"error message");
+            *error = [NSError errorWithDomain:RSTextInputPropertyValidationErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: description}];
+        }
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark RSEditor
 
 - (nonnull RSTextInputPropertyEditor *)firstNamePropertyEditor
