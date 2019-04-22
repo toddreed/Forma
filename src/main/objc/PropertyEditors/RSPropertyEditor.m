@@ -54,7 +54,6 @@
         _target = nil;
         [editedObject removeObserver:self forKeyPath:_key];
         _observing = NO;
-        _tableViewCell = nil;
     }
 }
 
