@@ -26,7 +26,7 @@
     NSMutableDictionary<NSNumber *, RSPropertyEditor *> *_propertyEditorDictionary;
 
     // The next available unique tag that can be assigned to a RSPropertyEditor.
-    NSInteger nextTag;
+    NSInteger _nextTag;
 
     // State variable for tracking whether this object has been shown before. On the first view,
     // and when the style is RSObjectEditorViewStyleForm, and when the first editor is a
@@ -104,7 +104,7 @@
     if ((self = [super initWithStyle:UITableViewStyleGrouped]))
     {
         _propertyEditorDictionary = [[NSMutableDictionary alloc] initWithCapacity:10];
-        nextTag = 1;
+        _nextTag = 1;
         _autoTextFieldNavigation = YES;
         _lastTextFieldReturnKeyType = UIReturnKeyDone;
         _textEditingMode = RSTextEditingModeNotEditing;
@@ -163,7 +163,7 @@
             for (NSUInteger row = 0; row < rows; ++row)
             {
                 RSPropertyEditor *editor = group.propertyEditors[row];
-                editor.tag = nextTag++;
+                editor.tag = _nextTag++;
                 _propertyEditorDictionary[@(editor.tag)] = editor;
             }
         }
@@ -226,7 +226,7 @@
 
     for (RSPropertyEditor *propertyEditor in propertyGroup.propertyEditors)
     {
-        propertyEditor.tag = nextTag++;
+        propertyEditor.tag = _nextTag++;
         _propertyEditorDictionary[@(propertyEditor.tag)] = propertyEditor;
     }
 
