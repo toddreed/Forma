@@ -94,7 +94,7 @@
 
 #pragma mark - RSObjectEditorViewController
 
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject title:(nonnull NSString *)aTitle propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)aPropertyGroups
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
     if ((self = [super initWithStyle:UITableViewStyleGrouped]))
     {
@@ -104,14 +104,14 @@
         _lastTextFieldReturnKeyType = UIReturnKeyDone;
         _textEditingMode = RSTextEditingModeNotEditing;
 
-        [self setEditedObject:aObject title:aTitle propertyGroups:aPropertyGroups];
+        [self setEditedObject:object title:title propertyGroups:propertyGroups];
     }
     return self;
 }
 
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)object
 {
-    return [self initWithObject:aObject title:[aObject editorTitle] propertyGroups:[aObject propertyGroups]];
+    return [self initWithObject:object title:[object editorTitle] propertyGroups:[object propertyGroups]];
 }
 
 - (void)setShowCancelButton:(BOOL)f
@@ -133,9 +133,9 @@
     _showDoneButton = f;
 }
 
-- (void)p_setPropertyGroups:(NSArray *)aPropertyGroups
+- (void)p_setPropertyGroups:(NSArray *)propertyGroups
 {
-    if (_propertyGroups != aPropertyGroups)
+    if (_propertyGroups != propertyGroups)
     {
         // Stop observing any currently configured property editors
         NSEnumerator *enumerator = [_propertyEditorDictionary objectEnumerator];
@@ -143,7 +143,7 @@
         for (RSPropertyEditor *propertyEditor in enumerator)
             [propertyEditor stopObserving:_editedObject];
         
-        _propertyGroups = [[NSMutableArray alloc] initWithArray:aPropertyGroups];
+        _propertyGroups = [[NSMutableArray alloc] initWithArray:propertyGroups];
         
         // Setup up the propertyEditorDictionary and assign tag values to editors.
         [_propertyEditorDictionary removeAllObjects];
@@ -168,9 +168,9 @@
     }
 }
 
-- (void)setEditedObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)aPropertyGroups
+- (void)setEditedObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
-    [self p_setPropertyGroups:aPropertyGroups];
+    [self p_setPropertyGroups:propertyGroups];
 
     _editedObject = object;
     
@@ -258,7 +258,7 @@
     return nil;
 }
 
-- (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)aEditor
+- (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)targetEditor
 {
     NSUInteger sections = _propertyGroups.count;
     BOOL editorFound = NO;
@@ -277,7 +277,7 @@
                 if ([editor isKindOfClass:[RSTextInputPropertyEditor class]])
                     return [NSIndexPath indexPathForRow:row inSection:section];
             }
-            else if (editor == aEditor)
+            else if (editor == targetEditor)
                 editorFound = YES;
         }
     }

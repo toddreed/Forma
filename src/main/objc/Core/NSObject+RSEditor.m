@@ -33,21 +33,21 @@
     return cls;
 }
 
-- (nullable RSPropertyEditor *)propertyEditorForKey:(NSString *)aKey
+- (nullable RSPropertyEditor *)propertyEditorForKey:(NSString *)key
 {
-    const char *typeEncoding = [[self class] rs_objCTypeOfProperty:aKey];
+    const char *typeEncoding = [[self class] rs_objCTypeOfProperty:key];
 
     Class propertyEditorClass = nil;
     
     if (typeEncoding[0] == '@')
-        propertyEditorClass = [[[self class] rs_classOfProperty:aKey] propertyEditorClass];
+        propertyEditorClass = [[[self class] rs_classOfProperty:key] propertyEditorClass];
     else
         propertyEditorClass = [[self class] propertyEditorClassForObjcType:typeEncoding];
     
     if (propertyEditorClass != nil)
     {
-        NSString *propertyTitle = [aKey rs_stringByConvertingCamelCaseToTitleCase];
-        return [[propertyEditorClass alloc] initWithKey:aKey title:propertyTitle];
+        NSString *propertyTitle = [key rs_stringByConvertingCamelCaseToTitleCase];
+        return [[propertyEditorClass alloc] initWithKey:key title:propertyTitle];
     }
     else
         return nil;

@@ -15,12 +15,12 @@
     NSObject *_editedObject;
 }
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle object:(nonnull NSObject *)aObject
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object
 {
-    self = [super initWithKey:nil title:aTitle];
+    self = [super initWithKey:nil title:title];
     NSParameterAssert(self != nil);
 
-    _editedObject = aObject;
+    _editedObject = object;
 
     return self;
 }

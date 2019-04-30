@@ -57,12 +57,12 @@ typedef enum RSObjectEditorViewStyle
 @property (nonatomic) BOOL showDoneButton;
 
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder UNAVAILABLE_ATTRIBUTE;
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject title:(nonnull NSString *)aTitle propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)aPropertyGroups NS_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)aObject;
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithObject:(nonnull NSObject *)object;
 
 - (void)setEditedObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
 

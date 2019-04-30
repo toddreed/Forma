@@ -20,12 +20,12 @@
 
 #pragma mark - RSButtonPropertyEditor
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)aTitle action:(void (^_Nullable)(RSObjectEditorViewController *))aAction
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(RSObjectEditorViewController *))action
 {
-    self = [super initWithKey:nil title:aTitle];
+    self = [super initWithKey:nil title:title];
     NSParameterAssert(self != nil);
 
-    _action = aAction;
+    _action = action;
 
     return self;
 }

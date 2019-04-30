@@ -34,11 +34,11 @@
 
 #pragma mark - RSFloatPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(NSString *)aTitle
+- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(NSString *)title
 {
-    NSParameterAssert(aKey != nil);
+    NSParameterAssert(key != nil);
 
-    self = [super initWithKey:aKey title:aTitle];
+    self = [super initWithKey:key title:title];
     NSParameterAssert(self != nil);
 
     _minimumValue = 0.0f;

@@ -193,9 +193,9 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 #pragma mark RSPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)aKey title:(nonnull NSString *)aTitle
+- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title
 {
-    return [self initWithKey:aKey title:aTitle style:RSTextInputPropertyEditorStyleSettings formatter:nil];
+    return [self initWithKey:key title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
 - (void)propertyChangedToValue:(nullable id)newValue
@@ -326,17 +326,17 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 @synthesize returnKeyType = _returnKeyType;
 @synthesize secureTextEntry = _secureTextEntry;
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
 {
-    return [self initWithKey:aKey title:aTitle style:aStyle formatter:nil];
+    return [self initWithKey:key title:title style:style formatter:nil];
 }
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(nullable NSFormatter *)formatter
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style formatter:(nullable NSFormatter *)formatter
 {
-    self = [super initWithKey:aKey title:aTitle];
+    self = [super initWithKey:key title:title];
 
     _formatter = formatter;
-    _style = aStyle;
+    _style = style;
     _autocapitalizationType = UITextAutocapitalizationTypeNone;
     _autocorrectionType = UITextAutocorrectionTypeNo;
     _spellCheckingType = UITextSpellCheckingTypeDefault;
@@ -346,25 +346,25 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     _returnKeyType = UIReturnKeyNext;
     _secureTextEntry = NO;
     _clearButtonMode = UITextFieldViewModeWhileEditing;
-    _textAlignment = aStyle == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
+    _textAlignment = style == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
     _clearsOnBeginEditing = NO;
-    _placeholder = aStyle == RSTextInputPropertyEditorStyleSettings ? nil : aTitle;
+    _placeholder = style == RSTextInputPropertyEditorStyleSettings ? nil : title;
 
     return self;
 }
 
-- (void)setStyle:(RSTextInputPropertyEditorStyle)aStyle
+- (void)setStyle:(RSTextInputPropertyEditorStyle)style
 {
-    switch (aStyle)
+    switch (style)
     {
         case RSTextInputPropertyEditorStyleSettings:
-            _style = aStyle;
+            _style = style;
             _textAlignment = NSTextAlignmentRight;
             _placeholder = nil;
             break;
 
         case RSTextInputPropertyEditorStyleForm:
-            _style = aStyle;
+            _style = style;
             _textAlignment = NSTextAlignmentLeft;
             _placeholder = self.title;
             break;

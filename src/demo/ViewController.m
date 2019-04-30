@@ -19,9 +19,9 @@
     ModelObject *_modelObject;
 }
 
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)aDecoder
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder
 {
-    self = [super initWithCoder:aDecoder];
+    self = [super initWithCoder:decoder];
     if (self)
     {
         _modelObject = [[ModelObject alloc] init];

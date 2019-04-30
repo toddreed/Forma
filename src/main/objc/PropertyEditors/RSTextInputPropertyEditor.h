@@ -27,9 +27,9 @@ typedef enum RSTextInputPropertyEditorStyle
 ///
 /// @param formatter The formatter to convert between the text strings and property values. If this
 ///   is nil, it is assumed that no conversion is needed (i.e. the property is a NSString).
-- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle formatter:(nullable NSFormatter *)formatter NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style formatter:(nullable NSFormatter *)formatter NS_DESIGNATED_INITIALIZER;
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)aKey title:(nonnull NSString *)aTitle style:(RSTextInputPropertyEditorStyle)aStyle;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style;
 
 @property (nonatomic, readonly, nullable) NSFormatter *formatter;
 @property (nonatomic, readonly) RSTextInputPropertyEditorStyle style;
