@@ -10,6 +10,9 @@
 
 
 @implementation RSPropertyEditor
+{
+    __kindof UITableViewCell<RSPropertyEditorView> *_tableViewCell;
+}
 
 #pragma mark NSKeyValueObserving
 
@@ -37,6 +40,13 @@
     return self;
 }
 
+- (UITableViewCell<RSPropertyEditorView> *)tableViewCell
+{
+    if (_tableViewCell == nil)
+        _tableViewCell = [self newTableViewCell];
+    return _tableViewCell;
+}
+
 - (void)startObserving:(nonnull NSObject *)editedObject
 {
     if (_key && !_observing)
@@ -62,16 +72,6 @@
     // Subclasses will override this method to update the UI to reflect the new value
 }
 
-- (nonnull UITableViewCell<RSPropertyEditorView> *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
-{
-    if (_tableViewCell == nil)
-    {
-        _tableViewCell = [self newTableViewCell];
-        [self configureTableCellForValue:value controller:controller];
-    }
-    return _tableViewCell;
-}
-
 + (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
 {
     UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:RSObjectEditor.bundle];
@@ -86,9 +86,10 @@
 
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
 {
-    _tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UITableViewCell<RSPropertyEditorView> *cell = self.tableViewCell;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    UILabel *titleLabel = _tableViewCell.titleLabel;
+    UILabel *titleLabel = cell.titleLabel;
     if (titleLabel != nil)
         titleLabel.text = _title;
 }

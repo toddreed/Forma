@@ -54,12 +54,13 @@
 /// Tracks whether this property editor is currently observing the edited object’s key property.
 @property (nonatomic, readonly) BOOL observing;
 
-/// The table view cell containing the UI for editing the property value. RSPropertyEditors don’t
-/// reuse UITableViewCells as is otherwise common with UITableView programming. There are practical
-/// and technical reasons for this: because KVO is used, it’s easier to keep a unique table cell for
-/// for each property so a KVO change notification can update the UI. The table cell is lazily
-/// created.
-@property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSPropertyEditorView > *tableViewCell;
+/// The table view cell containing the UI for editing the property value. RSPropertyEditors
+/// don’t reuse UITableViewCells as is otherwise common with UITableView programming. There are
+/// practical and technical reasons for this: because KVO is used, it’s easier to keep a unique
+/// table cell for for each property so a KVO change notification can update the UI. The table
+/// cell is lazily created. Subclasses should not override this property, and instead override
+/// `-newTableViewCell`.
+@property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSPropertyEditorView> *tableViewCell;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
 /// -tableCellSelected:forValue:controller: will not be invoked. The default value is NO.
@@ -83,23 +84,18 @@
 /// observed property’s value.
 - (void)propertyChangedToValue:(nullable id)newValue;
 
-/// Do not call this directly. This is invoked by RSObjectEditorViewController to obtain a
-/// UITableCellView for this editor. This method is not normally overridden; override
-/// -newTableCellView and/or -configureTableCellForValue:controller: instead.
-- (nonnull UITableViewCell<RSPropertyEditorView> *)tableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
-
 /// A helper function for instantiating a table view cell from a nib file.
 ///
 /// This method only works for table view cells that are part of the Object Editor library as
 /// the nib file is loaded from the Object Editor’s resource bundle.
 + (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
-/// This is a helper factory function used by -tableCellForValue:controller: to create a new
-/// UITableViewCell when needed.
-- (nonnull UITableViewCell<RSPropertyEditorView> *)newTableViewCell;
+/// This is a helper factory function used to create a new UITableViewCell when needed.
+- (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)newTableViewCell;
 
-/// This is a helper function used by -tableCellForValue:controller: to configure a new
-/// UITableCellView. Subclasses that override -tableCellForValue:controller: may want to call super.
+/// This method is invoked by RSObjectEditorViewController (from it’s
+/// -tableView:cellForRowAtIndexPath: method) and should not be called directly. Subclasses
+/// should override this method to perform any required table view cell configuration.
 - (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
 
 /// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is

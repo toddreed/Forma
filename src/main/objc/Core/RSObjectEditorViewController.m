@@ -361,9 +361,9 @@
     // Note that editor.key can be nil for pseudo property editors (like
     // RSDetailPropertyEditor and RSButtonPropertyEditor).
     id value = editor.key == nil ? nil : [_editedObject valueForKey:editor.key];
-    UITableViewCell *cell = [editor tableCellForValue:value controller:self];
+    [editor configureTableCellForValue:value controller:self];
     [editor startObserving:_editedObject];
-    return cell;
+    return editor.tableViewCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
