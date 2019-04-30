@@ -33,9 +33,19 @@
 {
 
     RSObjectEditorViewController *viewController = [[RSObjectEditorViewController alloc] initWithObject:_modelObject];
+    viewController.showDoneButton = YES;
+    viewController.completionBlock = ^(BOOL cancelled) {
+        [self editingCompleted:cancelled];
+    };
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.navigationBar.prefersLargeTitles = YES;
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)editingCompleted:(BOOL)cancelled
+{
+    NSLog(@"Object editor completed; was cancelled: %d", cancelled);
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

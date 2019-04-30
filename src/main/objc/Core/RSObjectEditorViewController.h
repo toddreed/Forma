@@ -28,7 +28,11 @@ typedef enum RSObjectEditorViewStyle
     RSObjectEditorViewStyleForm
 } RSObjectEditorViewStyle;
 
-@interface RSObjectEditorViewController : UITableViewController <UITextFieldDelegate>
+
+/// RSObjectEditorViewController is a view controller for provides an interface for modifying
+/// the values of object properties. It’s appropriate for implementing the UI for settings,
+/// inspectors, and forms.
+@interface RSObjectEditorViewController : UITableViewController
 
 @property(nonatomic, weak, nullable) id<RSObjectEditorViewControllerDelegate> delegate;
 
@@ -37,9 +41,6 @@ typedef enum RSObjectEditorViewStyle
 @property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
 
 @property(nonatomic) RSObjectEditorViewStyle style;
-
-/// The object instance being edited.
-@property(nonatomic, strong, readonly, nonnull) NSObject *editedObject;
 
 /// If autoTextFieldNavigation is YES, then the return key for all the text fields, except the last,
 /// is set to UIReturnKeyNext; the last text field's return key is set to the value of the
@@ -61,10 +62,10 @@ typedef enum RSObjectEditorViewStyle
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithObject:(nonnull NSObject *)object;
 
-- (void)setEditedObject:(nonnull NSObject *)object title:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
+- (void)setTitle:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
 
 /// Forces any in-progress editing to complete. Notably, if the text field is the first responder,
 /// it will resign first responder status, causing the text field's value to be committed to the

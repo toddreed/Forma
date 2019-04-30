@@ -47,7 +47,7 @@
     if (propertyEditorClass != nil)
     {
         NSString *propertyTitle = [key rs_stringByConvertingCamelCaseToTitleCase];
-        return [[propertyEditorClass alloc] initWithKey:key title:propertyTitle];
+        return [[propertyEditorClass alloc] initWithKey:key ofObject:self title:propertyTitle];
     }
     else
         return nil;

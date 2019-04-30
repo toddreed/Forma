@@ -44,7 +44,6 @@ typedef enum RSTextEditingMode
 
 @property (nonatomic) RSTextEditingMode textEditingMode;
 
-- (nonnull RSPropertyEditor *)p_propertyEditorForTag:(NSInteger)tag;
 - (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath;
 - (nullable RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor;
 - (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)editor;

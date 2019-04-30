@@ -22,7 +22,7 @@
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(RSObjectEditorViewController *))action
 {
-    self = [super initWithKey:nil title:title];
+    self = [super initWithKey:nil ofObject:nil title:title];
     NSParameterAssert(self != nil);
 
     _action = action;
@@ -30,9 +30,9 @@
     return self;
 }
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:value controller:controller];
+    [super configureTableViewCellForController:controller];
     [self styleButtonLabel];
 }
 
@@ -41,7 +41,7 @@
     return _action != nil;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
 {
     if (_action)
         _action(controller);

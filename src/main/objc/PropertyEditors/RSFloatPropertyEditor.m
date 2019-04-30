@@ -7,38 +7,18 @@
 
 #import "RSFloatPropertyEditor.h"
 #import "../Core/RSObjectEditorViewController.h"
-#import "../Core/RSObjectEditorViewController_PropertyEditor.h"
 #import "../Core/RSSliderTableViewCell.h"
-
-
-@interface RSObjectEditorViewController (RSFloatPropertyEditor)
-
-- (void)sliderChangedValue:(nonnull id)sender;
-
-@end
-
-
-@implementation RSObjectEditorViewController (RSFloatPropertyEditor)
-
-- (void)sliderChangedValue:(nonnull id)sender
-{
-    UISlider *slider = (UISlider *)sender;
-    RSPropertyEditor *editor = [self p_propertyEditorForTag:slider.tag];
-    [self.editedObject setValue:@(slider.value) forKey:editor.key];
-}
-
-@end
 
 
 @implementation RSFloatPropertyEditor
 
 #pragma mark - RSFloatPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(NSString *)title
+- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(NSString *)title
 {
     NSParameterAssert(key != nil);
 
-    self = [super initWithKey:key title:title];
+    self = [super initWithKey:key ofObject:object title:title];
     NSParameterAssert(self != nil);
 
     _minimumValue = 0.0f;
@@ -58,17 +38,21 @@
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSliderTableViewCell class]];
 }
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:value controller:controller];
+    [super configureTableViewCellForController:controller];
 
     UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
 
-    [slider addTarget:controller action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
     slider.minimumValueImage = _minimumValueImage;
     slider.maximumValueImage = _maximumValueImage;
-    slider.value = [value floatValue];
-    slider.tag = self.tag;
+}
+
+- (void)sliderChangedValue:(nonnull id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    [self.object setValue:@(slider.value) forKey:self.key];
 }
 
 @end

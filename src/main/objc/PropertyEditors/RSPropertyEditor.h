@@ -37,7 +37,7 @@
 @interface RSPropertyEditor : NSObject
 
 /// The object this editor modifies.
-@property (nonatomic, weak, readonly, nullable) id target;
+@property (nonatomic, readonly, nullable) id object;
 
 /// The key use to update the model object with KVC. This is always non-nil for “normal” property
 /// editors, but some special “pseudo” property editors have a nil key; RSDetailPropertyEditor and
@@ -46,10 +46,6 @@
 
 /// The UI title displayed in the editor.
 @property (nonatomic, copy, nonnull) NSString *title;
-
-/// This is used by RSObjectEditorViewController to associate view controls with this instance. It is managed by
-/// RSObjectEditorViewController.
-@property (nonatomic) NSInteger tag;
 
 /// Tracks whether this property editor is currently observing the edited object’s key property.
 @property (nonatomic, readonly) BOOL observing;
@@ -63,22 +59,11 @@
 @property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSPropertyEditorView> *tableViewCell;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
-/// -tableCellSelected:forValue:controller: will not be invoked. The default value is NO.
+/// -controllerDidSelectEditor: will not be invoked. The default value is NO.
 @property (nonatomic, readonly) BOOL selectable;
 
 - (nullable instancetype)init UNAVAILABLE_ATTRIBUTE;
-- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title NS_DESIGNATED_INITIALIZER;
-
-/// Do not call this directly. This is called by RSObjectEditorViewController when it creates a UI
-/// for this property editor. This enables key-value observing on the property, allowing the
-/// receiver to automatically update the UI if the model object changes. If you override this, you
-/// must call super.
-- (void)startObserving:(nonnull NSObject *)editedObject;
-
-/// Do not call this directly. This is called by RSObjectEditorViewController when there's no longer
-/// a UI for this property editor. This disables key-value observing on the property and releases
-/// the table view cell. If you override this, you must call super.
-- (void)stopObserving:(nonnull NSObject *)editedObject;
+- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title NS_DESIGNATED_INITIALIZER;
 
 /// This method must be overridden by subclasses to update their UI to reflect a change in the
 /// observed property’s value.
@@ -90,18 +75,24 @@
 /// the nib file is loaded from the Object Editor’s resource bundle.
 + (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
-/// This is a helper factory function used to create a new UITableViewCell when needed.
+/// This is a helper factory function used to create a new UITableViewCell when needed. This is
+/// invoked the first time the `tableViewCell` property is accessed.
 - (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)newTableViewCell;
+
+/// This method is invoked by RSObjectEditorViewController (from it’s
+/// -tableView:cellForRowAtIndexPath: method) and should not be called directly. This method
+/// should not be subclassed.
+- (nonnull __kindof UITableViewCell<RSPropertyEditorView> *)tableViewCellForController:(nonnull RSObjectEditorViewController *)controller;
 
 /// This method is invoked by RSObjectEditorViewController (from it’s
 /// -tableView:cellForRowAtIndexPath: method) and should not be called directly. Subclasses
 /// should override this method to perform any required table view cell configuration.
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller;
 
 /// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is
 /// selected. This is used when implementing a hierarchical editor when the user can drill-down into
 /// a sub-editor.
-- (void)tableCellSelected:(nonnull UITableViewCell<RSPropertyEditorView> *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller;
+- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller;
 
 /// Returns YES if this property editor can become the first responder. The default is NO. If this
 /// property returns YES, then RSObjectEditorViewController may call -becomeFirstResponder.

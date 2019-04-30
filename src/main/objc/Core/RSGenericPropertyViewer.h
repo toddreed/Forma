@@ -21,6 +21,6 @@
 ///
 /// @param formatter The formatter to convert between the text strings and property values. If this
 ///   is nil, it is assumed that no conversion is needed (i.e. the property is a NSString).
-- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title formatter:(nullable NSFormatter *)formatter NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key  ofObject:(nullable id)object title:(nonnull NSString *)title formatter:(nullable NSFormatter *)formatter NS_DESIGNATED_INITIALIZER;
 
 @end

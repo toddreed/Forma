@@ -41,7 +41,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)firstNamePropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"firstName" title:NSLocalizedString(@"First Name", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"firstName" ofObject:self title:NSLocalizedString(@"First Name", @"label")];
     editor.autocapitalizationType = UITextAutocapitalizationTypeWords;
     editor.placeholder = NSLocalizedString(@"First Name", @"text field placeholder");
 
@@ -53,7 +53,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)lastNamePropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"lastName" title:NSLocalizedString(@"Last Name", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"lastName" ofObject:self title:NSLocalizedString(@"Last Name", @"label")];
     editor.autocapitalizationType = UITextAutocapitalizationTypeWords;
     editor.placeholder = NSLocalizedString(@"Last Name", @"text field placeholder");
     return editor;
@@ -61,7 +61,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)passwordPropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"password" title:NSLocalizedString(@"Password", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"password" ofObject:self title:NSLocalizedString(@"Password", @"label")];
     editor.autocapitalizationType = UITextAutocapitalizationTypeNone;
     editor.spellCheckingType = UITextSpellCheckingTypeNo;
     editor.secureTextEntry = YES;
@@ -102,7 +102,7 @@
 - (nonnull RSGenericPropertyViewer *)bytesAvailablePropertyEditor
 {
     NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
-    RSGenericPropertyViewer *editor = [[RSGenericPropertyViewer alloc] initWithKey:@"bytesAvailable" title:@"Bytes Available" formatter:formatter];
+    RSGenericPropertyViewer *editor = [[RSGenericPropertyViewer alloc] initWithKey:@"bytesAvailable" ofObject:self title:@"Bytes Available" formatter:formatter];
     return editor;
 }
 
@@ -114,7 +114,7 @@
 
 - (nonnull RSFloatPropertyEditor *)volumePropertyEditor
 {
-    RSFloatPropertyEditor *editor = [[RSFloatPropertyEditor alloc] initWithKey:@"volume" title:NSLocalizedString(@"Volume", @"label")];
+    RSFloatPropertyEditor *editor = [[RSFloatPropertyEditor alloc] initWithKey:@"volume" ofObject:self title:NSLocalizedString(@"Volume", @"label")];
     editor.minimumValueImage = [UIImage imageNamed:@"MinimumVolume"];
     editor.maximumValueImage = [UIImage imageNamed:@"MaximumVolume"];
     return editor;
@@ -122,7 +122,7 @@
 
 - (nonnull RSBooleanPropertyEditor *)equalizerPropertyEditor
 {
-    RSBooleanPropertyEditor *editor = [[RSBooleanPropertyEditor alloc] initWithKey:@"equalizer" title:@"Equalizer"];
+    RSBooleanPropertyEditor *editor = [[RSBooleanPropertyEditor alloc] initWithKey:@"equalizer" ofObject:self title:@"Equalizer"];
     return editor;
 }
 

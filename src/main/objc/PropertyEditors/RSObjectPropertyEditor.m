@@ -27,11 +27,10 @@
 }
 
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:value controller:controller];
+    [super configureTableViewCellForController:controller];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    [self propertyChangedToValue:value];
 }
 
 - (BOOL)selectable
@@ -39,9 +38,10 @@
     return YES;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
+    id value = [self.object valueForKey:self.key];
     RSObjectEditorViewController *objectEditorViewController = [value objectEditorViewController];
     [navigationController pushViewController:objectEditorViewController animated:YES];
 }

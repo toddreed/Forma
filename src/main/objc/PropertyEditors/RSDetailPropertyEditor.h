@@ -15,7 +15,7 @@
 /// method is not defined, -description.
 @interface RSDetailPropertyEditor : RSPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object NS_DESIGNATED_INITIALIZER;
 
 @end

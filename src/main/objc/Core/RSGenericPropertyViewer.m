@@ -14,9 +14,9 @@
 
 #pragma mark - RSPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title
+- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title
 {
-    return [self initWithKey:key title:title formatter:nil];
+    return [self initWithKey:key ofObject:object title:title formatter:nil];
 }
 
 - (void)propertyChangedToValue:(nullable id)newValue
@@ -42,17 +42,11 @@
     return [[RSLabelTableViewCell alloc] init];
 }
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
-{
-    [super configureTableCellForValue:value controller:controller];
-    [self propertyChangedToValue:value];
-}
-
 #pragma mark - RSGenericPropertyViewer
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title formatter:(nullable NSFormatter *)formatter
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title formatter:(nullable NSFormatter *)formatter
 {
-    self = [super initWithKey:key title:title];
+    self = [super initWithKey:key ofObject:object title:title];
     _formatter = formatter;
     return self;
 }

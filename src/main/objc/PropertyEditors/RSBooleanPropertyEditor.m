@@ -7,27 +7,7 @@
 
 #import "RSBooleanPropertyEditor.h"
 #import "../Core/RSObjectEditorViewController.h"
-#import "../Core/RSObjectEditorViewController_PropertyEditor.h"
 #import "../Core/RSSwitchTableViewCell.h"
-
-
-@interface RSObjectEditorViewController (RSBooleanPropertyEditor)
-
-- (void)switchChangedValue:(nonnull id)sender;
-
-@end
-
-
-@implementation RSObjectEditorViewController (RSBooleanPropertyEditor)
-
-- (void)switchChangedValue:(nonnull id)sender
-{
-    UISwitch *toggle = (UISwitch *)sender;
-    RSPropertyEditor *editor = [self p_propertyEditorForTag:toggle.tag];
-    [self.editedObject setValue:@(toggle.on) forKey:editor.key];
-}
-
-@end
 
 
 @implementation RSBooleanPropertyEditor
@@ -36,7 +16,8 @@
 
 - (void)propertyChangedToValue:(nullable id)newValue
 {
-    UISwitch *toggle = (UISwitch *)self.tableViewCell.accessoryView;
+    RSSwitchTableViewCell *cell = self.tableViewCell;
+    UISwitch *toggle = cell.toggle;
     [toggle setOn:[newValue boolValue] animated:YES];
 }
 
@@ -45,16 +26,20 @@
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSwitchTableViewCell class]];
 }
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:value controller:controller];
+    [super configureTableViewCellForController:controller];
 
     RSSwitchTableViewCell *cell = self.tableViewCell;
     UISwitch *toggle = cell.toggle;
     
-    [toggle addTarget:controller action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
-    toggle.tag = self.tag;
-    toggle.on = [value boolValue];
+    [toggle addTarget:self action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)switchChangedValue:(nonnull id)sender
+{
+    UISwitch *toggle = (UISwitch *)sender;
+    [self.object setValue:@(toggle.on) forKey:self.key];
 }
 
 @end

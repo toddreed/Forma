@@ -15,163 +15,11 @@
 
 NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 
-@interface RSObjectEditorViewController (RSTextInputPropertyEditor)
 
-- (void)textChanged:(nonnull id)sender;
-
-@end
-
-
-@implementation RSObjectEditorViewController (RSTextInputPropertyEditor)
-
-- (void)textChanged:(nonnull id)sender
-{
-    if (self.textEditingMode != RSTextEditingModeCancelling)
-    {
-        UITextField *textField = (UITextField *)sender;
-        RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
-
-        NSError *error;
-        id value = [editor validateTextInput:textField.text error:&error];
-
-        if (value)
-        {
-            [self.editedObject setValue:value forKey:editor.key];
-        }
-        else
-        {
-            if (self.textEditingMode != RSTextEditingModeFinishingForced)
-            {
-                editor.message = error.localizedDescription;
-                [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
-            }
-        }
-    }
-}
-
-- (void)adjustTableViewCellSize:(nonnull UITableViewCell *)cell showMessage:(BOOL)showMessage
-{
-    // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
-    //
-    // Note that the following doesn't work:
-    //
-    //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    //
-    // This requires the text field to resign first responder because the table view will delete
-    // and insert the cell.
-
-    RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
-
-    textFieldCell.includeErrorInLayout = showMessage;
-
-    [CATransaction begin];
-
-    if (showMessage)
-    {
-        // We don't to display the message until the table cell animation is complete,
-        // otherwise the message overlaps the cell below.
-        [CATransaction setCompletionBlock: ^{
-            textFieldCell.showError = showMessage;
-        }];
-    }
-    else
-    {
-        textFieldCell.showError = showMessage;
-    }
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    [CATransaction commit];
-
-}
-
-#pragma mark UITextFieldDelegate
-
-- (void)textFieldDidBeginEditing:(nonnull UITextField *)textField
-{
-    self.textEditingMode = RSTextEditingModeEditing;
-    self.activeTextField = textField;
-}
-
-- (void)textFieldDidEndEditing:(nonnull UITextField *)textField
-{
-    self.textEditingMode = RSTextEditingModeNotEditing;
-    self.activeTextField = nil;
-}
-
-- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField
-{
-    // Note that resigning first responder will cause -textShouldEndEditing: to be invoked, which
-    // validates the text input. If validation fails, -resignFirstResponder will return NO.
-    if ([textField resignFirstResponder])
-    {
-        if (textField.returnKeyType == UIReturnKeyNext)
-        {
-            RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
-            NSIndexPath *nextTextInputIndexPath = [self p_findNextTextInputAfterEditor:editor];
-
-            if (nextTextInputIndexPath != nil)
-            {
-                [self.tableView scrollToRowAtIndexPath:nextTextInputIndexPath
-                                      atScrollPosition:UITableViewScrollPositionBottom
-                                              animated:YES];
-
-                RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:nextTextInputIndexPath];
-                [cell.textField becomeFirstResponder];
-                return NO;
-            }
-        }
-        else if (textField.returnKeyType == UIReturnKeyDone ||
-                 textField.returnKeyType == UIReturnKeyGo ||
-                 textField.returnKeyType == UIReturnKeySearch)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate objectEditorViewControllerDidEnd:self cancelled:NO];
-            });
-        }
-
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)textFieldShouldEndEditing:(nonnull UITextField *)textField
-{
-    NSAssert(self.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
-
-    if (self.textEditingMode != RSTextEditingModeCancelling && self.textEditingMode != RSTextEditingModeFinishingForced)
-    {
-        RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[self p_propertyEditorForTag:textField.tag];
-        NSError *error;
-
-        id value = [editor validateTextInput:textField.text error:&error];
-
-        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)editor.tableViewCell;
-
-        if (value == nil)
-        {
-            editor.message = error.localizedDescription;
-            [self adjustTableViewCellSize:editor.tableViewCell showMessage:YES];
-
-            // If -finishEditingForce: was called, textEditMode will be
-            // RSTextEditingModeFinishing. We set textEditingMode back to
-            // RSTextEditingModeEditing to indicate that -finishEditingForce: should
-            // return NO.
-            if (self.textEditingMode == RSTextEditingModeFinishing)
-                self.textEditingMode = RSTextEditingModeEditing;
-            return NO;
-        }
-        else if (!cell.errorMessageLabel.hidden)
-        {
-            // If validation succeeds but we previously had shown the validation error message, hide it now.
-            editor.message = nil;
-            [self adjustTableViewCellSize:editor.tableViewCell showMessage:NO];
-        }
-    }
-    return YES;
-}
+@interface RSTextInputPropertyEditor () <UITextFieldDelegate>
 
 @end
+
 
 @implementation RSTextInputPropertyEditor
 {
@@ -189,13 +37,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     // An optional extra string used to display instructions or validation error messages.
     NSString *_message;
+
+    __weak RSObjectEditorViewController *_objectEditorViewController;
 }
 
 #pragma mark RSPropertyEditor
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key title:(nonnull NSString *)title
+- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title
 {
-    return [self initWithKey:key title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
+    return [self initWithKey:key ofObject:object title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
 - (void)propertyChangedToValue:(nullable id)newValue
@@ -208,7 +58,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     {
         NSString *text;
 
-        if (newValue == [NSNull null])
+        if (newValue == nil)
             text = @"";
         else if (_formatter)
             text = [_formatter stringForObjectValue:newValue];
@@ -247,9 +97,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return cell;
 }
 
-- (void)configureTableCellForValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
-    [super configureTableCellForValue:value controller:controller];
+    [super configureTableViewCellForController:controller];
+
+    _objectEditorViewController = controller;
 
     if (_style == RSTextInputPropertyEditorStyleForm)
     {
@@ -259,14 +111,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     }
 
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
-    NSString *textValue = _formatter ? [_formatter stringForObjectValue:value] : (NSString *)value;
 
-    textField.delegate = controller;
-    [textField addTarget:controller action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
+    textField.delegate = self;
+    [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
 
     textField.placeholder = _placeholder;
-    textField.text = textValue;
-    textField.tag = self.tag;
 
     textField.clearsOnBeginEditing = _clearsOnBeginEditing;
     textField.clearButtonMode = _clearButtonMode;
@@ -293,10 +142,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.secureTextEntry = _secureTextEntry;
 }
 
-- (void)tableCellSelected:(nonnull UITableViewCell *)cell forValue:(nullable id)value controller:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
 {
-    UITextField *textField = ((RSTextFieldTableViewCell *)cell).textField;
-    [textField becomeFirstResponder];
+    RSTextFieldTableViewCell *cell = self.tableViewCell;
+    [cell.textField becomeFirstResponder];
 }
 
 - (BOOL)selectable
@@ -326,14 +175,14 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 @synthesize returnKeyType = _returnKeyType;
 @synthesize secureTextEntry = _secureTextEntry;
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
 {
-    return [self initWithKey:key title:title style:style formatter:nil];
+    return [self initWithKey:key ofObject:object title:title style:style formatter:nil];
 }
 
-- (nonnull instancetype)initWithKey:(nonnull NSString *)key title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style formatter:(nullable NSFormatter *)formatter
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style formatter:(nullable NSFormatter *)formatter
 {
-    self = [super initWithKey:key title:title];
+    self = [super initWithKey:key ofObject:object title:title];
 
     _formatter = formatter;
     _style = style;
@@ -409,10 +258,158 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     else
         value = textInput;
 
-    if ([self.target validateValue:&value forKey:self.key error:error])
+    if ([self.object validateValue:&value forKey:self.key error:error])
         return value;
     else
         return nil;
+}
+
+- (void)textChanged:(nonnull id)sender
+{
+    if (_objectEditorViewController.textEditingMode != RSTextEditingModeCancelling)
+    {
+        UITextField *textField = (UITextField *)sender;
+
+        NSError *error;
+        id value = [self validateTextInput:textField.text error:&error];
+
+        if (value)
+        {
+            [self.object setValue:value forKey:self.key];
+        }
+        else
+        {
+            if (_objectEditorViewController.textEditingMode != RSTextEditingModeFinishingForced)
+            {
+                self.message = error.localizedDescription;
+                [self adjustTableViewCellSize:self.tableViewCell inTableView:_objectEditorViewController.tableView showMessage:YES];
+            }
+        }
+    }
+}
+
+- (void)adjustTableViewCellSize:(nonnull UITableViewCell *)cell inTableView:(nonnull UITableView *)tableView showMessage:(BOOL)showMessage
+{
+    // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+    //
+    // Note that the following doesn't work:
+    //
+    //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //
+    // This requires the text field to resign first responder because the table view will delete
+    // and insert the cell.
+
+    RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
+
+    textFieldCell.includeErrorInLayout = showMessage;
+
+    [CATransaction begin];
+
+    if (showMessage)
+    {
+        // We don't to display the message until the table cell animation is complete,
+        // otherwise the message overlaps the cell below.
+        [CATransaction setCompletionBlock: ^{
+            textFieldCell.showError = showMessage;
+        }];
+    }
+    else
+    {
+        textFieldCell.showError = showMessage;
+    }
+    [tableView beginUpdates];
+    [tableView endUpdates];
+    [CATransaction commit];
+
+}
+
+#pragma mark UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(nonnull UITextField *)textField
+{
+    _objectEditorViewController.textEditingMode = RSTextEditingModeEditing;
+    _objectEditorViewController.activeTextField = textField;
+}
+
+- (void)textFieldDidEndEditing:(nonnull UITextField *)textField
+{
+    _objectEditorViewController.textEditingMode = RSTextEditingModeNotEditing;
+    _objectEditorViewController.activeTextField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField
+{
+    // Note that resigning first responder will cause -textShouldEndEditing: to be invoked, which
+    // validates the text input. If validation fails, -resignFirstResponder will return NO.
+    if ([textField resignFirstResponder])
+    {
+        if (textField.returnKeyType == UIReturnKeyNext)
+        {
+            NSIndexPath *nextTextInputIndexPath = [_objectEditorViewController p_findNextTextInputAfterEditor:self];
+
+            if (nextTextInputIndexPath != nil)
+            {
+                [_objectEditorViewController.tableView scrollToRowAtIndexPath:nextTextInputIndexPath
+                                                             atScrollPosition:UITableViewScrollPositionBottom
+                                                                     animated:YES];
+
+                RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)[_objectEditorViewController.tableView cellForRowAtIndexPath:nextTextInputIndexPath];
+                [cell.textField becomeFirstResponder];
+                return NO;
+            }
+        }
+        else if (textField.returnKeyType == UIReturnKeyDone ||
+                 textField.returnKeyType == UIReturnKeyGo ||
+                 textField.returnKeyType == UIReturnKeySearch)
+        {
+            id<RSObjectEditorViewControllerDelegate> delegate = _objectEditorViewController.delegate;
+            if (delegate != nil)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [delegate objectEditorViewControllerDidEnd:self->_objectEditorViewController cancelled:NO];
+                });
+            }
+        }
+
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)textFieldShouldEndEditing:(nonnull UITextField *)textField
+{
+    NSAssert(_objectEditorViewController.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
+
+    if (_objectEditorViewController.textEditingMode != RSTextEditingModeCancelling && _objectEditorViewController.textEditingMode != RSTextEditingModeFinishingForced)
+    {
+        NSError *error;
+
+        id value = [self validateTextInput:textField.text error:&error];
+
+        RSTextFieldTableViewCell *cell = self.tableViewCell;
+
+        if (value == nil)
+        {
+            self.message = error.localizedDescription;
+            [self adjustTableViewCellSize:cell inTableView:_objectEditorViewController.tableView showMessage:YES];
+
+            // If -finishEditingForce: was called, textEditMode will be
+            // RSTextEditingModeFinishing. We set textEditingMode back to
+            // RSTextEditingModeEditing to indicate that -finishEditingForce: should
+            // return NO.
+            if (_objectEditorViewController.textEditingMode == RSTextEditingModeFinishing)
+                _objectEditorViewController.textEditingMode = RSTextEditingModeEditing;
+            return NO;
+        }
+        else if (!cell.errorMessageLabel.hidden)
+        {
+            // If validation succeeds but we previously had shown the validation error message, hide it now.
+            self.message = nil;
+            [self adjustTableViewCellSize:cell inTableView:_objectEditorViewController.tableView showMessage:NO];
+        }
+    }
+    return YES;
 }
 
 @end
