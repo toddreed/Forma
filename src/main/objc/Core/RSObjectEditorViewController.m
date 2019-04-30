@@ -69,11 +69,6 @@
     [self finishEditingForce:YES];
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAll;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
