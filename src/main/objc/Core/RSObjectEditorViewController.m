@@ -237,7 +237,7 @@
 - (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyGroup *group = _propertyGroups[indexPath.section];
-    RSPropertyEditor *editor = (group.propertyEditors)[indexPath.row];
+    RSPropertyEditor *editor = group.propertyEditors[indexPath.row];
     return editor;
 }
 
