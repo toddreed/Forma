@@ -34,7 +34,7 @@
     
     if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm)
     {
-        RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        RSPropertyEditor *editor = [self propertyEditorForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if ([editor canBecomeFirstResponder])
             [editor becomeFirstResponder];
     }
@@ -112,19 +112,19 @@
     _showDoneButton = f;
 }
 
-- (void)p_setPropertyGroups:(NSArray *)propertyGroups
+- (void)setPropertyGroups:(NSArray *)propertyGroups
 {
     if (_propertyGroups != propertyGroups)
     {
         _propertyGroups = [[NSMutableArray alloc] initWithArray:propertyGroups];
-        _lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
+        _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
         _activeTextField = nil;
     }
 }
 
 - (void)setTitle:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups
 {
-    [self p_setPropertyGroups:propertyGroups];
+    [self setPropertyGroups:propertyGroups];
 
     self.title = title;
     
@@ -147,7 +147,7 @@
             cell.textField.returnKeyType = _lastTextInputPropertyEditor.returnKeyType;
     }
     
-    _lastTextInputPropertyEditor = [self p_findLastTextInputPropertyEditor];
+    _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
     
     if (_autoTextFieldNavigation)
     {
@@ -161,14 +161,14 @@
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (nonnull RSPropertyEditor *)p_propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath
+- (nonnull RSPropertyEditor *)propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath
 {
     RSPropertyGroup *group = _propertyGroups[indexPath.section];
     RSPropertyEditor *editor = group.propertyEditors[indexPath.row];
     return editor;
 }
 
-- (nullable RSTextInputPropertyEditor *)p_findLastTextInputPropertyEditor
+- (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor
 {
     for (NSInteger section = _propertyGroups.count-1; section >= 0; --section)
     {
@@ -185,7 +185,7 @@
     return nil;
 }
 
-- (nullable NSIndexPath *)p_findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)targetEditor
+- (nullable NSIndexPath *)findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)targetEditor
 {
     NSUInteger sections = _propertyGroups.count;
     BOOL editorFound = NO;
@@ -256,7 +256,7 @@
 
 - (nullable NSIndexPath *)tableView:(nonnull UITableView *)tableView willSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
+    RSPropertyEditor *editor = [self propertyEditorForIndexPath:indexPath];
     
     if (editor.selectable)
         return indexPath;
@@ -267,7 +267,7 @@
 
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
+    RSPropertyEditor *editor = [self propertyEditorForIndexPath:indexPath];
     
     if (editor.selectable)
         [editor controllerDidSelectEditor:self];
@@ -279,7 +279,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSPropertyEditor *editor = [self p_propertyEditorForIndexPath:indexPath];
+    RSPropertyEditor *editor = [self propertyEditorForIndexPath:indexPath];
     UITableViewCell *cell = [editor tableViewCellForController:self];
     return cell;
 }
