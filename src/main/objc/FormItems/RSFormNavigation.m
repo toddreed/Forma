@@ -36,8 +36,8 @@
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
-    RSObjectEditorViewController *objectEditorViewController = [_object objectEditorViewController];
-    [navigationController pushViewController:objectEditorViewController animated:YES];
+    UIViewController<RSFormContainer> *formViewController = [_object formViewController];
+    [navigationController pushViewController:formViewController animated:YES];
 }
 
 #pragma mark - RSFormNavigation

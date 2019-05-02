@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RSObjectEditorViewController.h"
+#import "RSFormViewController.h"
 
 /// The RSForm category on NSObject provides default support for editing objects with
-/// RSObjectEditorViewController. Override these methods to customize the editing UI for a model
+/// RSFormViewController. Override these methods to customize the editing UI for a model
 /// object.
 @interface NSObject (RSForm)
 
@@ -22,6 +22,6 @@
 @property (nonatomic, copy, readonly, nonnull) RSForm *form;
 @property (nonatomic, copy, readonly, nonnull) NSString *formTitle;
 @property (nonatomic, copy, readonly, nonnull) NSArray<RSFormSection *> *formSections;
-@property (nonatomic, readonly, strong, nonnull) RSObjectEditorViewController *objectEditorViewController;
+@property (nonatomic, readonly, strong, nonnull) UIViewController<RSFormContainer> *formViewController;
 
 @end

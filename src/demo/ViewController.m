@@ -9,7 +9,7 @@
 #import "NSObject+RSForm.h"
 
 #import "ViewController.h"
-#import "RSObjectEditorViewController.h"
+#import "RSFormViewController.h"
 #import "ModelObject.h"
 
 @interface ViewController ()
@@ -33,7 +33,7 @@
 
 - (IBAction)editButtonPressed:(id)sender
 {
-    RSObjectEditorViewController *viewController = [[RSObjectEditorViewController alloc] initWithForm:_modelObject.form];
+    RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:_modelObject.form];
     viewController.showDoneButton = YES;
     viewController.completionBlock = ^(BOOL cancelled) {
         [self editingCompleted:cancelled];

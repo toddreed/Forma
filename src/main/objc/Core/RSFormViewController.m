@@ -1,18 +1,18 @@
 //
-// RSObjectEditorViewController.m
+// RSFormViewController.m
 //
 // © Reaction Software Inc., 2013
 //
 
 
-#import "RSObjectEditorViewController.h"
+#import "RSFormViewController.h"
 
 #import "NSObject+RSForm.h"
 #import "../FormItems/RSTextInputPropertyEditor.h"
 #import "RSTextFieldTableViewCell.h"
 
 
-@implementation RSObjectEditorViewController
+@implementation RSFormViewController
 {
     RSForm *_form;
 
@@ -31,7 +31,7 @@
 {
     [super viewDidAppear:animated];
     
-    if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm)
+    if (!_previouslyViewed)
     {
         RSFormItem *formItem = [_form formItemForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if ([formItem canBecomeFirstResponder])
@@ -72,7 +72,7 @@
                                  userInfo:nil];
 }
 
-#pragma mark - RSObjectEditorViewController
+#pragma mark - RSFormViewController
 
 - (nonnull instancetype)initWithForm:(nonnull RSForm *)form
 {

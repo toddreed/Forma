@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelObject.h"
-#import "RSObjectEditorViewController.h"
+#import "RSFormViewController.h"
 #import "RSFormItem.h"
 #import "RSTextInputPropertyEditor.h"
 #import "RSArrayAutocompleteSource.h"

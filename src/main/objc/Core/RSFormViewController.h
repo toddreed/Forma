@@ -1,5 +1,5 @@
 //
-// RSObjectEditorViewController.h
+// RSFormViewController.h
 //
 // © Reaction Software Inc., 2013
 //
@@ -12,27 +12,18 @@
 #import "RSFormContainer.h"
 
 
-@class RSObjectEditorViewController;
+@class RSFormViewController;
 @class RSTextInputPropertyEditor;
 
 
-typedef enum RSObjectEditorViewStyle
-{
-    RSObjectEditorViewStyleSettings,
-    RSObjectEditorViewStyleForm
-} RSObjectEditorViewStyle;
-
-
-/// RSObjectEditorViewController is a view controller for provides an interface for modifying
+/// RSFormViewController is a view controller for provides an interface for modifying
 /// the values of object properties. It’s appropriate for implementing the UI for settings,
 /// inspectors, and forms.
-@interface RSObjectEditorViewController : UITableViewController <RSFormContainer>
+@interface RSFormViewController : UITableViewController <RSFormContainer>
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
 /// Cancel button. This provides the same functionality as the `delegate` property.
 @property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
-
-@property (nonatomic) RSObjectEditorViewStyle style;
 
 @property (nonatomic) BOOL showCancelButton;
 @property (nonatomic) BOOL showDoneButton;

@@ -34,8 +34,8 @@
 {
     UINavigationController *navigationController = controller.navigationController;
     id value = [self.object valueForKey:self.key];
-    RSObjectEditorViewController *objectEditorViewController = [value objectEditorViewController];
-    [navigationController pushViewController:objectEditorViewController animated:YES];
+    UIViewController<RSFormContainer> *formViewController = [value formViewController];
+    [navigationController pushViewController:formViewController animated:YES];
 }
 
 #pragma mark - RSPropertyFormItem

@@ -79,9 +79,9 @@
     return @[formSection];
 }
 
-- (nonnull RSObjectEditorViewController *)objectEditorViewController
+- (nonnull UIViewController<RSFormContainer> *)formViewController
 {
-    return [[RSObjectEditorViewController alloc] initWithForm:self.form];
+    return [[RSFormViewController alloc] initWithForm:self.form];
 }
 
 @end

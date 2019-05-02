@@ -32,7 +32,7 @@
 		5FF92FD0174AD615003211A0 /* RSFormButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB3174AD615003211A0 /* RSFormButton.m */; };
 		5FF92FD1174AD615003211A0 /* RSFormNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB5174AD615003211A0 /* RSFormNavigation.m */; };
 		5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB7174AD615003211A0 /* RSFloatPropertyEditor.m */; };
-		5FF92FD4174AD615003211A0 /* RSObjectEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */; };
+		5FF92FD4174AD615003211A0 /* RSFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBB174AD615003211A0 /* RSFormViewController.m */; };
 		5FF92FD5174AD615003211A0 /* RSObjectPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */; };
 		5FF92FD7174AD615003211A0 /* RSFormSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC1174AD615003211A0 /* RSFormSection.m */; };
 		5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */; };
@@ -129,8 +129,8 @@
 		5FF92FB5174AD615003211A0 /* RSFormNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFormNavigation.m; sourceTree = "<group>"; };
 		5FF92FB6174AD615003211A0 /* RSFloatPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFloatPropertyEditor.h; sourceTree = "<group>"; };
 		5FF92FB7174AD615003211A0 /* RSFloatPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFloatPropertyEditor.m; sourceTree = "<group>"; };
-		5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectEditorViewController.h; sourceTree = "<group>"; };
-		5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObjectEditorViewController.m; sourceTree = "<group>"; };
+		5FF92FBA174AD615003211A0 /* RSFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFormViewController.h; sourceTree = "<group>"; };
+		5FF92FBB174AD615003211A0 /* RSFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFormViewController.m; sourceTree = "<group>"; };
 		5FF92FBC174AD615003211A0 /* RSObjectPropertyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSObjectPropertyEditor.h; sourceTree = "<group>"; };
 		5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSObjectPropertyEditor.m; sourceTree = "<group>"; };
 		5FF92FC0174AD615003211A0 /* RSFormSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFormSection.h; sourceTree = "<group>"; };
@@ -233,8 +233,8 @@
 				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
 				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
 				5F57463C226A739A00E14770 /* RSObjectEditor.m */,
-				5FF92FBA174AD615003211A0 /* RSObjectEditorViewController.h */,
-				5FF92FBB174AD615003211A0 /* RSObjectEditorViewController.m */,
+				5FF92FBA174AD615003211A0 /* RSFormViewController.h */,
+				5FF92FBB174AD615003211A0 /* RSFormViewController.m */,
 				5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */,
 				5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */,
 				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
@@ -550,7 +550,7 @@
 				5F0CE80F226E5F04000465AB /* RSPropertyViewer.m in Sources */,
 				5FF92FD1174AD615003211A0 /* RSFormNavigation.m in Sources */,
 				5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */,
-				5FF92FD4174AD615003211A0 /* RSObjectEditorViewController.m in Sources */,
+				5FF92FD4174AD615003211A0 /* RSFormViewController.m in Sources */,
 				5FF92FD5174AD615003211A0 /* RSObjectPropertyEditor.m in Sources */,
 				5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */,
 				5F574636226A45E300E14770 /* RSBaseTableViewCell.m in Sources */,
