@@ -8,9 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "../FormItems/RSFormItem.h"
-#import "RSFormSection.h"
-#import "NSObject+RSEditor.h"
+#import "RSForm.h"
 #import "RSFormContainer.h"
 
 
@@ -86,7 +84,7 @@ typedef enum RSObjectEditorViewStyle
 // Invoked when the cancel button is pressed.
 - (void)cancelPressed;
 
-/// Replaces a RSFormSection. This is useful when the property group for an object is dynamic and
+/// Replaces a RSFormSection. This is useful when the form section for an object is dynamic and
 /// dependent on some state variable.
 - (void)replaceFormSectionAtIndex:(NSUInteger)index withFormSection:(nonnull RSFormSection *)propertyGroup;
 

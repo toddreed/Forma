@@ -6,7 +6,7 @@
 
 
 #import "RSFormNavigation.h"
-#import "../Core/NSObject+RSEditor.h"
+#import "../Core/NSObject+RSForm.h"
 #import "../Core/RSDetailTableViewCell.h"
 
 

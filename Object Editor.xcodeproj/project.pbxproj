@@ -23,8 +23,8 @@
 		5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */; };
 		5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */; };
 		5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FF92F7B174AD56B003211A0 /* Foundation.framework */; };
-		5FF92FCA174AD615003211A0 /* NSManagedObject+RSEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */; };
-		5FF92FCB174AD615003211A0 /* NSObject+RSEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */; };
+		5FF92FCA174AD615003211A0 /* NSManagedObject+RSForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA7174AD615003211A0 /* NSManagedObject+RSForm.m */; };
+		5FF92FCB174AD615003211A0 /* NSObject+RSForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FA9174AD615003211A0 /* NSObject+RSForm.m */; };
 		5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */; };
 		5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FAF174AD615003211A0 /* NSString+RSCamelCase.m */; };
 		5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */; };
@@ -108,10 +108,10 @@
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		5FF92FA6174AD615003211A0 /* NSManagedObject+RSEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+RSEditor.h"; sourceTree = "<group>"; };
-		5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+RSEditor.m"; sourceTree = "<group>"; };
-		5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RSEditor.h"; sourceTree = "<group>"; };
-		5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RSEditor.m"; sourceTree = "<group>"; };
+		5FF92FA6174AD615003211A0 /* NSManagedObject+RSForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+RSForm.h"; sourceTree = "<group>"; };
+		5FF92FA7174AD615003211A0 /* NSManagedObject+RSForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+RSForm.m"; sourceTree = "<group>"; };
+		5FF92FA8174AD615003211A0 /* NSObject+RSForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RSForm.h"; sourceTree = "<group>"; };
+		5FF92FA9174AD615003211A0 /* NSObject+RSForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RSForm.m"; sourceTree = "<group>"; };
 		5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RSProperties.h"; sourceTree = "<group>"; };
 		5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RSProperties.m"; sourceTree = "<group>"; };
 		5FF92FAE174AD615003211A0 /* NSString+RSCamelCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RSCamelCase.h"; sourceTree = "<group>"; };
@@ -196,8 +196,8 @@
 		5F6087EB1ACDE26900E0ED97 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FA8174AD615003211A0 /* NSObject+RSEditor.h */,
-				5FF92FA9174AD615003211A0 /* NSObject+RSEditor.m */,
+				5FF92FA8174AD615003211A0 /* NSObject+RSForm.h */,
+				5FF92FA9174AD615003211A0 /* NSObject+RSForm.m */,
 				5FF92FAC174AD615003211A0 /* NSObject+RSProperties.h */,
 				5FF92FAD174AD615003211A0 /* NSObject+RSProperties.m */,
 				5FF92FAE174AD615003211A0 /* NSString+RSCamelCase.h */,
@@ -244,8 +244,8 @@
 		5F6087EC1ACDE28000E0ED97 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92FA6174AD615003211A0 /* NSManagedObject+RSEditor.h */,
-				5FF92FA7174AD615003211A0 /* NSManagedObject+RSEditor.m */,
+				5FF92FA6174AD615003211A0 /* NSManagedObject+RSForm.h */,
+				5FF92FA7174AD615003211A0 /* NSManagedObject+RSForm.m */,
 				5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */,
 				5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */,
 			);
@@ -531,8 +531,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */,
-				5FF92FCA174AD615003211A0 /* NSManagedObject+RSEditor.m in Sources */,
-				5FF92FCB174AD615003211A0 /* NSObject+RSEditor.m in Sources */,
+				5FF92FCA174AD615003211A0 /* NSManagedObject+RSForm.m in Sources */,
+				5FF92FCB174AD615003211A0 /* NSObject+RSForm.m in Sources */,
 				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,
 				5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */,
 				5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */,

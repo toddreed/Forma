@@ -37,7 +37,7 @@
     return YES;
 }
 
-#pragma mark RSEditor
+#pragma mark RSForm
 
 - (nonnull RSTextInputPropertyEditor *)firstNamePropertyEditor
 {
@@ -79,9 +79,9 @@
     NSArray *editors = @[[self firstNamePropertyEditor],
                          [self lastNamePropertyEditor],
                          [self passwordPropertyEditor]];
-    RSFormSection *group = [[RSFormSection alloc] initWithTitle:@"Account" formItemArray:editors];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Account" formItemArray:editors];
     RSFormSection *button = [[RSFormSection alloc] initWithTitle:nil formItem:buttonPropertyEditor];
-    return @[group, button];
+    return @[formSection, button];
 }
 
 @end
@@ -132,9 +132,9 @@
                          [self accountPropertyEditor],
                          [self volumePropertyEditor],
                          [self equalizerPropertyEditor]];
-    RSFormSection *group = [[RSFormSection alloc] initWithTitle:@"Settings" formItemArray:editors];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItemArray:editors];
 
-    return @[group];
+    return @[formSection];
 }
 
 @end

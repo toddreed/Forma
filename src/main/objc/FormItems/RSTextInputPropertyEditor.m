@@ -348,7 +348,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     {
         if (textField.returnKeyType == UIReturnKeyNext)
         {
-            NSIndexPath *nextTextInputIndexPath = [_objectEditorViewController findNextTextInputAfterEditor:self];
+            NSIndexPath *nextTextInputIndexPath = [_objectEditorViewController findNextTextInputAfterFormItem:self];
 
             if (nextTextInputIndexPath != nil)
             {

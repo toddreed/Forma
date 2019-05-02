@@ -1,11 +1,11 @@
 //
-// NSObject+RSEditor.m
+// NSObject+RSForm.m
 //
 // © Reaction Software Inc., 2013
 //
 
 
-#import "NSObject+RSEditor.h"
+#import "NSObject+RSForm.h"
 #import "NSObject+RSProperties.h"
 #import "NSString+RSCamelCase.h"
 #import "../FormItems/RSObjectPropertyEditor.h"
@@ -14,7 +14,7 @@
 #import "../FormItems/RSTextInputPropertyEditor.h"
 
 
-@implementation NSObject (RSEditor)
+@implementation NSObject (RSForm)
 
 + (nullable Class)formItemClass
 {
@@ -53,23 +53,23 @@
         return nil;
 }
 
-- (nonnull NSString *)editorTitle
+- (nonnull NSString *)formTitle
 {
     return [NSStringFromClass([self class]) rs_stringByConvertingCamelCaseToTitleCase];
 }
 
 - (nonnull NSArray<RSFormSection *> *)formSections
 {
-    NSMutableArray *editors = [NSMutableArray array];
+    NSMutableArray *formItems = [NSMutableArray array];
     for (NSString *propertyKey in [[self class] rs_declaredPropertyNamesMatchingFilter:RSMutablePropertyFilter])
     {
-        RSFormItem *editor = [[self class] formItemForKey:propertyKey];
-        if (editor != nil)
-            [editors addObject:editor];
+        RSFormItem *formItem = [[self class] formItemForKey:propertyKey];
+        if (formItem != nil)
+            [formItems addObject:formItem];
     }
     
-    RSFormSection *group = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
-    return @[group];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItemArray:formItems];
+    return @[formSection];
 }
 
 - (nonnull RSObjectEditorViewController *)objectEditorViewController
@@ -79,7 +79,7 @@
 
 @end
 
-@implementation NSString (RSEditor)
+@implementation NSString (RSForm)
 
 + (nullable Class)formItemClass
 {

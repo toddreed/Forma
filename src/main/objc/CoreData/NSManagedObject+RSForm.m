@@ -1,18 +1,18 @@
 //
-// NSManagedObject+RSEditor.m
+// NSManagedObject+RSForm.m
 //
 // © Reaction Software Inc., 2013
 //
 
 
-#import "NSManagedObject+RSEditor.h"
+#import "NSManagedObject+RSForm.h"
 #import "../FormItems/RSFloatPropertyEditor.h"
 #import "../FormItems/RSTextInputPropertyEditor.h"
 #import "../FormItems/RSBooleanPropertyEditor.h"
 #import "../Core/NSString+RSCamelCase.h"
 
 
-@implementation NSManagedObject (RSEditor)
+@implementation NSManagedObject (RSForm)
 
 - (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key
 {
@@ -73,13 +73,13 @@
     
     for (NSString *propertyKey in attributesByName)
     {
-        RSFormItem *editor = [self formItemForKey:propertyKey];
-        if (editor != nil)
-            [editors addObject:editor];
+        RSFormItem *formItem = [self formItemForKey:propertyKey];
+        if (formItem != nil)
+            [editors addObject:formItem];
     }
     
-    RSFormSection *group = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
-    return @[group];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
+    return @[formSection];
 }
 
 @end

@@ -7,7 +7,7 @@
 
 #import "RSObjectEditorViewController.h"
 
-#import "NSObject+RSEditor.h"
+#import "NSObject+RSForm.h"
 #import "../FormItems/RSTextInputPropertyEditor.h"
 #import "RSTextFieldTableViewCell.h"
 
@@ -90,7 +90,7 @@
 
 - (nonnull instancetype)initWithObject:(nonnull NSObject *)object
 {
-    return [self initWithTitle:[object editorTitle] formSections:[object formSections]];
+    return [self initWithTitle:[object formTitle] formSections:[object formSections]];
 }
 
 - (void)setShowCancelButton:(BOOL)f
@@ -185,7 +185,7 @@
     return nil;
 }
 
-- (nullable NSIndexPath *)findNextTextInputAfterEditor:(nonnull RSFormItem *)targetEditor
+- (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)targetFormItem
 {
     NSUInteger sections = _formSections.count;
     BOOL textInputEditorFound = NO;
@@ -204,7 +204,7 @@
                 if ([formItem isKindOfClass:[RSTextInputPropertyEditor class]])
                     return [NSIndexPath indexPathForRow:row inSection:section];
             }
-            else if (formItem == targetEditor)
+            else if (formItem == targetFormItem)
                 textInputEditorFound = YES;
         }
     }

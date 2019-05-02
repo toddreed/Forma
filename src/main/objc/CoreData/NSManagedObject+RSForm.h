@@ -1,5 +1,5 @@
 //
-// NSManagedObject+RSEditor.h
+// NSManagedObject+RSForm.h
 //
 // © Reaction Software Inc., 2013
 //
@@ -9,7 +9,7 @@
 #import "../FormItems/RSFormItem.h"
 #import "../Core/RSFormSection.h"
 
-@interface NSManagedObject (RSEditor)
+@interface NSManagedObject (RSForm)
 
 - (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
 - (nonnull NSArray<RSFormSection *> *)formSections;

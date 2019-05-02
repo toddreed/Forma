@@ -48,6 +48,6 @@ typedef enum RSTextEditingMode
 
 - (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath;
 - (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor;
-- (nullable NSIndexPath *)findNextTextInputAfterEditor:(nonnull RSFormItem *)editor;
+- (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)item;
 
 @end

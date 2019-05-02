@@ -6,7 +6,7 @@
 
 
 #import "RSObjectPropertyEditor.h"
-#import "../Core/NSObject+RSEditor.h"
+#import "../Core/NSObject+RSForm.h"
 #import "../Core/RSLabelTableViewCell.h"
 
 
