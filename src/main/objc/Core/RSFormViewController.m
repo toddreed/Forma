@@ -17,9 +17,8 @@
     RSForm *_form;
 
     // State variable for tracking whether this object has been shown before. On the first
-    // view, and when the style is RSObjectEditorViewStyleForm, and when the first form item
-    // is a RSTextInputPropertyEditor, focus will automatically be given to the text field of
-    // the RSTextInputPropertyEditor.
+    // view and when the first form item is a RSTextInputPropertyEditor, focus will
+    // automatically be given to the text field of the RSTextInputPropertyEditor.
     BOOL _previouslyViewed;
 }
 
