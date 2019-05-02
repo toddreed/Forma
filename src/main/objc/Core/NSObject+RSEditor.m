@@ -8,10 +8,10 @@
 #import "NSObject+RSEditor.h"
 #import "NSObject+RSProperties.h"
 #import "NSString+RSCamelCase.h"
-#import "../PropertyEditors/RSObjectPropertyEditor.h"
-#import "../PropertyEditors/RSBooleanPropertyEditor.h"
-#import "../PropertyEditors/RSFloatPropertyEditor.h"
-#import "../PropertyEditors/RSTextInputPropertyEditor.h"
+#import "../FormItems/RSObjectPropertyEditor.h"
+#import "../FormItems/RSBooleanPropertyEditor.h"
+#import "../FormItems/RSFloatPropertyEditor.h"
+#import "../FormItems/RSTextInputPropertyEditor.h"
 
 
 @implementation NSObject (RSEditor)

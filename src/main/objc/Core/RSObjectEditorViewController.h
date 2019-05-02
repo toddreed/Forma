@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSFormItem.h"
+#import "../FormItems/RSFormItem.h"
 #import "RSFormSection.h"
 #import "NSObject+RSEditor.h"
 #import "RSFormContainer.h"

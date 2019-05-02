@@ -6,9 +6,9 @@
 
 
 #import "NSManagedObject+RSEditor.h"
-#import "../PropertyEditors/RSFloatPropertyEditor.h"
-#import "../PropertyEditors/RSTextInputPropertyEditor.h"
-#import "../PropertyEditors/RSBooleanPropertyEditor.h"
+#import "../FormItems/RSFloatPropertyEditor.h"
+#import "../FormItems/RSTextInputPropertyEditor.h"
+#import "../FormItems/RSBooleanPropertyEditor.h"
 #import "../Core/NSString+RSCamelCase.h"
 
 

@@ -6,7 +6,7 @@
 
 
 #import <CoreData/CoreData.h>
-#import "../PropertyEditors/RSFormItem.h"
+#import "../FormItems/RSFormItem.h"
 #import "../Core/RSFormSection.h"
 
 @interface NSManagedObject (RSEditor)

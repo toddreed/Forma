@@ -6,7 +6,7 @@
 //  Copyright © 2019 Reaction Software Inc. All rights reserved.
 //
 
-#import "../PropertyEditors/RSPropertyFormItem.h"
+#import "../FormItems/RSPropertyFormItem.h"
 
 
 /// RSPropertyViewer is a read-only property form item: it displays the value of a property

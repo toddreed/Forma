@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSFormItem.h"
+#import "../FormItems/RSFormItem.h"
 #import "RSBaseTableViewCell.h"
 
 

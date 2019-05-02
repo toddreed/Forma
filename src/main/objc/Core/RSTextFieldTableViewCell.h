@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSFormItem.h"
+#import "../FormItems/RSFormItem.h"
 
 
 @interface RSTextFieldTableViewCell : UITableViewCell <RSFormItemView>

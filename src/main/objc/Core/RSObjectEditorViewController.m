@@ -8,7 +8,7 @@
 #import "RSObjectEditorViewController.h"
 
 #import "NSObject+RSEditor.h"
-#import "../PropertyEditors/RSTextInputPropertyEditor.h"
+#import "../FormItems/RSTextInputPropertyEditor.h"
 #import "RSTextFieldTableViewCell.h"
 
 

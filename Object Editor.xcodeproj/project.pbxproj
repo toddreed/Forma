@@ -277,7 +277,7 @@
 				5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */,
 			);
 			name = "Form Items";
-			path = PropertyEditors;
+			path = FormItems;
 			sourceTree = "<group>";
 		};
 		5FF92F6F174AD56B003211A0 = {
