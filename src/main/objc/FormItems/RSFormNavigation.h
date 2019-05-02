@@ -7,11 +7,11 @@
 
 #import "RSFormItem.h"
 
-// TODO: review comment A RSFormNavigation is form edit that navigates to form for another
-// ancillary object. This must only be used with a RSObjectEditorViewController that is on the
-// stack of a UINavigationController. The UI for a RSFormNavigation displays a title and a
-// summary of the object’s value obtained with -descriptionWithLocale:, or if this method is not
-// defined, -description.
+// A RSFormNavigation is form item that navigates to another form for an ancillary object. This
+// must only be used with a RSObjectEditorViewController that is on the stack of a
+// UINavigationController. The UI for a RSFormNavigation displays a title and a summary of the
+// object’s value obtained with -descriptionWithLocale:, or if this method is not defined,
+// -description.
 @interface RSFormNavigation : RSFormItem
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;

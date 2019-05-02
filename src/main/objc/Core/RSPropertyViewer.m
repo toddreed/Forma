@@ -19,7 +19,7 @@
     return [self initWithKey:key ofObject:object title:title formatter:nil];
 }
 
-- (nonnull UITableViewCell *)newTableViewCell
+- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[RSLabelTableViewCell alloc] init];
 }

@@ -95,6 +95,8 @@
 		5F57463C226A739A00E14770 /* RSObjectEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSObjectEditor.m; sourceTree = "<group>"; };
 		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
 		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
+		5FAB5B1E227B8B790062D29C /* RSFormItem+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormItem+Private.h"; sourceTree = "<group>"; };
+		5FAB5B1F227B8C930062D29C /* RSFormSection+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormSection+Private.h"; sourceTree = "<group>"; };
 		5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSButtonTableViewCell.h; sourceTree = "<group>"; };
 		5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSButtonTableViewCell.m; sourceTree = "<group>"; };
 		5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSButtonTableViewCell.xib; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				5F31EC60227A2B4A004DC78B /* RSFormItemView.h */,
 				5FF92FC0174AD615003211A0 /* RSFormSection.h */,
 				5FF92FC1174AD615003211A0 /* RSFormSection.m */,
+				5FAB5B1F227B8C930062D29C /* RSFormSection+Private.h */,
 				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
 				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
 				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
@@ -269,6 +272,7 @@
 				5FF92FB3174AD615003211A0 /* RSFormButton.m */,
 				5F4E909D2279EE16005EAAA3 /* RSFormItem.h */,
 				5F4E909E2279EE16005EAAA3 /* RSFormItem.m */,
+				5FAB5B1E227B8B790062D29C /* RSFormItem+Private.h */,
 				5FF92FB4174AD615003211A0 /* RSFormNavigation.h */,
 				5FF92FB5174AD615003211A0 /* RSFormNavigation.m */,
 				5F4E107B175D34660025BC1D /* RSNumberPropertyEditor.h */,

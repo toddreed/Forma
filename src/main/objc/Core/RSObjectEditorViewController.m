@@ -33,7 +33,7 @@
     
     if (!_previouslyViewed && _style == RSObjectEditorViewStyleForm)
     {
-        RSFormItem *formItem = [self formItemForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        RSFormItem *formItem = [_form formItemForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         if ([formItem canBecomeFirstResponder])
             [formItem becomeFirstResponder];
     }
@@ -80,11 +80,9 @@
     {
         self.title = form.title;
 
-        _autoTextFieldNavigation = YES;
-        _lastTextFieldReturnKeyType = UIReturnKeyDone;
         _textEditingMode = RSTextEditingModeNotEditing;
         _form = form;
-        _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
+        _form.formContainer = self;
     }
     return self;
 
@@ -107,58 +105,6 @@
         self.navigationItem.rightBarButtonItem = nil;
 
     _showDoneButton = f;
-}
-
-- (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath
-{
-    RSFormSection *formSection = _form.sections[indexPath.section];
-    RSFormItem *formItem = formSection.formItems[indexPath.row];
-    return formItem;
-}
-
-- (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor
-{
-    NSArray<RSFormSection *> *sections = _form.sections;
-
-    for (NSInteger section = sections.count-1; section >= 0; --section)
-    {
-        RSFormSection *formSection = sections[section];
-        
-        for (NSInteger row = formSection.formItems.count-1; row >= 0; --row)
-        {
-            RSFormItem *formItem = formSection.formItems[row];
-            
-            if ([formItem isKindOfClass:[RSTextInputPropertyEditor class]])
-                return (RSTextInputPropertyEditor *)formItem;
-        }
-    }
-    return nil;
-}
-
-- (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)targetFormItem
-{
-    NSUInteger sections = _form.sections.count;
-    BOOL textInputEditorFound = NO;
-    
-    for (NSUInteger section = 0; section < sections; ++section)
-    {
-        RSFormSection *formSection = _form.sections[section];
-        NSUInteger rows = formSection.formItems.count;
-        
-        for (NSUInteger row = 0; row < rows; ++row)
-        {
-            RSFormItem *formItem = formSection.formItems[row];
-            
-            if (textInputEditorFound)
-            {
-                if ([formItem isKindOfClass:[RSTextInputPropertyEditor class]])
-                    return [NSIndexPath indexPathForRow:row inSection:section];
-            }
-            else if (formItem == targetFormItem)
-                textInputEditorFound = YES;
-        }
-    }
-    return nil;
 }
 
 - (BOOL)finishEditingForce:(BOOL)force
@@ -188,7 +134,7 @@
 {
     if ([self finishEditingForce:NO])
     {
-        [_delegate objectEditorViewControllerDidEnd:self cancelled:NO];
+        [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
         if (_completionBlock)
             _completionBlock(NO);
     }
@@ -197,7 +143,7 @@
 - (void)cancelPressed
 {
     [self cancelEditing];
-    [_delegate objectEditorViewControllerDidEnd:self cancelled:YES];
+    [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
     if (_completionBlock)
         _completionBlock(YES);
 }
@@ -206,7 +152,7 @@
 
 - (nullable NSIndexPath *)tableView:(nonnull UITableView *)tableView willSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSFormItem *formItem = [self formItemForIndexPath:indexPath];
+    RSFormItem *formItem = [_form formItemForIndexPath:indexPath];
     
     if (formItem.selectable)
         return indexPath;
@@ -217,7 +163,7 @@
 
 - (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSFormItem *formItem = [self formItemForIndexPath:indexPath];
+    RSFormItem *formItem = [_form formItemForIndexPath:indexPath];
     
     if (formItem.selectable)
         [formItem controllerDidSelectFormItem:self];
@@ -229,9 +175,8 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSFormItem *formItem = [self formItemForIndexPath:indexPath];
-    UITableViewCell *cell = [formItem tableViewCellForController:self];
-    return cell;
+    RSFormItem *formItem = [_form formItemForIndexPath:indexPath];
+    return formItem.tableViewCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -259,8 +204,9 @@
 
 #pragma mark RSFormContainer
 
+@synthesize form = _form;
 @synthesize activeTextField = _activeTextField;
-@synthesize lastTextInputPropertyEditor = _lastTextInputPropertyEditor;
 @synthesize textEditingMode = _textEditingMode;
+@synthesize formDelegate = _formDelegate;
 
 @end

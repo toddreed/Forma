@@ -13,14 +13,14 @@
 
 #pragma mark - RSFormItem
 
-- (nonnull UITableViewCell *)newTableViewCell
+- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSButtonTableViewCell class]];
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
-    [super configureTableViewCellForController:controller];
+    [super configureTableViewCell];
     [self styleButtonLabel];
 }
 
@@ -29,7 +29,7 @@
     return _action != nil;
 }
 
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     if (_action)
         _action(controller);
@@ -37,14 +37,14 @@
 
 #pragma mark - RSFormButton
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(RSObjectEditorViewController *))action
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(UIViewController<RSFormContainer> *_Nonnull))action
 {
     self = [super initWithTitle:title];
     _action = action;
     return self;
 }
 
-- (void)setAction:(void (^)(RSObjectEditorViewController * _Nonnull))action
+- (void)setAction:(void (^)(UIViewController<RSFormContainer> * _Nonnull))action
 {
     _action = action;
     [self styleButtonLabel];

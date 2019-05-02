@@ -14,14 +14,14 @@
 
 #pragma mark - RSFormItem
 
-- (nonnull UITableViewCell *)newTableViewCell
+- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSliderTableViewCell class]];
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
-    [super configureTableViewCellForController:controller];
+    [super configureTableViewCell];
 
     UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
 

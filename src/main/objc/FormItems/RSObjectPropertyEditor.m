@@ -19,9 +19,9 @@
     return [[RSLabelTableViewCell alloc] init];
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCellFor
 {
-    [super configureTableViewCellForController:controller];
+    [super configureTableViewCell];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -30,7 +30,7 @@
     return YES;
 }
 
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
     id value = [self.object valueForKey:self.key];

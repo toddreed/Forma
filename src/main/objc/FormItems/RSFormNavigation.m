@@ -22,9 +22,9 @@
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSDetailTableViewCell class]];
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
-    [super configureTableViewCellForController:controller];
+    [super configureTableViewCell];
     self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -33,7 +33,7 @@
     return YES;
 }
 
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
     RSObjectEditorViewController *objectEditorViewController = [_object objectEditorViewController];

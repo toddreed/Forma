@@ -37,8 +37,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     // An optional extra string used to display instructions or validation error messages.
     NSString *_message;
-
-    __weak RSObjectEditorViewController *_objectEditorViewController;
 }
 
 #pragma mark RSFormItem
@@ -48,7 +46,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return [self initWithKey:key ofObject:object title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
-- (nonnull UITableViewCell *)newTableViewCell
+- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithReuseIdentifier:nil];
     if (_message && _message.length > 0)
@@ -73,11 +71,9 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return cell;
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
-    [super configureTableViewCellForController:controller];
-
-    _objectEditorViewController = controller;
+    [super configureTableViewCell];
 
     if (_style == RSTextInputPropertyEditorStyleForm)
     {
@@ -105,10 +101,14 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.keyboardAppearance = _keyboardAppearance;
     textField.keyboardType = _keyboardType;
 
-    if (controller.autoTextFieldNavigation)
+    RSForm *form = self.formSection.form;
+    id<RSFormContainer> container = form.formContainer;
+    NSParameterAssert(container != nil);
+
+    if (form.autoTextFieldNavigation)
     {
-        if (self == controller.lastTextInputPropertyEditor)
-            textField.returnKeyType = controller.lastTextFieldReturnKeyType;
+        if (self == form.lastTextInputPropertyEditor)
+            textField.returnKeyType = form.lastTextFieldReturnKeyType;
         else
             textField.returnKeyType = UIReturnKeyNext;
     }
@@ -118,7 +118,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.secureTextEntry = _secureTextEntry;
 }
 
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     RSTextFieldTableViewCell *cell = self.tableViewCell;
     [cell.textField becomeFirstResponder];
@@ -268,7 +268,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (void)textChanged:(nonnull id)sender
 {
-    if (_objectEditorViewController.textEditingMode != RSTextEditingModeCancelling)
+    id<RSFormContainer> container = self.formSection.form.formContainer;
+    NSParameterAssert(container != nil);
+
+    if (container.textEditingMode != RSTextEditingModeCancelling)
     {
         UITextField *textField = (UITextField *)sender;
 
@@ -281,10 +284,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         }
         else
         {
-            if (_objectEditorViewController.textEditingMode != RSTextEditingModeFinishingForced)
+            if (container.textEditingMode != RSTextEditingModeFinishingForced)
             {
                 self.message = error.localizedDescription;
-                [self adjustTableViewCellSize:self.tableViewCell inTableView:_objectEditorViewController.tableView showMessage:YES];
+                [self adjustTableViewCellSize:self.tableViewCell inTableView:container.tableView showMessage:YES];
             }
         }
     }
@@ -330,14 +333,20 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (void)textFieldDidBeginEditing:(nonnull UITextField *)textField
 {
-    _objectEditorViewController.textEditingMode = RSTextEditingModeEditing;
-    _objectEditorViewController.activeTextField = textField;
+    id<RSFormContainer> container = self.formSection.form.formContainer;
+    NSParameterAssert(container != nil);
+
+    container.textEditingMode = RSTextEditingModeEditing;
+    container.activeTextField = textField;
 }
 
 - (void)textFieldDidEndEditing:(nonnull UITextField *)textField
 {
-    _objectEditorViewController.textEditingMode = RSTextEditingModeNotEditing;
-    _objectEditorViewController.activeTextField = nil;
+    id<RSFormContainer> container = self.formSection.form.formContainer;
+    NSParameterAssert(container != nil);
+
+    container.textEditingMode = RSTextEditingModeNotEditing;
+    container.activeTextField = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(nonnull UITextField *)textField
@@ -346,17 +355,21 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     // validates the text input. If validation fails, -resignFirstResponder will return NO.
     if ([textField resignFirstResponder])
     {
+        RSForm *form = self.formSection.form;
+        id<RSFormContainer> container = form.formContainer;
+        NSParameterAssert(container != nil);
+
         if (textField.returnKeyType == UIReturnKeyNext)
         {
-            NSIndexPath *nextTextInputIndexPath = [_objectEditorViewController findNextTextInputAfterFormItem:self];
+            NSIndexPath *nextTextInputIndexPath = [form findNextTextInputAfterFormItem:self];
 
             if (nextTextInputIndexPath != nil)
             {
-                [_objectEditorViewController.tableView scrollToRowAtIndexPath:nextTextInputIndexPath
-                                                             atScrollPosition:UITableViewScrollPositionBottom
-                                                                     animated:YES];
+                [container.tableView scrollToRowAtIndexPath:nextTextInputIndexPath
+                                           atScrollPosition:UITableViewScrollPositionBottom
+                                                   animated:YES];
 
-                RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)[_objectEditorViewController.tableView cellForRowAtIndexPath:nextTextInputIndexPath];
+                RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)[container.tableView cellForRowAtIndexPath:nextTextInputIndexPath];
                 [cell.textField becomeFirstResponder];
                 return NO;
             }
@@ -365,11 +378,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
                  textField.returnKeyType == UIReturnKeyGo ||
                  textField.returnKeyType == UIReturnKeySearch)
         {
-            id<RSObjectEditorViewControllerDelegate> delegate = _objectEditorViewController.delegate;
+            id<RSFormContainerDelegate> delegate = container.formDelegate;
             if (delegate != nil)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [delegate objectEditorViewControllerDidEnd:self->_objectEditorViewController cancelled:NO];
+                    [delegate formContainer:container didEndEditingSessionWithAction:RSFormActionCommit];
                 });
             }
         }
@@ -381,9 +394,12 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (BOOL)textFieldShouldEndEditing:(nonnull UITextField *)textField
 {
-    NSAssert(_objectEditorViewController.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
+    id<RSFormContainer> container = self.formSection.form.formContainer;
+    NSParameterAssert(container != nil);
 
-    if (_objectEditorViewController.textEditingMode != RSTextEditingModeCancelling && _objectEditorViewController.textEditingMode != RSTextEditingModeFinishingForced)
+    NSAssert(container.textEditingMode != RSTextEditingModeNotEditing, @"Unexpected textEditingMode.");
+
+    if (container.textEditingMode != RSTextEditingModeCancelling && container.textEditingMode != RSTextEditingModeFinishingForced)
     {
         NSError *error;
 
@@ -394,21 +410,21 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         if (value == nil)
         {
             self.message = error.localizedDescription;
-            [self adjustTableViewCellSize:cell inTableView:_objectEditorViewController.tableView showMessage:YES];
+            [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:YES];
 
             // If -finishEditingForce: was called, textEditMode will be
             // RSTextEditingModeFinishing. We set textEditingMode back to
             // RSTextEditingModeEditing to indicate that -finishEditingForce: should
             // return NO.
-            if (_objectEditorViewController.textEditingMode == RSTextEditingModeFinishing)
-                _objectEditorViewController.textEditingMode = RSTextEditingModeEditing;
+            if (container.textEditingMode == RSTextEditingModeFinishing)
+                container.textEditingMode = RSTextEditingModeEditing;
             return NO;
         }
         else if (!cell.errorMessageLabel.hidden)
         {
             // If validation succeeds but we previously had shown the validation error message, hide it now.
             self.message = nil;
-            [self adjustTableViewCellSize:cell inTableView:_objectEditorViewController.tableView showMessage:NO];
+            [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:NO];
         }
     }
     return YES;

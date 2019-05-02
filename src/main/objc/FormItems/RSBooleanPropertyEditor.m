@@ -14,14 +14,14 @@
 
 #pragma mark RSFormItem
 
-- (nonnull UITableViewCell *)newTableViewCell
+- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSwitchTableViewCell class]];
 }
 
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
-    [super configureTableViewCellForController:controller];
+    [super configureTableViewCell];
 
     RSSwitchTableViewCell *cell = self.tableViewCell;
     UISwitch *toggle = cell.toggle;

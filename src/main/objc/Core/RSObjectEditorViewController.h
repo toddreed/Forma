@@ -15,12 +15,6 @@
 @class RSObjectEditorViewController;
 @class RSTextInputPropertyEditor;
 
-@protocol RSObjectEditorViewControllerDelegate
-
-- (void)objectEditorViewControllerDidEnd:(nonnull RSObjectEditorViewController *)viewController cancelled:(BOOL)cancelled;
-
-@end
-
 
 typedef enum RSObjectEditorViewStyle
 {
@@ -34,25 +28,11 @@ typedef enum RSObjectEditorViewStyle
 /// inspectors, and forms.
 @interface RSObjectEditorViewController : UITableViewController <RSFormContainer>
 
-@property(nonatomic, weak, nullable) id<RSObjectEditorViewControllerDelegate> delegate;
-
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
 /// Cancel button. This provides the same functionality as the `delegate` property.
 @property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
 
 @property (nonatomic) RSObjectEditorViewStyle style;
-
-/// If autoTextFieldNavigation is YES, then the return key for all the text fields, except the last,
-/// is set to UIReturnKeyNext; the last text field's return key is set to the value of the
-/// lastTextFieldReturnKeyType property. When the user presses the "Next" button on the keyboard,
-/// the next text field becomes the first responder. If this property is NO, the return key style is
-/// determined by the RSTextInputPropertyEditor returnKeyType property. The default value is YES;
-@property (nonatomic) BOOL autoTextFieldNavigation;
-
-/// The lastTextFieldReturnKeyType indicates the return key to use when the autoTextFieldNavigation
-/// property is YES. If autoTextFieldNavigation is NO, this property is ignored. The default value
-/// is UIReturnKeyDone.
-@property (nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
 
 @property (nonatomic) BOOL showCancelButton;
 @property (nonatomic) BOOL showDoneButton;

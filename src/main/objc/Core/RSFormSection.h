@@ -8,8 +8,13 @@
 #import <Foundation/Foundation.h>
 
 @class RSFormItem;
+@class RSForm;
+
 
 @interface RSFormSection : NSObject
+
+/// The form this form section belongs to.
+@property (nonatomic, weak, readonly, nullable) RSForm *form;
 
 @property (nonatomic, copy, nullable) NSString *title;
 @property (nonatomic, copy, nullable) NSString  *footer;

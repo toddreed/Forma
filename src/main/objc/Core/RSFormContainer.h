@@ -29,9 +29,29 @@ typedef enum RSTextEditingMode
 
 
 @class RSTextInputPropertyEditor;
+@class UIViewController;
+@protocol RSFormContainer;
+@class RSForm;
 
+
+typedef enum RSFormAction
+{
+    RSFormActionCommit,
+    RSFormActionCancel
+} RSFormAction;
+
+
+@protocol RSFormContainerDelegate <NSObject>
+
+- (void)formContainer:(nonnull id<RSFormContainer>)formContainer didEndEditingSessionWithAction:(RSFormAction)action;
+
+@end
 
 @protocol RSFormContainer <NSObject>
+
+@property (nonatomic, strong, readonly, nonnull) RSForm *form;
+
+@property (nonatomic, weak, nullable) id<RSFormContainerDelegate> formDelegate;
 
 @property (nonatomic, strong, readonly, nonnull) UITableView *tableView;
 
@@ -40,14 +60,6 @@ typedef enum RSTextEditingMode
 /// hide the keyboard.
 @property (nonatomic, weak, nullable) UITextField *activeTextField;
 
-/// The last RSTextInputPropertyEditor found in formSections. We keep this so we can automatically
-/// set the return key type to UIReturnKeyDone if autoTextFieldNavigation is YES.
-@property(nonatomic, readonly, nullable) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
-
 @property (nonatomic) RSTextEditingMode textEditingMode;
-
-- (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath;
-- (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor;
-- (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)item;
 
 @end

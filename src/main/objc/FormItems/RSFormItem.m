@@ -7,6 +7,7 @@
 //
 
 #import "RSFormItem.h"
+#import "RSFormItem+Private.h"
 #import "RSObjectEditor.h"
 
 
@@ -27,7 +28,10 @@
 - (UITableViewCell<RSFormItemView> *)tableViewCell
 {
     if (_tableViewCell == nil)
+    {
         _tableViewCell = [self newTableViewCell];
+        [self configureTableViewCell];
+    }
     return _tableViewCell;
 }
 
@@ -43,17 +47,7 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)tableViewCellForController:(nonnull RSObjectEditorViewController *)controller
-{
-    if (_tableViewCell == nil)
-    {
-        __unused UITableViewCell<RSFormItemView> *cell = self.tableViewCell; // getter will instantiate cell
-        [self configureTableViewCellForController:controller];
-    }
-    return _tableViewCell;
-}
-
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (void)configureTableViewCell
 {
     UITableViewCell<RSFormItemView> *cell = self.tableViewCell;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -63,7 +57,7 @@
         titleLabel.text = _title;
 }
 
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
     // Do nothing here; subclass will override with appropriate action.
 }

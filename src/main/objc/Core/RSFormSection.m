@@ -6,6 +6,9 @@
 
 
 #import "RSFormSection.h"
+#import "RSFormSection+Private.h"
+
+#import "../FormItems/RSFormItem+Private.h"
 
 
 @implementation RSFormSection
@@ -27,7 +30,10 @@
     NSParameterAssert(self != nil);
 
     _title = [title copy];
-    _formItems = [[NSMutableArray alloc] initWithArray:formItems];
+    _formItems = [formItems copy];
+
+    for (RSFormItem *item in _formItems)
+        item.formSection = self;
 
     return self;
 }

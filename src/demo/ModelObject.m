@@ -73,7 +73,7 @@
 - (nonnull NSArray *)formSections
 {
     RSFormButton *buttonPropertyEditor = [[RSFormButton alloc] initWithTitle:@"Sign In" action:nil];
-    buttonPropertyEditor.action = ^(RSObjectEditorViewController *_Nonnull viewController) {
+    buttonPropertyEditor.action = ^(UIViewController<RSFormContainer> *_Nonnull viewController) {
         [viewController.navigationController popViewControllerAnimated:YES];
     };
     NSArray *editors = @[[self firstNamePropertyEditor],

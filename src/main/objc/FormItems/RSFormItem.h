@@ -10,9 +10,11 @@
 #import <UIKit/UIKit.h>
 
 #import "../Core/RSFormItemView.h"
+#import "../Core/RSFormContainer.h"
 
 
 @class RSObjectEditorViewController;
+@class RSFormSection;
 
 
 /// RSFormItem is the base class for all form items. There are three main types of form items:
@@ -25,6 +27,9 @@
 /// @see RSFormButton
 /// @see RSNavigationItem
 @interface RSFormItem : NSObject
+
+/// The form section this item belongs to.
+@property (nonatomic, weak, readonly, nullable) RSFormSection *formSection;
 
 /// The UI title displayed in the editor.
 @property (nonatomic, copy, nonnull) NSString *title;
@@ -59,19 +64,14 @@
 - (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell;
 
 /// This method is invoked by RSObjectEditorViewController (from it’s
-/// -tableView:cellForRowAtIndexPath: method) and should not be called directly. This method
-/// should not be subclassed.
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)tableViewCellForController:(nonnull RSObjectEditorViewController *)controller;
-
-/// This method is invoked by RSObjectEditorViewController (from it’s
 /// -tableView:cellForRowAtIndexPath: method) and should not be called directly. Subclasses
 /// should override this method to perform any required table view cell configuration.
-- (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller;
+- (void)configureTableViewCell;
 
 /// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is
 /// selected. This is used when implementing a hierarchical editor when the user can drill-down into
 /// a sub-editor.
-- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller;
+- (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller;
 
 /// Makes the receiver the first responder. (The actual first responder will likely be a view
 /// managed by the editor.)

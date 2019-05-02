@@ -58,11 +58,17 @@ static void PerformOnMainThread(dispatch_block_t block)
 
 #pragma mark - RSFormItem
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)tableViewCellForController:(nonnull RSObjectEditorViewController *)controller
+- (nonnull UITableViewCell<RSFormItemView> *)newTableViewCell
 {
-    __kindof UITableViewCell<RSFormItemView> *cell = [super tableViewCellForController:controller];
-    [self startObserving];
+    UITableViewCell<RSFormItemView> *cell = [super newTableViewCell];
+
     return cell;
+}
+
+- (void)configureTableViewCell
+{
+    [super configureTableViewCell];
+    [self startObserving];
 }
 
 #pragma mark - RSPropertyFormItem
