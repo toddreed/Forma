@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0170DD227B4940003E81F4 /* RSForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0170DC227B4940003E81F4 /* RSForm.m */; };
 		5F0CE80F226E5F04000465AB /* RSPropertyViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */; };
 		5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */; };
 		5F352F67178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */; };
@@ -65,6 +66,8 @@
 		14E09896A55D8B8FC9F53215 /* Pods-Object Editor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.debug.xcconfig"; sourceTree = "<group>"; };
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.release.xcconfig"; sourceTree = "<group>"; };
+		5F0170DB227B4940003E81F4 /* RSForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSForm.h; sourceTree = "<group>"; };
+		5F0170DC227B4940003E81F4 /* RSForm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSForm.m; sourceTree = "<group>"; };
 		5F0CE80C226A7CE3000465AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSPropertyViewer.h; sourceTree = "<group>"; };
 		5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSPropertyViewer.m; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */,
 				5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */,
 				5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */,
+				5F0170DB227B4940003E81F4 /* RSForm.h */,
+				5F0170DC227B4940003E81F4 /* RSForm.m */,
 				5F14FF7C1ACE18EE003D0861 /* RSFormContainer.h */,
 				5F31EC60227A2B4A004DC78B /* RSFormItemView.h */,
 				5FF92FC0174AD615003211A0 /* RSFormSection.h */,
@@ -550,6 +555,7 @@
 				5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */,
 				5FF92FDB174AD615003211A0 /* RSTextFieldTableViewCell.m in Sources */,
 				5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */,
+				5F0170DD227B4940003E81F4 /* RSForm.m in Sources */,
 				5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */,
 				5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */,
 				5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */,

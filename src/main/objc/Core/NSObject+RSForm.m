@@ -53,6 +53,13 @@
         return nil;
 }
 
+- (nonnull RSForm *)form
+{
+    RSForm *form = [[RSForm alloc] initWithTitle:self.formTitle];
+    form.sections = self.formSections;
+    return form;
+}
+
 - (nonnull NSString *)formTitle
 {
     return [NSStringFromClass([self class]) rs_stringByConvertingCamelCaseToTitleCase];
@@ -74,7 +81,7 @@
 
 - (nonnull RSObjectEditorViewController *)objectEditorViewController
 {
-    return [[RSObjectEditorViewController alloc] initWithObject:self];
+    return [[RSObjectEditorViewController alloc] initWithForm:self.form];
 }
 
 @end

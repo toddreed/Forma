@@ -62,10 +62,7 @@ typedef enum RSObjectEditorViewStyle
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections NS_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)object;
-
-- (void)setTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections;
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form NS_DESIGNATED_INITIALIZER;
 
 /// Forces any in-progress editing to complete. Notably, if the text field is the first responder,
 /// it will resign first responder status, causing the text field's value to be committed to the
@@ -83,9 +80,5 @@ typedef enum RSObjectEditorViewStyle
 
 // Invoked when the cancel button is pressed.
 - (void)cancelPressed;
-
-/// Replaces a RSFormSection. This is useful when the form section for an object is dynamic and
-/// dependent on some state variable.
-- (void)replaceFormSectionAtIndex:(NSUInteger)index withFormSection:(nonnull RSFormSection *)propertyGroup;
 
 @end

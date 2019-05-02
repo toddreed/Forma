@@ -14,8 +14,7 @@
 
 @implementation RSObjectEditorViewController
 {
-    // An array of RSFormSection objects that determine what PropertyEditors are shown.
-    NSMutableArray<RSFormSection *> *_formSections;
+    RSForm *_form;
 
     // State variable for tracking whether this object has been shown before. On the first
     // view, and when the style is RSObjectEditorViewStyleForm, and when the first form item
@@ -75,22 +74,20 @@
 
 #pragma mark - RSObjectEditorViewController
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form
 {
     if ((self = [super initWithStyle:UITableViewStyleGrouped]))
     {
+        self.title = form.title;
+
         _autoTextFieldNavigation = YES;
         _lastTextFieldReturnKeyType = UIReturnKeyDone;
         _textEditingMode = RSTextEditingModeNotEditing;
-
-        [self setTitle:title formSections:formSections];
+        _form = form;
+        _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
     }
     return self;
-}
 
-- (nonnull instancetype)initWithObject:(nonnull NSObject *)object
-{
-    return [self initWithTitle:[object formTitle] formSections:[object formSections]];
 }
 
 - (void)setShowCancelButton:(BOOL)f
@@ -112,67 +109,20 @@
     _showDoneButton = f;
 }
 
-- (void)setFormSections:(NSArray *)formSections
-{
-    if (_formSections != formSections)
-    {
-        _formSections = [[NSMutableArray alloc] initWithArray:formSections];
-        _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
-        _activeTextField = nil;
-    }
-}
-
-- (void)setTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections
-{
-    [self setFormSections:formSections];
-
-    self.title = title;
-    
-    if (self.viewLoaded)
-        [self.tableView reloadData];
-}
-
-- (void)replaceFormSectionAtIndex:(NSUInteger)index withFormSection:(nonnull RSFormSection *)propertyGroup
-{
-    _formSections[index] = propertyGroup;
-
-    // We might need to fix-up the return key type of the last text field if
-    // autoTextFieldNavigation is YES
-    
-    if (_autoTextFieldNavigation)
-    {
-        RSTextFieldTableViewCell *cell = _lastTextInputPropertyEditor.tableViewCell;
-        
-        if (cell)
-            cell.textField.returnKeyType = _lastTextInputPropertyEditor.returnKeyType;
-    }
-    
-    _lastTextInputPropertyEditor = [self findLastTextInputPropertyEditor];
-    
-    if (_autoTextFieldNavigation)
-    {
-        RSTextFieldTableViewCell *cell = _lastTextInputPropertyEditor.tableViewCell;
-        
-        if (cell)
-            cell.textField.returnKeyType = _lastTextFieldReturnKeyType;
-    }
-
-    if (self.viewLoaded)
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationFade];
-}
-
 - (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    RSFormSection *formSection = _formSections[indexPath.section];
+    RSFormSection *formSection = _form.sections[indexPath.section];
     RSFormItem *formItem = formSection.formItems[indexPath.row];
     return formItem;
 }
 
 - (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor
 {
-    for (NSInteger section = _formSections.count-1; section >= 0; --section)
+    NSArray<RSFormSection *> *sections = _form.sections;
+
+    for (NSInteger section = sections.count-1; section >= 0; --section)
     {
-        RSFormSection *formSection = _formSections[section];
+        RSFormSection *formSection = sections[section];
         
         for (NSInteger row = formSection.formItems.count-1; row >= 0; --row)
         {
@@ -187,12 +137,12 @@
 
 - (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)targetFormItem
 {
-    NSUInteger sections = _formSections.count;
+    NSUInteger sections = _form.sections.count;
     BOOL textInputEditorFound = NO;
     
     for (NSUInteger section = 0; section < sections; ++section)
     {
-        RSFormSection *formSection = _formSections[section];
+        RSFormSection *formSection = _form.sections[section];
         NSUInteger rows = formSection.formItems.count;
         
         for (NSUInteger row = 0; row < rows; ++row)
@@ -286,24 +236,24 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    RSFormSection *formSection = _formSections[section];
+    RSFormSection *formSection = _form.sections[section];
     return formSection.formItems.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(nonnull UITableView *)tableView
 {
-    return _formSections.count;
+    return _form.sections.count;
 }
 
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    RSFormSection *formSection = _formSections[section];
+    RSFormSection *formSection = _form.sections[section];
     return formSection.title;
 }
 
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    RSFormSection *formSection = _formSections[section];
+    RSFormSection *formSection = _form.sections[section];
     return formSection.footer;
 }
 

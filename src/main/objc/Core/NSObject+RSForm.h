@@ -19,6 +19,7 @@
 
 - (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
 
+@property (nonatomic, copy, readonly, nonnull) RSForm *form;
 @property (nonatomic, copy, readonly, nonnull) NSString *formTitle;
 @property (nonatomic, copy, readonly, nonnull) NSArray<RSFormSection *> *formSections;
 @property (nonatomic, readonly, strong, nonnull) RSObjectEditorViewController *objectEditorViewController;

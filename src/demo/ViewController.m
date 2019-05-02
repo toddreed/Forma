@@ -6,6 +6,8 @@
 //  Copyright © 2015 Reaction Software Inc. All rights reserved.
 //
 
+#import "NSObject+RSForm.h"
+
 #import "ViewController.h"
 #import "RSObjectEditorViewController.h"
 #import "ModelObject.h"
@@ -31,8 +33,7 @@
 
 - (IBAction)editButtonPressed:(id)sender
 {
-
-    RSObjectEditorViewController *viewController = [[RSObjectEditorViewController alloc] initWithObject:_modelObject];
+    RSObjectEditorViewController *viewController = [[RSObjectEditorViewController alloc] initWithForm:_modelObject.form];
     viewController.showDoneButton = YES;
     viewController.completionBlock = ^(BOOL cancelled) {
         [self editingCompleted:cancelled];
