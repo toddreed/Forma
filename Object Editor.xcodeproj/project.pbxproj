@@ -17,7 +17,7 @@
 		5F4E909F2279EE16005EAAA3 /* RSFormItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E909E2279EE16005EAAA3 /* RSFormItem.m */; };
 		5F4E90A22279EE6E005EAAA3 /* RSPropertyFormItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E90A12279EE6E005EAAA3 /* RSPropertyFormItem.m */; };
 		5F574636226A45E300E14770 /* RSBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574635226A45E300E14770 /* RSBaseTableViewCell.m */; };
-		5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57463C226A739A00E14770 /* RSObjectEditor.m */; };
+		5F57463D226A739A00E14770 /* RSFormLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57463C226A739A00E14770 /* RSFormLibrary.m */; };
 		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */; };
 		5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */; };
@@ -91,8 +91,8 @@
 		5F4E90A12279EE6E005EAAA3 /* RSPropertyFormItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSPropertyFormItem.m; sourceTree = "<group>"; };
 		5F574634226A45E300E14770 /* RSBaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSBaseTableViewCell.h; sourceTree = "<group>"; };
 		5F574635226A45E300E14770 /* RSBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSBaseTableViewCell.m; sourceTree = "<group>"; };
-		5F57463B226A739A00E14770 /* RSObjectEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSObjectEditor.h; sourceTree = "<group>"; };
-		5F57463C226A739A00E14770 /* RSObjectEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSObjectEditor.m; sourceTree = "<group>"; };
+		5F57463B226A739A00E14770 /* RSFormLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFormLibrary.h; sourceTree = "<group>"; };
+		5F57463C226A739A00E14770 /* RSFormLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSFormLibrary.m; sourceTree = "<group>"; };
 		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
 		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
 		5FAB5B1E227B8B790062D29C /* RSFormItem+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormItem+Private.h"; sourceTree = "<group>"; };
@@ -231,8 +231,8 @@
 				5FAB5B1F227B8C930062D29C /* RSFormSection+Private.h */,
 				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
 				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
-				5F57463B226A739A00E14770 /* RSObjectEditor.h */,
-				5F57463C226A739A00E14770 /* RSObjectEditor.m */,
+				5F57463B226A739A00E14770 /* RSFormLibrary.h */,
+				5F57463C226A739A00E14770 /* RSFormLibrary.m */,
 				5FF92FBA174AD615003211A0 /* RSFormViewController.h */,
 				5FF92FBB174AD615003211A0 /* RSFormViewController.m */,
 				5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */,
@@ -539,7 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F57463D226A739A00E14770 /* RSObjectEditor.m in Sources */,
+				5F57463D226A739A00E14770 /* RSFormLibrary.m in Sources */,
 				5FF92FCA174AD615003211A0 /* NSManagedObject+RSForm.m in Sources */,
 				5FF92FCB174AD615003211A0 /* NSObject+RSForm.m in Sources */,
 				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,

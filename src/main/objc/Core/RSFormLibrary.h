@@ -1,5 +1,5 @@
 //
-//  RSObjectEditor.h
+//  RSFormLibrary.h
 //  Object Editor
 //
 //  Created by Todd Reed on 2019-04-19.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface RSObjectEditor : NSObject
+@interface RSFormLibrary : NSObject
 
 @property (class, nonatomic, strong, readonly, nonnull) NSBundle *bundle;
 

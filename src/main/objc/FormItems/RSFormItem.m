@@ -8,7 +8,7 @@
 
 #import "RSFormItem.h"
 #import "RSFormItem+Private.h"
-#import "RSObjectEditor.h"
+#import "RSFormLibrary.h"
 
 
 @implementation RSFormItem
@@ -37,7 +37,7 @@
 
 + (nonnull __kindof UITableViewCell<RSFormItemView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
 {
-    UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:RSObjectEditor.bundle];
+    UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:RSFormLibrary.bundle];
     return [nib instantiateWithOwner:self options:nil][0];
 }
 

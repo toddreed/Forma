@@ -7,7 +7,7 @@
 #import <tgmath.h>
 
 #import "RSTextFieldTableViewCell.h"
-#import "RSObjectEditor.h"
+#import "RSFormLibrary.h"
 #import "RSBaseTableViewCell.h"
 
 
@@ -167,7 +167,7 @@ static const CGFloat kDefaultIconWidth = 21;
 
     [self.contentView addSubview:_errorMessageLabel];
 
-    UIImage *image = [UIImage imageNamed:@"Error" inBundle:RSObjectEditor.bundle compatibleWithTraitCollection:nil];
+    UIImage *image = [UIImage imageNamed:@"Error" inBundle:RSFormLibrary.bundle compatibleWithTraitCollection:nil];
     _errorImageView = [[UIImageView alloc] initWithImage:image];
     _errorImageView.image = image;
     _errorImageView.hidden = YES;
