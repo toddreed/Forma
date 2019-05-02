@@ -24,6 +24,11 @@
 
 #pragma mark - NSObject
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 #pragma mark - UIViewController
 
 - (void)viewDidAppear:(BOOL)animated
@@ -60,6 +65,8 @@
     self.tableView.scrollEnabled = YES;
 
     self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
+
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 #pragma mark - UITableViewController
@@ -85,6 +92,12 @@
     }
     return self;
 
+}
+
+- (void)contentSizeCategoryDidChangeNotification:(NSNotification *)notification
+{
+    if (self.viewLoaded)
+        [self.tableView reloadData];
 }
 
 - (void)setShowCancelButton:(BOOL)f
