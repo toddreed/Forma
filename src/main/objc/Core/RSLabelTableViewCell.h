@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSPropertyEditor.h"
+#import "RSFormItemView.h"
 
 
 /// RSLabelTableViewCell is a table view cell with a (multiline) title label on left side and a
 /// single line value label on the right side. It’s intend to display a readonly property value
 /// that can be represented by text.
-@interface RSLabelTableViewCell : UITableViewCell <RSPropertyEditorView>
+@interface RSLabelTableViewCell : UITableViewCell <RSFormItemView>
 
 @property (nonatomic, strong, readonly, nonnull) UILabel *valueLabel;
 

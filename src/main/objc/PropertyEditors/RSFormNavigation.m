@@ -1,27 +1,23 @@
 //
-// RSDetailPropertyEditor.m
+// RSFormNavigation.m
 //
 // © Reaction Software Inc., 2013
 //
 
 
-#import "RSDetailPropertyEditor.h"
+#import "RSFormNavigation.h"
 #import "../Core/NSObject+RSEditor.h"
 #import "../Core/RSDetailTableViewCell.h"
 
 
-@implementation RSDetailPropertyEditor
-
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object
+@implementation RSFormNavigation
 {
-    NSParameterAssert(object != nil);
-
-    self = [super initWithKey:nil ofObject:object title:title];
-    NSParameterAssert(self != nil);
-    return self;
+    id _object;
 }
 
-- (UITableViewCell<RSPropertyEditorView> *)newTableViewCell
+#pragma mark - RSFormItem
+
+- (UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSDetailTableViewCell class]];
 }
@@ -37,11 +33,22 @@
     return YES;
 }
 
-- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
-    RSObjectEditorViewController *objectEditorViewController = [self.object objectEditorViewController];
+    RSObjectEditorViewController *objectEditorViewController = [_object objectEditorViewController];
     [navigationController pushViewController:objectEditorViewController animated:YES];
+}
+
+#pragma mark - RSFormNavigation
+
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object
+{
+    NSParameterAssert(object != nil);
+
+    self = [super initWithTitle:title];
+    _object = object;
+    return self;
 }
 
 @end

@@ -6,12 +6,12 @@
 
 
 #import <CoreData/CoreData.h>
-#import "../PropertyEditors/RSPropertyEditor.h"
-#import "../Core/RSPropertyGroup.h"
+#import "../PropertyEditors/RSFormItem.h"
+#import "../Core/RSFormSection.h"
 
 @interface NSManagedObject (RSEditor)
 
-- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key;
-- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
+- (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
+- (nonnull NSArray<RSFormSection *> *)formSections;
 
 @end

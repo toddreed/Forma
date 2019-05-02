@@ -5,7 +5,7 @@
 //
 
 
-#import "RSPropertyEditor.h"
+#import "RSPropertyFormItem.h"
 #import "../Core/RSAutocompleteSource.h"
 
 extern NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain;
@@ -21,7 +21,7 @@ typedef enum RSTextInputPropertyEditorStyle
     RSTextInputPropertyEditorStyleForm
 } RSTextInputPropertyEditorStyle;
 
-@interface RSTextInputPropertyEditor : RSPropertyEditor <UITextInputTraits>
+@interface RSTextInputPropertyEditor : RSPropertyFormItem <UITextInputTraits>
 
 /// Designated initializer.
 ///

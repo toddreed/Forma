@@ -1,23 +1,30 @@
 //
-//  RSGenericPropertyViewer.m
+//  RSPropertyViewer.m
 //  Object Editor
 //
 //  Created by Todd Reed on 2019-04-22.
 //  Copyright © 2019 Reaction Software Inc. All rights reserved.
 //
 
-#import "RSGenericPropertyViewer.h"
+#import "RSPropertyViewer.h"
 #import "RSLabelTableViewCell.h"
 
 
-@implementation RSGenericPropertyViewer
+@implementation RSPropertyViewer
 
-#pragma mark - RSPropertyEditor
+#pragma mark - RSFormItem
 
 - (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title
 {
     return [self initWithKey:key ofObject:object title:title formatter:nil];
 }
+
+- (nonnull UITableViewCell *)newTableViewCell
+{
+    return [[RSLabelTableViewCell alloc] init];
+}
+
+#pragma mark - RSPropertyFormItem
 
 - (void)propertyChangedToValue:(nullable id)newValue
 {
@@ -37,12 +44,7 @@
     labelTableViewCell.valueLabel.text = text;
 }
 
-- (nonnull UITableViewCell *)newTableViewCell
-{
-    return [[RSLabelTableViewCell alloc] init];
-}
-
-#pragma mark - RSGenericPropertyViewer
+#pragma mark - RSPropertyViewer
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title formatter:(nullable NSFormatter *)formatter
 {

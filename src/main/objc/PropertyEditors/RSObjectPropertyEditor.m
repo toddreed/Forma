@@ -12,20 +12,12 @@
 
 @implementation RSObjectPropertyEditor
 
-#pragma mark RSPropertyEditor
+#pragma mark RSFormItem
 
-- (void)propertyChangedToValue:(nullable id)newValue
-{
-    RSLabelTableViewCell *cell = self.tableViewCell;
-    cell.valueLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
-                            [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
-}
-
-- (UITableViewCell<RSPropertyEditorView> *)newTableViewCell
+- (UITableViewCell<RSFormItemView> *)newTableViewCell
 {
     return [[RSLabelTableViewCell alloc] init];
 }
-
 
 - (void)configureTableViewCellForController:(nonnull RSObjectEditorViewController *)controller
 {
@@ -38,12 +30,21 @@
     return YES;
 }
 
-- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
 {
     UINavigationController *navigationController = controller.navigationController;
     id value = [self.object valueForKey:self.key];
     RSObjectEditorViewController *objectEditorViewController = [value objectEditorViewController];
     [navigationController pushViewController:objectEditorViewController animated:YES];
+}
+
+#pragma mark - RSPropertyFormItem
+
+- (void)propertyChangedToValue:(nullable id)newValue
+{
+    RSLabelTableViewCell *cell = self.tableViewCell;
+    cell.valueLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
+                            [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
 }
 
 @end

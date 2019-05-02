@@ -5,8 +5,8 @@
 //
 
 
-#import "RSPropertyEditor.h"
+#import "RSPropertyFormItem.h"
 
 
-@interface RSBooleanPropertyEditor : RSPropertyEditor
+@interface RSBooleanPropertyEditor : RSPropertyFormItem
 @end

@@ -8,9 +8,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSPropertyEditor.h"
-#import "RSPropertyGroup.h"
+#import "../PropertyEditors/RSFormItem.h"
+#import "RSFormSection.h"
 #import "NSObject+RSEditor.h"
+#import "RSFormContainer.h"
+
 
 @class RSObjectEditorViewController;
 @class RSTextInputPropertyEditor;
@@ -32,7 +34,7 @@ typedef enum RSObjectEditorViewStyle
 /// RSObjectEditorViewController is a view controller for provides an interface for modifying
 /// the values of object properties. It’s appropriate for implementing the UI for settings,
 /// inspectors, and forms.
-@interface RSObjectEditorViewController : UITableViewController
+@interface RSObjectEditorViewController : UITableViewController <RSFormContainer>
 
 @property(nonatomic, weak, nullable) id<RSObjectEditorViewControllerDelegate> delegate;
 
@@ -40,19 +42,19 @@ typedef enum RSObjectEditorViewStyle
 /// Cancel button. This provides the same functionality as the `delegate` property.
 @property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
 
-@property(nonatomic) RSObjectEditorViewStyle style;
+@property (nonatomic) RSObjectEditorViewStyle style;
 
 /// If autoTextFieldNavigation is YES, then the return key for all the text fields, except the last,
 /// is set to UIReturnKeyNext; the last text field's return key is set to the value of the
 /// lastTextFieldReturnKeyType property. When the user presses the "Next" button on the keyboard,
 /// the next text field becomes the first responder. If this property is NO, the return key style is
 /// determined by the RSTextInputPropertyEditor returnKeyType property. The default value is YES;
-@property(nonatomic) BOOL autoTextFieldNavigation;
+@property (nonatomic) BOOL autoTextFieldNavigation;
 
 /// The lastTextFieldReturnKeyType indicates the return key to use when the autoTextFieldNavigation
 /// property is YES. If autoTextFieldNavigation is NO, this property is ignored. The default value
 /// is UIReturnKeyDone.
-@property(nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
+@property (nonatomic) UIReturnKeyType lastTextFieldReturnKeyType;
 
 @property (nonatomic) BOOL showCancelButton;
 @property (nonatomic) BOOL showDoneButton;
@@ -62,10 +64,10 @@ typedef enum RSObjectEditorViewStyle
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithObject:(nonnull NSObject *)object;
 
-- (void)setTitle:(nonnull NSString *)title propertyGroups:(nonnull NSArray<RSPropertyGroup *> *)propertyGroups;
+- (void)setTitle:(nonnull NSString *)title formSections:(nonnull NSArray<RSFormSection *> *)formSections;
 
 /// Forces any in-progress editing to complete. Notably, if the text field is the first responder,
 /// it will resign first responder status, causing the text field's value to be committed to the
@@ -84,8 +86,8 @@ typedef enum RSObjectEditorViewStyle
 // Invoked when the cancel button is pressed.
 - (void)cancelPressed;
 
-/// Replaces a RSPropertyGroup. This is useful when the property group for an object is dynamic and
+/// Replaces a RSFormSection. This is useful when the property group for an object is dynamic and
 /// dependent on some state variable.
-- (void)replacePropertyGroupAtIndex:(NSUInteger)index withPropertyGroup:(nonnull RSPropertyGroup *)propertyGroup;
+- (void)replaceFormSectionAtIndex:(NSUInteger)index withFormSection:(nonnull RSFormSection *)propertyGroup;
 
 @end

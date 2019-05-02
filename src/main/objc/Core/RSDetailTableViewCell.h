@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSPropertyEditor.h"
+#import "RSFormItemView.h"
 #import "RSBaseTableViewCell.h"
 
-@interface RSDetailTableViewCell : RSBaseTableViewCell <RSPropertyEditorView>
+@interface RSDetailTableViewCell : RSBaseTableViewCell <RSFormItemView>
 
 @end
 

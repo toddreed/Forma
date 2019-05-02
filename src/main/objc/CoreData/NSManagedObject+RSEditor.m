@@ -14,14 +14,14 @@
 
 @implementation NSManagedObject (RSEditor)
 
-- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key
+- (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key
 {
     NSEntityDescription *entityDescription = self.entity;
     NSDictionary *attributesByName = entityDescription.attributesByName;
     NSAttributeDescription *attributeDescription = attributesByName[key];
     NSAttributeType type = attributeDescription.attributeType;
 
-    Class propertyEditorClass = nil;
+    Class formItemClass = nil;
 
     switch (type)
     {
@@ -33,15 +33,15 @@
         case NSDecimalAttributeType:
         case NSDoubleAttributeType:
         case NSFloatAttributeType:
-            propertyEditorClass = [RSFloatPropertyEditor class];
+            formItemClass = [RSFloatPropertyEditor class];
             break;
             
         case NSStringAttributeType:
-            propertyEditorClass = [RSTextInputPropertyEditor class];
+            formItemClass = [RSTextInputPropertyEditor class];
             break;
             
         case NSBooleanAttributeType:
-            propertyEditorClass = [RSBooleanPropertyEditor class];
+            formItemClass = [RSBooleanPropertyEditor class];
             break;
             
         case NSDateAttributeType:
@@ -55,16 +55,16 @@
             break;
     }
     
-    if (propertyEditorClass != nil)
+    if (formItemClass != nil)
     {
         NSString *propertyTitle = [key rs_stringByConvertingCamelCaseToTitleCase];
-        return [[propertyEditorClass alloc] initWithKey:key ofObject:self title:propertyTitle];
+        return [[formItemClass alloc] initWithKey:key ofObject:self title:propertyTitle];
     }
     else
         return nil;
 }
 
-- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups
+- (nonnull NSArray<RSFormSection *> *)formSections
 {
     NSEntityDescription *entityDescription = self.entity;
     NSDictionary *attributesByName = entityDescription.attributesByName;
@@ -73,12 +73,12 @@
     
     for (NSString *propertyKey in attributesByName)
     {
-        RSPropertyEditor *editor = [self propertyEditorForKey:propertyKey];
+        RSFormItem *editor = [self formItemForKey:propertyKey];
         if (editor != nil)
             [editors addObject:editor];
     }
     
-    RSPropertyGroup *group = [[RSPropertyGroup alloc] initWithTitle:nil propertyEditorArray:editors];
+    RSFormSection *group = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
     return @[group];
 }
 

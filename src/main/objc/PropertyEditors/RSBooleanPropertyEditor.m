@@ -12,14 +12,7 @@
 
 @implementation RSBooleanPropertyEditor
 
-#pragma mark RSPropertyEditor
-
-- (void)propertyChangedToValue:(nullable id)newValue
-{
-    RSSwitchTableViewCell *cell = self.tableViewCell;
-    UISwitch *toggle = cell.toggle;
-    [toggle setOn:[newValue boolValue] animated:YES];
-}
+#pragma mark RSFormItem
 
 - (nonnull UITableViewCell *)newTableViewCell
 {
@@ -35,6 +28,17 @@
     
     [toggle addTarget:self action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
+
+#pragma mark - RSPropertyFormItem
+
+- (void)propertyChangedToValue:(nullable id)newValue
+{
+    RSSwitchTableViewCell *cell = self.tableViewCell;
+    UISwitch *toggle = cell.toggle;
+    [toggle setOn:[newValue boolValue] animated:YES];
+}
+
+#pragma mark - RSBooleanPropertyEditor
 
 - (void)switchChangedValue:(nonnull id)sender
 {

@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ModelObject.h"
 #import "RSObjectEditorViewController.h"
-#import "RSPropertyEditor.h"
+#import "RSFormItem.h"
 #import "RSTextInputPropertyEditor.h"
 #import "RSArrayAutocompleteSource.h"
-#import "RSPropertyGroup.h"
+#import "RSFormSection.h"
 #import "RSFloatPropertyEditor.h"
-#import "RSDetailPropertyEditor.h"
+#import "RSFormNavigation.h"
 #import "RSBooleanPropertyEditor.h"
-#import "RSButtonPropertyEditor.h"
-#import "RSGenericPropertyViewer.h"
+#import "RSFormButton.h"
+#import "RSPropertyViewer.h"
 
 
 @implementation Account
@@ -70,17 +70,17 @@
     return editor;
 }
 
-- (nonnull NSArray *)propertyGroups
+- (nonnull NSArray *)formSections
 {
-    RSButtonPropertyEditor *buttonPropertyEditor = [[RSButtonPropertyEditor alloc] initWithTitle:@"Sign In" action:nil];
+    RSFormButton *buttonPropertyEditor = [[RSFormButton alloc] initWithTitle:@"Sign In" action:nil];
     buttonPropertyEditor.action = ^(RSObjectEditorViewController *_Nonnull viewController) {
         [viewController.navigationController popViewControllerAnimated:YES];
     };
     NSArray *editors = @[[self firstNamePropertyEditor],
                          [self lastNamePropertyEditor],
                          [self passwordPropertyEditor]];
-    RSPropertyGroup *group = [[RSPropertyGroup alloc] initWithTitle:@"Account" propertyEditorArray:editors];
-    RSPropertyGroup *button = [[RSPropertyGroup alloc] initWithTitle:nil propertyEditor:buttonPropertyEditor];
+    RSFormSection *group = [[RSFormSection alloc] initWithTitle:@"Account" formItemArray:editors];
+    RSFormSection *button = [[RSFormSection alloc] initWithTitle:nil formItem:buttonPropertyEditor];
     return @[group, button];
 }
 
@@ -99,16 +99,16 @@
 }
 
 
-- (nonnull RSGenericPropertyViewer *)bytesAvailablePropertyEditor
+- (nonnull RSPropertyViewer *)bytesAvailablePropertyEditor
 {
     NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
-    RSGenericPropertyViewer *editor = [[RSGenericPropertyViewer alloc] initWithKey:@"bytesAvailable" ofObject:self title:@"Bytes Available" formatter:formatter];
+    RSPropertyViewer *editor = [[RSPropertyViewer alloc] initWithKey:@"bytesAvailable" ofObject:self title:@"Bytes Available" formatter:formatter];
     return editor;
 }
 
-- (nonnull RSDetailPropertyEditor *)accountPropertyEditor
+- (nonnull RSFormNavigation *)accountPropertyEditor
 {
-    RSDetailPropertyEditor *editor = [[RSDetailPropertyEditor alloc] initWithTitle:@"Account" object:_account];
+    RSFormNavigation *editor = [[RSFormNavigation alloc] initWithTitle:@"Account" object:_account];
     return editor;
 }
 
@@ -126,13 +126,13 @@
     return editor;
 }
 
-- (nonnull NSArray *)propertyGroups
+- (nonnull NSArray *)formSections
 {
     NSArray *editors = @[[self bytesAvailablePropertyEditor],
                          [self accountPropertyEditor],
                          [self volumePropertyEditor],
                          [self equalizerPropertyEditor]];
-    RSPropertyGroup *group = [[RSPropertyGroup alloc] initWithTitle:@"Settings" propertyEditorArray:editors];
+    RSFormSection *group = [[RSFormSection alloc] initWithTitle:@"Settings" formItemArray:editors];
 
     return @[group];
 }

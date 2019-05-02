@@ -16,12 +16,12 @@
 
 @implementation NSObject (RSEditor)
 
-+ (nullable Class)propertyEditorClass
++ (nullable Class)formItemClass
 {
     return [RSObjectPropertyEditor class];
 }
 
-+ (nullable Class)propertyEditorClassForObjcType:(const char *)typeEncoding
++ (nullable Class)formItemClassForObjcType:(const char *)typeEncoding
 {
     Class cls = nil;
     
@@ -33,21 +33,21 @@
     return cls;
 }
 
-- (nullable RSPropertyEditor *)propertyEditorForKey:(NSString *)key
+- (nullable RSFormItem *)formItemForKey:(NSString *)key
 {
     const char *typeEncoding = [[self class] rs_objCTypeOfProperty:key];
 
-    Class propertyEditorClass = nil;
+    Class formItemClass = nil;
     
     if (typeEncoding[0] == '@')
-        propertyEditorClass = [[[self class] rs_classOfProperty:key] propertyEditorClass];
+        formItemClass = [[[self class] rs_classOfProperty:key] formItemClass];
     else
-        propertyEditorClass = [[self class] propertyEditorClassForObjcType:typeEncoding];
+        formItemClass = [[self class] formItemClassForObjcType:typeEncoding];
     
-    if (propertyEditorClass != nil)
+    if (formItemClass != nil)
     {
         NSString *propertyTitle = [key rs_stringByConvertingCamelCaseToTitleCase];
-        return [[propertyEditorClass alloc] initWithKey:key ofObject:self title:propertyTitle];
+        return [[formItemClass alloc] initWithKey:key ofObject:self title:propertyTitle];
     }
     else
         return nil;
@@ -58,17 +58,17 @@
     return [NSStringFromClass([self class]) rs_stringByConvertingCamelCaseToTitleCase];
 }
 
-- (nonnull NSArray<RSPropertyGroup *> *)propertyGroups
+- (nonnull NSArray<RSFormSection *> *)formSections
 {
     NSMutableArray *editors = [NSMutableArray array];
     for (NSString *propertyKey in [[self class] rs_declaredPropertyNamesMatchingFilter:RSMutablePropertyFilter])
     {
-        RSPropertyEditor *editor = [[self class] propertyEditorForKey:propertyKey];
+        RSFormItem *editor = [[self class] formItemForKey:propertyKey];
         if (editor != nil)
             [editors addObject:editor];
     }
     
-    RSPropertyGroup *group = [[RSPropertyGroup alloc] initWithTitle:nil propertyEditorArray:editors];
+    RSFormSection *group = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
     return @[group];
 }
 
@@ -81,7 +81,7 @@
 
 @implementation NSString (RSEditor)
 
-+ (nullable Class)propertyEditorClass
++ (nullable Class)formItemClass
 {
     return [RSTextInputPropertyEditor class];
 }

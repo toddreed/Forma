@@ -5,10 +5,10 @@
 //
 
 
-#import "RSPropertyEditor.h"
+#import "RSPropertyFormItem.h"
 
 
-@interface RSFloatPropertyEditor : RSPropertyEditor
+@interface RSFloatPropertyEditor : RSPropertyFormItem
 
 @property (nonatomic) float minimumValue;
 @property (nonatomic) float maximumValue;

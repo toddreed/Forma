@@ -14,13 +14,13 @@
 /// object.
 @interface NSObject (RSEditor)
 
-+ (nullable Class)propertyEditorClass;
-+ (nullable Class)propertyEditorClassForObjcType:(nonnull const char *)typeEncoding;
++ (nullable Class)formItemClass;
++ (nullable Class)formItemClassForObjcType:(nonnull const char *)typeEncoding;
 
-- (nullable RSPropertyEditor *)propertyEditorForKey:(nonnull NSString *)key;
+- (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
 
 @property (nonatomic, readonly, copy, nonnull) NSString *editorTitle;
-@property (nonatomic, readonly, copy, nonnull) NSArray<RSPropertyGroup *> *propertyGroups;
+@property (nonatomic, readonly, copy, nonnull) NSArray<RSFormSection *> *formSections;
 @property (nonatomic, readonly, strong, nonnull) RSObjectEditorViewController *objectEditorViewController;
 
 @end

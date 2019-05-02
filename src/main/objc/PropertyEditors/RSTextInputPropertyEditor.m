@@ -11,7 +11,7 @@
 #import "../Core/RSTextFieldTableViewCell.h"
 #import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
-#import "../Core/RSObjectEditorViewController_PropertyEditor.h"
+#import "../Core/RSFormContainer.h"
 
 NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 
@@ -41,35 +41,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     __weak RSObjectEditorViewController *_objectEditorViewController;
 }
 
-#pragma mark RSPropertyEditor
+#pragma mark RSFormItem
 
 - (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title
 {
     return [self initWithKey:key ofObject:object title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
-}
-
-- (void)propertyChangedToValue:(nullable id)newValue
-{
-    RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)self.tableViewCell;
-    UITextField *textField = textFieldTableViewCell.textField;
-
-    // Only update the UI if the text field isn't being edited right now.
-    if (!textField.editing)
-    {
-        NSString *text;
-
-        if (newValue == nil)
-            text = @"";
-        else if (_formatter)
-            text = [_formatter stringForObjectValue:newValue];
-        else
-        {
-            NSAssert([newValue isKindOfClass:[NSString class]], ([NSString stringWithFormat:@"A string value is expected for the property “%@”.", self.key]));
-            text = newValue;
-        }
-
-        textField.text = text;
-    }
 }
 
 - (nonnull UITableViewCell *)newTableViewCell
@@ -142,7 +118,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.secureTextEntry = _secureTextEntry;
 }
 
-- (void)controllerDidSelectEditor:(nonnull RSObjectEditorViewController *)controller
+- (void)controllerDidSelectFormItem:(nonnull RSObjectEditorViewController *)controller
 {
     RSTextFieldTableViewCell *cell = self.tableViewCell;
     [cell.textField becomeFirstResponder];
@@ -162,6 +138,32 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
     [textField becomeFirstResponder];
+}
+
+#pragma mark - RSPropertyFormItem
+
+- (void)propertyChangedToValue:(nullable id)newValue
+{
+    RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)self.tableViewCell;
+    UITextField *textField = textFieldTableViewCell.textField;
+
+    // Only update the UI if the text field isn't being edited right now.
+    if (!textField.editing)
+    {
+        NSString *text;
+
+        if (newValue == nil)
+            text = @"";
+        else if (_formatter)
+            text = [_formatter stringForObjectValue:newValue];
+        else
+        {
+            NSAssert([newValue isKindOfClass:[NSString class]], ([NSString stringWithFormat:@"A string value is expected for the property “%@”.", self.key]));
+            text = newValue;
+        }
+
+        textField.text = text;
+    }
 }
 
 #pragma mark RSTextInputPropertyEditor

@@ -7,10 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSPropertyEditor.h"
+#import "../PropertyEditors/RSFormItem.h"
 
 
-@interface RSTextFieldTableViewCell : UITableViewCell <RSPropertyEditorView>
+@interface RSTextFieldTableViewCell : UITableViewCell <RSFormItemView>
 
 @property (nonatomic, readonly, nonnull) UITextField *textField;
 @property (nonatomic, readonly, nonnull) UILabel *errorMessageLabel;

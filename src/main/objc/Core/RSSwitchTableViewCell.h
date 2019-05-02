@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../PropertyEditors/RSPropertyEditor.h"
+#import "../PropertyEditors/RSFormItem.h"
 #import "RSBaseTableViewCell.h"
 
 
-@interface RSSwitchTableViewCell : RSBaseTableViewCell <RSPropertyEditorView>
+@interface RSSwitchTableViewCell : RSBaseTableViewCell <RSFormItemView>
 
 @property (nonatomic, strong, readonly, nonnull) UISwitch *toggle;
 

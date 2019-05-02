@@ -1,12 +1,10 @@
 //
-//  RSObjectEditorViewController_PropertyEditor.h
+//  RSFormContainer.h
 //  Object Editor
 //
 //  Created by Todd Reed on 2015-04-02.
 //  Copyright (c) 2015 Reaction Software Inc. All rights reserved.
 //
-
-#import "RSObjectEditorViewController.h"
 
 /// RSTextEditingMode is used to describe that status of any text editing from a UITextField by
 /// RSObjectEditorViewController.
@@ -30,22 +28,26 @@ typedef enum RSTextEditingMode
 } RSTextEditingMode;
 
 
-/// Defines additional methods available to property editors.
-@interface RSObjectEditorViewController ()
+@class RSTextInputPropertyEditor;
+
+
+@protocol RSFormContainer <NSObject>
+
+@property (nonatomic, strong, readonly, nonnull) UITableView *tableView;
 
 /// This is either nil, or a text field that is currently the first responder (and hence the
 /// keyboard is displayed). If a table cell is touched, we'll resign the first responder and
 /// hide the keyboard.
 @property (nonatomic, weak, nullable) UITextField *activeTextField;
 
-/// The last RSTextInputPropertyEditor found in propertyGroups. We keep this so we can automatically
+/// The last RSTextInputPropertyEditor found in formSections. We keep this so we can automatically
 /// set the return key type to UIReturnKeyDone if autoTextFieldNavigation is YES.
 @property(nonatomic, readonly, nullable) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
 
 @property (nonatomic) RSTextEditingMode textEditingMode;
 
-- (nonnull RSPropertyEditor *)propertyEditorForIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath;
 - (nullable RSTextInputPropertyEditor *)findLastTextInputPropertyEditor;
-- (nullable NSIndexPath *)findNextTextInputAfterEditor:(nonnull RSPropertyEditor *)editor;
+- (nullable NSIndexPath *)findNextTextInputAfterEditor:(nonnull RSFormItem *)editor;
 
 @end
