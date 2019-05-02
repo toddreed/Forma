@@ -13,7 +13,6 @@
 #import "../Core/RSFormContainer.h"
 
 
-@class RSObjectEditorViewController;
 @class RSFormSection;
 
 
@@ -42,8 +41,8 @@
 /// `-newTableViewCell`.
 @property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSFormItemView> *tableViewCell;
 
-/// Returns YES if this property editor can become the first responder. The default is NO. If this
-/// property returns YES, then RSObjectEditorViewController may call -becomeFirstResponder.
+/// Returns YES if this property editor can become the first responder. The default is NO. If
+/// this property returns YES, then the form container may call -becomeFirstResponder.
 @property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
 /// Returns YES if this property editor is selectable. If NO is returned,
@@ -63,14 +62,14 @@
 /// invoked the first time the `tableViewCell` property is accessed.
 - (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell;
 
-/// This method is invoked by RSObjectEditorViewController (from it’s
-/// -tableView:cellForRowAtIndexPath: method) and should not be called directly. Subclasses
-/// should override this method to perform any required table view cell configuration.
+/// This method is invoked by the form container (from it’s -tableView:cellForRowAtIndexPath:
+/// method) and should not be called directly. Subclasses should override this method to perform
+/// any required table view cell configuration.
 - (void)configureTableViewCell;
 
-/// This is invoked by RSObjectEditorViewController when the UITableCellView for the receiver is
-/// selected. This is used when implementing a hierarchical editor when the user can drill-down into
-/// a sub-editor.
+/// This is invoked by form container when the UITableCellView for the receiver is selected.
+/// This is used when implementing a hierarchical editor when the user can drill-down into a
+/// sub-editor.
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller;
 
 /// Makes the receiver the first responder. (The actual first responder will likely be a view

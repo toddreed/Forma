@@ -6,7 +6,6 @@
 
 
 #import "RSFloatPropertyEditor.h"
-#import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSSliderTableViewCell.h"
 
 

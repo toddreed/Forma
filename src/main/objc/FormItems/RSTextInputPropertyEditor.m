@@ -7,9 +7,8 @@
 #import <UIKit/UIKit.h>
 
 #import "RSTextInputPropertyEditor.h"
-
+#import "../Core/RSForm.h"
 #import "../Core/RSTextFieldTableViewCell.h"
-#import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
 #import "../Core/RSFormContainer.h"
 

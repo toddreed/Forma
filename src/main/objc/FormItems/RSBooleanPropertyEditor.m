@@ -6,7 +6,6 @@
 
 
 #import "RSBooleanPropertyEditor.h"
-#import "../Core/RSObjectEditorViewController.h"
 #import "../Core/RSSwitchTableViewCell.h"
 
 

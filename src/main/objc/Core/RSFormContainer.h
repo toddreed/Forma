@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Reaction Software Inc. All rights reserved.
 //
 
-/// RSTextEditingMode is used to describe that status of any text editing from a UITextField by
-/// RSObjectEditorViewController.
+/// RSTextEditingMode is used to describe that status of any text editing from a UITextField in
+/// a form.
 typedef enum RSTextEditingMode
 {
     /// Not currently editing any text.
