@@ -10,7 +10,6 @@ Pod::Spec.new do |s|
   s.header_dir   = 'Forma'
   s.header_mappings_dir = 'src/main/objc'
   s.resource_bundle = { 'Forma' => ['src/main/resources/**/*.xcassets', 'src/main/objc/**/*.xib'] }
-  s.dependency 'UITheme', '~> 1.2'
 
   s.subspec 'Core' do |core|
     core.frameworks = 'Foundation', 'UIKit'

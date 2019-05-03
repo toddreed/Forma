@@ -2,23 +2,16 @@ PODS:
   - Forma (2.0.0):
     - Forma/Core (= 2.0.0)
     - Forma/CoreData (= 2.0.0)
-    - UITheme (~> 1.2)
-  - Forma/Core (2.0.0):
-    - UITheme (~> 1.2)
+  - Forma/Core (2.0.0)
   - Forma/CoreData (2.0.0):
     - Forma/Core
-    - UITheme (~> 1.2)
   - Reveal-SDK (22)
-  - UITheme (1.3.0)
 
 DEPENDENCIES:
   - Forma (from `./`)
   - Reveal-SDK
-  - UITheme (~> 1.2)
 
 SPEC REPOS:
-  "git@bitbucket.org:reactionsoftware/cocoapods-podspecs.git":
-    - UITheme
   https://github.com/cocoapods/specs.git:
     - Reveal-SDK
 
@@ -27,10 +20,9 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  Forma: 35d1fd7f80cde627fb8f47b2a1575f56081450ad
+  Forma: d1f7c0649b9c59e14585a5f42a19bb3704924abf
   Reveal-SDK: 1385ab77aa15e9a3e21f798c74bd8e94cb54c651
-  UITheme: f0022637f3f197c5ff3f4bb217d23398b207ccb2
 
-PODFILE CHECKSUM: 63cb29d280f4b502de2ead2801170d1eedef0875
+PODFILE CHECKSUM: a020f96ce14e823b6fd2b9c367c5d1327e8c098e
 
 COCOAPODS: 1.6.1

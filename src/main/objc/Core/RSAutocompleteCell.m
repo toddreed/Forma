@@ -4,8 +4,6 @@
 // © Reaction Software Inc., 2013
 //
 
-#import <UITheme/RSUITheme.h>
-
 #import "RSAutocompleteCell.h"
 
 @implementation RSAutocompleteCell
@@ -36,8 +34,7 @@
 
 + (nonnull UIFont *)font
 {
-    id<RSUITheme> theme = [RSUITheme currentTheme];
-    return [theme fontOfSize:16.0f];
+    return [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
 }
 
 + (CGSize)preferredSizeForString:(nonnull NSString *)string
