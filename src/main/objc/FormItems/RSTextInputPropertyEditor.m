@@ -176,19 +176,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 #pragma mark RSTextInputPropertyEditor
 
-@synthesize autocapitalizationType = _autocapitalizationType;
-@synthesize autocorrectionType = _autocorrectionType;
-@synthesize spellCheckingType = _spellCheckingType;
-@synthesize smartQuotesType = _smartQuotesType;
-@synthesize smartDashesType = _smartDashesType;
-@synthesize smartInsertDeleteType = _smartInsertDeleteType;
-@synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
-@synthesize keyboardAppearance = _keyboardAppearance;
-@synthesize keyboardType = _keyboardType;
-@synthesize returnKeyType = _returnKeyType;
-@synthesize secureTextEntry = _secureTextEntry;
-@synthesize textContentType = _textContentType;
-
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
 {
     return [self initWithKey:key ofObject:object title:title style:style formatter:nil];
@@ -446,5 +433,19 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return YES;
 }
 
-@end
+#pragma mark UITextInputTraits
 
+@synthesize autocapitalizationType = _autocapitalizationType;
+@synthesize autocorrectionType = _autocorrectionType;
+@synthesize spellCheckingType = _spellCheckingType;
+@synthesize smartQuotesType = _smartQuotesType;
+@synthesize smartDashesType = _smartDashesType;
+@synthesize smartInsertDeleteType = _smartInsertDeleteType;
+@synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
+@synthesize keyboardAppearance = _keyboardAppearance;
+@synthesize keyboardType = _keyboardType;
+@synthesize returnKeyType = _returnKeyType;
+@synthesize secureTextEntry = _secureTextEntry;
+@synthesize textContentType = _textContentType;
+
+@end
