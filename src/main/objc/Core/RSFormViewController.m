@@ -12,8 +12,6 @@
 #import "RSFormViewController.h"
 
 #import "NSObject+RSForm.h"
-#import "../FormItems/RSTextInputPropertyEditor.h"
-#import "RSTextFieldTableViewCell.h"
 
 
 @implementation RSFormViewController

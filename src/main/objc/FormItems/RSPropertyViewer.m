@@ -10,7 +10,7 @@
 //
 
 #import "RSPropertyViewer.h"
-#import "RSLabelTableViewCell.h"
+#import "../TableViewCells/RSLabelTableViewCell.h"
 
 
 @implementation RSPropertyViewer

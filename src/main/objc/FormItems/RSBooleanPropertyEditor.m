@@ -10,7 +10,7 @@
 //
 
 #import "RSBooleanPropertyEditor.h"
-#import "../Core/RSSwitchTableViewCell.h"
+#import "../TableViewCells/RSSwitchTableViewCell.h"
 
 
 @implementation RSBooleanPropertyEditor

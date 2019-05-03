@@ -10,7 +10,7 @@
 //
 
 #import "RSFormButton.h"
-#import "../Core/RSButtonTableViewCell.h"
+#import "../TableViewCells/RSButtonTableViewCell.h"
 
 
 @implementation RSFormButton

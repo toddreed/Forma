@@ -11,7 +11,7 @@
 
 #import "RSFormNavigation.h"
 #import "../Core/NSObject+RSForm.h"
-#import "../Core/RSDetailTableViewCell.h"
+#import "../TableViewCells/RSDetailTableViewCell.h"
 
 
 @implementation RSFormNavigation

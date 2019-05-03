@@ -214,14 +214,6 @@
 				5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */,
 				5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */,
 				5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */,
-				5F574634226A45E300E14770 /* RSBaseTableViewCell.h */,
-				5F574635226A45E300E14770 /* RSBaseTableViewCell.m */,
-				5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */,
-				5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */,
-				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
-				5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */,
-				5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */,
-				5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */,
 				5F0170DB227B4940003E81F4 /* RSForm.h */,
 				5F0170DC227B4940003E81F4 /* RSForm.m */,
 				5F14FF7C1ACE18EE003D0861 /* RSFormContainer.h */,
@@ -229,22 +221,10 @@
 				5FF92FC0174AD615003211A0 /* RSFormSection.h */,
 				5FF92FC1174AD615003211A0 /* RSFormSection.m */,
 				5FAB5B1F227B8C930062D29C /* RSFormSection+Private.h */,
-				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
-				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
 				5F57463B226A739A00E14770 /* RSFormLibrary.h */,
 				5F57463C226A739A00E14770 /* RSFormLibrary.m */,
 				5FF92FBA174AD615003211A0 /* RSFormViewController.h */,
 				5FF92FBB174AD615003211A0 /* RSFormViewController.m */,
-				5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */,
-				5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */,
-				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
-				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
-				5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */,
-				5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */,
-				5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */,
-				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
-				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
-				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -281,12 +261,40 @@
 				5FF92FBD174AD615003211A0 /* RSObjectPropertyEditor.m */,
 				5F4E90A02279EE6E005EAAA3 /* RSPropertyFormItem.h */,
 				5F4E90A12279EE6E005EAAA3 /* RSPropertyFormItem.m */,
+				5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */,
+				5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */,
 				5F4E1077175D33810025BC1D /* RSStringPropertyEditor.h */,
 				5F4E1073175D0D8C0025BC1D /* RSTextInputPropertyEditor.h */,
 				5F4E1074175D0D8C0025BC1D /* RSTextInputPropertyEditor.m */,
 			);
 			name = "Form Items";
 			path = FormItems;
+			sourceTree = "<group>";
+		};
+		5FACA40A227CC12500C7DCA4 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5F574634226A45E300E14770 /* RSBaseTableViewCell.h */,
+				5F574635226A45E300E14770 /* RSBaseTableViewCell.m */,
+				5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */,
+				5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */,
+				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
+				5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */,
+				5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */,
+				5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */,
+				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
+				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
+				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
+				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
+				5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */,
+				5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */,
+				5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */,
+				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
+				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
+				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
+			);
+			name = "Table View Cells";
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		5FF92F6F174AD56B003211A0 = {
@@ -344,8 +352,9 @@
 			children = (
 				5F6087EB1ACDE26900E0ED97 /* Core */,
 				5F6087EC1ACDE28000E0ED97 /* Core Data */,
-				5FF92F7F174AD56B003211A0 /* Forma-Prefix.pch */,
 				5F6087ED1ACDE40700E0ED97 /* Form Items */,
+				5FF92F7F174AD56B003211A0 /* Forma-Prefix.pch */,
+				5FACA40A227CC12500C7DCA4 /* Table View Cells */,
 			);
 			path = objc;
 			sourceTree = "<group>";
@@ -385,7 +394,7 @@
 			dependencies = (
 			);
 			name = Forma;
-			productName = "Forma";
+			productName = Forma;
 			productReference = 5FF92F78174AD56B003211A0 /* libForma.a */;
 			productType = "com.apple.product-type.library.static";
 		};

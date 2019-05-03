@@ -13,9 +13,8 @@
 
 #import "RSTextInputPropertyEditor.h"
 #import "../Core/RSForm.h"
-#import "../Core/RSTextFieldTableViewCell.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
-#import "../Core/RSFormContainer.h"
+#import "../TableViewCells/RSTextFieldTableViewCell.h"
 
 NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 

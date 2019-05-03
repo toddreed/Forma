@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core|
     core.frameworks = 'Foundation', 'UIKit'
-    core.source_files = 'src/main/objc/Core/*.{h,m}', 'src/main/objc/FormItems/*.{h,m}'
-    core.public_header_files = 'src/main/objc/Core/*.h', 'src/main/objc/FormItems/*.h'
+    core.source_files = 'src/main/objc/Core/*.{h,m}', 'src/main/objc/FormItems/*.{h,m}', 'src/main/objc/TableViewCells/*.{h,m}'
+    core.public_header_files = 'src/main/objc/Core/*.h', 'src/main/objc/FormItems/*.h', 'src/main/objc/TableViewCells/*.h'
   end
 
   s.subspec 'CoreData' do |coredata|

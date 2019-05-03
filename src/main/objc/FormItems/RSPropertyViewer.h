@@ -9,7 +9,7 @@
 // information.
 //
 
-#import "../FormItems/RSPropertyFormItem.h"
+#import "RSPropertyFormItem.h"
 
 
 /// RSPropertyViewer is a read-only property form item: it displays the value of a property

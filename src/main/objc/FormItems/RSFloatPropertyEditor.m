@@ -10,7 +10,7 @@
 //
 
 #import "RSFloatPropertyEditor.h"
-#import "../Core/RSSliderTableViewCell.h"
+#import "../TableViewCells/RSSliderTableViewCell.h"
 
 
 @implementation RSFloatPropertyEditor

@@ -11,7 +11,7 @@
 
 #import "RSObjectPropertyEditor.h"
 #import "../Core/NSObject+RSForm.h"
-#import "../Core/RSLabelTableViewCell.h"
+#import "../TableViewCells/RSLabelTableViewCell.h"
 
 
 @implementation RSObjectPropertyEditor
