@@ -45,7 +45,7 @@
 
 - (void)editingCompleted:(BOOL)cancelled
 {
-    NSLog(@"Object editor completed; was cancelled: %d", cancelled);
+    NSLog(@"Form session completed; was cancelled: %d", cancelled);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

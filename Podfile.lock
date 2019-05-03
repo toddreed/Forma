@@ -1,18 +1,18 @@
 PODS:
-  - ObjectEditor (1.0.3):
-    - ObjectEditor/Core (= 1.0.3)
-    - ObjectEditor/CoreData (= 1.0.3)
+  - Forma (2.0.0):
+    - Forma/Core (= 2.0.0)
+    - Forma/CoreData (= 2.0.0)
     - UITheme (~> 1.2)
-  - ObjectEditor/Core (1.0.3):
+  - Forma/Core (2.0.0):
     - UITheme (~> 1.2)
-  - ObjectEditor/CoreData (1.0.3):
-    - ObjectEditor/Core
+  - Forma/CoreData (2.0.0):
+    - Forma/Core
     - UITheme (~> 1.2)
   - Reveal-SDK (22)
   - UITheme (1.3.0)
 
 DEPENDENCIES:
-  - ObjectEditor (from `./`)
+  - Forma (from `./`)
   - Reveal-SDK
   - UITheme (~> 1.2)
 
@@ -23,14 +23,14 @@ SPEC REPOS:
     - Reveal-SDK
 
 EXTERNAL SOURCES:
-  ObjectEditor:
+  Forma:
     :path: "./"
 
 SPEC CHECKSUMS:
-  ObjectEditor: a6a5761134a4c22b7b9884ccd085b1029708c456
+  Forma: 35d1fd7f80cde627fb8f47b2a1575f56081450ad
   Reveal-SDK: 1385ab77aa15e9a3e21f798c74bd8e94cb54c651
   UITheme: f0022637f3f197c5ff3f4bb217d23398b207ccb2
 
-PODFILE CHECKSUM: 9100fc84080df3b2d0ea9be24beecab36e42d892
+PODFILE CHECKSUM: 63cb29d280f4b502de2ead2801170d1eedef0875
 
 COCOAPODS: 1.6.1

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FF92F77174AD56B003211A0"
-               BuildableName = "libObject Editor.a"
-               BlueprintName = "Object Editor"
-               ReferencedContainer = "container:Object Editor.xcodeproj">
+               BuildableName = "libForma.a"
+               BlueprintName = "Forma"
+               ReferencedContainer = "container:Forma.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5FF92F88174AD56B003211A0"
-               BuildableName = "Object EditorTests.octest"
-               BlueprintName = "Object EditorTests"
-               ReferencedContainer = "container:Object Editor.xcodeproj">
+               BuildableName = "FormaTests.octest"
+               BlueprintName = "FormaTests"
+               ReferencedContainer = "container:Forma.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5FF92F77174AD56B003211A0"
-            BuildableName = "libObject Editor.a"
-            BlueprintName = "Object Editor"
-            ReferencedContainer = "container:Object Editor.xcodeproj">
+            BuildableName = "libForma.a"
+            BlueprintName = "Forma"
+            ReferencedContainer = "container:Forma.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>

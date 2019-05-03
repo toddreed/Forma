@@ -1,6 +1,6 @@
 //
 //  RSFormItem.h
-//  Object Editor
+//  Forma
 //
 //  Created by Todd Reed on 2019-05-01.
 //  Copyright © 2019 Reaction Software Inc. All rights reserved.
@@ -54,8 +54,8 @@
 
 /// A helper function for instantiating a table view cell from a nib file.
 ///
-/// This method only works for table view cells that are part of the Object Editor library as
-/// the nib file is loaded from the Object Editor’s resource bundle.
+/// This method only works for table view cells that are part of the Forma library as the nib
+/// file is loaded from the Forma’s resource bundle.
 + (nonnull __kindof UITableViewCell<RSFormItemView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
 /// This is a helper factory function used to create a new UITableViewCell when needed. This is

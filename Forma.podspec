@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
-  s.name         = "ObjectEditor"
-  s.version      = "1.0.3"
-  s.summary      = "Provides a UI framework for an object editor (a.k.a. inspector)."
+  s.name         = "Forma"
+  s.version      = "2.0.0"
+  s.summary      = "Provides a classes for implementing forms, settings, and inspectors."
   s.homepage     = 'https://bitbucket.org/reactionsoftware/object-editor'
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
   s.license      = { :type => 'Proprietary' }
   s.source       = { :git => "git@bitbucket.org:reactionsoftware/object-editor.git", :tag => s.version.to_s}
   s.platform     = :ios, '11.0'
-  s.header_dir   = 'ObjectEditor'
+  s.header_dir   = 'Forma'
   s.header_mappings_dir = 'src/main/objc'
-  s.resource_bundle = { 'ObjectEditor' => ['src/main/resources/**/*.xcassets', 'src/main/objc/**/*.xib'] }
+  s.resource_bundle = { 'Forma' => ['src/main/resources/**/*.xcassets', 'src/main/objc/**/*.xib'] }
   s.dependency 'UITheme', '~> 1.2'
 
   s.subspec 'Core' do |core|
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     coredata.source_files = 'src/main/objc/CoreData/*.{h,m}'
     coredata.public_header_files = 'src/main/objc/CoreData/*.h'
 
-    coredata.dependency 'ObjectEditor/Core'
+    coredata.dependency 'Forma/Core'
   end
 
 end

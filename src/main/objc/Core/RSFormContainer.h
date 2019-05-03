@@ -1,6 +1,6 @@
 //
 //  RSFormContainer.h
-//  Object Editor
+//  Forma
 //
 //  Created by Todd Reed on 2015-04-02.
 //  Copyright (c) 2015 Reaction Software Inc. All rights reserved.

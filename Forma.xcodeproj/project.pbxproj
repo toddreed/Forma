@@ -45,7 +45,7 @@
 		5FFA668C1BB601CC00D9014D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FFA668A1BB601CC00D9014D /* LaunchScreen.storyboard */; };
 		5FFA66951BB606D200D9014D /* ModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FFA66941BB606D200D9014D /* ModelObject.m */; };
 		5FFA669C1BB60B8700D9014D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFA669B1BB60B8700D9014D /* CoreData.framework */; };
-		6C4934F570BBFB24CBD01E9E /* libPods-Object Editor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0511A1A8EBB18D1B2A777D0D /* libPods-Object Editor.a */; };
+		690C5B7284E776584B9343F3 /* libPods-Forma.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF24FDF398776E8680B6E24 /* libPods-Forma.a */; };
 		EF94C1400B155D2936F36B99 /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D632B2516213D5AC44C93D /* libPods-Demo.a */; };
 /* End PBXBuildFile section */
 
@@ -62,10 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0511A1A8EBB18D1B2A777D0D /* libPods-Object Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Object Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		14E09896A55D8B8FC9F53215 /* Pods-Object Editor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.debug.xcconfig"; sourceTree = "<group>"; };
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Object Editor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Object Editor/Pods-Object Editor.release.xcconfig"; sourceTree = "<group>"; };
 		5F0170DB227B4940003E81F4 /* RSForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSForm.h; sourceTree = "<group>"; };
 		5F0170DC227B4940003E81F4 /* RSForm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSForm.m; sourceTree = "<group>"; };
 		5F0CE80C226A7CE3000465AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,9 +106,9 @@
 		5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSwitchTableViewCell.h; sourceTree = "<group>"; };
 		5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSwitchTableViewCell.m; sourceTree = "<group>"; };
 		5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSwitchTableViewCell.xib; sourceTree = "<group>"; };
-		5FF92F78174AD56B003211A0 /* libObject Editor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libObject Editor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FF92F78174AD56B003211A0 /* libForma.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libForma.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF92F7B174AD56B003211A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Object Editor-Prefix.pch"; sourceTree = "<group>"; };
+		5FF92F7F174AD56B003211A0 /* Forma-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Forma-Prefix.pch"; sourceTree = "<group>"; };
 		5FF92F8C174AD56B003211A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		5FF92FA6174AD615003211A0 /* NSManagedObject+RSForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+RSForm.h"; sourceTree = "<group>"; };
 		5FF92FA7174AD615003211A0 /* NSManagedObject+RSForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+RSForm.m"; sourceTree = "<group>"; };
@@ -153,8 +150,11 @@
 		5FFA66941BB606D200D9014D /* ModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelObject.m; sourceTree = "<group>"; };
 		5FFA66991BB60AAA00D9014D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/../build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		5FFA669B1BB60B8700D9014D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		92387AAF7468887DE4D6129F /* Pods-Forma.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forma.release.xcconfig"; path = "Pods/Target Support Files/Pods-Forma/Pods-Forma.release.xcconfig"; sourceTree = "<group>"; };
 		A6D632B2516213D5AC44C93D /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF23F0214617EE4EB7C108CD /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF24FDF398776E8680B6E24 /* libPods-Forma.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Forma.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF206EFBF6738762AAC48924 /* Pods-Forma.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Forma.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Forma/Pods-Forma.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FF92F7C174AD56B003211A0 /* Foundation.framework in Frameworks */,
-				6C4934F570BBFB24CBD01E9E /* libPods-Object Editor.a in Frameworks */,
+				690C5B7284E776584B9343F3 /* libPods-Forma.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +184,8 @@
 			children = (
 				BF23F0214617EE4EB7C108CD /* Pods-Demo.debug.xcconfig */,
 				18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */,
-				14E09896A55D8B8FC9F53215 /* Pods-Object Editor.debug.xcconfig */,
-				3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */,
+				FF206EFBF6738762AAC48924 /* Pods-Forma.debug.xcconfig */,
+				92387AAF7468887DE4D6129F /* Pods-Forma.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -302,7 +302,7 @@
 		5FF92F79174AD56B003211A0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5FF92F78174AD56B003211A0 /* libObject Editor.a */,
+				5FF92F78174AD56B003211A0 /* libForma.a */,
 				5FFA667A1BB601CC00D9014D /* Demo.app */,
 			);
 			name = Products;
@@ -316,7 +316,7 @@
 				5FF92F7B174AD56B003211A0 /* Foundation.framework */,
 				5FF92F8C174AD56B003211A0 /* UIKit.framework */,
 				A6D632B2516213D5AC44C93D /* libPods-Demo.a */,
-				0511A1A8EBB18D1B2A777D0D /* libPods-Object Editor.a */,
+				FCF24FDF398776E8680B6E24 /* libPods-Forma.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 			children = (
 				5F6087EB1ACDE26900E0ED97 /* Core */,
 				5F6087EC1ACDE28000E0ED97 /* Core Data */,
-				5FF92F7F174AD56B003211A0 /* Object Editor-Prefix.pch */,
+				5FF92F7F174AD56B003211A0 /* Forma-Prefix.pch */,
 				5F6087ED1ACDE40700E0ED97 /* Form Items */,
 			);
 			path = objc;
@@ -371,9 +371,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5FF92F77174AD56B003211A0 /* Object Editor */ = {
+		5FF92F77174AD56B003211A0 /* Forma */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FF92F9D174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object Editor" */;
+			buildConfigurationList = 5FF92F9D174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Forma" */;
 			buildPhases = (
 				91698B4F754D3352CD767641 /* [CP] Check Pods Manifest.lock */,
 				5FF92F74174AD56B003211A0 /* Sources */,
@@ -384,9 +384,9 @@
 			);
 			dependencies = (
 			);
-			name = "Object Editor";
-			productName = "Object Editor";
-			productReference = 5FF92F78174AD56B003211A0 /* libObject Editor.a */;
+			name = Forma;
+			productName = "Forma";
+			productReference = 5FF92F78174AD56B003211A0 /* libForma.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		5FFA66791BB601CC00D9014D /* Demo */ = {
@@ -420,10 +420,11 @@
 				TargetAttributes = {
 					5FFA66791BB601CC00D9014D = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 8NE24U7U9C;
 					};
 				};
 			};
-			buildConfigurationList = 5FF92F73174AD56B003211A0 /* Build configuration list for PBXProject "Object Editor" */;
+			buildConfigurationList = 5FF92F73174AD56B003211A0 /* Build configuration list for PBXProject "Forma" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -436,7 +437,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5FF92F77174AD56B003211A0 /* Object Editor */,
+				5FF92F77174AD56B003211A0 /* Forma */,
 				5FFA66791BB601CC00D9014D /* Demo */,
 			);
 		};
@@ -507,7 +508,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Object Editor-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Forma-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -521,11 +522,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ObjectEditor/ObjectEditor.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Forma/Forma.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ObjectEditor.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Forma.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -696,11 +697,11 @@
 		};
 		5FF92F9E174AD56B003211A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 14E09896A55D8B8FC9F53215 /* Pods-Object Editor.debug.xcconfig */;
+			baseConfigurationReference = FF206EFBF6738762AAC48924 /* Pods-Forma.debug.xcconfig */;
 			buildSettings = {
-				DSTROOT = /tmp/Object_Editor.dst;
+				DSTROOT = /tmp/Forma.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "src/main/objc/Object Editor-Prefix.pch";
+				GCC_PREFIX_HEADER = "src/main/objc/Forma-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -708,11 +709,11 @@
 		};
 		5FF92F9F174AD56B003211A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F3551ACC726CD77F3870A64 /* Pods-Object Editor.release.xcconfig */;
+			baseConfigurationReference = 92387AAF7468887DE4D6129F /* Pods-Forma.release.xcconfig */;
 			buildSettings = {
-				DSTROOT = /tmp/Object_Editor.dst;
+				DSTROOT = /tmp/Forma.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "src/main/objc/Object Editor-Prefix.pch";
+				GCC_PREFIX_HEADER = "src/main/objc/Forma-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -730,6 +731,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8NE24U7U9C;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -761,6 +763,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8NE24U7U9C;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -782,7 +785,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5FF92F73174AD56B003211A0 /* Build configuration list for PBXProject "Object Editor" */ = {
+		5FF92F73174AD56B003211A0 /* Build configuration list for PBXProject "Forma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FF92F9B174AD56B003211A0 /* Debug */,
@@ -791,7 +794,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FF92F9D174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Object Editor" */ = {
+		5FF92F9D174AD56B003211A0 /* Build configuration list for PBXNativeTarget "Forma" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FF92F9E174AD56B003211A0 /* Debug */,
