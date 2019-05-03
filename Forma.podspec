@@ -2,10 +2,10 @@ Pod::Spec.new do |s|
   s.name         = "Forma"
   s.version      = "2.0.0"
   s.summary      = "Provides a classes for implementing forms, settings, and inspectors."
-  s.homepage     = 'https://bitbucket.org/reactionsoftware/object-editor'
+  s.homepage     = 'https://github.com/toddreed/Forma'
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
-  s.license      = { :type => 'Proprietary' }
-  s.source       = { :git => "git@bitbucket.org:reactionsoftware/object-editor.git", :tag => s.version.to_s}
+  s.license      = { :type => 'MIT', :file => 'LICENSE.md' }
+  s.source       = { :git => "https://github.com/toddreed/Forma.git", :tag => s.version.to_s}
   s.platform     = :ios, '11.0'
   s.header_dir   = 'Forma'
   s.header_mappings_dir = 'src/main/objc'

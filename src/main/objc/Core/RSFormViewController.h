@@ -1,9 +1,13 @@
 //
+// Forma
 // RSFormViewController.h
 //
-// © Reaction Software Inc., 2013
+// © Reaction Software Inc. and Todd Reed, 2019
 //
-
+// Licensed under the MIT license. See LICENSE.md file in the project
+// root or https://github.com/toddreed/Forma for full license
+// information.
+//
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>

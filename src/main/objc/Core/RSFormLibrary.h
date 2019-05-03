@@ -1,9 +1,12 @@
 //
-//  RSFormLibrary.h
-//  Forma
+// Forma
+// RSFormLibrary.h
 //
-//  Created by Todd Reed on 2019-04-19.
-//  Copyright © 2019 Reaction Software Inc. All rights reserved.
+// © Reaction Software Inc. and Todd Reed, 2019
+//
+// Licensed under the MIT license. See LICENSE.md file in the project
+// root or https://github.com/toddreed/Forma for full license
+// information.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,4 +17,3 @@
 @property (class, nonatomic, strong, readonly, nonnull) NSBundle *bundle;
 
 @end
-
