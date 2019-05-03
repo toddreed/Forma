@@ -101,9 +101,13 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.autocapitalizationType = _autocapitalizationType;
     textField.autocorrectionType = _autocorrectionType;
     textField.spellCheckingType = _spellCheckingType;
+    textField.smartQuotesType = _smartQuotesType;
+    textField.smartDashesType = _smartDashesType;
+    textField.smartInsertDeleteType = _smartInsertDeleteType;
     textField.enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
     textField.keyboardAppearance = _keyboardAppearance;
     textField.keyboardType = _keyboardType;
+    textField.textContentType = _textContentType;
 
     RSForm *form = self.formSection.form;
     id<RSFormContainer> container = form.formContainer;
@@ -175,11 +179,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 @synthesize autocapitalizationType = _autocapitalizationType;
 @synthesize autocorrectionType = _autocorrectionType;
 @synthesize spellCheckingType = _spellCheckingType;
+@synthesize smartQuotesType = _smartQuotesType;
+@synthesize smartDashesType = _smartDashesType;
+@synthesize smartInsertDeleteType = _smartInsertDeleteType;
 @synthesize enablesReturnKeyAutomatically = _enablesReturnKeyAutomatically;
 @synthesize keyboardAppearance = _keyboardAppearance;
 @synthesize keyboardType = _keyboardType;
 @synthesize returnKeyType = _returnKeyType;
 @synthesize secureTextEntry = _secureTextEntry;
+@synthesize textContentType = _textContentType;
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
 {
@@ -195,11 +203,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     _autocapitalizationType = UITextAutocapitalizationTypeNone;
     _autocorrectionType = UITextAutocorrectionTypeNo;
     _spellCheckingType = UITextSpellCheckingTypeDefault;
+    _smartQuotesType = UITextSmartQuotesTypeDefault;
+    _smartDashesType = UITextSmartDashesTypeDefault;
+    _smartInsertDeleteType = UITextSmartInsertDeleteTypeDefault;
     _enablesReturnKeyAutomatically = NO;
     _keyboardAppearance = UIKeyboardAppearanceDefault;
     _keyboardType = UIKeyboardTypeDefault;
     _returnKeyType = UIReturnKeyNext;
     _secureTextEntry = NO;
+    _textContentType = nil;
     _clearButtonMode = UITextFieldViewModeWhileEditing;
     _textAlignment = style == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
     _clearsOnBeginEditing = NO;
