@@ -79,7 +79,7 @@
     NSArray *editors = @[[self firstNamePropertyEditor],
                          [self lastNamePropertyEditor],
                          [self passwordPropertyEditor]];
-    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Account" formItemArray:editors];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Account" formItems:editors];
     RSFormSection *button = [[RSFormSection alloc] initWithTitle:nil formItem:buttonPropertyEditor];
     return @[formSection, button];
 }
@@ -132,7 +132,7 @@
                          [self accountPropertyEditor],
                          [self volumePropertyEditor],
                          [self equalizerPropertyEditor]];
-    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItemArray:editors];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItems:editors];
 
     return @[formSection];
 }

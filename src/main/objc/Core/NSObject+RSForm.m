@@ -79,7 +79,7 @@
             [formItems addObject:formItem];
     }
     
-    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItemArray:formItems];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItems:formItems];
     return @[formSection];
 }
 

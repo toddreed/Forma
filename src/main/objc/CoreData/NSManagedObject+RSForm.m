@@ -82,7 +82,7 @@
             [editors addObject:formItem];
     }
     
-    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItemArray:editors];
+    RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:nil formItems:editors];
     return @[formSection];
 }
 
