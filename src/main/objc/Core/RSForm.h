@@ -41,6 +41,7 @@
 
 @property (nonatomic, weak, nullable) id<RSFormContainer> formContainer;
 
+- (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title;
 - (void)addSection:(nonnull RSFormSection *)section;
 
