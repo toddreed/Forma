@@ -38,7 +38,8 @@
 {
     RSSwitchTableViewCell *cell = self.tableViewCell;
     UISwitch *toggle = cell.toggle;
-    [toggle setOn:[newValue boolValue] animated:YES];
+    BOOL animated = (cell.window != nil); // Don’t animated if we’re not in a window yet
+    [toggle setOn:[newValue boolValue] animated:animated];
 }
 
 #pragma mark - RSBooleanPropertyEditor
