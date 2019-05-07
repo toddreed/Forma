@@ -234,7 +234,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         cell.errorMessageLabel.text = _message;
 }
 
-- (nullable id)validateTextInput:(nonnull NSString *)textInput error:(NSError **)error
+- (BOOL)validateTextInput:(nonnull NSString *)textInput output:(out id _Nullable *_Nonnull)output error:(NSError *_Nonnull *_Nonnull)error
 {
     // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing.
     // We invoke it again however because -validateValue:forKey:error: can also perform
@@ -256,16 +256,19 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
                                              code:0
                                          userInfo:@{NSLocalizedDescriptionKey: errorDescription}];
             }
-            return nil;
+            return NO;
         }
     }
     else
         value = textInput;
 
     if ([self.object validateValue:&value forKey:self.key error:error])
-        return value;
+    {
+        *output = value;
+        return YES;
+    }
     else
-        return nil;
+        return NO;
 }
 
 - (void)textChanged:(nonnull id)sender
@@ -278,9 +281,8 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         UITextField *textField = (UITextField *)sender;
 
         NSError *error;
-        id value = [self validateTextInput:textField.text error:&error];
-
-        if (value)
+        id value;
+        if ([self validateTextInput:textField.text output:&value error:&error])
         {
             [self.object setValue:value forKey:self.key];
         }
@@ -403,13 +405,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     if (container.textEditingMode != RSTextEditingModeCancelling && container.textEditingMode != RSTextEditingModeFinishingForced)
     {
-        NSError *error;
-
-        id value = [self validateTextInput:textField.text error:&error];
-
         RSTextFieldTableViewCell *cell = self.tableViewCell;
 
-        if (value == nil)
+        NSError *error;
+        id value;
+        if (![self validateTextInput:textField.text output:&value error:&error])
         {
             self.message = error.localizedDescription;
             [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:YES];

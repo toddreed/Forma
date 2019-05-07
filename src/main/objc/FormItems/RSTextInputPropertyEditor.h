@@ -45,6 +45,9 @@ typedef enum RSTextInputPropertyEditorStyle
 
 @property (nonatomic, strong, nullable) id<RSAutocompleteSource> autocompleteSource;
 
-- (nullable NSString *)validateTextInput:(nonnull NSString *)textInput error:(NSError *_Nonnull *_Nonnull)error;
+/// Validates the input text. If a formatter is configured, it is used to convert the text into
+/// an object. -validateValue:forKey:error: is then called on the target object to validate the
+/// value.
+- (BOOL)validateTextInput:(nonnull NSString *)textInput output:(out id _Nullable *_Nonnull)obj error:(NSError *_Nonnull *_Nonnull)error;
 
 @end
