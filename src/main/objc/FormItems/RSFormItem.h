@@ -27,7 +27,7 @@
 ///
 /// @see RSPropertyFormItem
 /// @see RSFormButton
-/// @see RSNavigationItem
+/// @see RSFormNavigation
 @interface RSFormItem : NSObject
 
 /// The form section this item belongs to.
