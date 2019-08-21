@@ -34,7 +34,7 @@
 @property (nonatomic, weak, readonly, nullable) RSFormSection *formSection;
 
 /// The UI title displayed in the editor.
-@property (nonatomic, copy, nonnull) NSString *title;
+@property (nonatomic, copy, readonly, nonnull) NSString *title;
 
 /// The table view cell containing the UI for editing the property value. RSPropertyEditors
 /// don’t reuse UITableViewCells as is otherwise common with UITableView programming. There are
