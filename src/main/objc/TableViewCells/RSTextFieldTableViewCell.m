@@ -193,11 +193,11 @@ static const CGFloat kDefaultIconWidth = 21;
     }
 }
 
-- (void)setShowError:(BOOL)showDescription
+- (void)setShowError:(BOOL)showError
 {
-    _showError = showDescription;
-    _errorImageView.hidden = !showDescription;
-    _errorMessageLabel.hidden = !showDescription;
+    _showError = showError;
+    _errorImageView.hidden = !showError;
+    _errorMessageLabel.hidden = !showError;
 }
 
 #pragma RSPropertyEditorView
