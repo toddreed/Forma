@@ -26,9 +26,11 @@ typedef enum TShirtSize: NSUInteger
 @interface ModelObject : NSObject
 
 @property (nonatomic, readonly) long long bytesAvailable;
+@property (nonatomic, copy, nonnull) NSString *name;
 @property (nonatomic, nonnull) Account *account;
 @property (nonatomic) float volume;
 @property (nonatomic) BOOL equalizer;
+@property (nonatomic) BOOL enabled;
 @property (nonatomic) Size size;
 
 @end

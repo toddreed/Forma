@@ -16,6 +16,7 @@
 #import "RSFloatPropertyEditor.h"
 #import "RSFormNavigation.h"
 #import "RSBooleanPropertyEditor.h"
+#import "RSEnumPropertyEditor.h"
 #import "RSFormButton.h"
 #import "RSPropertyViewer.h"
 
@@ -92,17 +93,29 @@
 {
     self = [super init];
     _bytesAvailable = 111234567890;
+    _name = @"John";
     _account = [[Account alloc] init];
     _volume = 0.6;
     _equalizer = YES;
+    _size = TShirtSizeMedium;
     return self;
 }
-
 
 - (nonnull RSPropertyViewer *)bytesAvailablePropertyEditor
 {
     NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
     RSPropertyViewer *editor = [[RSPropertyViewer alloc] initWithKey:@"bytesAvailable" ofObject:self title:@"Bytes Available" formatter:formatter];
+    return editor;
+}
+
+- (nonnull RSTextInputPropertyEditor *)namePropertyEditor
+{
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"name" ofObject:self title:NSLocalizedString(@"Name", @"label")];
+    editor.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    editor.spellCheckingType = UITextSpellCheckingTypeNo;
+    editor.textContentType = UITextContentTypeName;
+    editor.placeholder = NSLocalizedString(@"Name", @"text field placeholder");
+
     return editor;
 }
 
@@ -126,12 +139,29 @@
     return editor;
 }
 
+- (nonnull RSBooleanPropertyEditor *)enabledPropertyEditor
+{
+    RSBooleanPropertyEditor *editor = [[RSBooleanPropertyEditor alloc] initWithKey:@"enabled" ofObject:self title:@"Enabled"];
+    return editor;
+}
+
+- (nonnull RSEnumPropertyEditor *)sizePropertyEditor
+{
+    NSInteger values[] = {TShirtSizeSmall, TShirtSizeMedium, TShirtSizeLarge};
+    RSEnumDescriptor *descriptor = [[RSEnumDescriptor alloc] initWithEnumValues:values labels:@[@"Small", @"Medium", @"Large"]];
+    RSEnumPropertyEditor *editor = [[RSEnumPropertyEditor alloc] initWithKey:@"size" ofObject:self title:@"T-Shirt Size" enumDescriptor:descriptor];
+    return editor;
+}
+
 - (nonnull NSArray *)formSections
 {
     NSArray *editors = @[[self bytesAvailablePropertyEditor],
+                         [self namePropertyEditor],
                          [self accountPropertyEditor],
                          [self volumePropertyEditor],
-                         [self equalizerPropertyEditor]];
+                         [self equalizerPropertyEditor],
+                         [self enabledPropertyEditor],
+                         [self sizePropertyEditor]];
     RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItems:editors];
 
     return @[formSection];
