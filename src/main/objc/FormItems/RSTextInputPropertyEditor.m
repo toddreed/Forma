@@ -109,8 +109,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.textContentType = _textContentType;
 
     RSForm *form = self.formSection.form;
-    id<RSFormContainer> container = form.formContainer;
-    NSParameterAssert(container != nil);
 
     if (form.autoTextFieldNavigation)
     {
