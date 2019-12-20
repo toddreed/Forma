@@ -41,7 +41,7 @@
     // height of basic table view cells at other font sizes.
 
     // We need to set the priority of _heightConstraint to < 1000, otherwise we get this
-    // warning below in the console. The warning is nonsensical, because the constrains
+    // warning below in the console. The warning is nonsensical, because the constraints
     // actually can be simultaneously satisfied. Maybe this is a bug in iOS. This was
     // observed in iOS 12.2.
 
