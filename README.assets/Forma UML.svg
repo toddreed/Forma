@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="24.95 14.87 636.98 611.113" width="636.98" height="611.113">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="8" panose-1="2 11 6 4 2 2 2 2 2 4" units-per-em="1000" underline-position="-75" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="975.0061" descent="-216.99524" font-weight="500">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Medium"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledDiamond_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-9 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M -8 0 L -4 3 L 0 0 L -4 -3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Helvetica Neue" font-size="8" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="UMLInheritance_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -8 14 16" markerWidth="14" markerHeight="16" color="black">
+      <g>
+        <path d="M 12 0 L 0 -7 L 0 7 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="StickArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 0 M 0 -3 L 8 0 L 0 3" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.12.1 
+    <dc:date>2019-12-20 21:50:08 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" fill="none" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_25">
+        <rect x="159.833" y="209.004" width="83.2832" height="18" fill="#fff0d0"/>
+        <rect x="159.833" y="209.004" width="83.2832" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(164.833 212.88797)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="7.597602" y="8">RSFormSection</tspan>
+        </text>
+      </g>
+      <g id="Graphic_26">
+        <rect x="136.33385" y="77.5864" width="131.333" height="18" fill="#fff0d0"/>
+        <rect x="136.33385" y="77.5864" width="131.333" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(141.33385 81.47037)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="18.6545" y="8">RSFormViewController</tspan>
+        </text>
+      </g>
+      <g id="Graphic_27">
+        <rect x="301.68" y="510.533" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="510.533" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 514.417)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="3.352" y="8">RSBooleanPropertyEditor</tspan>
+        </text>
+      </g>
+      <g id="Graphic_29">
+        <rect x="157.167" y="294.887" width="89.6667" height="18" fill="#fff0d0"/>
+        <rect x="157.167" y="294.887" width="89.6667" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(162.167 298.77097)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="16.645351" y="8">RSFormItem</tspan>
+        </text>
+      </g>
+      <g id="Line_40">
+        <line x1="201.5143" y1="232.12885" x2="202.00035" y2="294.887" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_41">
+        <rect x="208.75214" y="249.13212" width="22" height="20" fill="white"/>
+        <text transform="translate(213.89614 254.13212)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="400" fill="black" x="0" y="8">1..*</tspan>
+        </text>
+      </g>
+      <g id="Graphic_43">
+        <rect x="25.2" y="298.8" width="70.7832" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(30.2 302.68397)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="8.1636" y="8">SomeModel</tspan>
+        </text>
+      </g>
+      <g id="Line_45">
+        <line x1="201.93767" y1="171.4446" x2="201.4746" y2="209.004" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_46">
+        <rect x="210.05245" y="176.38678" width="21.712" height="20.224" fill="white"/>
+        <text transform="translate(215.05245 181.38678)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="400" fill="black" x="0" y="8">1..*</tspan>
+        </text>
+      </g>
+      <g id="Graphic_47">
+        <rect x="152.25085" y="15.12" width="99.5" height="18" fill="#ceefff"/>
+        <rect x="152.25085" y="15.12" width="99.5" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(157.25085 19.003972)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="3.55" y="8">UITableViewController</tspan>
+        </text>
+      </g>
+      <g id="Line_48">
+        <line x1="202.00035" y1="77.5864" x2="202.00077" y2="40.12" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_55">
+        <rect x="491.04" y="295.999" width="83.2832" height="18" fill="#ceefff"/>
+        <rect x="491.04" y="295.999" width="83.2832" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(496.04 299.88297)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="6.6296016" y="8">UITableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_56">
+        <line x1="251.95865" y1="303.91034" x2="491.04" y2="304.999" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_59">
+        <line x1="157.167" y1="303.887" x2="101.1726" y2="307.4681" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_70">
+        <rect x="301.68" y="478.133" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="478.133" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 482.017)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="17.284" y="8">RSPropertyViewer</tspan>
+        </text>
+      </g>
+      <g id="Graphic_72">
+        <rect x="301.68" y="445.733" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="445.733" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 449.61697)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="6.392" y="8">RSObjectPropertyEditor</tspan>
+        </text>
+      </g>
+      <g id="Graphic_74">
+        <rect x="301.68" y="542.933" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="542.933" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 546.817)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="9.356" y="8">RSFloatPropertyEditor</tspan>
+        </text>
+      </g>
+      <g id="Graphic_76">
+        <rect x="554.4" y="542.933" width="107.28" height="18" fill="#fff0d0"/>
+        <rect x="554.4" y="542.933" width="107.28" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(559.4 546.817)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="6.623999" y="8">RSSliderTableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_77">
+        <line x1="418.555" y1="551.933" x2="554.4" y2="551.933" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_82">
+        <rect x="554.4" y="510.533" width="107.28" height="18" fill="#fff0d0"/>
+        <rect x="554.4" y="510.533" width="107.28" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(559.4 514.417)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="4.6999994" y="8">RSSwitchTableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_83">
+        <line x1="418.555" y1="519.533" x2="554.4" y2="519.533" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_85">
+        <rect x="301.68" y="575.333" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="575.333" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 579.217)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="1.064" y="8">RSTextInputPropertyEditor</tspan>
+        </text>
+      </g>
+      <g id="Graphic_86">
+        <rect x="554.4" y="575.333" width="107.28" height="18" fill="#fff0d0"/>
+        <rect x="554.4" y="575.333" width="107.28" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(559.4 579.217)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x=".1759994" y="8">RSTextFieldTableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_87">
+        <line x1="418.555" y1="584.333" x2="554.4" y2="584.333" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_89">
+        <rect x="160.35925" y="148.32" width="83.2832" height="18" fill="#fff0d0"/>
+        <rect x="160.35925" y="148.32" width="83.2832" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(165.35925 152.20397)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="21.601602" y="8">RSForm</tspan>
+        </text>
+      </g>
+      <g id="Line_90">
+        <line x1="202.00035" y1="95.5864" x2="202.0008" y2="143.12" marker-end="url(#StickArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_91">
+        <rect x="228.24" y="345.5945" width="89.6667" height="18" fill="#fff0d0"/>
+        <rect x="228.24" y="345.5945" width="89.6667" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(233.24 349.47847)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="12.349351" y="8">RSFormButton</tspan>
+        </text>
+      </g>
+      <g id="Graphic_92">
+        <rect x="228.24" y="377.9945" width="89.6667" height="18" fill="#fff0d0"/>
+        <rect x="228.24" y="377.9945" width="89.6667" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(233.24 381.87847)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="5.081351" y="8">RSFormNavigation</tspan>
+        </text>
+      </g>
+      <g id="Graphic_93">
+        <rect x="228.24" y="410.3945" width="89.6667" height="18" fill="#fff0d0"/>
+        <rect x="228.24" y="410.3945" width="89.6667" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(233.24 414.27847)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x=".7133511" y="8">RSPropertyFormItem</tspan>
+        </text>
+      </g>
+      <g id="Line_94">
+        <path d="M 228.24 354.5945 L 202.00035 354.5945 L 202.00035 319.887" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_95">
+        <path d="M 228.24 386.9945 L 202.00035 386.9945 L 202.00035 319.887" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_96">
+        <path d="M 228.24 419.3945 L 202.00035 419.3945 L 202.00035 319.887" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_97">
+        <path d="M 301.68 519.533 L 273.07334 519.533 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_98">
+        <path d="M 301.68 551.933 L 273.07334 551.933 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_99">
+        <path d="M 301.68 584.333 L 273.07334 584.333 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_100">
+        <path d="M 301.68 454.733 L 273.07334 454.733 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_101">
+        <path d="M 301.68 487.133 L 273.07334 487.133 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_102">
+        <rect x="401.76" y="361.44" width="107.28" height="18" fill="#fff0d0"/>
+        <rect x="401.76" y="361.44" width="107.28" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(406.76 365.32396)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="7.879999" y="8">RSBaseTableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_103">
+        <path d="M 455.4 361.44 L 455.4 337.94 L 532.6816 337.94 L 532.6816 320.999" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_106">
+        <path d="M 554.4 519.533 L 455.4 519.533 L 455.4 386.44" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_108">
+        <path d="M 554.4 551.933 L 532.6816 551.933 L 532.6816 524.533 C 527.6816 524.533 527.6816 514.533 532.6816 514.533 L 532.6816 320.999" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_109">
+        <path d="M 554.4 584.333 L 532.6816 584.333 L 532.6816 556.933 C 527.6816 556.933 527.6816 546.933 532.6816 546.933 L 532.6816 524.533 C 527.6816 524.533 527.6816 514.533 532.6816 514.533 L 532.6816 320.999" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_110">
+        <rect x="301.68" y="607.733" width="112" height="18" fill="#fff0d0"/>
+        <rect x="301.68" y="607.733" width="112" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(306.68 611.617)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x="8.028" y="8">RSEnumPropertyEditor</tspan>
+        </text>
+      </g>
+      <g id="Line_111">
+        <path d="M 301.68 616.733 L 273.07334 616.733 L 273.07334 435.3945" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Graphic_112">
+        <rect x="554.4" y="607.733" width="107.28" height="18" fill="#fff0d0"/>
+        <rect x="554.4" y="607.733" width="107.28" height="18" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+        <text transform="translate(559.4 611.617)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="8" font-weight="500" fill="black" x=".1759994" y="8">RSTextFieldTableViewCell</tspan>
+        </text>
+      </g>
+      <g id="Line_114">
+        <line x1="418.555" y1="616.733" x2="554.4" y2="616.733" marker-start="url(#FilledDiamond_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+      <g id="Line_115">
+        <path d="M 554.4 616.733 L 455.4 616.733 L 455.4 386.44" marker-end="url(#UMLInheritance_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+      </g>
+    </g>
+  </g>
+</svg>
