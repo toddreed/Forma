@@ -1,6 +1,6 @@
 platform :ios, '11.0'
 
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
 
 target 'Demo' do
   pod 'Forma', :path => './'
