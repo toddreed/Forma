@@ -26,7 +26,7 @@
 @interface RSFormViewController : UITableViewController <RSFormContainer>
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
-/// Cancel button. This provides the same functionality as the `delegate` property.
+/// Cancel button.
 @property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
 
 @property (nonatomic) BOOL showCancelButton;
