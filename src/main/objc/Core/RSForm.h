@@ -21,6 +21,10 @@
 
 @interface RSForm : NSObject
 
+/// Indicates whether the form has been modified. The initial value is NO. Property editors
+/// should set this to YES when they modify their target object.
+@property (nonatomic) BOOL modified;
+
 @property (nonatomic, copy, readonly, nonnull) NSString *title;
 @property (nonatomic, copy, nonnull) NSArray<RSFormSection *> *sections;
 

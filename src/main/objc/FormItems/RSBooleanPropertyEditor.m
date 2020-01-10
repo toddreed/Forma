@@ -11,6 +11,8 @@
 
 #import "RSBooleanPropertyEditor.h"
 #import "../TableViewCells/RSSwitchTableViewCell.h"
+#import "../Core/RSFormSection.h"
+#import "../Core/RSForm.h"
 
 
 @implementation RSBooleanPropertyEditor
@@ -48,6 +50,7 @@
 {
     UISwitch *toggle = (UISwitch *)sender;
     [self.object setValue:@(toggle.on) forKey:self.key];
+    self.formSection.form.modified = YES;
 }
 
 @end

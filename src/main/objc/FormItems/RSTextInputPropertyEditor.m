@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 
 #import "RSTextInputPropertyEditor.h"
+#import "../Core/RSFormSection.h"
 #import "../Core/RSForm.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
 #import "../TableViewCells/RSTextFieldTableViewCell.h"
@@ -283,6 +284,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         if ([self validateTextInput:textField.text output:&value error:&error])
         {
             [self.object setValue:value forKey:self.key];
+            self.formSection.form.modified = YES;
         }
         else
         {
