@@ -70,8 +70,8 @@
 /// any required table view cell configuration.
 - (void)configureTableViewCell;
 
-/// This is invoked by form container when the UITableCellView for the receiver is selected.
-/// This is used when implementing a hierarchical editor when the user can drill-down into a
+/// This is invoked by the form container when the UITableCellView for the receiver is selected.
+/// This is used when implementing a hierarchical editor where the user can drill-down into a
 /// sub-editor.
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller;
 
