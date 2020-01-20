@@ -39,9 +39,12 @@
     
     if (!_previouslyViewed)
     {
-        RSFormItem *formItem = [_form formItemForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        if ([formItem canBecomeFirstResponder])
-            [formItem becomeFirstResponder];
+        if (_form.autoTextFieldNavigation)
+        {
+            RSFormItem *formItem = [_form formItemForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            if ([formItem canBecomeFirstResponder])
+                [formItem becomeFirstResponder];
+        }
     }
     _previouslyViewed = YES;
 }
