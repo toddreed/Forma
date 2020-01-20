@@ -74,6 +74,14 @@
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
+- (BOOL)isModalInPresentation
+{
+    if (_form.modified)
+        return YES;
+    else
+        return [super isModalInPresentation];
+}
+
 #pragma mark - UITableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
