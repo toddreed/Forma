@@ -33,6 +33,7 @@
     [slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
     slider.minimumValueImage = _minimumValueImage;
     slider.maximumValueImage = _maximumValueImage;
+    slider.continuous = _continuous;
 }
 
 #pragma mark - RSPropertyFormItem
@@ -46,7 +47,7 @@
 
     _minimumValue = 0.0f;
     _maximumValue = 1.0f;
-
+    _continuous = YES;
     return self;
 }
 
@@ -63,6 +64,16 @@
     UISlider *slider = (UISlider *)sender;
     [self.object setValue:@(slider.value) forKey:self.key];
     self.formSection.form.modified = YES;
+}
+
+- (void)setContinuous:(BOOL)continuous
+{
+    _continuous = continuous;
+    if (self.tableViewCellInstantiated)
+    {
+        UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
+        slider.continuous = continuous;
+    }
 }
 
 @end

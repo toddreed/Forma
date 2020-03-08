@@ -44,6 +44,9 @@
 /// `-newTableViewCell`.
 @property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSFormItemView> *tableViewCell;
 
+/// Indicates whether the table view cell for this form item has been instantiated.
+@property (nonatomic, readonly) BOOL tableViewCellInstantiated;
+
 /// Returns YES if this property editor can become the first responder. The default is NO. If
 /// this property returns YES, then the form container may call -becomeFirstResponder.
 @property (nonatomic, readonly) BOOL canBecomeFirstResponder;

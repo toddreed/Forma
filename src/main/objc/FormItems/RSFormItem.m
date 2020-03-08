@@ -33,6 +33,7 @@
     if (_tableViewCell == nil)
     {
         _tableViewCell = [self newTableViewCell];
+        _tableViewCellInstantiated = YES;
         [self configureTableViewCell];
     }
     return _tableViewCell;
@@ -80,6 +81,5 @@
     NSString *reason = [NSString stringWithFormat:@"Property editor %@ asked to become first responder when it can’t.", NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
-
 
 @end

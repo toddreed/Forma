@@ -19,4 +19,7 @@
 @property (nonatomic, strong, nullable) UIImage *minimumValueImage;
 @property (nonatomic, strong, nullable) UIImage *maximumValueImage;
 
+/// This property is applied to the UISlider used by the editor’s UI. The default value is YES.
+@property (nonatomic) BOOL continuous;
+
 @end
