@@ -23,7 +23,7 @@
 /// RSFormViewController is a view controller for provides an interface for modifying
 /// the values of object properties. It’s appropriate for implementing the UI for settings,
 /// inspectors, and forms.
-@interface RSFormViewController : UITableViewController <RSFormContainer>
+@interface RSFormViewController : UITableViewController <RSFormContainer, UIAdaptivePresentationControllerDelegate>
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
 /// Cancel button.

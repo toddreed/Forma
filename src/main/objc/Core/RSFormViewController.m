@@ -234,4 +234,29 @@
 @synthesize textEditingMode = _textEditingMode;
 @synthesize formDelegate = _formDelegate;
 
+#pragma mark UIAdaptivePresentationControllerDelegate
+
+- (BOOL)presentationControllerShouldDismiss:(UIPresentationController *)presentationController
+{
+    return !_form.modified;
+}
+
+- (void)presentationControllerDidAttemptToDismiss:(UIPresentationController *)presentationController
+{
+    if (_showCancelButton)
+    {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Save Changes?", @"alert button")
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"alert button") style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Discard", @"alert button") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [self cancelPressed];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Save", @"alert button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self donePressed];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
 @end
