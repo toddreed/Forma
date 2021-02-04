@@ -31,8 +31,11 @@
     UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
 
     [slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
-    slider.minimumValueImage = _minimumValueImage;
-    slider.maximumValueImage = _maximumValueImage;
+    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomMac)
+    {
+        slider.minimumValueImage = _minimumValueImage;
+        slider.maximumValueImage = _maximumValueImage;
+    }
     slider.continuous = _continuous;
 }
 
