@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.author       = { "Todd Reed" => "todd.reed@reactionsoftware.com" }
   s.license      = { :type => 'MIT', :file => 'LICENSE.md' }
   s.source       = { :git => "https://github.com/toddreed/Forma.git", :tag => s.version.to_s}
-  s.platform     = :ios, '11.0'
+  s.platform     = :ios, '14.1'
   s.header_dir   = 'Forma'
   s.header_mappings_dir = 'src/main/objc'
   s.resource_bundle = { 'Forma' => ['src/main/resources/**/*.xcassets', 'src/main/objc/**/*.xib'] }
