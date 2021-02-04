@@ -95,6 +95,7 @@
 		5F57463C226A739A00E14770 /* RSFormLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSFormLibrary.m; sourceTree = "<group>"; };
 		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
 		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
+		5F7BF3F825CC512500B341CC /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		5FAB5B1E227B8B790062D29C /* RSFormItem+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormItem+Private.h"; sourceTree = "<group>"; };
 		5FAB5B1F227B8C930062D29C /* RSFormSection+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormSection+Private.h"; sourceTree = "<group>"; };
 		5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSButtonTableViewCell.h; sourceTree = "<group>"; };
@@ -317,6 +318,7 @@
 		5FF92F6F174AD56B003211A0 = {
 			isa = PBXGroup;
 			children = (
+				5F7BF3F825CC512500B341CC /* Demo.entitlements */,
 				5FF92FA3174AD5B6003211A0 /* src */,
 				5FF92F7A174AD56B003211A0 /* Frameworks */,
 				5FF92F79174AD56B003211A0 /* Products */,
@@ -754,6 +756,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 8NE24U7U9C;
@@ -773,7 +776,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.reactionsoftware.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -787,6 +791,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -807,7 +812,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.reactionsoftware.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
