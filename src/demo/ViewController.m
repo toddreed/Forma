@@ -6,10 +6,10 @@
 //  Copyright © 2015 Reaction Software Inc. All rights reserved.
 //
 
-#import "NSObject+RSForm.h"
+#import <Forma/Core/NSObject+RSForm.h>
+#import <Forma/Core/RSFormViewController.h>
 
 #import "ViewController.h"
-#import "RSFormViewController.h"
 #import "ModelObject.h"
 
 @interface ViewController ()
