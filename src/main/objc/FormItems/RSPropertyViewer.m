@@ -39,7 +39,7 @@
         text = [_formatter stringForObjectValue:newValue];
     else
     {
-        NSAssert([newValue isKindOfClass:[NSString class]], ([NSString stringWithFormat:@"A string value is expected for the property “%@”.", self.key]));
+        NSAssert([newValue isKindOfClass:[NSString class]], @"A string value is expected for the property “%@”.", self.key);
         text = newValue;
     }
 
