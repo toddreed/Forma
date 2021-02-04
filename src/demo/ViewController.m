@@ -35,7 +35,7 @@
 {
     RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:_modelObject.form];
     viewController.showDoneButton = YES;
-    viewController.completionBlock = ^(BOOL cancelled) {
+    viewController.completionBlock = ^(RSFormViewController * _Nonnull viewController, BOOL cancelled) {
         [self editingCompleted:cancelled];
     };
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];

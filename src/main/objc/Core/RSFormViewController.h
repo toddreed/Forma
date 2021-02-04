@@ -27,7 +27,7 @@
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
 /// Cancel button.
-@property (nonatomic, copy, nullable) void (^completionBlock)(BOOL cancelled);
+@property (nonatomic, copy, nullable) void (^completionBlock)(RSFormViewController *_Nonnull viewController, BOOL cancelled);
 
 @property (nonatomic) BOOL showCancelButton;
 @property (nonatomic) BOOL showDoneButton;

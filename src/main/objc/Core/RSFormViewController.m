@@ -161,7 +161,7 @@
     {
         [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
         if (_completionBlock)
-            _completionBlock(NO);
+            _completionBlock(self, NO);
     }
 }
 
@@ -170,7 +170,7 @@
     [self cancelEditing];
     [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
     if (_completionBlock)
-        _completionBlock(YES);
+        _completionBlock(self, YES);
 }
 
 #pragma mark UITableViewDelegate
