@@ -5,7 +5,7 @@ PODS:
   - Forma/Core (2.0.0)
   - Forma/CoreData (2.0.0):
     - Forma/Core
-  - Reveal-SDK (24)
+  - Reveal-SDK (27)
 
 DEPENDENCIES:
   - Forma (from `./`)
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  Forma: cab3efe0e0a2be55f82cec50709a4990eb467c12
-  Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
+  Forma: a63949cfd7b45dec7aafcb56b161cb3440e6b60e
+  Reveal-SDK: 306e2880395ee396f5a8b4c485c3a86dd19866c7
 
-PODFILE CHECKSUM: 5c655407fe8c8ab765b7f693f405ac5885d4f837
+PODFILE CHECKSUM: a2c81323dc9daaa03d3212a25954f2e1bafd15d4
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1
