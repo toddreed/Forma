@@ -11,7 +11,7 @@
 
 /// RSTextEditingMode is used to describe that status of any text editing from a UITextField in
 /// a form.
-typedef enum RSTextEditingMode
+typedef NS_ENUM(NSInteger, RSTextEditingMode)
 {
     /// Not currently editing any text.
     RSTextEditingModeNotEditing,
@@ -28,7 +28,7 @@ typedef enum RSTextEditingMode
     /// Currently editing text and -finishEditingForce: was invoked with YES. Indicates that edit
     /// MUST finish.
     RSTextEditingModeFinishingForced
-} RSTextEditingMode;
+};
 
 
 @class RSTextInputPropertyEditor;
@@ -37,11 +37,11 @@ typedef enum RSTextEditingMode
 @class RSForm;
 
 
-typedef enum RSFormAction
+typedef NS_ENUM(NSInteger, RSFormAction)
 {
     RSFormActionCommit,
     RSFormActionCancel
-} RSFormAction;
+};
 
 
 @protocol RSFormContainerDelegate <NSObject>

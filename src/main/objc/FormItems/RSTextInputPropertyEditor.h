@@ -14,7 +14,7 @@
 
 extern NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain;
 
-typedef enum RSTextInputPropertyEditorStyle
+typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 {
     /// This emulates the style typically found in the Settings app where there’s a title on
     /// left and a text field on the right. This is the default style.
@@ -23,7 +23,7 @@ typedef enum RSTextInputPropertyEditorStyle
     /// This style has no label, and the text field occupies the entire table cell content.
     /// The text field’s placeholder is set.
     RSTextInputPropertyEditorStyleForm
-} RSTextInputPropertyEditorStyle;
+};
 
 @interface RSTextInputPropertyEditor : RSPropertyFormItem <UITextInputTraits>
 
