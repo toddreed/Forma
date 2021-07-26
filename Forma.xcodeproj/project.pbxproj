@@ -68,7 +68,6 @@
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		5F0170DB227B4940003E81F4 /* RSForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSForm.h; sourceTree = "<group>"; };
 		5F0170DC227B4940003E81F4 /* RSForm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSForm.m; sourceTree = "<group>"; };
-		5F0CE80C226A7CE3000465AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSPropertyViewer.h; sourceTree = "<group>"; };
 		5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSPropertyViewer.m; sourceTree = "<group>"; };
 		5F14FF7C1ACE18EE003D0861 /* RSFormContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFormContainer.h; sourceTree = "<group>"; };
@@ -204,7 +203,6 @@
 		5F574638226A72BF00E14770 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				5F0CE80C226A7CE3000465AB /* Assets.xcassets */,
 			);
 			path = resources;
 			sourceTree = "<group>";

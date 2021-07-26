@@ -172,10 +172,11 @@ static const CGFloat kDefaultIconWidth = 21;
 
     [self.contentView addSubview:_errorMessageLabel];
 
-    UIImage *image = [UIImage imageNamed:@"Error" inBundle:RSFormLibrary.bundle compatibleWithTraitCollection:nil];
+    UIImage *image = [UIImage systemImageNamed:@"exclamationmark.triangle.fill"];
     _errorImageView = [[UIImageView alloc] initWithImage:image];
     _errorImageView.image = image;
     _errorImageView.hidden = YES;
+    _errorImageView.tintColor = UIColor.systemRedColor;
     [self.contentView addSubview:_errorImageView];
 }
 
