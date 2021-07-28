@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RSFormItemView.h"
+#import "../Core/RSFormItemView.h"
 
 
 /// RSLabelTableViewCell is a table view cell with a (multiline) title label on left side and a

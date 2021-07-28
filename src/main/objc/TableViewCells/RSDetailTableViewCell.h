@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RSFormItemView.h"
+#import "../Core/RSFormItemView.h"
 #import "RSBaseTableViewCell.h"
 
 @interface RSDetailTableViewCell : RSBaseTableViewCell <RSFormItemView>
