@@ -17,6 +17,8 @@
 @implementation RSFormViewController
 {
     RSForm *_form;
+    CGFloat _headerViewLayoutWidth;
+    CGFloat _footerViewLayoutWidth;
 
     // State variable for tracking whether this object has been shown before. On the first
     // view and when the first form item is a RSTextInputPropertyEditor, focus will
@@ -72,6 +74,19 @@
     self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
 
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (!self.beingDismissed)
+    {
+        UITableView *tableView = self.tableView;
+        if (tableView.tableHeaderView != nil)
+            [self layoutTableHeaderView];
+        if (tableView.tableFooterView != nil)
+            [self layoutTableFooterView];
+    }
 }
 
 - (BOOL)isModalInPresentation
@@ -171,6 +186,51 @@
     [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
     if (_completionBlock)
         _completionBlock(self, YES);
+}
+
+- (void)layoutTableHeaderView
+{
+    NSAssert(self.tableView.tableHeaderView != nil, @"No table header view set");
+    UITableView *tableView = self.tableView;
+    CGFloat tableWidth = tableView.bounds.size.width;
+
+    if (_headerViewLayoutWidth != tableWidth)
+    {
+        _headerViewLayoutWidth = tableWidth;
+        UIView *headerView = tableView.tableHeaderView;
+        if ([self layoutTableHeaderOrFooter:headerView withWidth:tableWidth])
+            tableView.tableHeaderView = headerView;
+    }
+}
+
+- (void)layoutTableFooterView
+{
+    NSAssert(self.tableView.tableFooterView != nil, @"No table footer set");
+    UITableView *tableView = self.tableView;
+    CGFloat tableWidth = tableView.bounds.size.width;
+
+    if (_footerViewLayoutWidth != tableWidth)
+    {
+        _footerViewLayoutWidth = tableWidth;
+        UIView *footerView = tableView.tableFooterView;
+        if ([self layoutTableHeaderOrFooter:footerView withWidth:tableWidth])
+            tableView.tableFooterView = footerView;
+    }
+}
+
+- (bool)layoutTableHeaderOrFooter:(nonnull UIView *)headerOrFooterView withWidth:(CGFloat)width
+{
+    NSParameterAssert(headerOrFooterView != nil);
+    CGSize size = [headerOrFooterView sizeThatFits:CGSizeMake(width, 0)];
+
+    if (!CGSizeEqualToSize(headerOrFooterView.frame.size, size))
+    {
+        CGRect frame = headerOrFooterView.frame;
+        frame.size = size;
+        headerOrFooterView.frame = frame;
+        return true;
+    }
+    return false;
 }
 
 #pragma mark UITableViewDelegate

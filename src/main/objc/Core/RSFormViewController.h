@@ -23,6 +23,11 @@
 /// RSFormViewController is a view controller for provides an interface for modifying
 /// the values of object properties. It’s appropriate for implementing the UI for settings,
 /// inspectors, and forms.
+///
+/// RSFormViewController supports setting a table header and/or footer view. The header/footer
+/// view must implement -sizeThatFits: to correctly size itself. A size of {`width`, 0} will be
+/// passed to -sizeThatFits: during layout, where `width` is the table width. -sizeThatFits:
+/// must calculate the height.
 @interface RSFormViewController : UITableViewController <RSFormContainer, UIAdaptivePresentationControllerDelegate>
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done or
