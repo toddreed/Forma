@@ -37,6 +37,14 @@
 @property (nonatomic) BOOL showCancelButton;
 @property (nonatomic) BOOL showDoneButton;
 
+/// If `submitButton` is set, then it will be added to the bottom of the form in a custom table
+/// footer view.
+@property (nonatomic, nullable) UIButton *submitButton;
+
+/// If `headerImage` is set, then it will be added to the top of the form in a custom table
+/// header view.
+@property (nonatomic, nullable) UIImage *headerImage;
+
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;

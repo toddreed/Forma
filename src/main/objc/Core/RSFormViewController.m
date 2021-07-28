@@ -12,7 +12,8 @@
 #import "RSFormViewController.h"
 
 #import "NSObject+RSForm.h"
-
+#import "RSTableHeaderImageView.h"
+#import "RSTableFooterButtonView.h"
 
 @implementation RSFormViewController
 {
@@ -72,6 +73,11 @@
     self.tableView.scrollEnabled = YES;
 
     self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
+
+    if (_headerImage != nil)
+        self.tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
+    if (_submitButton != nil)
+        self.tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
 
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }

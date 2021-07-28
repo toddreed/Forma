@@ -35,6 +35,10 @@
 {
     RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:_modelObject.form];
     viewController.showDoneButton = YES;
+    UIButton *button = [[self class] makeButton];
+    [button setTitle:@"Submit" forState:UIControlStateNormal];
+    viewController.submitButton = button;
+    viewController.headerImage = [UIImage systemImageNamed:@"text.bubble.fill" withConfiguration:[UIImageSymbolConfiguration configurationWithPointSize:48]];
     viewController.completionBlock = ^(RSFormViewController * _Nonnull viewController, BOOL cancelled) {
         [self editingCompleted:cancelled];
     };
@@ -47,6 +51,36 @@
 {
     NSLog(@"Form session completed; was cancelled: %d", cancelled);
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
++ (UIButton *)makeButton
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    const CGFloat cornerRadius = 10;
+    UIEdgeInsets edgeInsets = UIEdgeInsetsMake(cornerRadius, cornerRadius, cornerRadius, cornerRadius);
+    CGRect frame = CGRectMake(0, 0, cornerRadius*2+1, cornerRadius*2+1);
+    UIImage *buttonBackgroundImage = [self imageOfButtonBackgroundWithFrame:frame color:UIColor.systemBlueColor cornerRadius:cornerRadius];
+    button.contentEdgeInsets = UIEdgeInsetsMake(10, 5, 10, 5);
+    [button setBackgroundImage:[buttonBackgroundImage resizableImageWithCapInsets:edgeInsets] forState:UIControlStateNormal];
+    [button setTitleColor:UIColor.systemBackgroundColor forState:UIControlStateFocused];
+    return button;
+}
+
++ (nonnull UIImage*)imageOfButtonBackgroundWithFrame:(CGRect)frame color:(nonnull UIColor *)color cornerRadius:(CGFloat)cornerRadius
+{
+    NSParameterAssert(color != nil);
+
+    UIGraphicsBeginImageContextWithOptions(frame.size, NO, 0.0f);
+
+    UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame)) cornerRadius: cornerRadius];
+    [color setFill];
+    [rectanglePath fill];
+
+    UIImage* imageOfButtonBackground = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return imageOfButtonBackground;
 }
 
 @end
