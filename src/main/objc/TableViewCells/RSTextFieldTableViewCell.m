@@ -69,7 +69,7 @@ static const CGFloat kDefaultIconWidth = 21;
     {
         const CGSize errorMessageLabelSizeConstraint = CGSizeMake(layoutWidth - iconWidth - horizontalSpacing, CGFLOAT_MAX);
         CGSize errorMessageLabelSize = [_errorMessageLabel sizeThatFits:errorMessageLabelSizeConstraint];
-        return CGSizeMake(size.width, ceil(topSpacing + titleLabelSize.height + margins.bottom + errorMessageLabelSize.height + errorLabelTopPadding));
+        return CGSizeMake(size.width, ceil(topSpacing + MAX(titleLabelSize.height, textFieldSize.height) + margins.bottom + errorMessageLabelSize.height + errorLabelTopPadding));
     }
     else
     {
@@ -111,10 +111,11 @@ static const CGFloat kDefaultIconWidth = 21;
     if (_includeErrorInLayout)
     {
         const CGFloat iconWidth = ceil([defaultFontMetrics scaledValueForValue:kDefaultIconWidth]);
-
+        const CGFloat iconTop = MAX(titleLabelFrame.origin.y + titleLabelFrame.size.height,
+                                    textFieldFrame.origin.y + textFieldFrame.size.height) + errorMessageLabelTopPadding;
         CGRect iconImageViewFrame;
 
-        iconImageViewFrame.origin = CGPointMake(margins.left, titleLabelFrame.origin.y + titleLabelFrame.size.height + errorMessageLabelTopPadding);
+        iconImageViewFrame.origin = CGPointMake(margins.left, iconTop);
         iconImageViewFrame.size = CGSizeMake(iconWidth, iconWidth);
         _errorImageView.frame = iconImageViewFrame;
 
