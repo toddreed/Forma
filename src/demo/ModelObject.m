@@ -42,7 +42,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)firstNamePropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"firstName" ofObject:self title:NSLocalizedString(@"First Name", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"firstName" ofObject:self title:NSLocalizedString(@"First Name", @"label") style:RSTextInputPropertyEditorStyleForm];
     editor.autocapitalizationType = UITextAutocapitalizationTypeWords;
     editor.placeholder = NSLocalizedString(@"First Name", @"text field placeholder");
 
@@ -54,7 +54,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)lastNamePropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"lastName" ofObject:self title:NSLocalizedString(@"Last Name", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"lastName" ofObject:self title:NSLocalizedString(@"Last Name", @"label") style:RSTextInputPropertyEditorStyleForm];
     editor.autocapitalizationType = UITextAutocapitalizationTypeWords;
     editor.placeholder = NSLocalizedString(@"Last Name", @"text field placeholder");
     return editor;
@@ -62,7 +62,7 @@
 
 - (nonnull RSTextInputPropertyEditor *)passwordPropertyEditor
 {
-    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"password" ofObject:self title:NSLocalizedString(@"Password", @"label")];
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"password" ofObject:self title:NSLocalizedString(@"Password", @"label") style:RSTextInputPropertyEditorStyleForm];
     editor.autocapitalizationType = UITextAutocapitalizationTypeNone;
     editor.spellCheckingType = UITextSpellCheckingTypeNo;
     editor.secureTextEntry = YES;
