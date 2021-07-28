@@ -30,11 +30,16 @@
 /// must calculate the height.
 @interface RSFormViewController : UITableViewController <RSFormContainer, UIAdaptivePresentationControllerDelegate>
 
-/// A block that is invoked when the editor should be closed because the user pressed the Done or
-/// Cancel button.
+/// A block that is invoked when the editor should be closed because the user pressed the Done
+/// or Cancel button.
 @property (nonatomic, copy, nullable) void (^completionBlock)(RSFormViewController *_Nonnull viewController, BOOL cancelled);
 
+/// Indicates whether to show a Cancel button. The Cancel button is shown in the navigation bar
+/// (and thus requires that the form view controller is contained in a navigation controller).
 @property (nonatomic) BOOL showCancelButton;
+
+/// Indicates whether to show a Done button. The Cancel button is shown in the navigation bar
+/// (and thus requires that the form view controller is contained in a navigation controller).
 @property (nonatomic) BOOL showDoneButton;
 
 /// If `submitButton` is set, then it will be added to the bottom of the form in a custom table
