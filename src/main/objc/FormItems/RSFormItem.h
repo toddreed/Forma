@@ -55,7 +55,7 @@
 /// -controllerDidSelectFormItem: will not be invoked. The default value is NO.
 @property (nonatomic, readonly) BOOL selectable;
 
-- (nullable instancetype)init UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title NS_DESIGNATED_INITIALIZER;
 
 /// A helper function for instantiating a table view cell from a nib file.

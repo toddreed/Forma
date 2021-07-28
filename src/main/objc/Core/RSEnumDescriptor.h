@@ -35,8 +35,8 @@
 @interface RSEnumDescriptor : NSObject
 
 @property (nonatomic, strong, readonly, nonnull) NSArray<NSString *> *labels;
-;
-- (nullable instancetype)init UNAVAILABLE_ATTRIBUTE;
+
+- (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 // Designated initializer. The size of the enumValues array is assumed to the same size as the
 // labels array.
