@@ -389,13 +389,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
                  textField.returnKeyType == UIReturnKeyGo ||
                  textField.returnKeyType == UIReturnKeySearch)
         {
-            id<RSFormContainerDelegate> delegate = container.formDelegate;
-            if (delegate != nil)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [delegate formContainer:container didEndEditingSessionWithAction:RSFormActionCommit];
-                });
-            }
+            [container.formDelegate formContainer:container didEndEditingSessionWithAction:RSFormActionCommit];
         }
 
         return YES;
