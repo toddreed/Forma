@@ -21,6 +21,10 @@
 
 @interface RSForm : NSObject
 
+/// Indicates whether the form is enabled. When a form is enabled, the user can interact with
+/// the form to edit values. The default is YES.
+@property (nonatomic) BOOL enabled;
+
 /// Indicates whether the form has been modified. The initial value is NO. Property editors
 /// should set this to YES when they modify their target object.
 @property (nonatomic) BOOL modified;

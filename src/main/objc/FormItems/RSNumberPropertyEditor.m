@@ -10,8 +10,19 @@
 //
 
 #import "RSNumberPropertyEditor.h"
+#import "RSTextFieldTableViewCell.h"
+
 
 @implementation RSNumberPropertyEditor
+
+#pragma mark - RSFormItem
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
+    textField.enabled = enabled;
+}
 
 #pragma mark - RSTextInputPropertyEditor
 

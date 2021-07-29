@@ -153,6 +153,16 @@
     _showDoneButton = f;
 }
 
+- (BOOL)enabled
+{
+    return _form.enabled;
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    _form.enabled = enabled;
+}
+
 - (BOOL)finishEditingForce:(BOOL)force
 {
     if (_activeTextField != nil)

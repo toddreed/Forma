@@ -20,6 +20,8 @@
 /// The form this form section belongs to.
 @property (nonatomic, weak, readonly, nullable) RSForm *form;
 
+@property (nonatomic) BOOL enabled;
+
 @property (nonatomic, copy, nullable) NSString *title;
 @property (nonatomic, copy, nullable) NSString  *footer;
 @property (nonatomic, readonly, nonnull) NSArray<RSFormItem *> *formItems;

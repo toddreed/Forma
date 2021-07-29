@@ -50,6 +50,9 @@
 /// header view.
 @property (nonatomic, nullable) UIImage *headerImage;
 
+/// Indicates whether the form is enabled. When a form enabled it can be edited.
+@property (nonatomic) BOOL enabled;
+
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;

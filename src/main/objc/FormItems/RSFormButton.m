@@ -39,6 +39,13 @@
         _action(controller);
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    UIButton *button = ((RSButtonTableViewCell *)self.tableViewCell).button;
+    button.enabled = enabled;
+}
+
 #pragma mark - RSFormButton
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(UIViewController<RSFormContainer> *_Nonnull))action

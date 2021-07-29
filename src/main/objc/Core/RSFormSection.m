@@ -33,6 +33,7 @@
     self = [super init];
     NSParameterAssert(self != nil);
 
+    _enabled = YES;
     _title = [title copy];
     _formItems = [formItems copy];
 
@@ -51,6 +52,13 @@
 - (nonnull instancetype)initWithTitle:(nullable NSString *)title
 {
     return [self initWithTitle:title formItems:@[]];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    _enabled = enabled;
+    for (RSFormItem *item in _formItems)
+        item.enabled = enabled;
 }
 
 @end

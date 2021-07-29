@@ -42,6 +42,13 @@
     slider.continuous = _continuous;
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
+    slider.enabled = enabled;
+}
+
 #pragma mark - RSPropertyFormItem
 
 - (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(NSString *)title

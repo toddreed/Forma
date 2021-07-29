@@ -25,6 +25,7 @@
 {
     self = [super init];
     _title = [title copy];
+    _enabled = YES;
     return self;
 }
 

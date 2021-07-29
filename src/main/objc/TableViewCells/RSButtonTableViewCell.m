@@ -14,12 +14,16 @@
 
 @interface RSButtonTableViewCell ()
 
-@property (nonatomic, strong, nonnull) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong, nonnull) IBOutlet UIButton *button;
 
 @end
 
 
 @implementation RSButtonTableViewCell
 
+- (UILabel *)titleLabel
+{
+    return nil;
+}
 
 @end

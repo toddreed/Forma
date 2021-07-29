@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,27 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMO-yx-CML">
-                        <rect key="frame" x="16" y="8.5" width="288" height="27"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHI-7g-L7p">
+                        <rect key="frame" x="16" y="11" width="288" height="22"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jMO-yx-CML" firstAttribute="firstBaseline" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24.5" symbolType="layoutAnchor" id="Tfr-ED-2kr"/>
-                    <constraint firstAttribute="bottom" secondItem="jMO-yx-CML" secondAttribute="baseline" constant="12.5" symbolType="layoutAnchor" id="mQx-O5-oCc"/>
-                    <constraint firstItem="jMO-yx-CML" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="qxh-pV-WvK"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="jMO-yx-CML" secondAttribute="trailing" id="rc1-UF-0gm"/>
+                    <constraint firstItem="zHI-7g-L7p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Ysg-bk-0Nw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zHI-7g-L7p" secondAttribute="trailing" id="efO-Cn-tbF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zHI-7g-L7p" secondAttribute="bottom" id="kaf-Ou-Hgb"/>
+                    <constraint firstItem="zHI-7g-L7p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="s9Z-bS-j0f"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
-            <connections>
-                <outlet property="titleLabel" destination="jMO-yx-CML" id="bRi-LE-f1V"/>
-            </connections>
+            <point key="canvasLocation" x="126" y="98"/>
         </tableViewCell>
     </objects>
 </document>

@@ -34,6 +34,15 @@
     [toggle addTarget:self action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+
+    RSSwitchTableViewCell *cell = self.tableViewCell;
+    UISwitch *toggle = cell.toggle;
+    toggle.enabled = enabled;
+}
+
 #pragma mark - RSPropertyFormItem
 
 - (void)propertyChangedToValue:(nullable id)newValue

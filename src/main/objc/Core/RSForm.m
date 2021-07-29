@@ -28,11 +28,19 @@
     NSParameterAssert(title != nil);
 
     self = [super init];
+    _enabled = YES;
     _title = [title copy];
     _sections = [[NSMutableArray alloc] init];
     _autoTextFieldNavigation = YES;
     _lastTextFieldReturnKeyType = UIReturnKeyDone;
     return self;
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    _enabled = enabled;
+    for (RSFormSection *section in _sections)
+        section.enabled = enabled;
 }
 
 - (void)addSection:(nonnull RSFormSection *)section

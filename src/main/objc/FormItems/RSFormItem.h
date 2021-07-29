@@ -55,6 +55,9 @@
 /// -controllerDidSelectFormItem: will not be invoked. The default value is NO.
 @property (nonatomic, readonly) BOOL selectable;
 
+/// Indicates whether this form item is enabled. The default is YES.
+@property(nonatomic) BOOL enabled;
+
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title NS_DESIGNATED_INITIALIZER;
 

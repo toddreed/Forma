@@ -17,5 +17,7 @@
 
 @interface RSButtonTableViewCell : RSBaseTableViewCell <RSFormItemView>
 
+@property (nonatomic, strong, readonly, nonnull) IBOutlet UIButton *button;
+
 @end
 

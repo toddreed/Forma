@@ -135,6 +135,13 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return YES;
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
+    textField.enabled = enabled;
+}
+
 - (BOOL)canBecomeFirstResponder
 {
     return YES;

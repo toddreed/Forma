@@ -46,6 +46,15 @@
     [super configureTableViewCell];
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+
+    RSSegmentedControlTableViewCell *cell = self.tableViewCell;
+    UISegmentedControl *segmentedControl = cell.segmentedControl;
+    segmentedControl.enabled = enabled;
+}
+
 #pragma mark - RSPropertyFormItem
 
 - (void)propertyChangedToValue:(nullable id)newValue
