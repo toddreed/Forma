@@ -65,4 +65,7 @@ typedef NS_ENUM(NSInteger, RSFormAction)
 
 @property (nonatomic) RSTextEditingMode textEditingMode;
 
+- (void)commitForm;
+- (void)cancelForm;
+
 @end

@@ -188,20 +188,12 @@
 
 - (void)donePressed
 {
-    if ([self finishEditingForce:NO])
-    {
-        [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
-        if (_completionBlock)
-            _completionBlock(self, NO);
-    }
+    [self commitForm];
 }
 
 - (void)cancelPressed
 {
-    [self cancelEditing];
-    [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
-    if (_completionBlock)
-        _completionBlock(self, YES);
+    [self cancelForm];
 }
 
 - (void)layoutTableHeaderView
@@ -310,6 +302,24 @@
 @synthesize textEditingMode = _textEditingMode;
 @synthesize formDelegate = _formDelegate;
 
+- (void)commitForm
+{
+    if ([self finishEditingForce:NO])
+    {
+        [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
+        if (_completionBlock)
+            _completionBlock(self, NO);
+    }
+}
+
+- (void)cancelForm
+{
+    [self cancelEditing];
+    [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
+    if (_completionBlock)
+        _completionBlock(self, YES);
+}
+
 #pragma mark UIAdaptivePresentationControllerDelegate
 
 - (BOOL)presentationControllerShouldDismiss:(UIPresentationController *)presentationController
@@ -326,10 +336,10 @@
                                                                           preferredStyle:UIAlertControllerStyleActionSheet];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"alert button") style:UIAlertActionStyleCancel handler:nil]];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Discard", @"alert button") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [self cancelPressed];
+            [self cancelForm];
         }]];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Save", @"alert button") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self donePressed];
+            [self commitForm];
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
     }

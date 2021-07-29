@@ -70,11 +70,4 @@
 /// Cancels the current editing session, discarding any in-progress editing of a UITextField.
 - (void)cancelEditing;
 
-// Invoked when the done button is pressed. Can be called to simulate the done button being pressed
-// programmatically. If you override this method, you must call super.
-- (void)donePressed;
-
-// Invoked when the cancel button is pressed.
-- (void)cancelPressed;
-
 @end
