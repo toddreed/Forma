@@ -60,11 +60,11 @@
 
 - (nonnull instancetype)initWithForm:(nonnull RSForm *)form NS_DESIGNATED_INITIALIZER;
 
-/// Forces any in-progress editing to complete. Notably, if the text field is the first responder,
-/// it will resign first responder status, causing the text field's value to be committed to the
-/// edited object. If the model object implements validation and validation fails, then the
-/// UITextField will remain the first responder, the model object will not be updated, and
-/// -finishEditingForce: will return NO.
+/// Forces any in-progress editing to complete. Notably, if the text field is the first
+/// responder, it will resign first responder status, causing the text field’s value to be
+/// committed to the edited object. If the model object implements validation and validation
+/// fails, then the UITextField will remain the first responder, the model object will not be
+/// updated, and -finishEditingForce: will return NO.
 - (BOOL)finishEditingForce:(BOOL)force;
 
 /// Cancels the current editing session, discarding any in-progress editing of a UITextField.

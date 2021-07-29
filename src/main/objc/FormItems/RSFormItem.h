@@ -47,11 +47,11 @@
 /// Indicates whether the table view cell for this form item has been instantiated.
 @property (nonatomic, readonly) BOOL tableViewCellInstantiated;
 
-/// Returns YES if this property editor can become the first responder. The default is NO. If
+/// Returns YES if this form item can become the first responder. The default is NO. If
 /// this property returns YES, then the form container may call -becomeFirstResponder.
 @property (nonatomic, readonly) BOOL canBecomeFirstResponder;
 
-/// Returns YES if this property editor is selectable. If NO is returned,
+/// Returns YES if this form item is selectable. If NO is returned,
 /// -controllerDidSelectFormItem: will not be invoked. The default value is NO.
 @property (nonatomic, readonly) BOOL selectable;
 
