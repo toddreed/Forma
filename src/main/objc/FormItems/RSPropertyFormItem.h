@@ -24,7 +24,7 @@
 /// model object. If the model’s properties are modified via its accessors and the model’s class
 /// is KVO compliant, the UI will automatically update to reflect the changed property value.
 ///
-/// Similarly, RSPropertyFormItem that are editors uses key-value coding to automatically update
+/// Similarly, RSPropertyFormItems that are editors uses key-value coding to automatically update
 /// a model’s property value that is changed from a UI control.
 @interface RSPropertyFormItem : RSFormItem
 
