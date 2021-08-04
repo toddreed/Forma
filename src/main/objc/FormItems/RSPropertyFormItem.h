@@ -29,15 +29,13 @@
 @interface RSPropertyFormItem : RSFormItem
 
 /// The object this editor modifies.
-@property (nonatomic, readonly, nullable) id object;
+@property (nonatomic, readonly, nonnull) id object;
 
-/// The key use to update the model object with KVC. This is always non-nil for “normal” property
-/// editors, but some special “pseudo” property editors have a nil key; RSFormNavigation and
-/// RSFormButton are examples.
-@property (nonatomic, readonly, nullable) NSString *key;
+/// The key used to update the model object with KVC.
+@property (nonatomic, readonly, nonnull) NSString *key;
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
-- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nonnull id)object title:(nonnull NSString *)title;
 
 /// This method must be overridden by subclasses to update their UI to reflect a change in the
 /// observed property’s value.

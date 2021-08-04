@@ -15,8 +15,7 @@
 
 @interface RSEnumPropertyEditor : RSPropertyFormItem
 
-
-- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nonnull id)object title:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key
                            ofObject:(nonnull id)object
                               title:(nonnull NSString *)title

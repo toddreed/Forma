@@ -76,8 +76,11 @@ static void PerformOnMainThread(dispatch_block_t block)
 
 #pragma mark - RSPropertyFormItem
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nonnull id)object title:(nonnull NSString *)title
 {
+    NSParameterAssert(key != nil);
+    NSParameterAssert(object != nil);
+
     self = [super initWithTitle:title];
     _key = [key copy];
     _object = object;

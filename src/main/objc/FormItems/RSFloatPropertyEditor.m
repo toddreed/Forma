@@ -51,10 +51,11 @@
 
 #pragma mark - RSPropertyFormItem
 
-- (nonnull instancetype)initWithKey:(nullable NSString *)key ofObject:(nullable id)object title:(NSString *)title
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nonnull id)object title:(NSString *)title
 {
     NSParameterAssert(key != nil);
-
+    NSParameterAssert(object != nil);
+    
     self = [super initWithKey:key ofObject:object title:title];
     NSParameterAssert(self != nil);
 
