@@ -73,6 +73,25 @@
     return formItem;
 }
 
+- (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key
+{
+    NSParameterAssert(key != nil);
+
+    for (RSFormSection *section in _sections)
+    {
+        for (RSFormItem *item in section.formItems)
+        {
+            if ([item isKindOfClass:[RSPropertyFormItem class]])
+            {
+                RSPropertyFormItem *propertyItem = (RSPropertyFormItem *)item;
+                if ([propertyItem.key isEqualToString:key])
+                    return propertyItem;
+            }
+        }
+    }
+    return nil;
+}
+
 - (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)targetFormItem
 {
     NSUInteger sections = _sections.count;

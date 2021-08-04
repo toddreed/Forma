@@ -54,6 +54,8 @@
 - (void)addSection:(nonnull RSFormSection *)section;
 
 - (nonnull RSFormItem *)formItemForIndexPath:(nonnull NSIndexPath *)indexPath;
+- (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
+
 - (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)item;
 
 @end
