@@ -212,6 +212,12 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return self;
 }
 
+- (UITextField *)textField
+{
+    RSTextFieldTableViewCell *cell = self.tableViewCell;
+    return cell.textField;
+}
+
 - (void)setStyle:(RSTextInputPropertyEditorStyle)style
 {
     switch (style)

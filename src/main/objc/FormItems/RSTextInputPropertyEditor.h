@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style;
 
+@property (nonatomic, readonly, nonnull) UITextField *textField;
+
 @property (nonatomic, readonly, nullable) NSFormatter *formatter;
 @property (nonatomic, readonly) RSTextInputPropertyEditorStyle style;
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
