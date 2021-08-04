@@ -153,6 +153,16 @@
     return editor;
 }
 
+- (nonnull RSTextInputPropertyEditor *)addressPropertyEditor
+{
+    RSTextInputPropertyEditor *editor = [[RSTextInputPropertyEditor alloc] initWithKey:@"address" ofObject:self title:NSLocalizedString(@"Address", @"label") style:RSTextInputPropertyEditorStyleForm];
+    editor.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    editor.spellCheckingType = UITextSpellCheckingTypeNo;
+    editor.placeholder = NSLocalizedString(@"Address", @"text field placeholder");
+    editor.textContentType = UITextContentTypeFullStreetAddress;
+    return editor;
+}
+
 - (nonnull NSArray *)formSections
 {
     NSArray *editors = @[[self bytesAvailablePropertyEditor],

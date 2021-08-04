@@ -9,6 +9,8 @@
 #import <Forma/Core/NSObject+RSForm.h>
 #import <Forma/Core/RSFormViewController.h>
 
+#import "RSTextInputPropertyEditor.h"
+
 #import "ViewController.h"
 #import "ModelObject.h"
 
@@ -33,7 +35,16 @@
 
 - (IBAction)editButtonPressed:(id)sender
 {
-    RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:_modelObject.form];
+    RSForm *form = _modelObject.form;
+    RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:form];
+    UIButton *searchButton = [self configureAddressSearchButtonInForm:form];
+    UIAction *searchAction = [UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Search" message:@"You wanted to search." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+        [viewController presentViewController:alertController animated:YES completion:nil];
+    }];
+    [searchButton addAction:searchAction forControlEvents:UIControlEventPrimaryActionTriggered];
+
     viewController.showDoneButton = YES;
     UIButton *button = [[self class] makeButton];
     [button setTitle:@"Submit" forState:UIControlStateNormal];
@@ -45,6 +56,21 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.navigationBar.prefersLargeTitles = YES;
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (UIButton *)configureAddressSearchButtonInForm:(nonnull RSForm *)form
+{
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImageSymbolConfiguration *configuration = [UIImageSymbolConfiguration configurationWithScale:UIImageSymbolScaleLarge];
+    UIImage *image = [UIImage systemImageNamed:@"magnifyingglass.circle" withConfiguration:configuration];
+    [searchButton setImage:image forState:UIControlStateNormal];
+    [searchButton sizeToFit];
+
+    RSTextInputPropertyEditor *editor = (RSTextInputPropertyEditor *)[form formItemForKey:@"address"];
+    UITextField *textField = editor.textField;
+    textField.rightView = searchButton;
+    textField.rightViewMode = UITextFieldViewModeAlways;
+    return searchButton;
 }
 
 - (void)editingCompleted:(BOOL)cancelled
