@@ -77,9 +77,11 @@
     buttonPropertyEditor.action = ^(UIViewController<RSFormContainer> *_Nonnull viewController) {
         [viewController.navigationController popViewControllerAnimated:YES];
     };
-    NSArray *editors = @[[self firstNamePropertyEditor],
-                         [self lastNamePropertyEditor],
-                         [self passwordPropertyEditor]];
+    NSArray *editors = @[
+        [self firstNamePropertyEditor],
+        [self lastNamePropertyEditor],
+        [self passwordPropertyEditor]
+    ];
     RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Account" formItems:editors];
     RSFormSection *button = [[RSFormSection alloc] initWithTitle:nil formItem:buttonPropertyEditor];
     return @[formSection, button];
@@ -165,13 +167,16 @@
 
 - (nonnull NSArray *)formSections
 {
-    NSArray *editors = @[[self bytesAvailablePropertyEditor],
-                         [self namePropertyEditor],
-                         [self accountPropertyEditor],
-                         [self volumePropertyEditor],
-                         [self equalizerPropertyEditor],
-                         [self enabledPropertyEditor],
-                         [self sizePropertyEditor]];
+    NSArray *editors = @[
+        [self bytesAvailablePropertyEditor],
+        [self namePropertyEditor],
+        [self accountPropertyEditor],
+        [self volumePropertyEditor],
+        [self equalizerPropertyEditor],
+        [self enabledPropertyEditor],
+        [self sizePropertyEditor],
+        [self addressPropertyEditor]
+    ];
     RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItems:editors];
 
     return @[formSection];
