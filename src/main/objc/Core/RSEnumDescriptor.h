@@ -40,7 +40,7 @@
 
 // Designated initializer. The size of the enumValues array is assumed to the same size as the
 // labels array.
-- (nonnull instancetype)initWithEnumValues:(nonnull NSInteger *)enumValues labels:(nonnull NSArray<NSString *> *)labels NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithEnumValues:(nonnull NSArray<NSNumber *> *)enumValues labels:(nonnull NSArray<NSString *> *)labels NS_DESIGNATED_INITIALIZER;
 
 - (nonnull NSString *)labelForValue:(NSInteger)value;
 - (nonnull NSString *)labelForIndex:(NSUInteger)index;

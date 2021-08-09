@@ -13,27 +13,20 @@
 
 @implementation RSEnumDescriptor
 {
-    NSInteger *_values;
-}
-
-#pragma mark - NSObject
-
-- (void)dealloc
-{
-    free(_values);
+    NSArray<NSNumber *> *_values;
 }
 
 #pragma mark - RSEnumDescriptor
 
-- (nonnull instancetype)initWithEnumValues:(nonnull NSInteger *)values labels:(nonnull NSArray<NSString *> *)labels
+- (nonnull instancetype)initWithEnumValues:(nonnull NSArray<NSNumber *> *)values labels:(nonnull NSArray<NSString *> *)labels
 {
+    NSParameterAssert(values != nil);
+    NSParameterAssert(values.count > 0);
     NSParameterAssert(labels != nil);
-    NSParameterAssert(labels.count > 0);
+    NSParameterAssert(values.count == labels.count);
 
     self = [super init];
-    const NSUInteger items = labels.count;
-    _values = malloc(sizeof(NSInteger) * items);
-    memcpy(_values, values, sizeof(NSInteger) * items);
+    _values = [values copy];
     _labels = [labels copy];
     return self;
 }
@@ -54,7 +47,7 @@
     const NSUInteger count = _labels.count;
     for (NSUInteger i = 0; i < count; ++i)
     {
-        if (_values[i] == value)
+        if (_values[i].integerValue == value)
             return i;
     }
     NSString *reason = [NSString stringWithFormat:@"The value %ld is not a valid enumeration value.", (long)value];
@@ -64,7 +57,7 @@
 - (NSInteger)valueForIndex:(NSUInteger)index
 {
     NSParameterAssert(index < _labels.count);
-    return _values[index];
+    return _values[index].integerValue;
 }
 
 @end

@@ -149,7 +149,7 @@
 
 - (nonnull RSEnumPropertyEditor *)sizePropertyEditor
 {
-    NSInteger values[] = {TShirtSizeSmall, TShirtSizeMedium, TShirtSizeLarge};
+    NSArray<NSNumber *> *values = @[@(TShirtSizeSmall), @(TShirtSizeMedium), @(TShirtSizeLarge)];
     RSEnumDescriptor *descriptor = [[RSEnumDescriptor alloc] initWithEnumValues:values labels:@[@"Small", @"Medium", @"Large"]];
     RSEnumPropertyEditor *editor = [[RSEnumPropertyEditor alloc] initWithKey:@"size" ofObject:self title:@"T-Shirt Size" enumDescriptor:descriptor];
     return editor;
