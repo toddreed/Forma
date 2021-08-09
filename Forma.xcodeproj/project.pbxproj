@@ -18,6 +18,8 @@
 		5F4E90A22279EE6E005EAAA3 /* RSPropertyFormItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E90A12279EE6E005EAAA3 /* RSPropertyFormItem.m */; };
 		5F574636226A45E300E14770 /* RSBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574635226A45E300E14770 /* RSBaseTableViewCell.m */; };
 		5F57463D226A739A00E14770 /* RSFormLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F57463C226A739A00E14770 /* RSFormLibrary.m */; };
+		5F5B547526C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B547426C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m */; };
+		5F5B547926C19E5900E76344 /* RSStepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B547726C19E5900E76344 /* RSStepperTableViewCell.m */; };
 		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5F9C903F26B0753D00D1DD9D /* RSTableHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C903E26B0753D00D1DD9D /* RSTableHeaderImageView.m */; };
 		5FA938F426AF649600DA2782 /* RSTableFooterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */; };
@@ -94,6 +96,11 @@
 		5F574635226A45E300E14770 /* RSBaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSBaseTableViewCell.m; sourceTree = "<group>"; };
 		5F57463B226A739A00E14770 /* RSFormLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFormLibrary.h; sourceTree = "<group>"; };
 		5F57463C226A739A00E14770 /* RSFormLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSFormLibrary.m; sourceTree = "<group>"; };
+		5F5B547326C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSDiscreteNumericPropertyEditor.h; sourceTree = "<group>"; };
+		5F5B547426C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSDiscreteNumericPropertyEditor.m; sourceTree = "<group>"; };
+		5F5B547626C19E5900E76344 /* RSStepperTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSStepperTableViewCell.h; sourceTree = "<group>"; };
+		5F5B547726C19E5900E76344 /* RSStepperTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSStepperTableViewCell.m; sourceTree = "<group>"; };
+		5F5B547826C19E5900E76344 /* RSStepperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSStepperTableViewCell.xib; sourceTree = "<group>"; };
 		5F6087EE1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFetchRequestAutocompleteSource.h; sourceTree = "<group>"; };
 		5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSFetchRequestAutocompleteSource.m; sourceTree = "<group>"; };
 		5F7BF3F825CC512500B341CC /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
@@ -267,6 +274,8 @@
 			children = (
 				5FF92FB0174AD615003211A0 /* RSBooleanPropertyEditor.h */,
 				5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */,
+				5F5B547326C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.h */,
+				5F5B547426C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m */,
 				5FDFEAF123AD4CC6007DA8E9 /* RSEnumPropertyEditor.h */,
 				5FDFEAF223AD4CC6007DA8E9 /* RSEnumPropertyEditor.m */,
 				5FF92FB6174AD615003211A0 /* RSFloatPropertyEditor.h */,
@@ -313,6 +322,9 @@
 				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
 				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
 				5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */,
+				5F5B547626C19E5900E76344 /* RSStepperTableViewCell.h */,
+				5F5B547726C19E5900E76344 /* RSStepperTableViewCell.m */,
+				5F5B547826C19E5900E76344 /* RSStepperTableViewCell.xib */,
 				5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */,
 				5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */,
 				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
@@ -576,12 +588,14 @@
 				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,
 				5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */,
 				5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */,
+				5F5B547926C19E5900E76344 /* RSStepperTableViewCell.m in Sources */,
 				5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */,
 				5F9C903F26B0753D00D1DD9D /* RSTableHeaderImageView.m in Sources */,
 				5FDFEAED23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m in Sources */,
 				5FF92FD0174AD615003211A0 /* RSFormButton.m in Sources */,
 				5F0CE80F226E5F04000465AB /* RSPropertyViewer.m in Sources */,
 				5FF92FD1174AD615003211A0 /* RSFormNavigation.m in Sources */,
+				5F5B547526C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m in Sources */,
 				5FF92FD2174AD615003211A0 /* RSFloatPropertyEditor.m in Sources */,
 				5FF92FD4174AD615003211A0 /* RSFormViewController.m in Sources */,
 				5FF92FD5174AD615003211A0 /* RSObjectPropertyEditor.m in Sources */,
