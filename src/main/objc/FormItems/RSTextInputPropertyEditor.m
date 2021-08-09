@@ -373,7 +373,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     if ([textField resignFirstResponder])
     {
         RSForm *form = self.formSection.form;
-        id<RSFormContainer> container = form.formContainer;
+        UIViewController<RSFormContainer> *container = form.formContainer;
         NSParameterAssert(container != nil);
 
         if (textField.returnKeyType == UIReturnKeyNext)

@@ -10,6 +10,8 @@
 //
 
 #import "RSFormButton.h"
+#import "RSForm.h"
+
 #import "../TableViewCells/RSButtonTableViewCell.h"
 
 
@@ -25,12 +27,17 @@
 - (void)configureTableViewCell
 {
     [super configureTableViewCell];
-    [self styleButtonLabel];
+
+    UIButton *button = self.button;
+    button.enabled = self.enabled;
+    [button setTitle:self.title forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventPrimaryActionTriggered];
 }
 
 - (BOOL)selectable
 {
-    return _action != nil;
+    // The form item isn’t selectable because the UIButton handles the touch event.
+    return NO;
 }
 
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
@@ -55,16 +62,17 @@
     return self;
 }
 
-- (void)setAction:(void (^)(UIViewController<RSFormContainer> * _Nonnull))action
+- (UIButton *)button
 {
-    _action = action;
-    [self styleButtonLabel];
+    RSButtonTableViewCell *cell = (RSButtonTableViewCell *)self.tableViewCell;
+    NSParameterAssert(cell.button != nil);
+    return cell.button;
 }
 
-- (void)styleButtonLabel
+- (void)buttonPressed:(id)sender
 {
-    UIColor *buttonColor = self.selectable ? self.tableViewCell.tintColor : [UIColor grayColor];
-    self.tableViewCell.titleLabel.textColor = buttonColor;
+    if (_action != nil)
+        _action(self.formSection.form.formContainer);
 }
 
 @end

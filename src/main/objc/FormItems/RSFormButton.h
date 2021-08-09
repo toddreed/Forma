@@ -16,6 +16,7 @@
 @interface RSFormButton : RSFormItem
 
 @property (nonatomic, strong, nullable) void (^action)(UIViewController<RSFormContainer> *_Nonnull);
+@property (nonatomic, readonly, nonnull) UIButton *button;
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title action:(void (^_Nullable)(UIViewController<RSFormContainer> *_Nonnull))action NS_DESIGNATED_INITIALIZER;

@@ -47,7 +47,7 @@
 /// The last RSTextInputPropertyEditor in the form, or nil if there are none.
 @property (nonatomic, readonly, nullable) RSTextInputPropertyEditor *lastTextInputPropertyEditor;
 
-@property (nonatomic, weak, nullable) id<RSFormContainer> formContainer;
+@property (nonatomic, weak, nullable) UIViewController<RSFormContainer> *formContainer;
 
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title;

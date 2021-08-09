@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, RSFormAction)
 
 @protocol RSFormContainerDelegate <NSObject>
 
-- (void)formContainer:(nonnull id<RSFormContainer>)formContainer didEndEditingSessionWithAction:(RSFormAction)action;
+- (void)formContainer:(nonnull UIViewController<RSFormContainer> *)formContainer didEndEditingSessionWithAction:(RSFormAction)action;
 
 @end
 
