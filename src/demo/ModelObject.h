@@ -29,6 +29,7 @@ typedef enum TShirtSize: NSUInteger
 @property (nonatomic, copy, nonnull) NSString *name;
 @property (nonatomic, nonnull) Account *account;
 @property (nonatomic) float volume;
+@property (nonatomic) double distance;
 @property (nonatomic) BOOL equalizer;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic) Size size;

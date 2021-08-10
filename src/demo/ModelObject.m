@@ -14,11 +14,43 @@
 #import "RSArrayAutocompleteSource.h"
 #import "RSFormSection.h"
 #import "RSFloatPropertyEditor.h"
+#import "RSDiscreteNumericPropertyEditor.h"
 #import "RSFormNavigation.h"
 #import "RSBooleanPropertyEditor.h"
 #import "RSEnumPropertyEditor.h"
 #import "RSFormButton.h"
 #import "RSPropertyViewer.h"
+
+
+@interface DistanceFormatter: NSFormatter
+@end
+
+
+@implementation DistanceFormatter
+{
+    NSMeasurementFormatter *_measurementFormatter;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+
+    _measurementFormatter = [[NSMeasurementFormatter alloc] init];
+    NSNumberFormatter *numberFormatter = _measurementFormatter.numberFormatter;
+    numberFormatter.minimumIntegerDigits = 1;
+    numberFormatter.minimumFractionDigits = 1;
+    numberFormatter.maximumFractionDigits = 1;
+
+    return self;
+}
+
+- (NSString *)stringForObjectValue:(id)obj
+{
+    NSMeasurement *measurement = [[NSMeasurement alloc] initWithDoubleValue:[obj doubleValue] unit:NSUnitLength.kilometers];
+    return [_measurementFormatter stringFromMeasurement:measurement];
+}
+
+@end
 
 
 @implementation Account
@@ -98,6 +130,7 @@
     _name = @"John";
     _account = [[Account alloc] init];
     _volume = 0.6;
+    _distance = 7.5;
     _equalizer = YES;
     _size = TShirtSizeMedium;
     return self;
@@ -132,6 +165,17 @@
     RSFloatPropertyEditor *editor = [[RSFloatPropertyEditor alloc] initWithKey:@"volume" ofObject:self title:NSLocalizedString(@"Volume", @"label")];
     editor.minimumValueImage = [UIImage imageNamed:@"MinimumVolume"];
     editor.maximumValueImage = [UIImage imageNamed:@"MaximumVolume"];
+    return editor;
+}
+
+- (nonnull RSDiscreteNumericPropertyEditor *)distancePropertyEditor
+{
+    RSDiscreteNumericPropertyEditor *editor = [[RSDiscreteNumericPropertyEditor alloc] initWithKey:@"distance" ofObject:self title:NSLocalizedString(@"Distance", @"label")];
+    editor.minimumValue = 1.0;
+    editor.maximumValue = 10.0;
+    editor.stepValue = 0.5;
+
+    editor.valueFormatter = [[DistanceFormatter alloc] init];
     return editor;
 }
 
@@ -172,6 +216,7 @@
         [self namePropertyEditor],
         [self accountPropertyEditor],
         [self volumePropertyEditor],
+        [self distancePropertyEditor],
         [self equalizerPropertyEditor],
         [self enabledPropertyEditor],
         [self sizePropertyEditor],
