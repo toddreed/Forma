@@ -15,7 +15,7 @@
 
 
 /// RSLabelTableViewCell is a table view cell with a (multiline) title label on left side and a
-/// single line value label on the right side. It’s intend to display a readonly property value
+/// single line value label on the right side. It’s intended to display a readonly property value
 /// that can be represented by text.
 @interface RSLabelTableViewCell : UITableViewCell <RSFormItemView>
 
