@@ -100,9 +100,11 @@ static const CGFloat kDefaultIconWidth = 21;
     const CGRect titleLabelFrame = (CGRect) { CGPointMake(margins.left, topLayoutY), titleLabelSize };
     _titleLabel.frame = titleLabelFrame;
 
+    const CGFloat horizontalSpacingBeforeTextField = titleLabelSize.width == 0 ? 0 : horizontalSpacing;
+
     CGRect textFieldFrame = _textField.frame;
 
-    textFieldFrame.origin.x = margins.left + titleLabelSize.width + horizontalSpacing;
+    textFieldFrame.origin.x = margins.left + titleLabelSize.width + horizontalSpacingBeforeTextField;
     textFieldFrame.origin.y = topLayoutY;
     textFieldFrame.size.width = bounds.size.width - margins.left - margins.right - titleLabelSize.width - horizontalSpacing;
     textFieldFrame.size.height = textFieldSize.height;

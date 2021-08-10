@@ -83,7 +83,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     {
         // The super -configureTableCellForValue:controller: sets the label.
         UILabel *label = self.tableViewCell.titleLabel;
-        label.text = @"";
+        label.text = nil;
     }
 
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
