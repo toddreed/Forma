@@ -100,7 +100,7 @@
     if (_form.modified)
         return YES;
     else
-        return [super isModalInPresentation];
+        return !_showCancelButton;
 }
 
 #pragma mark - UITableViewController
