@@ -77,10 +77,22 @@
 
     self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
 
-    if (_headerImage != nil)
-        self.tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
-    if (_submitButton != nil)
-        self.tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
+    if (_headerView == nil)
+    {
+        if (_headerImage != nil)
+            self.tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
+    }
+    else
+        self.tableView.tableHeaderView = _headerView;
+
+    if (_footerView == nil)
+    {
+        if (_submitButton != nil)
+            self.tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
+    }
+    else
+        self.tableView.tableFooterView = _footerView;
+
     [self updateButtons];
 
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];

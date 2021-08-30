@@ -42,13 +42,26 @@
 /// (and thus requires that the form view controller is contained in a navigation controller).
 @property (nonatomic) BOOL showDoneButton;
 
-/// If `submitButton` is set, then it will be added to the bottom of the form in a custom table
-/// footer view.
+/// If `submitButton` is set and `footerView` is *not* set, then `submitButton` will be added to
+/// the bottom of the form in a custom table footer view. If `submitButton` is set and
+/// `footerView` is set, then in most cases `submitButton` should be a subview of the footer
+/// view. (Alternatively, `submitButton` could be a subview of the header view.)
 @property (nonatomic, nullable) UIButton *submitButton;
 
 /// If `headerImage` is set, then it will be added to the top of the form in a custom table
-/// header view.
+/// header view. If `headerView` is set, then this property is ignored.
 @property (nonatomic, nullable) UIImage *headerImage;
+
+/// A custom header view displayed before the form items. If the header view only displays an
+/// image, set `headerImage` instead. The header view MUST implement -sizeThatFits:, preserving
+/// the provided width and determining the height needed for the header.
+@property (nonatomic, nullable) UIView *headerView;
+
+/// A custom footer view displayed after the form items. If the footer view only displays a
+/// submit button, setting `submitButton` but not `footerView` will automatically add the submit
+/// button to a footer view. The footer view MUST implement -sizeThatFits:, preserving the
+/// provided width and determining the height needed for the footer.
+@property (nonatomic, nullable) UIView *footerView;
 
 /// Indicates whether the form is enabled. When a form enabled it can be edited.
 @property (nonatomic) BOOL enabled;
