@@ -67,5 +67,6 @@ typedef NS_ENUM(NSInteger, RSFormAction)
 
 - (void)commitForm;
 - (void)cancelForm;
+- (void)formWasUpdated;
 
 @end

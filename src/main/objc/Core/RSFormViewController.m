@@ -21,6 +21,9 @@
     CGFloat _headerViewLayoutWidth;
     CGFloat _footerViewLayoutWidth;
 
+    UIBarButtonItem *_doneBarButtonItem;
+    UIBarButtonItem *_cancelBarButtonItem;
+
     // State variable for tracking whether this object has been shown before. On the first
     // view and when the first form item is a RSTextInputPropertyEditor, focus will
     // automatically be given to the text field of the RSTextInputPropertyEditor.
@@ -78,6 +81,7 @@
         self.tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
     if (_submitButton != nil)
         self.tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
+    [self updateButtons];
 
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
@@ -123,6 +127,8 @@
         _textEditingMode = RSTextEditingModeNotEditing;
         _form = form;
         _form.formContainer = self;
+        _doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+        _cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
     }
     return self;
 
@@ -137,7 +143,7 @@
 - (void)setShowCancelButton:(BOOL)f
 {
     if (!_showCancelButton && f)
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
+        self.navigationItem.leftBarButtonItem = _cancelBarButtonItem;
     else if (_showCancelButton && !f)
         self.navigationItem.leftBarButtonItem = nil;
     _showCancelButton = f;
@@ -146,11 +152,30 @@
 - (void)setShowDoneButton:(BOOL)f
 {
     if (!_showDoneButton && f)
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
+        self.navigationItem.rightBarButtonItem = _doneBarButtonItem;
     else if (_showDoneButton && !f)
         self.navigationItem.rightBarButtonItem = nil;
 
     _showDoneButton = f;
+}
+
+- (void)updateButtons
+{
+    if (_form.enabled)
+    {
+        BOOL valid = _form.delegate == nil || [_form.delegate isFormValid:_form];
+        BOOL buttonsEnabled = valid;
+
+        _submitButton.enabled = buttonsEnabled;
+        _cancelBarButtonItem.enabled = buttonsEnabled;
+        _doneBarButtonItem.enabled = buttonsEnabled;
+    }
+    else
+    {
+        _submitButton.enabled = NO;
+        _cancelBarButtonItem.enabled = NO;
+        _doneBarButtonItem.enabled = NO;
+    }
 }
 
 - (BOOL)enabled
@@ -161,6 +186,7 @@
 - (void)setEnabled:(BOOL)enabled
 {
     _form.enabled = enabled;
+    [self updateButtons];
 }
 
 - (BOOL)finishEditingForce:(BOOL)force
@@ -318,6 +344,11 @@
     [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCancel];
     if (_completionBlock)
         _completionBlock(self, YES);
+}
+
+- (void)formWasUpdated
+{
+    [self updateButtons];
 }
 
 #pragma mark UIAdaptivePresentationControllerDelegate

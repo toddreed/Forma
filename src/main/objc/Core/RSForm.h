@@ -19,7 +19,18 @@
 @class RSTextInputPropertyEditor;
 
 
+@protocol RSFormDelegate <NSObject>
+
+@optional
+
+- (BOOL)isFormValid:(nonnull RSForm *)form;
+
+@end
+
+
 @interface RSForm : NSObject
+
+@property (nonatomic, weak, nullable) id<RSFormDelegate> delegate;
 
 /// Indicates whether the form is enabled. When a form is enabled, the user can interact with
 /// the form to edit values. The default is YES.

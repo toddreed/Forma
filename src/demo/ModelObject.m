@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ModelObject.h"
-#import "RSFormViewController.h"
 #import "RSFormItem.h"
 #import "RSTextInputPropertyEditor.h"
 #import "RSArrayAutocompleteSource.h"
@@ -225,6 +224,13 @@
     RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItems:editors];
 
     return @[formSection];
+}
+
+#pragma mark RSFormDelegate
+
+- (BOOL)isFormValid:(nonnull RSForm *)form
+{
+    return _name != nil && [_name isEqualToString:@"John"] && _volume > 0.5;
 }
 
 @end

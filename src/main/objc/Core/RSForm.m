@@ -36,6 +36,12 @@
     return self;
 }
 
+- (void)setModified:(BOOL)modified
+{
+    [_formContainer formWasUpdated];
+    _modified = modified;
+}
+
 - (void)setEnabled:(BOOL)enabled
 {
     _enabled = enabled;

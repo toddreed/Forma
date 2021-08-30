@@ -36,6 +36,7 @@
 - (IBAction)editButtonPressed:(id)sender
 {
     RSForm *form = _modelObject.form;
+    form.delegate = _modelObject;
     RSFormViewController *viewController = [[RSFormViewController alloc] initWithForm:form];
     UIButton *searchButton = [self configureAddressSearchButtonInForm:form];
     UIAction *searchAction = [UIAction actionWithHandler:^(__kindof UIAction * _Nonnull action) {

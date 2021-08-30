@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RSForm.h"
+
 typedef enum TShirtSize: NSUInteger
 {
     TShirtSizeSmall,
@@ -23,7 +25,7 @@ typedef enum TShirtSize: NSUInteger
 
 @end
 
-@interface ModelObject : NSObject
+@interface ModelObject : NSObject <RSFormDelegate>
 
 @property (nonatomic, readonly) long long bytesAvailable;
 @property (nonatomic, copy, nonnull) NSString *name;
