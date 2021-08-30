@@ -10,6 +10,8 @@
 //
 
 #import "RSPropertyFormItem.h"
+#import "RSFormSection.h"
+#import "RSForm.h"
 
 
 static void *ObservationContext = &ObservationContext;
@@ -46,12 +48,25 @@ static void PerformOnMainThread(dispatch_block_t block)
     {
         NSParameterAssert([keyPath isEqualToString:_key]);
 
-        id value = change[NSKeyValueChangeNewKey];
-        if (value == [NSNull null])
-            value = nil;
+        id newValue = change[NSKeyValueChangeNewKey];
+        id oldValue = change[NSKeyValueChangeOldKey];
+
+        BOOL changed = NO;
+
+        if (newValue == [NSNull null])
+            newValue = nil;
+
+        if (oldValue != nil)
+        {
+            if (oldValue == [NSNull null])
+                oldValue = nil;
+            changed = (newValue == nil && oldValue != nil) || (newValue != nil && oldValue == nil) || ![newValue isEqual:oldValue];
+        }
 
         dispatch_block_t block = ^{
-            [self propertyChangedToValue:value];
+            if (changed)
+                self.formSection.form.modified = YES;
+            [self propertyChangedToValue:newValue];
         };
         PerformOnMainThread(block);
     }
@@ -91,7 +106,10 @@ static void PerformOnMainThread(dispatch_block_t block)
 {
     if (_object != nil && _key != nil && !_observing)
     {
-        [_object addObserver:self forKeyPath:_key options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:ObservationContext];
+        [_object addObserver:self
+                  forKeyPath:_key
+                     options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                     context:ObservationContext];
         _observing = YES;
     }
 }

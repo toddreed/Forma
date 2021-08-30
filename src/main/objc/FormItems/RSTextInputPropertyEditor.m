@@ -295,10 +295,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         NSError *error;
         id value;
         if ([self validateTextInput:textField.text output:&value error:&error])
-        {
             [self.object setValue:value forKey:self.key];
-            self.formSection.form.modified = YES;
-        }
         else
         {
             if (container.textEditingMode != RSTextEditingModeFinishingForced)

@@ -11,8 +11,6 @@
 
 #import "RSFloatPropertyEditor.h"
 #import "../TableViewCells/RSSliderTableViewCell.h"
-#import "../Core/RSFormSection.h"
-#import "../Core/RSForm.h"
 
 
 @implementation RSFloatPropertyEditor
@@ -77,7 +75,6 @@
 {
     UISlider *slider = (UISlider *)sender;
     [self.object setValue:@(slider.value) forKey:self.key];
-    self.formSection.form.modified = YES;
 }
 
 - (void)setContinuous:(BOOL)continuous

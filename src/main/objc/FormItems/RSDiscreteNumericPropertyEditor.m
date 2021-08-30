@@ -11,8 +11,6 @@
 
 #import "RSDiscreteNumericPropertyEditor.h"
 #import "../TableViewCells/RSStepperTableViewCell.h"
-#import "../Core/RSFormSection.h"
-#import "../Core/RSForm.h"
 
 
 @implementation RSDiscreteNumericPropertyEditor
@@ -76,7 +74,6 @@
 {
     UIStepper *stepper = (UIStepper *)sender;
     [self.object setValue:@(stepper.value) forKey:self.key];
-    self.formSection.form.modified = YES;
 }
 
 - (void)setContinuous:(BOOL)continuous

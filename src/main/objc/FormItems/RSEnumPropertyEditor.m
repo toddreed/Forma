@@ -10,8 +10,6 @@
 //
 
 #import "RSEnumPropertyEditor.h"
-#import "../Core/RSFormSection.h"
-#import "../Core/RSForm.h"
 #import "../TableViewCells/RSSegmentedControlTableViewCell.h"
 
 
@@ -86,7 +84,6 @@ enumDescriptor:(nonnull RSEnumDescriptor *)enumDescriptor
     {
         NSInteger value = [_enumDescriptor valueForIndex:segmentedControl.selectedSegmentIndex];
         [self.object setValue:@(value) forKey:self.key];
-        self.formSection.form.modified = YES;
     }
 }
 
