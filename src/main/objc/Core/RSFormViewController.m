@@ -345,9 +345,13 @@
 {
     if ([self finishEditingForce:NO])
     {
-        [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
-        if (_completionBlock)
-            _completionBlock(self, NO);
+        BOOL valid = _form.delegate == nil || [_form.delegate isFormValid:_form];
+        if (valid)
+        {
+            [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
+            if (_completionBlock)
+                _completionBlock(self, NO);
+        }
     }
 }
 
