@@ -226,6 +226,20 @@
     return @[formSection];
 }
 
+- (BOOL)validateName:(inout id  _Nullable __autoreleasing *)ioName error:(out NSError * _Nullable __autoreleasing *)error
+{
+    NSString *name = *ioName;
+    if (![name isEqualToString:@"John"])
+    {
+        if (error != NULL)
+        {
+            NSString *description = NSLocalizedString(@"The name must be “John”.", @"error message");
+            *error = [NSError errorWithDomain:RSTextInputPropertyValidationErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey: description}];
+        }
+        return NO;
+    }
+    return YES;
+}
 #pragma mark RSFormDelegate
 
 - (BOOL)isFormValid:(nonnull RSForm *)form
