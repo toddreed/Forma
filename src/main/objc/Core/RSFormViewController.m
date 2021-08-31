@@ -93,6 +93,7 @@
     else
         self.tableView.tableFooterView = _footerView;
 
+    [_submitButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventPrimaryActionTriggered];
     [self updateButtons];
 
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(contentSizeCategoryDidChangeNotification:) name:UIContentSizeCategoryDidChangeNotification object:nil];
