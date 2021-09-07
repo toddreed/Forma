@@ -144,7 +144,6 @@
         _cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
     }
     return self;
-
 }
 
 - (void)contentSizeCategoryDidChangeNotification:(NSNotification *)notification
@@ -180,13 +179,11 @@
         BOOL buttonsEnabled = valid;
 
         _submitButton.enabled = buttonsEnabled;
-        _cancelBarButtonItem.enabled = buttonsEnabled;
         _doneBarButtonItem.enabled = buttonsEnabled;
     }
     else
     {
         _submitButton.enabled = NO;
-        _cancelBarButtonItem.enabled = NO;
         _doneBarButtonItem.enabled = NO;
     }
 }
