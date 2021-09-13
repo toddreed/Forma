@@ -28,7 +28,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 @implementation RSTextInputPropertyEditor
 {
     // The formatter used for converting between text strings and the target property. If this is nil,
-    // then it is assumed that that no conversion is needed (i.e. the target property is an NSString).
+    // then it is assumed that no conversion is needed (i.e. the target property is an NSString).
     NSFormatter *_formatter;
 
     RSTextInputPropertyEditorStyle _style;
