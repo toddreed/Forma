@@ -160,7 +160,6 @@ static const CGFloat kDefaultIconWidth = 21;
     _textField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _textField.minimumFontSize = 10.0;
     _textField.textAlignment = NSTextAlignmentRight;
-    _textField.textColor = [UIColor colorWithRed:70.0f/255.0f green:96.0f/255.0f blue:133.0f/255.0f alpha:1.0f];
     [self.contentView addSubview:_textField];
 
     _errorMessageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
