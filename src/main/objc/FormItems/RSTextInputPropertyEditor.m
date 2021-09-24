@@ -16,6 +16,8 @@
 #import "../Core/RSForm.h"
 #import "../Core/RSAutocompleteInputAccessoryView.h"
 #import "../TableViewCells/RSTextFieldTableViewCell.h"
+#import "../Core/RSFormLibrary.h"
+
 
 NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
 
@@ -52,7 +54,20 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 - (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
 {
-    RSTextFieldTableViewCell *cell = [[RSTextFieldTableViewCell alloc] initWithReuseIdentifier:nil];
+    NSString *nibName;
+    switch (_style)
+    {
+        case RSTextInputPropertyEditorStyleSettings:
+            nibName = [NSString stringWithFormat:@"%@Setting", NSStringFromClass([RSTextFieldTableViewCell class])];
+            break;
+        case RSTextInputPropertyEditorStyleForm:
+            nibName = [NSString stringWithFormat:@"%@Form", NSStringFromClass([RSTextFieldTableViewCell class])];
+            break;
+    }
+
+    UINib *nib = [UINib nibWithNibName:nibName bundle:RSFormLibrary.bundle];
+    RSTextFieldTableViewCell *cell = [nib instantiateWithOwner:self options:nil][0];
+
     if (_message && _message.length > 0)
         cell.errorMessageLabel.text = _message;
 
@@ -78,13 +93,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 - (void)configureTableViewCell
 {
     [super configureTableViewCell];
-
-    if (_style == RSTextInputPropertyEditorStyleForm)
-    {
-        // The super -configureTableCellForValue:controller: sets the label.
-        UILabel *label = self.tableViewCell.titleLabel;
-        label.text = nil;
-    }
 
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
 
@@ -176,6 +184,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         }
 
         textField.text = text;
+        [textFieldTableViewCell textFieldTextChanged];
     }
 }
 
@@ -216,24 +225,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     RSTextFieldTableViewCell *cell = self.tableViewCell;
     return cell.textField;
-}
-
-- (void)setStyle:(RSTextInputPropertyEditorStyle)style
-{
-    switch (style)
-    {
-        case RSTextInputPropertyEditorStyleSettings:
-            _style = style;
-            _textAlignment = NSTextAlignmentRight;
-            _placeholder = nil;
-            break;
-
-        case RSTextInputPropertyEditorStyleForm:
-            _style = style;
-            _textAlignment = NSTextAlignmentLeft;
-            _placeholder = self.title;
-            break;
-    }
 }
 
 - (void)setMessage:(nullable NSString *)message
@@ -320,27 +311,9 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     // and insert the cell.
 
     RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
-
-    textFieldCell.includeErrorInLayout = showMessage;
-
-    [CATransaction begin];
-
-    if (showMessage)
-    {
-        // We don't to display the message until the table cell animation is complete,
-        // otherwise the message overlaps the cell below.
-        [CATransaction setCompletionBlock: ^{
-            textFieldCell.showError = showMessage;
-        }];
-    }
-    else
-    {
-        textFieldCell.showError = showMessage;
-    }
+    textFieldCell.showError = showMessage;
     [tableView beginUpdates];
     [tableView endUpdates];
-    [CATransaction commit];
-
 }
 
 #pragma mark UITextFieldDelegate
@@ -352,6 +325,13 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     container.textEditingMode = RSTextEditingModeEditing;
     container.activeTextField = textField;
+    if (_formatter)
+    {
+        id value = [self.object valueForKey:self.key];
+        textField.text = [_formatter editingStringForObjectValue:value];
+        RSTextFieldTableViewCell *textFieldTableViewCell = (RSTextFieldTableViewCell *)self.tableViewCell;
+        [textFieldTableViewCell textFieldTextChanged];
+    }
 }
 
 - (void)textFieldDidEndEditing:(nonnull UITextField *)textField

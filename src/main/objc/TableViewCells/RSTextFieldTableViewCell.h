@@ -22,11 +22,9 @@
 /// Indicates whether the error message is visible.
 @property (nonatomic) BOOL showError;
 
-/// Whether the desciption label and icon image view should be included in the layout.
-@property (nonatomic) BOOL includeErrorInLayout;
-
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier UNAVAILABLE_ATTRIBUTE;
-- (nonnull instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier NS_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
+
+/// This method must be called when assigning to the text field `text` property to update the visibility of the title label.
+- (void)textFieldTextChanged;
 
 @end

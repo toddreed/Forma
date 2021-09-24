@@ -20,8 +20,7 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
     /// left and a text field on the right. This is the default style.
     RSTextInputPropertyEditorStyleSettings,
     
-    /// This style has no label, and the text field occupies the entire table cell content.
-    /// The text field’s placeholder is set.
+    /// This style has a label above the text field.
     RSTextInputPropertyEditorStyleForm
 };
 

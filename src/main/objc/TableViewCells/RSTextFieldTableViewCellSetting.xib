@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="132" id="wU5-o4-S36" customClass="RSTextFieldTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="508" height="132"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wU5-o4-S36" id="DHF-bC-wGK">
+                <rect key="frame" x="0.0" y="0.0" width="508" height="132"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a33-TS-3B0">
+                        <rect key="frame" x="20" y="11" width="468" height="89.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="LIJ-rb-Gyr">
+                                <rect key="frame" x="0.0" y="0.0" width="468" height="17.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Field Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKl-PJ-aVF">
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Field placeholder" textAlignment="right" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XL5-TG-WEf">
+                                        <rect key="frame" x="71" y="-1" width="397" height="18.5"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYK-TD-KAV" userLabel="Error Stack View">
+                                <rect key="frame" x="0.0" y="37.5" width="468" height="52"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uy8-qK-Zlb">
+                                        <rect key="frame" x="0.0" y="1" width="17.5" height="15"/>
+                                        <color key="tintColor" systemColor="systemYellowColor"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        </preferredSymbolConfiguration>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08i-1t-Ou1">
+                                        <rect key="frame" x="27.5" y="0.0" width="440.5" height="52"/>
+                                        <string key="text">His vix dicit recteque est qui no an mnesarchum at at pro quem senserit vis persecuti. Duo has nec diceret hendrerit invidunt ad at dictas est no theophrastus pro praesent.</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="MYK-TD-KAV" firstAttribute="width" secondItem="a33-TS-3B0" secondAttribute="width" id="GUn-qP-mZa"/>
+                            <constraint firstItem="LIJ-rb-Gyr" firstAttribute="width" secondItem="a33-TS-3B0" secondAttribute="width" id="PUb-8X-Wnn"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="a33-TS-3B0" firstAttribute="top" secondItem="DHF-bC-wGK" secondAttribute="topMargin" id="3mm-lr-mDb"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="a33-TS-3B0" secondAttribute="bottom" id="GK7-JF-WsP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="a33-TS-3B0" secondAttribute="trailing" id="MjP-cu-zOa"/>
+                    <constraint firstItem="a33-TS-3B0" firstAttribute="leading" secondItem="DHF-bC-wGK" secondAttribute="leadingMargin" id="jO4-8j-wSg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="style">
+                    <integer key="value" value="0"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="errorImageView" destination="uy8-qK-Zlb" id="1YE-94-nj0"/>
+                <outlet property="errorMessageLabel" destination="08i-1t-Ou1" id="4Ah-JO-BvJ"/>
+                <outlet property="errorStackView" destination="MYK-TD-KAV" id="yrm-Q6-3EU"/>
+                <outlet property="textField" destination="XL5-TG-WEf" id="K9o-Pb-9Zq"/>
+                <outlet property="titleLabel" destination="jKl-PJ-aVF" id="edg-ai-Ve5"/>
+            </connections>
+            <point key="canvasLocation" x="191.30434782608697" y="-57.589285714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

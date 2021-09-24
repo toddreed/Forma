@@ -70,6 +70,8 @@
 
 /* Begin PBXFileReference section */
 		18CF3954ABE6A3CAF55800E0 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		5F011F8A26F9166F00E33802 /* RSTextFieldTableViewCellForm.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSTextFieldTableViewCellForm.xib; sourceTree = "<group>"; };
+		5F011F8B26F923BB00E33802 /* RSTextFieldTableViewCellSetting.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSTextFieldTableViewCellSetting.xib; sourceTree = "<group>"; };
 		5F0170DB227B4940003E81F4 /* RSForm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSForm.h; sourceTree = "<group>"; };
 		5F0170DC227B4940003E81F4 /* RSForm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSForm.m; sourceTree = "<group>"; };
 		5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSPropertyViewer.h; sourceTree = "<group>"; };
@@ -330,6 +332,8 @@
 				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
 				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
 				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
+				5F011F8A26F9166F00E33802 /* RSTextFieldTableViewCellForm.xib */,
+				5F011F8B26F923BB00E33802 /* RSTextFieldTableViewCellSetting.xib */,
 			);
 			name = "Table View Cells";
 			path = TableViewCells;
