@@ -240,6 +240,7 @@
     }
     return YES;
 }
+
 #pragma mark RSFormDelegate
 
 - (BOOL)isFormValid:(nonnull RSForm *)form
