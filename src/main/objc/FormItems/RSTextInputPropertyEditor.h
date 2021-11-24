@@ -11,6 +11,8 @@
 
 #import "RSPropertyFormItem.h"
 #import "../Core/RSAutocompleteSource.h"
+#import "../Core/RSValidatable.h"
+
 
 extern NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain;
 
@@ -24,7 +26,7 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
     RSTextInputPropertyEditorStyleForm
 };
 
-@interface RSTextInputPropertyEditor : RSPropertyFormItem <UITextInputTraits>
+@interface RSTextInputPropertyEditor : RSPropertyFormItem <UITextInputTraits, RSValidatable>
 
 /// Designated initializer.
 ///
@@ -36,6 +38,9 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 
 @property (nonatomic, readonly, nonnull) UITextField *textField;
 
+/// Returns the current (possibly uncommited) text value of the text field.
+@property (nonatomic, readonly, nonnull) NSString *currentText;
+
 @property (nonatomic, readonly, nullable) NSFormatter *formatter;
 @property (nonatomic, readonly) RSTextInputPropertyEditorStyle style;
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
@@ -45,10 +50,5 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 @property (nonatomic, copy, nullable) NSString *message;
 
 @property (nonatomic, strong, nullable) id<RSAutocompleteSource> autocompleteSource;
-
-/// Validates the input text. If a formatter is configured, it is used to convert the text into
-/// an object. -validateValue:forKey:error: is then called on the target object to validate the
-/// value.
-- (BOOL)validateTextInput:(nonnull NSString *)textInput output:(out id _Nullable *_Nonnull)obj error:(NSError *_Nonnull *_Nonnull)error;
 
 @end

@@ -24,6 +24,9 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 @interface RSTextInputPropertyEditor () <UITextFieldDelegate>
 
+// Override `valid` property from RSValidatable to be read/write.
+@property (nonatomic, getter=isValid) BOOL valid;
+
 @end
 
 
@@ -43,6 +46,13 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     // An optional extra string used to display instructions or validation error messages.
     NSString *_message;
+}
+
+#pragma NSObject
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 #pragma mark RSFormItem
@@ -98,6 +108,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     textField.delegate = self;
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(textFieldTextDidChangeNotification:) name:UITextFieldTextDidChangeNotification object:textField];
 
     textField.placeholder = _placeholder;
 
@@ -188,7 +199,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     }
 }
 
-#pragma mark RSTextInputPropertyEditor
+#pragma mark - RSTextInputPropertyEditor
 
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key ofObject:(nullable id)object title:(nonnull NSString *)title style:(RSTextInputPropertyEditorStyle)style
 {
@@ -218,6 +229,8 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     _clearsOnBeginEditing = NO;
     _placeholder = style == RSTextInputPropertyEditorStyleSettings ? nil : title;
 
+    id initialValue = [object valueForKey:key];
+    _valid = [object validateValue:&initialValue forKey:key error:nil];
     return self;
 }
 
@@ -225,6 +238,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     RSTextFieldTableViewCell *cell = self.tableViewCell;
     return cell.textField;
+}
+
+- (NSString *)currentText
+{
+    return self.textField.text ?: @"";
 }
 
 - (void)setMessage:(nullable NSString *)message
@@ -237,13 +255,16 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         cell.errorMessageLabel.text = _message;
 }
 
-- (BOOL)validateTextInput:(nonnull NSString *)textInput output:(out id _Nullable *_Nonnull)output error:(NSError *_Nonnull *_Nonnull)error
+/// Validates the input text. If a formatter is configured, it is used to convert the text into
+/// an object. -validateValue:forKey:error: is then called on the target object to validate the
+/// value.
+- (BOOL)validateTextInput:(nonnull NSString *)textInput output:(out id _Nullable *_Nullable)output error:(NSError *_Nullable __autoreleasing *_Nullable)error
 {
-    // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing.
-    // We invoke it again however because -validateValue:forKey:error: can also perform
-    // normalization. We don't normally expect the validation to failed here, but it could
-    // because even if -textFieldShouldEndEditing returns NO, edit could still end (see
-    // the API documentation for -textFieldShouldEndEditing.)
+    // -validateValue:forKey:error: was already invoked by -textFieldShouldEndEditing. We
+    // invoke it again however because -validateValue:forKey:error: can also perform
+    // normalization. We don’t normally expect the validation to fail here, but it could
+    // because even if -textFieldShouldEndEditing returns NO, editing could still end (see the
+    // API documentation for -textFieldShouldEndEditing.)
 
     id value;
 
@@ -267,13 +288,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     if ([self.object validateValue:&value forKey:self.key error:error])
     {
-        *output = value;
+        if (output != NULL)
+            *output = value;
         return YES;
     }
     else
         return NO;
 }
 
+// Get’s called when the text field ends editing (no longer has focus).
 - (void)textChanged:(nonnull id)sender
 {
     id<RSFormContainer> container = self.formSection.form.formContainer;
@@ -315,6 +338,23 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     [tableView beginUpdates];
     [tableView endUpdates];
 }
+
+- (void)textFieldTextDidChangeNotification:(NSNotification *)notification
+{
+    NSParameterAssert(notification.object == self.textField);
+
+    UITextField *textField = notification.object;
+
+    BOOL wasValid = _valid;
+    self.valid = [self validateTextInput:textField.text output:NULL error:NULL];
+    if (wasValid != _valid)
+        [_validatableDelegate validatableChanged:self];
+}
+
+#pragma mark RSValidatable
+
+@synthesize valid = _valid;
+@synthesize validatableDelegate = _validatableDelegate;
 
 #pragma mark UITextFieldDelegate
 
@@ -372,7 +412,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
                  textField.returnKeyType == UIReturnKeyGo ||
                  textField.returnKeyType == UIReturnKeySearch)
         {
-            [container.formDelegate formContainer:container didEndEditingSessionWithAction:RSFormActionCommit];
+            [container commitForm];
         }
 
         return YES;
@@ -397,14 +437,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         {
             self.message = error.localizedDescription;
             [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:YES];
-
-            // If -finishEditingForce: was called, textEditMode will be
-            // RSTextEditingModeFinishing. We set textEditingMode back to
-            // RSTextEditingModeEditing to indicate that -finishEditingForce: should
-            // return NO.
-            if (container.textEditingMode == RSTextEditingModeFinishing)
-                container.textEditingMode = RSTextEditingModeEditing;
-            return NO;
         }
         else if (!cell.errorMessageLabel.hidden)
         {

@@ -15,6 +15,12 @@
 #import "RSTableHeaderImageView.h"
 #import "RSTableFooterButtonView.h"
 
+
+@interface RSFormViewController () <RSValidatableDelegate>
+
+@end
+
+
 @implementation RSFormViewController
 {
     RSForm *_form;
@@ -140,6 +146,7 @@
         _textEditingMode = RSTextEditingModeNotEditing;
         _form = form;
         _form.formContainer = self;
+        _form.validatableDelegate = self;
         _doneBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(donePressed)];
         _cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
     }
@@ -171,11 +178,16 @@
     _showDoneButton = f;
 }
 
+- (BOOL)isFormValid
+{
+    return (_form.delegate == nil || [_form.delegate isFormValid:_form]) && _form.valid;
+}
+
 - (void)updateButtons
 {
     if (_form.enabled)
     {
-        BOOL valid = _form.delegate == nil || [_form.delegate isFormValid:_form];
+        BOOL valid = [self isFormValid];
         BOOL buttonsEnabled = valid;
 
         _submitButton.enabled = buttonsEnabled;
@@ -331,6 +343,14 @@
     return formSection.footer;
 }
 
+#pragma mark RSValidatableDelegate
+
+- (void)validatableChanged:(id<RSValidatable>)validatable
+{
+    NSParameterAssert(validatable == _form);
+    [self updateButtons];
+}
+
 #pragma mark RSFormContainer
 
 @synthesize form = _form;
@@ -342,7 +362,7 @@
 {
     if ([self finishEditingForce:NO])
     {
-        BOOL valid = _form.delegate == nil || [_form.delegate isFormValid:_form];
+        BOOL valid = [self isFormValid];
         if (valid)
         {
             [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];

@@ -53,6 +53,7 @@
 {
     NSParameterAssert(section != nil);
     [_sections addObject:section];
+    [self addValidatable:section];
     section.form = self;
 }
 

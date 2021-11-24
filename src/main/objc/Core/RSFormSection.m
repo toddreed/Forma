@@ -29,8 +29,15 @@
 - (nonnull instancetype)initWithTitle:(nullable NSString *)title formItems:(nonnull NSArray<RSFormItem *> *)formItems
 {
     NSParameterAssert(formItems != nil);
-    
-    self = [super init];
+
+    NSMutableArray<NSObject<RSValidatable> *> *validatables = [[NSMutableArray alloc] initWithCapacity:formItems.count];
+    for (RSFormItem *item in formItems)
+    {
+        if ([item conformsToProtocol:@protocol(RSValidatable)])
+            [validatables addObject:(NSObject<RSValidatable> *)item];
+    }
+
+    self = [super initWithValidatables:validatables];
     NSParameterAssert(self != nil);
 
     _enabled = YES;

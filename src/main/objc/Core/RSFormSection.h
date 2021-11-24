@@ -11,11 +11,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "../Core/RSCompoundValidatable.h"
+
+
 @class RSFormItem;
 @class RSForm;
 
 
-@interface RSFormSection : NSObject
+@interface RSFormSection : RSCompoundValidatable
 
 /// The form this form section belongs to.
 @property (nonatomic, weak, readonly, nullable) RSForm *form;
@@ -26,6 +29,7 @@
 @property (nonatomic, copy, nullable) NSString  *footer;
 @property (nonatomic, readonly, nonnull) NSArray<RSFormItem *> *formItems;
 
+- (nonnull instancetype)initWithValidatables:(nonnull NSArray<NSObject<RSValidatable> *> *)validatables UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithTitle:(nullable NSString *)title formItems:(nonnull NSArray<RSFormItem *> *)formItems NS_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithTitle:(nullable NSString *)title formItem:(nonnull RSFormItem *)formItem;
 - (nonnull instancetype)initWithTitle:(nullable NSString *)title;

@@ -22,6 +22,7 @@
 		5F5B547926C19E5900E76344 /* RSStepperTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5B547726C19E5900E76344 /* RSStepperTableViewCell.m */; };
 		5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6087EF1ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m */; };
 		5F9C903F26B0753D00D1DD9D /* RSTableHeaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9C903E26B0753D00D1DD9D /* RSTableHeaderImageView.m */; };
+		5FA84EEB274D928A007855B7 /* RSCompoundValidatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA84EEA274D928A007855B7 /* RSCompoundValidatable.m */; };
 		5FA938F426AF649600DA2782 /* RSTableFooterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */; };
 		5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */; };
 		5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */; };
@@ -108,6 +109,9 @@
 		5F7BF3F825CC512500B341CC /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		5F9C903D26B0753D00D1DD9D /* RSTableHeaderImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTableHeaderImageView.h; sourceTree = "<group>"; };
 		5F9C903E26B0753D00D1DD9D /* RSTableHeaderImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTableHeaderImageView.m; sourceTree = "<group>"; };
+		5FA84EE8274D9232007855B7 /* RSValidatable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSValidatable.h; sourceTree = "<group>"; };
+		5FA84EE9274D928A007855B7 /* RSCompoundValidatable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSCompoundValidatable.h; sourceTree = "<group>"; };
+		5FA84EEA274D928A007855B7 /* RSCompoundValidatable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSCompoundValidatable.m; sourceTree = "<group>"; };
 		5FA938F226AF649600DA2782 /* RSTableFooterButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTableFooterButtonView.h; sourceTree = "<group>"; };
 		5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTableFooterButtonView.m; sourceTree = "<group>"; };
 		5FAB5B1E227B8B790062D29C /* RSFormItem+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSFormItem+Private.h"; sourceTree = "<group>"; };
@@ -238,6 +242,8 @@
 				5F352F65178E0FD5006D263B /* RSAutocompleteInputAccessoryView.h */,
 				5F352F66178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m */,
 				5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */,
+				5FA84EE9274D928A007855B7 /* RSCompoundValidatable.h */,
+				5FA84EEA274D928A007855B7 /* RSCompoundValidatable.m */,
 				5FDFEAEE23AD43D2007DA8E9 /* RSEnumDescriptor.h */,
 				5FDFEAEF23AD43D2007DA8E9 /* RSEnumDescriptor.m */,
 				5F0170DB227B4940003E81F4 /* RSForm.h */,
@@ -255,6 +261,7 @@
 				5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */,
 				5F9C903D26B0753D00D1DD9D /* RSTableHeaderImageView.h */,
 				5F9C903E26B0753D00D1DD9D /* RSTableHeaderImageView.m */,
+				5FA84EE8274D9232007855B7 /* RSValidatable.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -608,6 +615,7 @@
 				5F574636226A45E300E14770 /* RSBaseTableViewCell.m in Sources */,
 				5FF92FD7174AD615003211A0 /* RSFormSection.m in Sources */,
 				5F4E90A22279EE6E005EAAA3 /* RSPropertyFormItem.m in Sources */,
+				5FA84EEB274D928A007855B7 /* RSCompoundValidatable.m in Sources */,
 				5FF92FD9174AD615003211A0 /* RSSliderTableViewCell.m in Sources */,
 				5FF92FDB174AD615003211A0 /* RSTextFieldTableViewCell.m in Sources */,
 				5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */,
