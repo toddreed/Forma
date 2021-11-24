@@ -33,7 +33,7 @@
 {
     NSString *text;
 
-    if (newValue == [NSNull null])
+    if (newValue == nil || newValue == [NSNull null])
         text = @"";
     else if (_formatter)
         text = [_formatter stringForObjectValue:newValue];
