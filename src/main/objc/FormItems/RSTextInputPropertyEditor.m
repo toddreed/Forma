@@ -249,10 +249,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     if (_message != message)
         _message = [message copy];
-
     RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
     if (cell)
+    {
+        id<RSFormContainer> container = self.formSection.form.formContainer;
+
         cell.errorMessageLabel.text = _message;
+        BOOL showMessage = _message != nil;
+        [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:showMessage];
+    }
 }
 
 /// Validates the input text. If a formatter is configured, it is used to convert the text into
@@ -313,10 +318,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         else
         {
             if (container.textEditingMode != RSTextEditingModeFinishingForced)
-            {
                 self.message = error.localizedDescription;
-                [self adjustTableViewCellSize:self.tableViewCell inTableView:container.tableView showMessage:YES];
-            }
         }
     }
 }
@@ -434,15 +436,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         NSError *error;
         id value;
         if (![self validateTextInput:textField.text output:&value error:&error])
-        {
             self.message = error.localizedDescription;
-            [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:YES];
-        }
         else if (!cell.errorMessageLabel.hidden)
         {
             // If validation succeeds but we previously had shown the validation error message, hide it now.
             self.message = nil;
-            [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:NO];
         }
     }
     return YES;
