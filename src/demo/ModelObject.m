@@ -97,6 +97,7 @@
     editor.autocapitalizationType = UITextAutocapitalizationTypeNone;
     editor.spellCheckingType = UITextSpellCheckingTypeNo;
     editor.secureTextEntry = YES;
+    editor.conditionalSecureTextEntry = YES;
     editor.placeholder = NSLocalizedString(@"Password", @"text field placeholder");
 
     return editor;

@@ -43,6 +43,9 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     NSTextAlignment _textAlignment;
     BOOL _clearsOnBeginEditing;
     NSString *_placeholder;
+    // If `secureTextEntry` is YES and `conditionalSecureTextEntry` is YES, then a show/hide
+    // button is displayed in the text field. This property indicates the current state.
+    BOOL _showingSecureText;
 
     // An optional extra string used to display instructions or validation error messages.
     NSString *_message;
@@ -113,7 +116,6 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     textField.placeholder = _placeholder;
 
     textField.clearsOnBeginEditing = _clearsOnBeginEditing;
-    textField.clearButtonMode = _clearButtonMode;
     textField.textAlignment = _textAlignment;
 
     // UITextInputTraits settings
@@ -141,6 +143,8 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         textField.returnKeyType = _returnKeyType;
 
     textField.secureTextEntry = _secureTextEntry;
+
+    [self configureRightViewOfTextField:textField];
 }
 
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
@@ -351,6 +355,49 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     self.valid = [self validateTextInput:textField.text output:NULL error:NULL];
     if (wasValid != _valid)
         [_validatableDelegate validatableChanged:self];
+}
+
+- (void)configureRightViewOfTextField:(nonnull UITextField *)textField
+{
+    if (_secureTextEntry && _conditionalSecureTextEntry)
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.tintColor = UIColor.placeholderTextColor;
+        UIImage *showImage = [UIImage systemImageNamed:@"eye.slash.fill"];
+        [button setImage:showImage forState:UIControlStateNormal];
+
+        [button addTarget:self action:@selector(toggleSecureTextEntry) forControlEvents:UIControlEventPrimaryActionTriggered];
+        [button sizeToFit];
+        textField.rightView = button;
+        textField.rightViewMode = UITextFieldViewModeAlways;
+        textField.clearButtonMode = UITextFieldViewModeNever;
+    }
+    else
+    {
+        textField.clearButtonMode = _clearButtonMode;
+    }
+}
+
+- (void)toggleSecureTextEntry
+{
+    _showingSecureText = !_showingSecureText;
+
+    if (_showingSecureText)
+    {
+        UITextField *textField = self.textField;
+        textField.secureTextEntry = NO;
+        UIButton *button = (UIButton *)textField.rightView;
+        UIImage *hideImage = [UIImage systemImageNamed:@"eye.fill"];
+        [button setImage:hideImage forState:UIControlStateNormal];
+    }
+    else
+    {
+        UITextField *textField = self.textField;
+        textField.secureTextEntry = YES;
+        UIButton *button = (UIButton *)textField.rightView;
+        UIImage *showImage = [UIImage systemImageNamed:@"eye.slash.fill"];
+        [button setImage:showImage forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark RSValidatable

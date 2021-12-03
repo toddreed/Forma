@@ -46,6 +46,14 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 @property (nonatomic) UITextFieldViewMode clearButtonMode;
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) BOOL clearsOnBeginEditing;
+
+/// If `secureTextEntry` is NO, then this property is ignored. If `conditionalSecureTextEntry`
+/// is YES (and `secureTextEntry` is YES), then the text field contains a toggle button to hide
+/// or show the content of the text field. The default value of this property is NO.
+///
+/// Setting this property to YES overrides `clearButtonMode`; `clearButtonMode` will effectively
+/// be UITextFieldViewModeNever.
+@property (nonatomic, getter=isConditionalSecureTextEntry) BOOL conditionalSecureTextEntry;
 @property (nonatomic, copy, nullable) NSString *placeholder;
 @property (nonatomic, copy, nullable) NSString *message;
 
