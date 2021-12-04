@@ -363,8 +363,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tintColor = UIColor.placeholderTextColor;
+        UIImageSymbolConfiguration *symbolConfiguration = [UIImageSymbolConfiguration configurationWithTextStyle:UIFontTextStyleBody];
         UIImage *showImage = [UIImage systemImageNamed:@"eye.slash.fill"];
         [button setImage:showImage forState:UIControlStateNormal];
+        [button setPreferredSymbolConfiguration:symbolConfiguration forImageInState:UIControlStateNormal];
 
         [button addTarget:self action:@selector(toggleSecureTextEntry) forControlEvents:UIControlEventPrimaryActionTriggered];
         [button sizeToFit];
