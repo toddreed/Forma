@@ -29,15 +29,14 @@ The main Forma classes can be conceptually grouped into three main categories:
 
 | Property Editor             | Description                          | Table View Cell Class                             |
 | --------------------------- | ------------------------------------ | ------------------------------------------------- |
-| `RSBooleanPropertyEditor`   |                                      |                                                   |
-| `RSButtonPropertyEditor`    |                                      | `UITableViewCell` (`UITableViewCellStyleDefault`) |
-| `RSDetailPropertyEditor`    |                                      |                                                   |
-| `RSFloatPropertyEditor`     | Edit a float with a slider.          | `RSSliderTableViewCell`                           |
-| `RSNumberPropertyEditor`    | Edit a number with a text field.     | `RSTextFieldTableViewCell`                        |
-| `RSObjectPropertyEditor`    |                                      |                                                   |
-| `RSFormItem`          | Base class for all property editors. | `UITableViewCell` (`UITableViewCellStyleValue1`)  |
-| `RSTextInputPropertyEditor` |                                      | `RSTextFieldTableViewCell`                        |
+| `RSBooleanPropertyEditor`   | Edits a boolean property.. | `RSSwitchTableViewCell` |
+| `RSDiscreteNumericPropertyEditor` | Edits a numeric property, allowing selection from a predefined set of possible numeric values. | `RSStepperTableViewCell` |
 | `RSEnumPropertyEditor` | Edit a property with an `enum` type. | `RSSegmentedControlTableViewCell` |
+| `RSFloatPropertyEditor`     | Edit a float property with a slider. | `RSSliderTableViewCell`                           |
+| `RSNumberPropertyEditor`    | Edit a number with a text field.     | `RSTextFieldTableViewCell`                        |
+| `RSObjectPropertyEditor`    |                                      | `RSLabelTableViewCell` |
+| `RSFormItem`          | Base class for all property editors. |   |
+| `RSTextInputPropertyEditor` | Edit a property value with a text field. Non-text properties are supported by using an `NSFormatter` to convert between text/object representations. | `RSTextFieldTableViewCell`                        |
 
 ## Table View Cells
 
