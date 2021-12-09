@@ -107,7 +107,7 @@ typedef NS_ENUM(NSInteger, RSTextFieldTableViewCellStyle)
 
         case RSTextFieldTableViewCellStyleForm:
         {
-            BOOL textEntered = (_textField.text.length != 0);
+            BOOL textEntered = (_textField.text != nil && _textField.text.length != 0);
             [self showTitleLabel:textEntered];
             break;
         }
