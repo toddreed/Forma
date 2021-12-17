@@ -163,6 +163,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     [super setEnabled:enabled];
     UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
     textField.enabled = enabled;
+    if (enabled)
+        textField.textColor = UIColor.labelColor;
+    else
+        textField.textColor = UIColor.secondaryLabelColor;
 }
 
 - (BOOL)canBecomeFirstResponder
