@@ -16,7 +16,7 @@
 
 @implementation RSFormNavigation
 {
-    id _object;
+    RSFormNavigationAction _navigationAction;
 }
 
 #pragma mark - RSFormItem
@@ -39,9 +39,7 @@
 
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller
 {
-    UINavigationController *navigationController = controller.navigationController;
-    UIViewController<RSFormContainer> *formViewController = [_object formViewController];
-    [navigationController pushViewController:formViewController animated:YES];
+    _navigationAction(controller);
 }
 
 #pragma mark - RSFormNavigation
@@ -50,8 +48,19 @@
 {
     NSParameterAssert(object != nil);
 
+    return [self initWithTitle:title navigationAction:^(UIViewController<RSFormContainer> *_Nonnull formContainer) {
+        UIViewController *viewController = [object formViewController];
+        [formContainer.navigationController pushViewController:viewController animated:YES];
+    }];
+}
+
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title navigationAction:(RSFormNavigationAction)navigationAction
+{
+    NSParameterAssert(title != nil);
+    NSParameterAssert(navigationAction != nil);
+
     self = [super initWithTitle:title];
-    _object = object;
+    _navigationAction = [navigationAction copy];
     return self;
 }
 

@@ -11,14 +11,22 @@
 
 #import "RSFormItem.h"
 
-// A RSFormNavigation is form item that navigates to another form for an ancillary object. This
-// must only be used with a RSFormViewController that is on the stack of a
-// UINavigationController. The UI for a RSFormNavigation displays a title and a summary of the
-// object’s value obtained with -descriptionWithLocale:, or if this method is not defined,
-// -description.
+
+typedef void (^RSFormNavigationAction)(UIViewController<RSFormContainer> *_Nonnull formContainer);
+
+// A RSFormNavigation is form item that navigates to another view controller.
 @interface RSFormNavigation : RSFormItem
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title UNAVAILABLE_ATTRIBUTE;
-- (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object NS_DESIGNATED_INITIALIZER;
+
+/// A convenience initializer for navigating to another RSFormViewController for an object.
+///
+/// @param title The title of the form item.
+/// @param object The object to navigate to. `-formViewController` is sent to the object to
+///   create an `RSFormViewController` instance for the object. This view controller is then
+///   pushed onto the current form view controller’s navigation controller.
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title object:(nonnull NSObject *)object;
+
+- (nonnull instancetype)initWithTitle:(nonnull NSString *)title navigationAction:(nonnull RSFormNavigationAction)navigationAction NS_DESIGNATED_INITIALIZER;
 
 @end
