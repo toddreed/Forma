@@ -55,7 +55,7 @@ The main Forma classes can be conceptually grouped into three main categories:
 Form validation is accomplished by two mechanism:
 
 - Forma performs property-level validation via Cocoa’s key-value validation. See Apple’s documentation: [Adding Validation](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/Validation.html).
-- Forma performs form-level validation via the `-isFormValid:` method from the `RSFormDelegate` protocol. Implement `-isFormValid:` to implement validation that depends on multiple properties. For example, a change-password form might require entering the new password twice. Form-level validation is appropriate here to check that the both password fields have the same value.
+- Forma performs form-level validation via the `-isFormValid:` method from the `RSFormDelegate` protocol. Implement `-isFormValid:` to implement validation that depends on multiple properties. For example, a change-password form might require entering the new password twice. Form-level validation is appropriate here to check that both password fields have the same value.
 
 When using `-isFormValid:` to perform validation, it’s important that validation is performed against the uncommitted values of the form and not the model object property values. For example, suppose a change-password form has two passwords fields: `newPassword1` and `newPassword2`. For the form to be valid, the values entered for these fields must be the same. The correct way to do this is:
 
