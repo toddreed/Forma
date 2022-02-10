@@ -71,7 +71,12 @@
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 
-- (nonnull instancetype)initWithForm:(nonnull RSForm *)form NS_DESIGNATED_INITIALIZER;
+/// Initializes the receiver with the provided form and the UITableViewStyleGrouped table view
+/// style.
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form;
+
+/// Initializes the receiver with the provided form and table view style.
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form style:(UITableViewStyle)style NS_DESIGNATED_INITIALIZER;
 
 /// Forces any in-progress editing to complete. Notably, if the text field is the first
 /// responder, it will resign first responder status, causing the text field’s value to be

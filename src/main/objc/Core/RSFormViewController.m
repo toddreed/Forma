@@ -137,9 +137,9 @@
 
 #pragma mark - RSFormViewController
 
-- (nonnull instancetype)initWithForm:(nonnull RSForm *)form
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form style:(UITableViewStyle)style
 {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped]))
+    if ((self = [super initWithStyle:style]))
     {
         self.title = form.title;
 
@@ -151,6 +151,11 @@
         _cancelBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelPressed)];
     }
     return self;
+}
+
+- (nonnull instancetype)initWithForm:(nonnull RSForm *)form
+{
+    return [self initWithForm:form style:UITableViewStyleInsetGrouped];
 }
 
 - (void)contentSizeCategoryDidChangeNotification:(NSNotification *)notification
