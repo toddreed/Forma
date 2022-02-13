@@ -115,8 +115,6 @@ static void *ObservationContext = &ObservationContext;
 {
     NSParameterAssert(validatable != nil);
 
-    // TODO: This doesn’t not trigger KVO notifications or delegate callbacks
-    
     [_validatables addObject:validatable];
     if (validatable.valid)
         ++_validCount;
@@ -132,6 +130,48 @@ static void *ObservationContext = &ObservationContext;
                   forKeyPath:@"valid"
                      options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
                      context:ObservationContext];
+}
+
+- (void)removeValidatable:(nonnull NSObject<RSValidatable> *)validatable
+{
+    NSParameterAssert(validatable != nil);
+    NSUInteger index = [_validatables indexOfObjectIdenticalTo:validatable];
+    NSParameterAssert(index != NSNotFound);
+
+    [validatable removeObserver:self forKeyPath:@"valid" context:ObservationContext];
+    [_validatables removeObjectAtIndex:index];
+
+    _Bool wasValid = _valid;
+
+    if (validatable.valid)
+        --_validCount;
+
+    _Bool isValid = (_validCount == _validatables.count);
+
+    if (wasValid != isValid)
+    {
+        [self willChangeValueForKey:@"valid"];
+        _valid = isValid;
+        [self didChangeValueForKey:@"valid"];
+    }
+}
+
+- (void)removeAll
+{
+    _Bool wasValid = _valid;
+
+    for (NSObject<RSValidatable> *validatable in _validatables)
+        [validatable removeObserver:self forKeyPath:@"valid" context:ObservationContext];
+
+    [_validatables removeAllObjects];
+    _validCount = 0;
+
+    if (!wasValid)
+    {
+        [self willChangeValueForKey:@"valid"];
+        _valid = YES;
+        [self didChangeValueForKey:@"valid"];
+    }
 }
 
 #pragma RSValidatable

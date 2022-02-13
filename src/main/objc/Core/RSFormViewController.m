@@ -16,11 +16,6 @@
 #import "RSTableFooterButtonView.h"
 
 
-@interface RSFormViewController () <RSValidatableDelegate>
-
-@end
-
-
 @implementation RSFormViewController
 {
     RSForm *_form;
@@ -183,17 +178,11 @@
     _showDoneButton = f;
 }
 
-- (BOOL)isFormValid
-{
-    return (_form.delegate == nil || [_form.delegate isFormValid:_form]) && _form.valid;
-}
-
 - (void)updateButtons
 {
     if (_form.enabled)
     {
-        BOOL valid = [self isFormValid];
-        BOOL buttonsEnabled = valid;
+        BOOL buttonsEnabled = _form.valid;
 
         _submitButton.enabled = buttonsEnabled;
         _doneBarButtonItem.enabled = buttonsEnabled;
@@ -367,8 +356,7 @@
 {
     if ([self finishEditingForce:NO])
     {
-        BOOL valid = [self isFormValid];
-        if (valid)
+        if (_form.valid)
         {
             [_formDelegate formContainer:self didEndEditingSessionWithAction:RSFormActionCommit];
             if (_completionBlock)

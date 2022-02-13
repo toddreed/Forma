@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 #import "../FormItems/RSFormItem.h"
-#import "RSCompoundValidatable.h"
+#import "RSValidatable.h"
 #import "RSFormSection.h"
 #import "RSFormContainer.h"
 
@@ -29,7 +29,7 @@
 @end
 
 
-@interface RSForm : RSCompoundValidatable
+@interface RSForm : NSObject <RSValidatable>
 
 @property (nonatomic, weak, nullable) id<RSFormDelegate> delegate;
 

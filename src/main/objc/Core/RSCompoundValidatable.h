@@ -13,11 +13,15 @@
 
 #import "RSValidatable.h"
 
+/// RSCompoundValidatable is a RSValidatable whose state depends on the aggregate state of other
+/// validable objects.
 @interface RSCompoundValidatable : NSObject <RSValidatable>
 
 - (nonnull instancetype)initWithValidatables:(nonnull NSArray<NSObject<RSValidatable> *> *)validatables NS_DESIGNATED_INITIALIZER;
 
 - (void)addValidatable:(nonnull NSObject<RSValidatable> *)validatable;
+- (void)removeValidatable:(nonnull NSObject<RSValidatable> *)validatable;
+- (void)removeAll;
 
 @end
 

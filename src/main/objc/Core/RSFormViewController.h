@@ -28,7 +28,7 @@
 /// view must implement -sizeThatFits: to correctly size itself. A size of {`width`, 0} will be
 /// passed to -sizeThatFits: during layout, where `width` is the table width. -sizeThatFits:
 /// must calculate the height.
-@interface RSFormViewController : UITableViewController <RSFormContainer, UIAdaptivePresentationControllerDelegate>
+@interface RSFormViewController : UITableViewController <RSFormContainer, RSValidatableDelegate, UIAdaptivePresentationControllerDelegate>
 
 /// A block that is invoked when the editor should be closed because the user pressed the Done
 /// or Cancel button.

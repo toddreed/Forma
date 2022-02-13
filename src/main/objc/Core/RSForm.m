@@ -11,12 +11,20 @@
 
 #import "RSForm.h"
 #import "RSFormSection+Private.h"
+#import "RSCompoundValidatable.h"
 #import "../FormItems/RSTextInputPropertyEditor.h"
+
+
+@interface RSForm () <RSValidatableDelegate>
+
+@end
 
 
 @implementation RSForm
 {
     NSMutableArray<RSFormSection *> *_sections;
+    RSCompoundValidatable *_sectionsCompoundValidable;
+    _Bool _valid;
 }
 
 #pragma mark - NSObject
@@ -33,11 +41,44 @@
     _sections = [[NSMutableArray alloc] init];
     _autoTextFieldNavigation = YES;
     _lastTextFieldReturnKeyType = UIReturnKeyDone;
+    _sectionsCompoundValidable = [[RSCompoundValidatable alloc] init];
+    _sectionsCompoundValidable.validatableDelegate = self;
+    _valid = YES;
     return self;
+}
+
+- (void)updateValid
+{
+    _Bool valid = (_delegate == nil || [_delegate isFormValid:self]) && _sectionsCompoundValidable.valid;
+    [self setValid:valid];
+}
+
+- (void)setValid:(_Bool)f
+{
+    if (_valid != f)
+    {
+        [self willChangeValueForKey:@"valid"];
+        _valid = f;
+        [self didChangeValueForKey:@"valid"];
+        [_validatableDelegate validatableChanged:self];
+    }
+}
+
+- (void)setDelegate:(id<RSFormDelegate>)delegate
+{
+    if (delegate == nil)
+        [self setValid:_sectionsCompoundValidable.valid];
+    else
+    {
+        BOOL valid = [delegate isFormValid:self];
+        [self setValid:valid && _sectionsCompoundValidable.valid];
+    }
+    _delegate = delegate;
 }
 
 - (void)setModified:(BOOL)modified
 {
+    [self updateValid];
     [_formContainer formWasUpdated];
     _modified = modified;
 }
@@ -53,7 +94,8 @@
 {
     NSParameterAssert(section != nil);
     [_sections addObject:section];
-    [self addValidatable:section];
+    [_sectionsCompoundValidable addValidatable:section];
+    [self updateValid];
     section.form = self;
 }
 
@@ -63,9 +105,11 @@
         section.form = nil;
 
     [_sections removeAllObjects];
-    
+    [_sectionsCompoundValidable removeAll];
+
     for (RSFormSection *section in sections)
         [self addSection:section];
+    [self updateValid];
 }
 
 - (NSArray<RSFormSection *> *)sections
@@ -142,6 +186,22 @@
         }
     }
     return nil;
+}
+
+#pragma mark RSValidatableDelegate
+
+//@synthesize valid = _valid;
+
+@synthesize validatableDelegate = _validatableDelegate;
+
+- (BOOL)isValid
+{
+    return _valid;
+}
+
+- (void)validatableChanged:(id<RSValidatable>)validatable
+{
+    [self updateValid];
 }
 
 @end
