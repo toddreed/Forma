@@ -32,12 +32,8 @@ typedef NS_ENUM(NSInteger, RSTextFieldTableViewCellStyle)
 @interface RSTextFieldTableViewCell ()
 
 @property (nonatomic, strong, nonnull) IBOutlet UIStackView *stackView;
-
 @property (nonatomic, strong, nonnull) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong, nonnull) IBOutlet UITextField *textField;
-@property (nonatomic, strong, nonnull) IBOutlet UILabel *errorMessageLabel;
-@property (nonatomic, strong, nonnull) IBOutlet UIImageView *errorImageView;
-@property (nonatomic, strong, nonnull) IBOutlet UIStackView *errorStackView;
 
 // This property is set in the nib file.
 @property (nonatomic) RSTextFieldTableViewCellStyle style;
@@ -65,7 +61,7 @@ typedef NS_ENUM(NSInteger, RSTextFieldTableViewCellStyle)
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    _errorStackView.hidden = YES;
+
     [_stackView setCustomSpacing:0 afterView:_titleLabel];
     switch (_style)
     {
@@ -84,13 +80,6 @@ typedef NS_ENUM(NSInteger, RSTextFieldTableViewCellStyle)
 #pragma mark - UITableViewCell
 
 #pragma mark - RSTextFieldTableViewCell
-
-- (void)setShowError:(BOOL)showError
-{
-    _showError = showError;
-    _errorStackView.hidden = !showError;
-    [self setNeedsLayout];
-}
 
 - (void)textFieldTextDidChangeNotification:(NSNotification *)notification
 {

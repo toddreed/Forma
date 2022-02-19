@@ -17,10 +17,7 @@
 @interface RSTextFieldTableViewCell : UITableViewCell <RSFormItemView>
 
 @property (nonatomic, readonly, nonnull) UITextField *textField;
-@property (nonatomic, readonly, nonnull) UILabel *errorMessageLabel;
-
-/// Indicates whether the error message is visible.
-@property (nonatomic) BOOL showError;
+@property (nonatomic, readonly, nonnull) UIStackView *stackView;
 
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier UNAVAILABLE_ATTRIBUTE;
 

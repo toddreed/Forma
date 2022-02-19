@@ -5,7 +5,7 @@ PODS:
   - Forma/Core (2.0.0)
   - Forma/CoreData (2.0.0):
     - Forma/Core
-  - Reveal-SDK (32)
+  - Reveal-SDK (34)
 
 DEPENDENCIES:
   - Forma (from `./`)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Forma: 74cb018ae7cc04f2d252984211c5fcd0df4d228e
-  Reveal-SDK: 559f22118e742b3e7d03cd50350efe21a0d0b3ba
+  Reveal-SDK: a0f993ac78f7b01e398a56d5a8af8f9882c001bd
 
 PODFILE CHECKSUM: a2c81323dc9daaa03d3212a25954f2e1bafd15d4
 

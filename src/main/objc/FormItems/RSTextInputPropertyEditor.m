@@ -17,6 +17,7 @@
 #import "../Core/RSAutocompleteInputAccessoryView.h"
 #import "../TableViewCells/RSTextFieldTableViewCell.h"
 #import "../Core/RSFormLibrary.h"
+#import "../Core/RSCaptionView.h"
 
 
 NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInputPropertyValidationErrorDomain";
@@ -26,6 +27,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
 // Override `valid` property from RSValidatable to be read/write.
 @property (nonatomic, getter=isValid) BOOL valid;
+@property (nonatomic, readonly) NSUInteger firstCaptionViewIndex;
 
 @end
 
@@ -47,8 +49,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     // button is displayed in the text field. This property indicates the current state.
     BOOL _showingSecureText;
 
-    // An optional extra string used to display instructions or validation error messages.
-    NSString *_message;
+    NSMutableArray<RSCaption *> *_captions;
 }
 
 #pragma NSObject
@@ -81,8 +82,11 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     UINib *nib = [UINib nibWithNibName:nibName bundle:RSFormLibrary.bundle];
     RSTextFieldTableViewCell *cell = [nib instantiateWithOwner:self options:nil][0];
 
-    if (_message && _message.length > 0)
-        cell.errorMessageLabel.text = _message;
+    for (RSCaption *caption in _captions)
+    {
+        RSCaptionView *captionView = [[RSCaptionView alloc] initWithCaption:caption];
+        [cell.stackView addArrangedSubview:captionView];
+    }
 
     if (_autocompleteSource)
     {
@@ -236,6 +240,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     _textAlignment = style == RSTextInputPropertyEditorStyleSettings ? NSTextAlignmentRight : NSTextAlignmentLeft;
     _clearsOnBeginEditing = NO;
     _placeholder = style == RSTextInputPropertyEditorStyleSettings ? nil : title;
+    _captions = [[NSMutableArray alloc] init];
 
     id initialValue = [object valueForKey:key];
     _valid = [object validateValue:&initialValue forKey:key error:nil];
@@ -253,18 +258,79 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return self.textField.text ?: @"";
 }
 
-- (void)setMessage:(nullable NSString *)message
+- (NSUInteger)firstCaptionViewIndex
 {
-    if (_message != message)
-        _message = [message copy];
-    RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
-    if (cell)
+    switch (_style)
     {
+        case RSTextInputPropertyEditorStyleSettings:
+            return 1;
+        case RSTextInputPropertyEditorStyleForm:
+            return 2;
+    }
+}
+
+- (void)addCaption:(nonnull RSCaption *)caption
+{
+    NSParameterAssert(caption != nil);
+    NSUInteger index = [_captions indexOfObjectPassingTest:^BOOL(RSCaption * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.type == caption.type;
+    }];
+
+    RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
+
+    if (index == NSNotFound)
+    {
+        RSCaptionView *captionView = [[RSCaptionView alloc] initWithCaption:caption];
+        [cell.stackView addArrangedSubview:captionView];
+        [_captions addObject:caption];
+    }
+    else
+    {
+        const NSUInteger kFirstCaptionViewIndex = self.firstCaptionViewIndex;
+
+        // Replace the arrange subview
+        UIView *captionView = cell.stackView.arrangedSubviews[index+kFirstCaptionViewIndex];
+        [cell.stackView removeArrangedSubview:captionView];
+        [captionView removeFromSuperview];
+
+        captionView = [[RSCaptionView alloc] initWithCaption:caption];
+        [cell.stackView insertArrangedSubview:captionView atIndex:index+kFirstCaptionViewIndex];
+        _captions[index] = caption;
+    }
+
+    id<RSFormContainer> container = self.formSection.form.formContainer;
+
+    // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+    //
+    // Note that the following doesn't work:
+    //
+    //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    //
+    // This requires the text field to resign first responder because the table view will delete
+    // and insert the cell.
+    [container.tableView beginUpdates];
+    [container.tableView endUpdates];
+}
+
+- (void)removeCaptionWithType:(RSCaptionType)type
+{
+    NSUInteger index = [_captions indexOfObjectPassingTest:^BOOL(RSCaption * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.type == type;
+    }];
+
+    if (index != NSNotFound)
+    {
+        RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
+        RSCaptionView *captionView = cell.stackView.arrangedSubviews[index+self.firstCaptionViewIndex];
+        [cell.stackView removeArrangedSubview:captionView];
+        [captionView removeFromSuperview];
+
         id<RSFormContainer> container = self.formSection.form.formContainer;
 
-        cell.errorMessageLabel.text = _message;
-        BOOL showMessage = _message != nil;
-        [self adjustTableViewCellSize:cell inTableView:container.tableView showMessage:showMessage];
+        // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
+        [container.tableView beginUpdates];
+        [container.tableView endUpdates];
     }
 }
 
@@ -326,27 +392,12 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
         else
         {
             if (container.textEditingMode != RSTextEditingModeFinishingForced)
-                self.message = error.localizedDescription;
+            {
+                RSCaption *caption = [[RSCaption alloc] initWithText:error.localizedDescription type:RSCaptionTypeError];
+                [self addCaption:caption];
+            }
         }
     }
-}
-
-- (void)adjustTableViewCellSize:(nonnull UITableViewCell *)cell inTableView:(nonnull UITableView *)tableView showMessage:(BOOL)showMessage
-{
-    // Calling -beginUpdates, -endUpdates will cause the table cell to resize.
-    //
-    // Note that the following doesn't work:
-    //
-    //   NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    //   [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    //
-    // This requires the text field to resign first responder because the table view will delete
-    // and insert the cell.
-
-    RSTextFieldTableViewCell *textFieldCell = (RSTextFieldTableViewCell *)cell;
-    textFieldCell.showError = showMessage;
-    [tableView beginUpdates];
-    [tableView endUpdates];
 }
 
 - (void)textFieldTextDidChangeNotification:(NSNotification *)notification
@@ -484,17 +535,15 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     if (container.textEditingMode != RSTextEditingModeCancelling && container.textEditingMode != RSTextEditingModeFinishingForced)
     {
-        RSTextFieldTableViewCell *cell = self.tableViewCell;
-
         NSError *error;
         id value;
         if (![self validateTextInput:textField.text output:&value error:&error])
-            self.message = error.localizedDescription;
-        else if (!cell.errorMessageLabel.hidden)
         {
-            // If validation succeeds but we previously had shown the validation error message, hide it now.
-            self.message = nil;
+            RSCaption *caption = [[RSCaption alloc] initWithText:error.localizedDescription type:RSCaptionTypeError];
+            [self addCaption:caption];
         }
+        else
+            [self removeCaptionWithType:RSCaptionTypeError];
     }
     return YES;
 }

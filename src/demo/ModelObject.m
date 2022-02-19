@@ -100,6 +100,12 @@
     editor.conditionalSecureTextEntry = YES;
     editor.placeholder = NSLocalizedString(@"Password", @"text field placeholder");
 
+    RSCaption *instructionalCaption = [[RSCaption alloc] initWithText:NSLocalizedString(@"Passwords should be at least 7 characters.", "label") type:RSCaptionTypeInstructional];
+    [editor addCaption:instructionalCaption];
+
+    RSCaption *warningCaption = [[RSCaption alloc] initWithText:NSLocalizedString(@"Don’t reuse passwords.", "label") type:RSCaptionTypeWarning];
+    [editor addCaption:warningCaption];
+
     return editor;
 }
 

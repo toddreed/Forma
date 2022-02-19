@@ -12,6 +12,7 @@
 #import "RSPropertyFormItem.h"
 #import "../Core/RSAutocompleteSource.h"
 #import "../Core/RSValidatable.h"
+#import "../Core/RSCaption.h"
 
 
 extern NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain;
@@ -55,7 +56,9 @@ typedef NS_ENUM(NSInteger, RSTextInputPropertyEditorStyle)
 /// be UITextFieldViewModeNever.
 @property (nonatomic, getter=isConditionalSecureTextEntry) BOOL conditionalSecureTextEntry;
 @property (nonatomic, copy, nullable) NSString *placeholder;
-@property (nonatomic, copy, nullable) NSString *message;
+
+- (void)addCaption:(nonnull RSCaption *)caption;
+- (void)removeCaptionWithType:(RSCaptionType)type;
 
 @property (nonatomic, strong, nullable) id<RSAutocompleteSource> autocompleteSource;
 

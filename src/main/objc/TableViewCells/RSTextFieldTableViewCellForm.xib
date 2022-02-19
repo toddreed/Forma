@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="RDI-Si-p82">
-                        <rect key="frame" x="20" y="11" width="468" height="95.5"/>
+                        <rect key="frame" x="20" y="11" width="468" height="41"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7E-HL-2Pz">
                                 <rect key="frame" x="0.0" y="0.0" width="468" height="14.5"/>
@@ -32,29 +32,9 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvh-PC-nDB" userLabel="Error Stack View">
-                                <rect key="frame" x="0.0" y="49" width="468" height="46.5"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1uk-sp-eYX">
-                                        <rect key="frame" x="0.0" y="1" width="17.5" height="15"/>
-                                        <color key="tintColor" systemColor="systemRedColor"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        </preferredSymbolConfiguration>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ll2-5A-2w4">
-                                        <rect key="frame" x="27.5" y="0.0" width="440.5" height="46.5"/>
-                                        <string key="text">His vix dicit recteque est qui no an mnesarchum at at pro quem senserit vis persecuti. Duo has nec diceret hendrerit invidunt ad at dictas est no theophrastus pro praesent.</string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="jvs-nS-dp7" firstAttribute="width" secondItem="RDI-Si-p82" secondAttribute="width" id="8Fq-W3-OgS"/>
-                            <constraint firstItem="wvh-PC-nDB" firstAttribute="width" secondItem="RDI-Si-p82" secondAttribute="width" id="LW2-rN-Hek"/>
                             <constraint firstItem="K7E-HL-2Pz" firstAttribute="width" secondItem="RDI-Si-p82" secondAttribute="width" id="WSI-Pl-BTa"/>
                         </constraints>
                     </stackView>
@@ -72,9 +52,6 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="errorImageView" destination="1uk-sp-eYX" id="XCA-Pr-LFz"/>
-                <outlet property="errorMessageLabel" destination="Ll2-5A-2w4" id="p6I-sd-s8b"/>
-                <outlet property="errorStackView" destination="wvh-PC-nDB" id="BFV-ju-ljb"/>
                 <outlet property="stackView" destination="RDI-Si-p82" id="gh2-55-wkY"/>
                 <outlet property="textField" destination="jvs-nS-dp7" id="qC7-Fp-98N"/>
                 <outlet property="titleLabel" destination="K7E-HL-2Pz" id="RUi-Nz-So6"/>
@@ -83,12 +60,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="112"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
