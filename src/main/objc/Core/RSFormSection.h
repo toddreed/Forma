@@ -26,7 +26,13 @@
 @property (nonatomic) BOOL enabled;
 
 @property (nonatomic, copy, nullable) NSString *title;
-@property (nonatomic, copy, nullable) NSString  *footer;
+
+/// The text to be displayed in the section’s footer. Setting this property sets `footerAttributedText` to nil.
+@property (nonatomic, copy, nullable) NSString  *footerText;
+
+/// Attributed text to be displayed in the section‘s footer. Setting this property set `footerText` to nil.
+@property (nonatomic, copy, nullable) NSAttributedString  *footerAttributedText;
+
 @property (nonatomic, readonly, nonnull) NSArray<RSFormItem *> *formItems;
 
 - (nonnull instancetype)initWithValidatables:(nonnull NSArray<NSObject<RSValidatable> *> *)validatables UNAVAILABLE_ATTRIBUTE;

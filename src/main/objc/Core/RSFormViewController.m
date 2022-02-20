@@ -14,6 +14,10 @@
 #import "NSObject+RSForm.h"
 #import "RSTableHeaderImageView.h"
 #import "RSTableFooterButtonView.h"
+#import "RSSectionFooterView.h"
+
+
+NSString *const kFooterViewReuseIdentifier = @"RSSectionFooterView";
 
 
 @implementation RSFormViewController
@@ -69,30 +73,34 @@
 {
     [super viewDidLoad];
 
-    self.tableView.estimatedRowHeight = 44;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    UITableView *tableView = self.tableView;
+
+    tableView.estimatedRowHeight = 44;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+
+    [tableView registerClass:[RSSectionFooterView class] forHeaderFooterViewReuseIdentifier:kFooterViewReuseIdentifier];
 
     // Not sure when/where this is disabled, but without this, scrolling is disabled when used
     // in a popover.
-    self.tableView.scrollEnabled = YES;
+    tableView.scrollEnabled = YES;
 
-    self.tableView.cellLayoutMarginsFollowReadableWidth = YES;
+    tableView.cellLayoutMarginsFollowReadableWidth = YES;
 
     if (_headerView == nil)
     {
         if (_headerImage != nil)
-            self.tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
+            tableView.tableHeaderView = [[RSTableHeaderImageView alloc] initWithImage:_headerImage];
     }
     else
-        self.tableView.tableHeaderView = _headerView;
+        tableView.tableHeaderView = _headerView;
 
     if (_footerView == nil)
     {
         if (_submitButton != nil)
-            self.tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
+            tableView.tableFooterView = [[RSTableFooterButtonView alloc] initWithButton:_submitButton];
     }
     else
-        self.tableView.tableFooterView = _footerView;
+        tableView.tableFooterView = _footerView;
 
     [_submitButton addTarget:self action:@selector(donePressed) forControlEvents:UIControlEventPrimaryActionTriggered];
     [self updateButtons];
@@ -283,6 +291,20 @@
     return false;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    RSFormSection *formSection = _form.sections[section];
+    NSAttributedString *attributedText = formSection.footerAttributedText;
+    if (attributedText == nil)
+        return nil;
+    else
+    {
+        RSSectionFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kFooterViewReuseIdentifier];
+        footerView.label.attributedText = attributedText;
+        return footerView;
+    }
+}
+
 #pragma mark UITableViewDelegate
 
 - (nullable NSIndexPath *)tableView:(nonnull UITableView *)tableView willSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -334,7 +356,7 @@
 - (nullable NSString *)tableView:(nonnull UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     RSFormSection *formSection = _form.sections[section];
-    return formSection.footer;
+    return formSection.footerText;
 }
 
 #pragma mark RSValidatableDelegate

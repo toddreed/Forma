@@ -61,6 +61,18 @@
     return [self initWithTitle:title formItems:@[]];
 }
 
+- (void)setFooterText:(NSString *)footerText
+{
+    _footerText = [footerText copy];
+    _footerAttributedText = nil;
+}
+
+- (void)setFooterAttributedText:(NSAttributedString *)footerAttributedText
+{
+    _footerAttributedText = [footerAttributedText copy];
+    _footerText = nil;
+}
+
 - (void)setEnabled:(BOOL)enabled
 {
     _enabled = enabled;
