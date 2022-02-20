@@ -321,6 +321,8 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 
     if (index != NSNotFound)
     {
+        [_captions removeObjectAtIndex:index];
+        
         RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
         RSCaptionView *captionView = cell.stackView.arrangedSubviews[index+self.firstCaptionViewIndex];
         [cell.stackView removeArrangedSubview:captionView];
