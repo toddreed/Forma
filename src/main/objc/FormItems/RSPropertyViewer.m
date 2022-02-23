@@ -10,7 +10,6 @@
 //
 
 #import "RSPropertyViewer.h"
-#import "../TableViewCells/RSLabelTableViewCell.h"
 
 
 @implementation RSPropertyViewer
@@ -24,34 +23,30 @@
 
 - (nonnull __kindof UITableViewCell *)newTableViewCell
 {
-    return [[RSLabelTableViewCell alloc] init];
-}
-
-- (void)configureTableViewCell
-{
-    [super configureTableViewCell];
-    RSLabelTableViewCell *cell = self.tableViewCell;
-    cell.titleLabel.text = self.title;
+    return [[UITableViewCell alloc] init];
 }
 
 #pragma mark - RSPropertyFormItem
 
 - (void)propertyChangedToValue:(nullable id)newValue
 {
-    NSString *text;
+    NSString *valueText;
 
     if (newValue == nil || newValue == [NSNull null])
-        text = @"";
+        valueText = @"∅";
     else if (_formatter)
-        text = [_formatter stringForObjectValue:newValue];
+        valueText = [_formatter stringForObjectValue:newValue];
     else
     {
         NSAssert([newValue isKindOfClass:[NSString class]], @"A string value is expected for the property “%@”.", self.key);
-        text = newValue;
+        valueText = newValue;
     }
 
-    RSLabelTableViewCell *labelTableViewCell = self.tableViewCell;
-    labelTableViewCell.valueLabel.text = text;
+    UITableViewCell *cell = self.tableViewCell;
+    UIListContentConfiguration *content = [UIListContentConfiguration valueCellConfiguration];
+    content.text = self.title;
+    content.secondaryText = valueText;
+    cell.contentConfiguration = content;
 }
 
 #pragma mark - RSPropertyViewer

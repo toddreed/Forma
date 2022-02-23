@@ -11,7 +11,6 @@
 
 #import "RSObjectPropertyEditor.h"
 #import "../Core/NSObject+RSForm.h"
-#import "../TableViewCells/RSLabelTableViewCell.h"
 
 
 @implementation RSObjectPropertyEditor
@@ -20,14 +19,14 @@
 
 - (UITableViewCell *)newTableViewCell
 {
-    return [[RSLabelTableViewCell alloc] init];
+    return [[UITableViewCell alloc] init];
 }
 
 - (void)configureTableViewCell
 {
     [super configureTableViewCell];
-    RSLabelTableViewCell *cell = self.tableViewCell;
-    cell.titleLabel.text = self.title;
+
+    UITableViewCell *cell = self.tableViewCell;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -48,9 +47,13 @@
 
 - (void)propertyChangedToValue:(nullable id)newValue
 {
-    RSLabelTableViewCell *cell = self.tableViewCell;
-    cell.valueLabel.text = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
+    UITableViewCell *cell = self.tableViewCell;
+    NSString *objectText = ([newValue respondsToSelector:@selector(descriptionWithLocale:)] ?
                             [newValue descriptionWithLocale:[NSLocale currentLocale]] : [newValue description]);
+    UIListContentConfiguration *content = [UIListContentConfiguration valueCellConfiguration];
+    content.text = self.title;
+    content.secondaryText = objectText;
+    cell.contentConfiguration = content;
 }
 
 @end

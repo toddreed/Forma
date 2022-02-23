@@ -25,7 +25,6 @@
 		5FA84EEB274D928A007855B7 /* RSCompoundValidatable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA84EEA274D928A007855B7 /* RSCompoundValidatable.m */; };
 		5FA938F426AF649600DA2782 /* RSTableFooterButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */; };
 		5FB00B3C2267C6B8007383B6 /* RSButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */; };
-		5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */; };
 		5FB0C00227C009C2005DAE8B /* RSCaption.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00127C009C2005DAE8B /* RSCaption.m */; };
 		5FB0C00527C010B9005DAE8B /* RSCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00427C010B9005DAE8B /* RSCaptionView.m */; };
 		5FB0C00827C06B7B005DAE8B /* RSSectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00727C06B7B005DAE8B /* RSSectionFooterView.m */; };
@@ -124,8 +123,6 @@
 		5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSButtonTableViewCell.h; sourceTree = "<group>"; };
 		5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSButtonTableViewCell.m; sourceTree = "<group>"; };
 		5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSButtonTableViewCell.xib; sourceTree = "<group>"; };
-		5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLabelTableViewCell.h; sourceTree = "<group>"; };
-		5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLabelTableViewCell.m; sourceTree = "<group>"; };
 		5FB0C00027C009C2005DAE8B /* RSCaption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSCaption.h; sourceTree = "<group>"; };
 		5FB0C00127C009C2005DAE8B /* RSCaption.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSCaption.m; sourceTree = "<group>"; };
 		5FB0C00327C010B9005DAE8B /* RSCaptionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSCaptionView.h; sourceTree = "<group>"; };
@@ -349,8 +346,6 @@
 				5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */,
 				5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */,
 				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
-				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
-				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
 				5FDFEAEA23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.h */,
 				5FDFEAEB23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m */,
 				5FDFEAEC23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.xib */,
@@ -652,7 +647,6 @@
 				5F4E1075175D0D8D0025BC1D /* RSTextInputPropertyEditor.m in Sources */,
 				5F0170DD227B4940003E81F4 /* RSForm.m in Sources */,
 				5FDFEAF323AD4CC6007DA8E9 /* RSEnumPropertyEditor.m in Sources */,
-				5FB00B402267E1FF007383B6 /* RSLabelTableViewCell.m in Sources */,
 				5FB0C00527C010B9005DAE8B /* RSCaptionView.m in Sources */,
 				5F4E107D175D34680025BC1D /* RSNumberPropertyEditor.m in Sources */,
 				5F352F64178E0EBA006D263B /* RSAutocompleteCell.m in Sources */,
