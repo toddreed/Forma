@@ -33,7 +33,6 @@
 		5FB0C01027C57FB8005DAE8B /* RSSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00F27C57FB8005DAE8B /* RSSelection.m */; };
 		5FB0C01327C5877C005DAE8B /* RSSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C01227C5877C005DAE8B /* RSSelectionViewController.m */; };
 		5FB0C01627C594B3005DAE8B /* RSSelectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C01527C594B3005DAE8B /* RSSelectionSectionHeaderView.m */; };
-		5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */; };
 		5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */; };
 		5FDFEAED23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFEAEB23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m */; };
 		5FDFEAF023AD43D2007DA8E9 /* RSEnumDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFEAEF23AD43D2007DA8E9 /* RSEnumDescriptor.m */; };
@@ -141,9 +140,6 @@
 		5FB0C01227C5877C005DAE8B /* RSSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelectionViewController.m; sourceTree = "<group>"; };
 		5FB0C01427C594B3005DAE8B /* RSSelectionSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSelectionSectionHeaderView.h; sourceTree = "<group>"; };
 		5FB0C01527C594B3005DAE8B /* RSSelectionSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelectionSectionHeaderView.m; sourceTree = "<group>"; };
-		5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSDetailTableViewCell.h; sourceTree = "<group>"; };
-		5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSDetailTableViewCell.m; sourceTree = "<group>"; };
-		5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSDetailTableViewCell.xib; sourceTree = "<group>"; };
 		5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSliderTableViewCell.xib; sourceTree = "<group>"; };
 		5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSwitchTableViewCell.h; sourceTree = "<group>"; };
 		5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSwitchTableViewCell.m; sourceTree = "<group>"; };
@@ -353,9 +349,6 @@
 				5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */,
 				5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */,
 				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
-				5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */,
-				5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */,
-				5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */,
 				5FB00B3D2267E1FF007383B6 /* RSLabelTableViewCell.h */,
 				5FB00B3E2267E1FF007383B6 /* RSLabelTableViewCell.m */,
 				5FDFEAEA23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.h */,
@@ -667,7 +660,6 @@
 				5FA938F426AF649600DA2782 /* RSTableFooterButtonView.m in Sources */,
 				5F4E909F2279EE16005EAAA3 /* RSFormItem.m in Sources */,
 				5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */,
-				5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */,
 				5F352F67178E0FD6006D263B /* RSAutocompleteInputAccessoryView.m in Sources */,
 				5F352F6A178E15FA006D263B /* RSArrayAutocompleteSource.m in Sources */,
 			);

@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  Forma: 74cb018ae7cc04f2d252984211c5fcd0df4d228e
+  Forma: e6ddc9ab5559fe5c0abb4070aca928eebd5f8f6b
   Reveal-SDK: a0f993ac78f7b01e398a56d5a8af8f9882c001bd
 
 PODFILE CHECKSUM: a2c81323dc9daaa03d3212a25954f2e1bafd15d4

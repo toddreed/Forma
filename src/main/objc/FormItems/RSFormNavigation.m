@@ -11,7 +11,6 @@
 
 #import "RSFormNavigation.h"
 #import "../Core/NSObject+RSForm.h"
-#import "../TableViewCells/RSDetailTableViewCell.h"
 
 
 @implementation RSFormNavigation
@@ -23,14 +22,17 @@
 
 - (UITableViewCell *)newTableViewCell
 {
-    return [[self class] instantiateTableViewCellFromNibOfClass:[RSDetailTableViewCell class]];
+    return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 }
 
 - (void)configureTableViewCell
 {
     [super configureTableViewCell];
-    RSDetailTableViewCell *cell = self.tableViewCell;
-    cell.titleLabel.text = self.title;
+    UITableViewCell *cell = self.tableViewCell;
+
+    UIListContentConfiguration *content = [cell defaultContentConfiguration];
+    content.text = self.title;
+    cell.contentConfiguration = content;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
