@@ -23,7 +23,7 @@
     return [[RSLabelTableViewCell alloc] init];
 }
 
-- (void)configureTableViewCellFor
+- (void)configureTableViewCell
 {
     [super configureTableViewCell];
     RSLabelTableViewCell *cell = self.tableViewCell;
