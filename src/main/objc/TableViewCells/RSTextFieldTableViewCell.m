@@ -113,8 +113,4 @@ typedef NS_ENUM(NSInteger, RSTextFieldTableViewCellStyle)
     } completion:nil];
 }
 
-#pragma RSPropertyEditorView
-
-@synthesize titleLabel = _titleLabel;
-
 @end

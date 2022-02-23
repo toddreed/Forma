@@ -14,8 +14,9 @@
 #import "../FormItems/RSFormItem.h"
 
 
-@interface RSSliderTableViewCell : UITableViewCell <RSFormItemView>
+@interface RSSliderTableViewCell : UITableViewCell
 
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, readonly, nonnull) UISlider *slider;
 
 @end

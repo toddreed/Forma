@@ -21,7 +21,7 @@
 
 #pragma mark - RSFormItem
 
-- (UITableViewCell<RSFormItemView> *)newTableViewCell
+- (UITableViewCell *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSDetailTableViewCell class]];
 }
@@ -29,7 +29,9 @@
 - (void)configureTableViewCell
 {
     [super configureTableViewCell];
-    self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    RSDetailTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)selectable

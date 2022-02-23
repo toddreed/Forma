@@ -19,7 +19,7 @@
 
 #pragma mark - RSFormItem
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSButtonTableViewCell class]];
 }

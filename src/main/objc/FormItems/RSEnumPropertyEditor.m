@@ -20,7 +20,7 @@
 
 #pragma mark RSFormItem
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSegmentedControlTableViewCell class]];
 }
@@ -28,6 +28,8 @@
 - (void)configureTableViewCell
 {
     RSSegmentedControlTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+
     UISegmentedControl *segmentedControl = cell.segmentedControl;
 
     [segmentedControl removeAllSegments];

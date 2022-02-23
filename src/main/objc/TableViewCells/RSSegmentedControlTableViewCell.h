@@ -12,10 +12,11 @@
 #import <UIKit/UIKit.h>
 
 #import "RSBaseTableViewCell.h"
-#import "../Core/RSFormItemView.h"
 
-@interface RSSegmentedControlTableViewCell : RSBaseTableViewCell <RSFormItemView>
 
+@interface RSSegmentedControlTableViewCell : RSBaseTableViewCell
+
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, readonly, nonnull) UISegmentedControl *segmentedControl;
 
 @end

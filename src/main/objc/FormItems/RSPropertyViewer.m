@@ -22,9 +22,16 @@
     return [self initWithKey:key ofObject:object title:title formatter:nil];
 }
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     return [[RSLabelTableViewCell alloc] init];
+}
+
+- (void)configureTableViewCell
+{
+    [super configureTableViewCell];
+    RSLabelTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
 }
 
 #pragma mark - RSPropertyFormItem

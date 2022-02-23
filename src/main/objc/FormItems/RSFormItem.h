@@ -12,7 +12,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "../Core/RSFormItemView.h"
 #import "../Core/RSFormContainer.h"
 
 
@@ -42,7 +41,7 @@
 /// table cell for for each property so a KVO change notification can update the UI. The table
 /// cell is lazily created. Subclasses should not override this property, and instead override
 /// `-newTableViewCell`.
-@property (nonatomic, readonly, nonnull) __kindof UITableViewCell<RSFormItemView> *tableViewCell;
+@property (nonatomic, readonly, nonnull) __kindof UITableViewCell *tableViewCell;
 
 /// Indicates whether the table view cell for this form item has been instantiated.
 @property (nonatomic, readonly) BOOL tableViewCellInstantiated;
@@ -65,11 +64,11 @@
 ///
 /// This method only works for table view cells that are part of the Forma library as the nib
 /// file is loaded from the Forma’s resource bundle.
-+ (nonnull __kindof UITableViewCell<RSFormItemView> *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
++ (nonnull __kindof UITableViewCell *)instantiateTableViewCellFromNibOfClass:(nonnull Class)cls;
 
 /// This is a helper factory function used to create a new UITableViewCell when needed. This is
 /// invoked the first time the `tableViewCell` property is accessed.
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell;
+- (nonnull __kindof UITableViewCell *)newTableViewCell;
 
 /// This method is invoked by the form container (from it’s -tableView:cellForRowAtIndexPath:
 /// method) and should not be called directly. Subclasses should override this method to perform

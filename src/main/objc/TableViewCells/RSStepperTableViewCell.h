@@ -12,11 +12,12 @@
 #import <UIKit/UIKit.h>
 
 #import "RSBaseTableViewCell.h"
-#import "../Core/RSFormItemView.h"
 
-@interface RSStepperTableViewCell : RSBaseTableViewCell <RSFormItemView>
+
+@interface RSStepperTableViewCell : RSBaseTableViewCell
 
 @property (nonatomic, strong, readonly, nonnull) UIStepper *stepper;
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, readonly, nonnull) UILabel *valueLabel;
 
 @end

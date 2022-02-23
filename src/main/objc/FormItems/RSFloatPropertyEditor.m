@@ -17,7 +17,7 @@
 
 #pragma mark - RSFormItem
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSliderTableViewCell class]];
 }
@@ -26,7 +26,10 @@
 {
     [super configureTableViewCell];
 
-    UISlider *slider = ((RSSliderTableViewCell *)self.tableViewCell).slider;
+    RSSliderTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+
+    UISlider *slider = cell.slider;
 
     [slider addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
     if (@available(iOS 14, *))

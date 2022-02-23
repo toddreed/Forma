@@ -11,10 +11,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../Core/RSFormItemView.h"
 #import "RSBaseTableViewCell.h"
 
-@interface RSDetailTableViewCell : RSBaseTableViewCell <RSFormItemView>
+@interface RSDetailTableViewCell : RSBaseTableViewCell
+
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 
 @end
 

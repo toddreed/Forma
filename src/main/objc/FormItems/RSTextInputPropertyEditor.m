@@ -66,7 +66,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     return [self initWithKey:key ofObject:object title:title style:RSTextInputPropertyEditorStyleSettings formatter:nil];
 }
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     NSString *nibName;
     switch (_style)
@@ -111,7 +111,10 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
 {
     [super configureTableViewCell];
 
-    UITextField *textField = ((RSTextFieldTableViewCell *)self.tableViewCell).textField;
+    RSTextFieldTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+
+    UITextField *textField = cell.textField;
 
     textField.delegate = self;
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingDidEnd|UIControlEventEditingDidEndOnExit];
@@ -322,7 +325,7 @@ NSString *_Nonnull const RSTextInputPropertyValidationErrorDomain = @"RSTextInpu
     if (index != NSNotFound)
     {
         [_captions removeObjectAtIndex:index];
-        
+
         RSTextFieldTableViewCell *cell = (RSTextFieldTableViewCell *)self.tableViewCell;
         RSCaptionView *captionView = cell.stackView.arrangedSubviews[index+self.firstCaptionViewIndex];
         [cell.stackView removeArrangedSubview:captionView];

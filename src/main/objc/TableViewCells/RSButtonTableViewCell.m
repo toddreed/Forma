@@ -21,9 +21,4 @@
 
 @implementation RSButtonTableViewCell
 
-- (UILabel *)titleLabel
-{
-    return nil;
-}
-
 @end

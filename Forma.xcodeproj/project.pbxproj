@@ -81,7 +81,6 @@
 		5F0CE80D226E5F04000465AB /* RSPropertyViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSPropertyViewer.h; sourceTree = "<group>"; };
 		5F0CE80E226E5F04000465AB /* RSPropertyViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSPropertyViewer.m; sourceTree = "<group>"; };
 		5F14FF7C1ACE18EE003D0861 /* RSFormContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSFormContainer.h; sourceTree = "<group>"; };
-		5F31EC60227A2B4A004DC78B /* RSFormItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFormItemView.h; sourceTree = "<group>"; };
 		5F352F61178E0DAD006D263B /* RSAutocompleteSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteSource.h; sourceTree = "<group>"; };
 		5F352F62178E0EBA006D263B /* RSAutocompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAutocompleteCell.h; sourceTree = "<group>"; };
 		5F352F63178E0EBA006D263B /* RSAutocompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAutocompleteCell.m; sourceTree = "<group>"; };
@@ -262,7 +261,6 @@
 				5F0170DB227B4940003E81F4 /* RSForm.h */,
 				5F0170DC227B4940003E81F4 /* RSForm.m */,
 				5F14FF7C1ACE18EE003D0861 /* RSFormContainer.h */,
-				5F31EC60227A2B4A004DC78B /* RSFormItemView.h */,
 				5F57463B226A739A00E14770 /* RSFormLibrary.h */,
 				5F57463C226A739A00E14770 /* RSFormLibrary.m */,
 				5FF92FC0174AD615003211A0 /* RSFormSection.h */,

@@ -17,7 +17,7 @@
 
 #pragma mark RSFormItem
 
-- (nonnull __kindof UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull __kindof UITableViewCell *)newTableViewCell
 {
     return [[self class] instantiateTableViewCellFromNibOfClass:[RSSwitchTableViewCell class]];
 }
@@ -27,8 +27,9 @@
     [super configureTableViewCell];
 
     RSSwitchTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+
     UISwitch *toggle = cell.toggle;
-    
     [toggle addTarget:self action:@selector(switchChangedValue:) forControlEvents:UIControlEventValueChanged];
 }
 

@@ -11,14 +11,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../Core/RSFormItemView.h"
-
 
 /// RSLabelTableViewCell is a table view cell with a (multiline) title label on left side and a
 /// single line value label on the right side. It’s intended to display a readonly property value
 /// that can be represented by text.
-@interface RSLabelTableViewCell : UITableViewCell <RSFormItemView>
+@interface RSLabelTableViewCell : UITableViewCell
 
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, readonly, nonnull) UILabel *valueLabel;
 
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier UNAVAILABLE_ATTRIBUTE;

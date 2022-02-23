@@ -15,8 +15,9 @@
 #import "RSBaseTableViewCell.h"
 
 
-@interface RSSwitchTableViewCell : RSBaseTableViewCell <RSFormItemView>
+@interface RSSwitchTableViewCell : RSBaseTableViewCell
 
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, strong, readonly, nonnull) UISwitch *toggle;
 
 @end

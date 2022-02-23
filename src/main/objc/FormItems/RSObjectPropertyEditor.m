@@ -18,7 +18,7 @@
 
 #pragma mark RSFormItem
 
-- (UITableViewCell<RSFormItemView> *)newTableViewCell
+- (UITableViewCell *)newTableViewCell
 {
     return [[RSLabelTableViewCell alloc] init];
 }
@@ -26,7 +26,9 @@
 - (void)configureTableViewCellFor
 {
     [super configureTableViewCell];
-    self.tableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    RSLabelTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (BOOL)selectable

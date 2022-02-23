@@ -16,7 +16,7 @@
 
 @implementation RSFormItem
 {
-    __kindof UITableViewCell<RSFormItemView> *_tableViewCell;
+    __kindof UITableViewCell *_tableViewCell;
 }
 
 #pragma mark - RSFormItem
@@ -29,7 +29,7 @@
     return self;
 }
 
-- (UITableViewCell<RSFormItemView> *)tableViewCell
+- (UITableViewCell *)tableViewCell
 {
     if (_tableViewCell == nil)
     {
@@ -40,13 +40,13 @@
     return _tableViewCell;
 }
 
-+ (nonnull __kindof UITableViewCell<RSFormItemView> *)instantiateTableViewCellFromNibOfClass:(Class)cls
++ (nonnull __kindof UITableViewCell *)instantiateTableViewCellFromNibOfClass:(Class)cls
 {
     UINib *nib = [UINib nibWithNibName:NSStringFromClass(cls) bundle:RSFormLibrary.bundle];
     return [nib instantiateWithOwner:self options:nil][0];
 }
 
-- (nonnull UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
     NSString *reason = [NSString stringWithFormat:@"%s must be implemented in %@ or a superclass", __func__, NSStringFromClass([self class])];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
@@ -54,12 +54,8 @@
 
 - (void)configureTableViewCell
 {
-    UITableViewCell<RSFormItemView> *cell = self.tableViewCell;
+    UITableViewCell *cell = self.tableViewCell;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    UILabel *titleLabel = cell.titleLabel;
-    if (titleLabel != nil)
-        titleLabel.text = _title;
 }
 
 - (void)controllerDidSelectFormItem:(nonnull UIViewController<RSFormContainer> *)controller

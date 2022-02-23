@@ -11,11 +11,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "../Core/RSFormItemView.h"
 #import "RSBaseTableViewCell.h"
 
 
-@interface RSButtonTableViewCell : RSBaseTableViewCell <RSFormItemView>
+@interface RSButtonTableViewCell : RSBaseTableViewCell
 
 @property (nonatomic, strong, readonly, nonnull) IBOutlet UIButton *button;
 

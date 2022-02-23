@@ -144,8 +144,4 @@ static const CGFloat kDefaultHorizontalSpacing = 10;
     _cachedLayout.valid = false;
 }
 
-#pragma RSPropertyEditorView
-
-@synthesize titleLabel = _titleLabel;
-
 @end

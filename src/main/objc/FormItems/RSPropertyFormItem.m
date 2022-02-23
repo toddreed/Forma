@@ -76,9 +76,9 @@ static void PerformOnMainThread(dispatch_block_t block)
 
 #pragma mark - RSFormItem
 
-- (nonnull UITableViewCell<RSFormItemView> *)newTableViewCell
+- (nonnull UITableViewCell *)newTableViewCell
 {
-    UITableViewCell<RSFormItemView> *cell = [super newTableViewCell];
+    UITableViewCell *cell = [super newTableViewCell];
 
     return cell;
 }

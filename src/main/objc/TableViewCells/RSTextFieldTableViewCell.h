@@ -14,8 +14,9 @@
 #import "../FormItems/RSFormItem.h"
 
 
-@interface RSTextFieldTableViewCell : UITableViewCell <RSFormItemView>
+@interface RSTextFieldTableViewCell : UITableViewCell
 
+@property (nonatomic, strong, readonly, nonnull) UILabel *titleLabel;
 @property (nonatomic, readonly, nonnull) UITextField *textField;
 @property (nonatomic, readonly, nonnull) UIStackView *stackView;
 
