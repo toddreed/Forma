@@ -29,6 +29,8 @@
 @property (nonatomic, weak, nullable) id<RSSelectionViewControllerDelegate> delegate;
 
 - (nonnull instancetype)init UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithCoder:(nonnull NSCoder *)coder UNAVAILABLE_ATTRIBUTE;
+- (nonnull instancetype)initWithNibName:(nullable NSString *)nibNameOrNil bundle:(nullable NSBundle *)nibBundleOrNil UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithStyle:(UITableViewStyle)style UNAVAILABLE_ATTRIBUTE;
 - (nonnull instancetype)initWithSelection:(nonnull RSSelection *)selection selectedIndex:(NSUInteger)index NS_DESIGNATED_INITIALIZER;
 
