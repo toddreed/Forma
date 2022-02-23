@@ -29,6 +29,10 @@
 		5FB0C00227C009C2005DAE8B /* RSCaption.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00127C009C2005DAE8B /* RSCaption.m */; };
 		5FB0C00527C010B9005DAE8B /* RSCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00427C010B9005DAE8B /* RSCaptionView.m */; };
 		5FB0C00827C06B7B005DAE8B /* RSSectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00727C06B7B005DAE8B /* RSSectionFooterView.m */; };
+		5FB0C00D27C57EBC005DAE8B /* RSSelectionPropertyEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00C27C57EBC005DAE8B /* RSSelectionPropertyEditor.m */; };
+		5FB0C01027C57FB8005DAE8B /* RSSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C00F27C57FB8005DAE8B /* RSSelection.m */; };
+		5FB0C01327C5877C005DAE8B /* RSSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C01227C5877C005DAE8B /* RSSelectionViewController.m */; };
+		5FB0C01627C594B3005DAE8B /* RSSelectionSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB0C01527C594B3005DAE8B /* RSSelectionSectionHeaderView.m */; };
 		5FD357CD2267872F0080E0F0 /* RSDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */; };
 		5FD357D22267BF030080E0F0 /* RSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */; };
 		5FDFEAED23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFEAEB23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m */; };
@@ -129,6 +133,14 @@
 		5FB0C00427C010B9005DAE8B /* RSCaptionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSCaptionView.m; sourceTree = "<group>"; };
 		5FB0C00627C06B7B005DAE8B /* RSSectionFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSectionFooterView.h; sourceTree = "<group>"; };
 		5FB0C00727C06B7B005DAE8B /* RSSectionFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSectionFooterView.m; sourceTree = "<group>"; };
+		5FB0C00B27C57EBC005DAE8B /* RSSelectionPropertyEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSelectionPropertyEditor.h; sourceTree = "<group>"; };
+		5FB0C00C27C57EBC005DAE8B /* RSSelectionPropertyEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelectionPropertyEditor.m; sourceTree = "<group>"; };
+		5FB0C00E27C57FB8005DAE8B /* RSSelection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSelection.h; sourceTree = "<group>"; };
+		5FB0C00F27C57FB8005DAE8B /* RSSelection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelection.m; sourceTree = "<group>"; };
+		5FB0C01127C5877C005DAE8B /* RSSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSelectionViewController.h; sourceTree = "<group>"; };
+		5FB0C01227C5877C005DAE8B /* RSSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelectionViewController.m; sourceTree = "<group>"; };
+		5FB0C01427C594B3005DAE8B /* RSSelectionSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSelectionSectionHeaderView.h; sourceTree = "<group>"; };
+		5FB0C01527C594B3005DAE8B /* RSSelectionSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSelectionSectionHeaderView.m; sourceTree = "<group>"; };
 		5FD357CA2267872F0080E0F0 /* RSDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSDetailTableViewCell.h; sourceTree = "<group>"; };
 		5FD357CB2267872F0080E0F0 /* RSDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSDetailTableViewCell.m; sourceTree = "<group>"; };
 		5FD357CC2267872F0080E0F0 /* RSDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -270,6 +282,12 @@
 				5FF92FBB174AD615003211A0 /* RSFormViewController.m */,
 				5FB0C00627C06B7B005DAE8B /* RSSectionFooterView.h */,
 				5FB0C00727C06B7B005DAE8B /* RSSectionFooterView.m */,
+				5FB0C00E27C57FB8005DAE8B /* RSSelection.h */,
+				5FB0C00F27C57FB8005DAE8B /* RSSelection.m */,
+				5FB0C01427C594B3005DAE8B /* RSSelectionSectionHeaderView.h */,
+				5FB0C01527C594B3005DAE8B /* RSSelectionSectionHeaderView.m */,
+				5FB0C01127C5877C005DAE8B /* RSSelectionViewController.h */,
+				5FB0C01227C5877C005DAE8B /* RSSelectionViewController.m */,
 				5FA938F226AF649600DA2782 /* RSTableFooterButtonView.h */,
 				5FA938F326AF649600DA2782 /* RSTableFooterButtonView.m */,
 				5F9C903D26B0753D00D1DD9D /* RSTableHeaderImageView.h */,
@@ -296,6 +314,8 @@
 			children = (
 				5FF92FB0174AD615003211A0 /* RSBooleanPropertyEditor.h */,
 				5FF92FB1174AD615003211A0 /* RSBooleanPropertyEditor.m */,
+				5FB0C00B27C57EBC005DAE8B /* RSSelectionPropertyEditor.h */,
+				5FB0C00C27C57EBC005DAE8B /* RSSelectionPropertyEditor.m */,
 				5F5B547326C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.h */,
 				5F5B547426C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m */,
 				5FDFEAF123AD4CC6007DA8E9 /* RSEnumPropertyEditor.h */,
@@ -610,7 +630,10 @@
 				5FF92FCA174AD615003211A0 /* NSManagedObject+RSForm.m in Sources */,
 				5FF92FCB174AD615003211A0 /* NSObject+RSForm.m in Sources */,
 				5F6087F01ACDEB5D00E0ED97 /* RSFetchRequestAutocompleteSource.m in Sources */,
+				5FB0C01327C5877C005DAE8B /* RSSelectionViewController.m in Sources */,
+				5FB0C01627C594B3005DAE8B /* RSSelectionSectionHeaderView.m in Sources */,
 				5FF92FCD174AD615003211A0 /* NSObject+RSProperties.m in Sources */,
+				5FB0C00D27C57EBC005DAE8B /* RSSelectionPropertyEditor.m in Sources */,
 				5FF92FCE174AD615003211A0 /* NSString+RSCamelCase.m in Sources */,
 				5F5B547926C19E5900E76344 /* RSStepperTableViewCell.m in Sources */,
 				5FF92FCF174AD615003211A0 /* RSBooleanPropertyEditor.m in Sources */,
@@ -618,6 +641,7 @@
 				5FDFEAED23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m in Sources */,
 				5FB0C00827C06B7B005DAE8B /* RSSectionFooterView.m in Sources */,
 				5FF92FD0174AD615003211A0 /* RSFormButton.m in Sources */,
+				5FB0C01027C57FB8005DAE8B /* RSSelection.m in Sources */,
 				5F0CE80F226E5F04000465AB /* RSPropertyViewer.m in Sources */,
 				5FF92FD1174AD615003211A0 /* RSFormNavigation.m in Sources */,
 				5F5B547526C19D4C00E76344 /* RSDiscreteNumericPropertyEditor.m in Sources */,

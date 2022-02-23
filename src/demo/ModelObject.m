@@ -17,6 +17,7 @@
 #import "RSFormNavigation.h"
 #import "RSBooleanPropertyEditor.h"
 #import "RSEnumPropertyEditor.h"
+#import "RSSelectionPropertyEditor.h"
 #import "RSFormButton.h"
 #import "RSPropertyViewer.h"
 
@@ -200,8 +201,22 @@
 - (nonnull RSEnumPropertyEditor *)sizePropertyEditor
 {
     NSArray<NSNumber *> *values = @[@(TShirtSizeSmall), @(TShirtSizeMedium), @(TShirtSizeLarge)];
-    RSEnumDescriptor *descriptor = [[RSEnumDescriptor alloc] initWithEnumValues:values labels:@[@"Small", @"Medium", @"Large"]];
+    RSEnumDescriptor *descriptor = [[RSEnumDescriptor alloc] initWithEnumValues:values labels:@[@"S", @"M", @"L"]];
     RSEnumPropertyEditor *editor = [[RSEnumPropertyEditor alloc] initWithKey:@"size" ofObject:self title:@"T-Shirt Size" enumDescriptor:descriptor];
+    return editor;
+}
+
+- (nonnull RSSelectionPropertyEditor *)sizeSelectionPropertyEditor
+{
+    NSArray<RSOption *> *options = @[
+        [RSOption optionForValue:@(TShirtSizeSmall) label:@"Small"],
+        [RSOption optionForValue:@(TShirtSizeMedium) label:@"Medium"],
+        [RSOption optionForValue:@(TShirtSizeLarge) label:@"Large"]
+    ];
+    RSSelection *selection = [[RSSelection alloc] initWithOptions:options];
+    selection.expanatoryDescription = @"Select the t-shirt size that fits you.";
+    selection.image = [UIImage systemImageNamed:@"tshirt"];
+    RSSelectionPropertyEditor *editor = [[RSSelectionPropertyEditor alloc] initWithKey:@"size" ofObject:self title:@"T-Shirt Size" selection:selection];
     return editor;
 }
 
@@ -226,6 +241,7 @@
         [self equalizerPropertyEditor],
         [self enabledPropertyEditor],
         [self sizePropertyEditor],
+        [self sizeSelectionPropertyEditor],
         [self addressPropertyEditor]
     ];
     RSFormSection *formSection = [[RSFormSection alloc] initWithTitle:@"Settings" formItems:editors];
