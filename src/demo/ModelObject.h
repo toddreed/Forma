@@ -27,6 +27,7 @@ typedef enum TShirtSize: NSUInteger
 
 @interface ModelObject : NSObject <RSFormDelegate>
 
+@property (nonatomic, readonly) BOOL modified;
 @property (nonatomic, readonly) long long bytesAvailable;
 @property (nonatomic, copy, nonnull) NSString *name;
 @property (nonatomic, nonnull) Account *account;

@@ -25,6 +25,8 @@
 @optional
 
 - (BOOL)isFormValid:(nonnull RSForm *)form;
+- (void)formDidChange:(nonnull RSForm *)form changeCount:(NSUInteger)count;
+- (void)formDidResetChangeCount:(nonnull RSForm *)form;
 
 @end
 
@@ -39,7 +41,7 @@
 
 /// Indicates whether the form has been modified. The initial value is NO. Property editors
 /// should set this to YES when they modify their target object.
-@property (nonatomic) BOOL modified;
+@property (nonatomic, readonly, getter=isModified) BOOL modified;
 
 @property (nonatomic, copy, readonly, nonnull) NSString *title;
 @property (nonatomic, copy, nonnull) NSArray<RSFormSection *> *sections;
@@ -69,5 +71,8 @@
 - (nullable RSFormItem *)formItemForKey:(nonnull NSString *)key;
 
 - (nullable NSIndexPath *)findNextTextInputAfterFormItem:(nonnull RSFormItem *)item;
+
+- (void)updateChangeCount;
+- (void)resetChangeCount;
 
 @end

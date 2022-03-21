@@ -128,6 +128,14 @@
 
 @end
 
+
+@interface ModelObject ()
+
+@property (nonatomic) BOOL modified;
+
+@end
+
+
 @implementation ModelObject
 
 - (nonnull instancetype)init
@@ -269,6 +277,16 @@
 - (BOOL)isFormValid:(nonnull RSForm *)form
 {
     return _name != nil && [_name isEqualToString:@"John"] && _volume > 0.5;
+}
+
+- (void)formDidChange:(RSForm *)form changeCount:(NSUInteger)count
+{
+    self.modified = (count != 0);
+}
+
+- (void)formDidResetChangeCount:(RSForm *)form
+{
+    self.modified = NO;
 }
 
 @end

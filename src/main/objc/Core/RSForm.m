@@ -24,6 +24,7 @@
 {
     NSMutableArray<RSFormSection *> *_sections;
     RSCompoundValidatable *_sectionsCompoundValidable;
+    NSUInteger _changeCount;
     _Bool _valid;
 }
 
@@ -76,11 +77,25 @@
     _delegate = delegate;
 }
 
-- (void)setModified:(BOOL)modified
+- (BOOL)isModified
 {
+    return _changeCount != 0;
+}
+
+- (void)updateChangeCount
+{
+    _changeCount += 1;
     [self updateValid];
     [_formContainer formWasUpdated];
-    _modified = modified;
+    if ([_delegate respondsToSelector:@selector(formDidChange:changeCount:)])
+        [_delegate formDidChange:self changeCount:_changeCount];
+}
+
+- (void)resetChangeCount
+{
+    _changeCount = 0;
+    if ([_delegate respondsToSelector:@selector(formDidResetChangeCount:)])
+        [_delegate formDidResetChangeCount:self];
 }
 
 - (void)setEnabled:(BOOL)enabled

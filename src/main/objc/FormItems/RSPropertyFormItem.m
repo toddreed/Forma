@@ -65,7 +65,7 @@ static void PerformOnMainThread(dispatch_block_t block)
 
         dispatch_block_t block = ^{
             if (changed)
-                self.formSection.form.modified = YES;
+                [self.formSection.form updateChangeCount];
             [self propertyChangedToValue:newValue];
         };
         PerformOnMainThread(block);
