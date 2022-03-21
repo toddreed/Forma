@@ -50,7 +50,7 @@
 
 - (void)updateValid
 {
-    _Bool valid = (_delegate == nil || [_delegate isFormValid:self]) && _sectionsCompoundValidable.valid;
+    _Bool valid = (_delegate == nil || ([_delegate respondsToSelector:@selector(isFormValid:)] && [_delegate isFormValid:self])) && _sectionsCompoundValidable.valid;
     [self setValid:valid];
 }
 
@@ -71,7 +71,7 @@
         [self setValid:_sectionsCompoundValidable.valid];
     else
     {
-        BOOL valid = [delegate isFormValid:self];
+        BOOL valid = [_delegate respondsToSelector:@selector(isFormValid:)] && [_delegate isFormValid:self];
         [self setValid:valid && _sectionsCompoundValidable.valid];
     }
     _delegate = delegate;
