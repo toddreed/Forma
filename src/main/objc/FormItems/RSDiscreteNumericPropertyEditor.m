@@ -26,7 +26,10 @@
 {
     [super configureTableViewCell];
 
-    UIStepper *stepper = ((RSStepperTableViewCell *)self.tableViewCell).stepper;
+    RSStepperTableViewCell *cell = self.tableViewCell;
+    cell.titleLabel.text = self.title;
+
+    UIStepper *stepper = cell.stepper;
 
     [stepper addTarget:self action:@selector(sliderChangedValue:) forControlEvents:UIControlEventValueChanged];
     stepper.continuous = _continuous;
