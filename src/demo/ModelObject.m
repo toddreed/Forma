@@ -55,6 +55,11 @@
 
 @implementation Account
 
+- (NSString *)descriptionWithLocale:(nonnull NSLocale *)locale
+{
+    return _firstName;
+}
+
 - (BOOL)validatePassword:(inout id  _Nullable __autoreleasing *)ioPassword error:(out NSError * _Nullable __autoreleasing *)error
 {
     NSString *password = *ioPassword;
