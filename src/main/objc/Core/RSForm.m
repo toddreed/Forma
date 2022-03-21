@@ -205,8 +205,6 @@
 
 #pragma mark RSValidatableDelegate
 
-//@synthesize valid = _valid;
-
 @synthesize validatableDelegate = _validatableDelegate;
 
 - (BOOL)isValid
