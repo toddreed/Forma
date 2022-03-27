@@ -26,6 +26,27 @@
     return [[UITableViewCell alloc] init];
 }
 
+- (BOOL)selectable
+{
+    return YES;
+}
+
+- (void)controllerDidSelectFormItem:(UIViewController<RSFormContainer> *)controller
+{
+    UIPasteboard *pasteboard = UIPasteboard.generalPasteboard;
+    id value = [self.object valueForKey:self.key];
+    if (_formatter == nil)
+    {
+        if ([value isKindOfClass:[NSString class]])
+            pasteboard.string = value;
+    }
+    else
+    {
+        NSString *stringValue = [_formatter stringForObjectValue:value];
+        pasteboard.string = stringValue;
+    }
+}
+
 #pragma mark - RSPropertyFormItem
 
 - (void)propertyChangedToValue:(nullable id)newValue
