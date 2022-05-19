@@ -68,3 +68,12 @@ When using `-isFormValid:` to perform validation, it’s important that validati
 }
 ```
 
+## File Organization
+
+Updating the `include` directory:
+
+```sh
+ls -1 ../Core/*.h | xargs -J % ln -s % .
+ls -1 ../FormItems/*.h | xargs -J % ln -s % .
+ls -1 ../TableViewCells/*.h | xargs -J % ln -s % .
+```

@@ -1,0 +1,1 @@
+../Core/NSObject+RSProperties.h
