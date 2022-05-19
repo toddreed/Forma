@@ -95,6 +95,7 @@ static void PerformOnMainThread(dispatch_block_t block)
 {
     NSParameterAssert(key != nil);
     NSParameterAssert(object != nil);
+    NSParameterAssert(title != nil);
 
     self = [super initWithTitle:title];
     _key = [key copy];

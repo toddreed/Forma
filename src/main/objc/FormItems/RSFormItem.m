@@ -23,6 +23,8 @@
 
 - (nonnull instancetype)initWithTitle:(nonnull NSString *)title
 {
+    NSParameterAssert(title != nil);
+    
     self = [super init];
     _title = [title copy];
     _enabled = YES;
