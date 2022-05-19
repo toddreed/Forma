@@ -328,6 +328,18 @@ NSString *const kFooterViewReuseIdentifier = @"RSSectionFooterView";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RSFormItem *formItem = [_form formItemForIndexPath:indexPath];
+    return formItem.trailingSwipeActionsConfiguration;
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RSFormItem *formItem = [_form formItemForIndexPath:indexPath];
+    return formItem.leadingSwipeActionsConfiguration;
+}
+
 #pragma mark UITableViewDataSource
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath

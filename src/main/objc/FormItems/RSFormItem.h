@@ -54,6 +54,16 @@
 /// -controllerDidSelectFormItem: will not be invoked. The default value is NO.
 @property (nonatomic, readonly) BOOL selectable;
 
+/// Returns the swipe actions configuration when the form items table view cell is swiped away
+/// from the trailing edge. Defaults to nil. Subclasses should override to implement custom
+/// actions.
+@property (nonatomic, readonly, nullable) UISwipeActionsConfiguration *trailingSwipeActionsConfiguration;
+
+/// Returns the swipe actions configuration when the form items table view cell is swiped away
+/// from the leading edge. Defaults to nil. Subclasses should override to implement custom
+/// actions.
+@property (nonatomic, readonly, nullable) UISwipeActionsConfiguration *leadingSwipeActionsConfiguration;
+
 /// Indicates whether this form item is enabled. The default is YES.
 @property(nonatomic) BOOL enabled;
 

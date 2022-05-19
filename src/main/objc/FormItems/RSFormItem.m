@@ -70,6 +70,16 @@
     return NO;
 }
 
+- (UISwipeActionsConfiguration *)trailingSwipeActionsConfiguration
+{
+    return nil;
+}
+
+- (UISwipeActionsConfiguration *)leadingSwipeActionsConfiguration
+{
+    return nil;
+}
+
 - (BOOL)canBecomeFirstResponder
 {
     return NO;
