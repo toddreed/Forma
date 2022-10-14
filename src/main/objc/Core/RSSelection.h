@@ -33,7 +33,7 @@
 
 
 
-/// RSSelection represents a mutual exclusive choice among severl options. In a desktop UI, this
+/// RSSelection represents a mutually exclusive choice among several options. In a desktop UI, this
 /// would typically be presented with a dropdown menu or radio buttons.
 @interface RSSelection : NSObject
 
