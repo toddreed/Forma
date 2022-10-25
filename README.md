@@ -61,16 +61,24 @@ When using `-isFormValid:` to perform validation, it’s important that validati
 
 ```objc
 - (BOOL)isFormValid:(RSForm *)form {
-	NSString *newPassword1Editor = (RSTextInputPropertyEditor *)[form formItemForKey:@"newPassword1];
-	NSString *newPassword2Editor = (RSTextInputPropertyEditor *)[form formItemForKey:@"newPassword2];
+	NSString *newPassword1Editor = (RSTextInputPropertyEditor *)[form formItemForKey:@"newPassword1"];
+	NSString *newPassword2Editor = (RSTextInputPropertyEditor *)[form formItemForKey:@"newPassword2"];
 
 	return [newPassword1Editor.currentText isEqualToString:newPassword2Editor.currentText];
 }
 ```
 
-## File Organization
+## Swift Package Manager Support
 
-Updating the `include` directory:
+Swift Package Manager (SPM) support currently co-exists with CocoaPods supports. To add support for SPM, a few changes were needed:
+
+- The `src/main/objc/include` folder was created. The package manifest uses `src/main/objc` as the main target path, and by default, SPM expects public header files to be in the `include` directory. To support SPM and Xcode, it was decided to keep the existing file organization, and create symbolic links to the public header files in the `include` directory. This necessitates manually maintaining the `include` directory when new files are added to the Xcode project. See the [File Organization](#file-organization) below.
+- SPM doesn’t seem to like mixing source files and resource files in the same directory. This leads to “duplicate rule found for file at” error message for the resource files. To workaround this issue, the nib files were moved to the new directory `src/main/objc/Resources`, which is not one of the source paths specified in the package manifest.
+- When compiling with SPM, the resources are accessed via the `SWIFTPM_MODULE_BUNDLE` macro.
+
+###  File Organization
+
+The following was used to generate the symbolic links in the `include` directory:
 
 ```sh
 ls -1 ../Core/*.h | xargs -J % ln -s % .

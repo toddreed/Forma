@@ -232,6 +232,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5F13784B290831DA00D64F5C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
+				5FDFEAEC23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.xib */,
+				5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */,
+				5F5B547826C19E5900E76344 /* RSStepperTableViewCell.xib */,
+				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
+				5F011F8A26F9166F00E33802 /* RSTextFieldTableViewCellForm.xib */,
+				5F011F8B26F923BB00E33802 /* RSTextFieldTableViewCellSetting.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		5F574638226A72BF00E14770 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,23 +359,16 @@
 				5F574635226A45E300E14770 /* RSBaseTableViewCell.m */,
 				5FB00B392267C6B8007383B6 /* RSButtonTableViewCell.h */,
 				5FB00B3A2267C6B8007383B6 /* RSButtonTableViewCell.m */,
-				5FB00B3B2267C6B8007383B6 /* RSButtonTableViewCell.xib */,
 				5FDFEAEA23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.h */,
 				5FDFEAEB23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.m */,
-				5FDFEAEC23AD3F1F007DA8E9 /* RSSegmentedControlTableViewCell.xib */,
 				5FF92FC4174AD615003211A0 /* RSSliderTableViewCell.h */,
 				5FF92FC5174AD615003211A0 /* RSSliderTableViewCell.m */,
-				5FD357CE2267A82D0080E0F0 /* RSSliderTableViewCell.xib */,
 				5F5B547626C19E5900E76344 /* RSStepperTableViewCell.h */,
 				5F5B547726C19E5900E76344 /* RSStepperTableViewCell.m */,
-				5F5B547826C19E5900E76344 /* RSStepperTableViewCell.xib */,
 				5FD357CF2267BF030080E0F0 /* RSSwitchTableViewCell.h */,
 				5FD357D02267BF030080E0F0 /* RSSwitchTableViewCell.m */,
-				5FD357D12267BF030080E0F0 /* RSSwitchTableViewCell.xib */,
 				5FF92FC8174AD615003211A0 /* RSTextFieldTableViewCell.h */,
 				5FF92FC9174AD615003211A0 /* RSTextFieldTableViewCell.m */,
-				5F011F8A26F9166F00E33802 /* RSTextFieldTableViewCellForm.xib */,
-				5F011F8B26F923BB00E33802 /* RSTextFieldTableViewCellSetting.xib */,
 			);
 			name = "Table View Cells";
 			path = TableViewCells;
@@ -421,6 +428,7 @@
 		5FF92FA5174AD5B6003211A0 /* objc */ = {
 			isa = PBXGroup;
 			children = (
+				5F13784B290831DA00D64F5C /* Resources */,
 				5F6087EB1ACDE26900E0ED97 /* Core */,
 				5F6087EC1ACDE28000E0ED97 /* Core Data */,
 				5F6087ED1ACDE40700E0ED97 /* Form Items */,

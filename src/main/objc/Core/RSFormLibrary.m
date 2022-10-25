@@ -15,11 +15,16 @@
 
 + (nonnull NSBundle *)bundle
 {
+#if defined(SWIFTPM_MODULE_BUNDLE)
+    NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
+    return bundle;
+#else
     NSBundle *podBundle = [NSBundle bundleForClass:[self class]];
     NSURL *bundleURL = [podBundle URLForResource:@"Forma" withExtension:@"bundle"];
     NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
     NSAssert(bundle != nil, @"Failed to find Forma bundle.");
     return bundle;
+#endif
 }
 
 @end
